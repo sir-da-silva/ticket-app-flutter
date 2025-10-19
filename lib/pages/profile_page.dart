@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../components/activity_card.dart';
-import '../components/ticket_card.dart';
-import '../components/build_section_header.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_first_flutter_app/components/event.dart';
+import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/ticket.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -20,36 +21,131 @@ class ProfilePage extends StatelessWidget {
     ).showSnackBar(const SnackBar(content: Text('Paramètres')));
   }
 
-  IconData _getActivityIcon(int index) {
-    final icons = [
-      Icons.work,
-      Icons.school,
-      Icons.sports_soccer,
-      Icons.music_note,
-      Icons.restaurant,
-      Icons.shopping_cart,
-      Icons.movie,
-      Icons.book,
-      Icons.fitness_center,
-      Icons.travel_explore,
+  Event _getEvents(index) {
+    List<Event> events = [
+      Event(
+        title: "Festival de Musique Imballin",
+        subtitle: "3 jours de vibes et de performances inoubliables",
+        time: "18:00",
+        imageUrl: "https://picsum.photos/200/300?random=20",
+        eventName: "Imballin Fest 2025",
+        eventDate: "2025-11-12",
+        location: "Cap-Haïtien, Haïti",
+        category: "Musique",
+        owner: "Imballin Production",
+        ticketsSold: 480,
+      ),
+      Event(
+        title: "Salon de l’Innovation Technologique",
+        subtitle:
+            "Découvre les nouvelles tendances tech et startups haïtiennes",
+        time: "09:00",
+        imageUrl: "https://picsum.photos/200/300?random=21",
+        eventName: "Haiti Tech Expo 2025",
+        eventDate: "2025-12-02",
+        location: "Port-au-Prince, Haïti",
+        category: "Technologie",
+        owner: "TechHaiti",
+        ticketsSold: 325,
+      ),
+      Event(
+        title: "Soirée Cinéma Plein Air",
+        subtitle: "Projection de films haïtiens sous les étoiles",
+        time: "19:30",
+        imageUrl: "https://picsum.photos/200/300?random=22",
+        eventName: "Ciné Lakay",
+        eventDate: "2025-10-27",
+        location: "Jacmel, Haïti",
+        category: "Cinéma",
+        owner: "CinéKreyo",
+        ticketsSold: 210,
+      ),
+      Event(
+        title: "Compétition de Danse Urbaine",
+        subtitle: "Les meilleurs danseurs du pays s’affrontent",
+        time: "16:00",
+        imageUrl: "https://picsum.photos/200/300?random=23",
+        eventName: "Move Battle 2025",
+        eventDate: "2025-11-20",
+        location: "Gonaïves, Haïti",
+        category: "Danse",
+        owner: "UrbanVibes",
+        ticketsSold: 150,
+      ),
+      Event(
+        title: "Exposition d’Art Contemporain",
+        subtitle: "Les artistes émergents à l’honneur",
+        time: "10:00",
+        imageUrl: "https://picsum.photos/200/300?random=24",
+        eventName: "Art Vision 2025",
+        eventDate: "2025-11-05",
+        location: "Pétion-Ville, Haïti",
+        category: "Art",
+        owner: "Haïti Création",
+        ticketsSold: 275,
+      ),
+      Event(
+        title: "Tournoi de Football des Jeunes",
+        subtitle: "Un événement sportif pour la nouvelle génération",
+        time: "13:00",
+        imageUrl: "https://picsum.photos/200/300?random=25",
+        eventName: "Goal Future Cup",
+        eventDate: "2025-12-10",
+        location: "Les Cayes, Haïti",
+        category: "Sport",
+        owner: "Fédération Jeunesse Sportive",
+        ticketsSold: 620,
+      ),
+      Event(
+        title: "Conférence Leadership et Entrepreneuriat",
+        subtitle: "Apprends à transformer tes idées en entreprises solides",
+        time: "08:30",
+        imageUrl: "https://picsum.photos/200/300?random=26",
+        eventName: "LeadUp 2025",
+        eventDate: "2025-11-28",
+        location: "Port-au-Prince, Haïti",
+        category: "Éducation",
+        owner: "BizHaiti",
+        ticketsSold: 410,
+      ),
+      Event(
+        title: "Festival Gastronomique Haïtien",
+        subtitle: "Une explosion de saveurs locales et internationales",
+        time: "12:00",
+        imageUrl: "https://picsum.photos/200/300?random=27",
+        eventName: "Goût Lakay 2025",
+        eventDate: "2025-11-15",
+        location: "Cap-Haïtien, Haïti",
+        category: "Gastronomie",
+        owner: "Saveur Créole",
+        ticketsSold: 530,
+      ),
+      Event(
+        title: "Salon du Livre et de la Culture",
+        subtitle: "Rencontre avec les auteurs et penseurs haïtiens",
+        time: "10:00",
+        imageUrl: "https://picsum.photos/200/300?random=28",
+        eventName: "Livres & Idées 2025",
+        eventDate: "2025-12-03",
+        location: "Port-de-Paix, Haïti",
+        category: "Culture",
+        owner: "Éditions Lakay",
+        ticketsSold: 340,
+      ),
+      Event(
+        title: "Soirée Élégance & Mode Imballin",
+        subtitle: "Défilé de mode haut de gamme par la marque Imballin",
+        time: "20:00",
+        imageUrl: "https://picsum.photos/200/300?random=29",
+        eventName: "Imballin Fashion Night",
+        eventDate: "2025-12-22",
+        location: "Port-au-Prince, Haïti",
+        category: "Mode",
+        owner: "Imballin",
+        ticketsSold: 700,
+      ),
     ];
-    return icons[index % icons.length];
-  }
-
-  Color _getActivityColor(int index) {
-    final colors = [
-      Colors.blue,
-      Colors.green,
-      Colors.orange,
-      Colors.purple,
-      Colors.red,
-      Colors.teal,
-      Colors.pink,
-      Colors.indigo,
-      Colors.amber,
-      Colors.cyan,
-    ];
-    return colors[index % colors.length];
+    return events[index];
   }
 
   String _getTicketStatus(int index) {
@@ -100,8 +196,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profil'),
+        title: const Text('Mon Compte'),
         actionsPadding: const EdgeInsets.only(right: 16),
+        backgroundColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
         actions: [
           IconButton(
             onPressed: () => _onEditPressed(context),
@@ -160,26 +257,36 @@ class ProfilePage extends StatelessWidget {
                         radius: 50,
                         backgroundColor: Theme.of(context).colorScheme.surface,
                         backgroundImage: const NetworkImage(
-                          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+                          'https://avatar.iran.liara.run/public/21',
                         ),
                         onBackgroundImageError: (exception, stackTrace) {
                           // Fallback to icon if image fails to load
                         },
                       ),
                     ),
-                    const SizedBox(height: 20),
-
-                    // User Name
-                    Text(
-                      'John Doe',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: 8,
+                      children: [
+                        Text(
+                          'John Doe',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
+                        ),
+                        Icon(
+                          Icons.verified_rounded,
+                          size: 20,
+                          color: Colors.green,
+                        ),
+                      ],
                     ),
+                    // User Name
                     const SizedBox(height: 2),
-
                     // Email
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -200,35 +307,34 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15),
-
                     // Social Links
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _buildSocialButton(
                           context,
-                          Icons.chat,
+                          FontAwesomeIcons.whatsapp,
                           'WhatsApp',
                           const Color(0xFF25D366),
                         ),
                         const SizedBox(width: 16),
                         _buildSocialButton(
                           context,
-                          Icons.facebook,
+                          FontAwesomeIcons.facebook,
                           'Facebook',
                           const Color(0xFF1877F2),
                         ),
                         const SizedBox(width: 16),
                         _buildSocialButton(
                           context,
-                          Icons.camera_alt,
+                          FontAwesomeIcons.instagram,
                           'Instagram',
                           const Color(0xFFE4405F),
                         ),
                         const SizedBox(width: 16),
                         _buildSocialButton(
                           context,
-                          Icons.music_note,
+                          FontAwesomeIcons.tiktok,
                           'TikTok',
                           const Color(0xFF000000),
                         ),
@@ -238,6 +344,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
             ),
+            Divider(height: 0),
             // Activités Suivies Section
             buildSectionHeader(
               context,
@@ -250,7 +357,7 @@ class ProfilePage extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 200,
+              height: 300,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -258,22 +365,12 @@ class ProfilePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 12),
-                    child: SizedBox(
-                      width: 300,
-                      child: ActivityCard(
-                        title: 'Activité ${index + 1}',
-                        subtitle: 'Description de l\'activité ${index + 1}',
-                        time: '${index + 1}h',
-                        icon: _getActivityIcon(index),
-                        iconColor: _getActivityColor(index),
-                      ),
-                    ),
+                    child: SizedBox(width: 300, child: _getEvents(index)),
                   );
                 },
               ),
             ),
-            const SizedBox(height: 32),
-
+            SizedBox(height: 15),
             // Tickets Achetés Section
             buildSectionHeader(
               context,

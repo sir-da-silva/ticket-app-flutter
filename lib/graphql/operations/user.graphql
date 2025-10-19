@@ -1,0 +1,94 @@
+query GetMe {
+  me {
+    id
+    name
+    email
+    picture
+    isGoogleAuthenticated
+    role
+    createdAt
+    badge
+    walletBalance
+    phone
+    whatsapp
+    facebook
+    instagram
+    tiktok
+  }
+}
+
+query GetUser($id: ID!) {
+  user(id: $id) {
+    id
+    name
+    email
+    picture
+    isGoogleAuthenticated
+    role
+    createdAt
+    badge
+    walletBalance
+    phone
+    whatsapp
+    facebook
+    instagram
+    tiktok
+  }
+}
+
+query GetUsers {
+  users {
+    id
+    name
+    email
+    picture
+    role
+    createdAt
+    badge
+  }
+}
+
+mutation InitSignUp($input: InitSignUpInput!) {
+  initSignUp(input: $input)
+}
+
+mutation CompleteSignUp($input: CompleteSignUpInput!) {
+  completeSignUp(input: $input) {
+    token
+    user {
+      id
+      name
+      email
+      picture
+      role
+      badge
+    }
+  }
+}
+
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    token
+    user {
+      id
+      name
+      email
+      picture
+      role
+      badge
+      phone
+      whatsapp
+      facebook
+      instagram
+      tiktok
+    }
+  }
+}
+
+mutation ChangePassword($input: ChangePasswordInput!) {
+  changePassword(input: $input)
+}
+
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id)
+}

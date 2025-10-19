@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget buildSectionHeader(
   BuildContext context,
   String title,
-  IconData icon,
+  IconData? icon,
   VoidCallback onTap,
 ) {
   return Container(

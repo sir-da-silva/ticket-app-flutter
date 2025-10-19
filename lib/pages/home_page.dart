@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:my_first_flutter_app/components/build_section_header.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -237,7 +237,7 @@ class _HomePageState extends State<HomePage> {
 
               // Contenu textuel
               Positioned(
-                bottom: 0,
+                bottom: -2,
                 left: 0,
                 right: 0,
                 child: Padding(
@@ -253,13 +253,6 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black.withOpacity(0.8),
-                              blurRadius: 2,
-                              offset: const Offset(0, 1),
-                            ),
-                          ],
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -408,7 +401,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsGeometry.fromLTRB(16, 8, 16, 8),
+              padding: EdgeInsetsGeometry.fromLTRB(16, 8, 16, 0),
               child: Row(
                 children: [
                   Text(
@@ -420,10 +413,10 @@ class _HomePageState extends State<HomePage> {
             ),
             // Section Actualités avec liste horizontale
             SizedBox(
-              height: 140,
+              height: 156,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
                 itemCount: _actualites.length + 1, // +1 pour le compte actif
                 itemBuilder: (context, index) {
                   // Premier élément: compte actif
@@ -442,6 +435,20 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
+            ),
+
+            buildSectionHeader(
+              context,
+              "Les plus populaires",
+              Icons.local_fire_department_outlined,
+              () {},
+            ),
+
+            buildSectionHeader(
+              context,
+              "Fin d'année",
+              Icons.celebration_outlined,
+              () {},
             ),
           ],
         ),

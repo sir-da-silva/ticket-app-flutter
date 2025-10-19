@@ -1,15 +1,142 @@
 import 'package:flutter/material.dart';
-import '../components/activity_card.dart';
-import '../components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/event.dart';
+import 'package:my_first_flutter_app/components/build_section_header.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({super.key});
+
+  Event _getEvents(index) {
+    List<Event> events = [
+      Event(
+        title: "Festival de Musique Imballin",
+        subtitle: "3 jours de vibes et de performances inoubliables",
+        time: "18:00",
+        imageUrl: "https://example.com/images/music_festival.jpg",
+        eventName: "Imballin Fest 2025",
+        eventDate: "2025-11-12",
+        location: "Cap-Haïtien, Haïti",
+        category: "Musique",
+        owner: "Imballin Production",
+        ticketsSold: 480,
+      ),
+      Event(
+        title: "Salon de l’Innovation Technologique",
+        subtitle:
+            "Découvre les nouvelles tendances tech et startups haïtiennes",
+        time: "09:00",
+        imageUrl: "https://example.com/images/tech_expo.jpg",
+        eventName: "Haiti Tech Expo 2025",
+        eventDate: "2025-12-02",
+        location: "Port-au-Prince, Haïti",
+        category: "Technologie",
+        owner: "TechHaiti",
+        ticketsSold: 325,
+      ),
+      Event(
+        title: "Soirée Cinéma Plein Air",
+        subtitle: "Projection de films haïtiens sous les étoiles",
+        time: "19:30",
+        imageUrl: "https://example.com/images/open_air_cinema.jpg",
+        eventName: "Ciné Lakay",
+        eventDate: "2025-10-27",
+        location: "Jacmel, Haïti",
+        category: "Cinéma",
+        owner: "CinéKreyo",
+        ticketsSold: 210,
+      ),
+      Event(
+        title: "Compétition de Danse Urbaine",
+        subtitle: "Les meilleurs danseurs du pays s’affrontent",
+        time: "16:00",
+        imageUrl: "https://example.com/images/dance_battle.jpg",
+        eventName: "Move Battle 2025",
+        eventDate: "2025-11-20",
+        location: "Gonaïves, Haïti",
+        category: "Danse",
+        owner: "UrbanVibes",
+        ticketsSold: 150,
+      ),
+      Event(
+        title: "Exposition d’Art Contemporain",
+        subtitle: "Les artistes émergents à l’honneur",
+        time: "10:00",
+        imageUrl: "https://example.com/images/art_expo.jpg",
+        eventName: "Art Vision 2025",
+        eventDate: "2025-11-05",
+        location: "Pétion-Ville, Haïti",
+        category: "Art",
+        owner: "Haïti Création",
+        ticketsSold: 275,
+      ),
+      Event(
+        title: "Tournoi de Football des Jeunes",
+        subtitle: "Un événement sportif pour la nouvelle génération",
+        time: "13:00",
+        imageUrl: "https://example.com/images/football_tournament.jpg",
+        eventName: "Goal Future Cup",
+        eventDate: "2025-12-10",
+        location: "Les Cayes, Haïti",
+        category: "Sport",
+        owner: "Fédération Jeunesse Sportive",
+        ticketsSold: 620,
+      ),
+      Event(
+        title: "Conférence Leadership et Entrepreneuriat",
+        subtitle: "Apprends à transformer tes idées en entreprises solides",
+        time: "08:30",
+        imageUrl: "https://example.com/images/leadership_conference.jpg",
+        eventName: "LeadUp 2025",
+        eventDate: "2025-11-28",
+        location: "Port-au-Prince, Haïti",
+        category: "Éducation",
+        owner: "BizHaiti",
+        ticketsSold: 410,
+      ),
+      Event(
+        title: "Festival Gastronomique Haïtien",
+        subtitle: "Une explosion de saveurs locales et internationales",
+        time: "12:00",
+        imageUrl: "https://example.com/images/food_festival.jpg",
+        eventName: "Goût Lakay 2025",
+        eventDate: "2025-11-15",
+        location: "Cap-Haïtien, Haïti",
+        category: "Gastronomie",
+        owner: "Saveur Créole",
+        ticketsSold: 530,
+      ),
+      Event(
+        title: "Salon du Livre et de la Culture",
+        subtitle: "Rencontre avec les auteurs et penseurs haïtiens",
+        time: "10:00",
+        imageUrl: "https://example.com/images/book_fair.jpg",
+        eventName: "Livres & Idées 2025",
+        eventDate: "2025-12-03",
+        location: "Port-de-Paix, Haïti",
+        category: "Culture",
+        owner: "Éditions Lakay",
+        ticketsSold: 340,
+      ),
+      Event(
+        title: "Soirée Élégance & Mode Imballin",
+        subtitle: "Défilé de mode haut de gamme par la marque Imballin",
+        time: "20:00",
+        imageUrl: "https://example.com/images/imballin_fashion.jpg",
+        eventName: "Imballin Fashion Night",
+        eventDate: "2025-12-22",
+        location: "Port-au-Prince, Haïti",
+        category: "Mode",
+        owner: "Imballin",
+        ticketsSold: 700,
+      ),
+    ];
+    return events[index];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gestion'),
+        title: const Text('Createur'),
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           IconButton(
@@ -113,7 +240,15 @@ class ManagementPage extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surface,
+                color: Theme.of(context).colorScheme.onSurface,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                    Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
@@ -197,16 +332,7 @@ class ManagementPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 12),
-                    child: SizedBox(
-                      width: 300,
-                      child: ActivityCard(
-                        title: 'Activité ${index + 1}',
-                        subtitle: 'Description de l\'activité ${index + 1}',
-                        time: '${index + 1}h',
-                        icon: Icons.calculate,
-                        iconColor: Colors.red,
-                      ),
-                    ),
+                    child: SizedBox(width: 300, child: _getEvents(index)),
                   );
                 },
               ),
@@ -234,7 +360,7 @@ Widget _buildAction(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withOpacity(0.2), width: 1),
+        // border: Border.all(color: color.withOpacity(0.2), width: 1),
         boxShadow: [
           BoxShadow(
             color: color.withOpacity(0.1),

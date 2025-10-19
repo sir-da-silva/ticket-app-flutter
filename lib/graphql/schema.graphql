@@ -1,0 +1,154 @@
+"""Exposes a URL that specifies the behavior of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behavior of this scalar."""
+  url: String!
+) on SCALAR
+
+"""
+Indicates exactly one field must be supplied and this field must not be `null`.
+"""
+directive @oneOf on INPUT_OBJECT
+
+type Actuality {
+  id: ID!
+  user: User!
+  picture: String!
+  description: String
+  createdAt: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+input BuyTicketInput {
+  eventId: ID!
+}
+
+input ChangePasswordInput {
+  oldPassword: String!
+  newPassword: String!
+}
+
+input CompleteSignUpInput {
+  email: String!
+  code: String!
+}
+
+input CreateEventInput {
+  title: String!
+  description: String
+  location: String!
+  category: String!
+  date: DateTime!
+}
+
+input CreateTicketInput {
+  eventId: ID!
+  buyerName: String!
+  buyerPhone: String
+  buyerEmail: String
+}
+
+scalar DateTime
+
+type Event {
+  id: ID!
+  title: String!
+  description: String
+  picture: String!
+  location: String!
+  category: String!
+  date: DateTime!
+  createdBy: User
+}
+
+input InitSignUpInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  createEvent(input: CreateEventInput!): ID
+  updateEvent(input: CreateEventInput!): Boolean!
+  deleteEvent(id: ID!): Boolean!
+  buyTicket(input: BuyTicketInput!): Ticket
+  createTicket(input: CreateTicketInput!): Ticket
+  scanTicket(code: String!): Ticket
+  initSignUp(input: InitSignUpInput!): Boolean!
+  completeSignUp(input: CompleteSignUpInput!): AuthPayload!
+  updateUser(input: UpdateUserInput!): AuthPayload!
+  changePassword(input: ChangePasswordInput!): Boolean!
+  deleteUser(id: ID!): Boolean!
+}
+
+type Query {
+  event(id: ID!): Event
+  events: [Event!]!
+  myEvents: [Event!]!
+  ticket(id: ID!): Ticket
+  tickets(eventId: ID!): [Ticket!]!
+  myTickets: [Ticket!]!
+  me: User
+  user(id: ID!): User
+  users: [User!]!
+  login(input: LoginInput!): AuthPayload
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+type Ticket {
+  id: ID!
+  code: String!
+  used: Boolean!
+  createdAt: DateTime!
+  event: Event!
+  user: User
+  buyerName: String
+  buyerPhone: String
+  buyerEmail: String
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  phone: String
+  whatsapp: String
+  facebook: String
+  instagram: String
+  tiktok: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  picture: String
+  isGoogleAuthenticated: Boolean!
+  role: Role!
+  createdAt: DateTime!
+  badge: UserBadge!
+  walletBalance: Float
+  phone: String
+  whatsapp: String
+  facebook: String
+  instagram: String
+  tiktok: String
+}
+
+enum UserBadge {
+  BRONZE
+  SILVER
+  GOLD
+}
+

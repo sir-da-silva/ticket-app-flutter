@@ -1,0 +1,55 @@
+query GetEvents {
+  events {
+    id
+    title
+    description
+    picture
+    location
+    category
+    date
+    createdBy {
+      id
+      name
+    }
+  }
+}
+
+query GetEvent($id: ID!) {
+  event(id: $id) {
+    id
+    title
+    description
+    picture
+    location
+    category
+    date
+    createdBy {
+      id
+      name
+    }
+  }
+}
+
+query GetMyEvents {
+  myEvents {
+    id
+    title
+    description
+    picture
+    location
+    category
+    date
+  }
+}
+
+mutation CreateEvent($input: CreateEventInput!) {
+  createEvent(input: $input)
+}
+
+mutation UpdateEvent($input: CreateEventInput!) {
+  updateEvent(input: $input)
+}
+
+mutation DeleteEvent($id: ID!) {
+  deleteEvent(id: $id)
+}

@@ -1,0 +1,100 @@
+query GetTicket($id: ID!) {
+  ticket(id: $id) {
+    id
+    code
+    used
+    createdAt
+    event {
+      id
+      title
+      date
+    }
+    user {
+      id
+      name
+    }
+    buyerName
+    buyerPhone
+    buyerEmail
+  }
+}
+
+query GetTickets($eventId: ID!) {
+  tickets(eventId: $eventId) {
+    id
+    code
+    used
+    createdAt
+    buyerName
+    buyerPhone
+    buyerEmail
+    user {
+      id
+      name
+    }
+  }
+}
+
+query GetMyTickets {
+  myTickets {
+    id
+    code
+    used
+    createdAt
+    event {
+      id
+      title
+      date
+      location
+    }
+    buyerName
+    buyerPhone
+    buyerEmail
+  }
+}
+
+mutation BuyTicket($input: BuyTicketInput!) {
+  buyTicket(input: $input) {
+    id
+    code
+    used
+    createdAt
+    event {
+      id
+      title
+    }
+  }
+}
+
+mutation CreateTicket($input: CreateTicketInput!) {
+  createTicket(input: $input) {
+    id
+    code
+    used
+    createdAt
+    event {
+      id
+      title
+    }
+    buyerName
+    buyerPhone
+    buyerEmail
+  }
+}
+
+mutation ScanTicket($code: String!) {
+  scanTicket(code: $code) {
+    id
+    code
+    used
+    createdAt
+    event {
+      id
+      title
+    }
+    user {
+      id
+      name
+    }
+  }
+}

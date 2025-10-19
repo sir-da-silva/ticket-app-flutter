@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'pages/home_page.dart';
 import 'pages/map_page.dart';
 import 'pages/management_page.dart';
 import 'pages/profile_page.dart';
+import 'services/graphql_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize GraphQL client
+  await initHiveForFlutter();
+
   runApp(const MyApp());
 }
 
@@ -13,12 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+    return GraphQLProvider(
+      client: ValueNotifier(GraphQLService.client),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+        ),
+        home: const MainNavigationPage(),
       ),
-      home: const MainNavigationPage(),
     );
   }
 }

@@ -1,0 +1,17 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          schema: lib/graphql/schema.graphql
+          documents_glob: lib/graphql/operations/**/*.graphql
+          outputDirectory: /lib/generated
+          generatedFileHeader: "// GENERATED FILE\n// DO NOT MODIFY\n"
+          scalars:
+            JSON:
+              type: Map<String, dynamic>
+            DateTime:
+              type: DateTime
+          clients:
+            - graphql
+            - graphql_flutter
