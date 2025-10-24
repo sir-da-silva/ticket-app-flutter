@@ -80,6 +80,7 @@ class _CopyWithImpl$Input$BuyTicketInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? eventId = _undefined}) => _then(Input$BuyTicketInput._({
         ..._instance._$data,
         if (eventId != _undefined && eventId != null)
@@ -91,8 +92,9 @@ class _CopyWithStubImpl$Input$BuyTicketInput<TRes>
     implements CopyWith$Input$BuyTicketInput<TRes> {
   _CopyWithStubImpl$Input$BuyTicketInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? eventId}) => _res;
 }
 
@@ -199,6 +201,7 @@ class _CopyWithImpl$Input$ChangePasswordInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? oldPassword = _undefined,
     Object? newPassword = _undefined,
@@ -216,8 +219,9 @@ class _CopyWithStubImpl$Input$ChangePasswordInput<TRes>
     implements CopyWith$Input$ChangePasswordInput<TRes> {
   _CopyWithStubImpl$Input$ChangePasswordInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? oldPassword,
     String? newPassword,
@@ -328,6 +332,7 @@ class _CopyWithImpl$Input$CompleteSignUpInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? email = _undefined,
     Object? code = _undefined,
@@ -343,8 +348,9 @@ class _CopyWithStubImpl$Input$CompleteSignUpInput<TRes>
     implements CopyWith$Input$CompleteSignUpInput<TRes> {
   _CopyWithStubImpl$Input$CompleteSignUpInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? email,
     String? code,
@@ -510,6 +516,7 @@ class _CopyWithImpl$Input$CreateEventInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? title = _undefined,
     Object? description = _undefined,
@@ -533,8 +540,9 @@ class _CopyWithStubImpl$Input$CreateEventInput<TRes>
     implements CopyWith$Input$CreateEventInput<TRes> {
   _CopyWithStubImpl$Input$CreateEventInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? title,
     String? description,
@@ -695,6 +703,7 @@ class _CopyWithImpl$Input$CreateTicketInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? eventId = _undefined,
     Object? buyerName = _undefined,
@@ -716,8 +725,9 @@ class _CopyWithStubImpl$Input$CreateTicketInput<TRes>
     implements CopyWith$Input$CreateTicketInput<TRes> {
   _CopyWithStubImpl$Input$CreateTicketInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? eventId,
     String? buyerName,
@@ -845,6 +855,7 @@ class _CopyWithImpl$Input$InitSignUpInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? email = _undefined,
@@ -863,8 +874,9 @@ class _CopyWithStubImpl$Input$InitSignUpInput<TRes>
     implements CopyWith$Input$InitSignUpInput<TRes> {
   _CopyWithStubImpl$Input$InitSignUpInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? name,
     String? email,
@@ -975,6 +987,7 @@ class _CopyWithImpl$Input$LoginInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? email = _undefined,
     Object? password = _undefined,
@@ -991,8 +1004,9 @@ class _CopyWithStubImpl$Input$LoginInput<TRes>
     implements CopyWith$Input$LoginInput<TRes> {
   _CopyWithStubImpl$Input$LoginInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? email,
     String? password,
@@ -1234,6 +1248,7 @@ class _CopyWithImpl$Input$UpdateUserInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? name = _undefined,
     Object? email = _undefined,
@@ -1259,8 +1274,9 @@ class _CopyWithStubImpl$Input$UpdateUserInput<TRes>
     implements CopyWith$Input$UpdateUserInput<TRes> {
   _CopyWithStubImpl$Input$UpdateUserInput(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? name,
     String? email,

@@ -29,12 +29,12 @@ class Query$GetMe {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$me = me;
-    _resultData['me'] = l$me?.toJson();
+    resultData['me'] = l$me?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -103,6 +103,7 @@ class _CopyWithImpl$Query$GetMe<TRes> implements CopyWith$Query$GetMe<TRes> {
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? me = _undefined,
     Object? $__typename = _undefined,
@@ -114,6 +115,7 @@ class _CopyWithImpl$Query$GetMe<TRes> implements CopyWith$Query$GetMe<TRes> {
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Query$GetMe$me<TRes> get me {
     final local$me = _instance.me;
     return local$me == null
@@ -126,14 +128,16 @@ class _CopyWithStubImpl$Query$GetMe<TRes>
     implements CopyWith$Query$GetMe<TRes> {
   _CopyWithStubImpl$Query$GetMe(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Query$GetMe$me? me,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Query$GetMe$me<TRes> get me => CopyWith$Query$GetMe$me.stub(_res);
 }
 
@@ -276,32 +280,25 @@ typedef OnQueryComplete$Query$GetMe = FutureOr<void> Function(
 
 class Options$Query$GetMe extends graphql.QueryOptions<Query$GetMe> {
   Options$Query$GetMe({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetMe? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetMe? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetMe(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetMe,
           parserFn: _parserFn$Query$GetMe,
         );
@@ -319,37 +316,27 @@ class Options$Query$GetMe extends graphql.QueryOptions<Query$GetMe> {
 
 class WatchOptions$Query$GetMe extends graphql.WatchQueryOptions<Query$GetMe> {
   WatchOptions$Query$GetMe({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetMe? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetMe,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetMe,
         );
 }
 
 class FetchMoreOptions$Query$GetMe extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetMe({required graphql.UpdateQuery updateQuery})
+  FetchMoreOptions$Query$GetMe({required super.updateQuery})
       : super(
-          updateQuery: updateQuery,
           document: documentNodeQueryGetMe,
         );
 }
@@ -357,17 +344,17 @@ class FetchMoreOptions$Query$GetMe extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetMe on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetMe>> query$GetMe(
           [Options$Query$GetMe? options]) async =>
-      await this.query(options ?? Options$Query$GetMe());
+      await query(options ?? Options$Query$GetMe());
 
   graphql.ObservableQuery<Query$GetMe> watchQuery$GetMe(
           [WatchOptions$Query$GetMe? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetMe());
+      watchQuery(options ?? WatchOptions$Query$GetMe());
 
   void writeQuery$GetMe({
     required Query$GetMe data,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
             operation: graphql.Operation(document: documentNodeQueryGetMe)),
         data: data.toJson(),
@@ -375,7 +362,7 @@ extension ClientExtension$Query$GetMe on graphql.GraphQLClient {
       );
 
   Query$GetMe? readQuery$GetMe({bool optimistic = true}) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetMe)),
       optimistic: optimistic,
@@ -393,13 +380,11 @@ graphql.ObservableQuery<Query$GetMe> useWatchQuery$GetMe(
 
 class Query$GetMe$Widget extends graphql_flutter.Query<Query$GetMe> {
   Query$GetMe$Widget({
-    widgets.Key? key,
+    super.key,
     Options$Query$GetMe? options,
-    required graphql_flutter.QueryBuilder<Query$GetMe> builder,
+    required super.builder,
   }) : super(
-          key: key,
           options: options ?? Options$Query$GetMe(),
-          builder: builder,
         );
 }
 
@@ -488,38 +473,38 @@ class Query$GetMe$me {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$email = email;
-    _resultData['email'] = l$email;
+    resultData['email'] = l$email;
     final l$picture = picture;
-    _resultData['picture'] = l$picture;
+    resultData['picture'] = l$picture;
     final l$isGoogleAuthenticated = isGoogleAuthenticated;
-    _resultData['isGoogleAuthenticated'] = l$isGoogleAuthenticated;
+    resultData['isGoogleAuthenticated'] = l$isGoogleAuthenticated;
     final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
+    resultData['role'] = toJson$Enum$Role(l$role);
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
+    resultData['badge'] = toJson$Enum$UserBadge(l$badge);
     final l$walletBalance = walletBalance;
-    _resultData['walletBalance'] = l$walletBalance;
+    resultData['walletBalance'] = l$walletBalance;
     final l$phone = phone;
-    _resultData['phone'] = l$phone;
+    resultData['phone'] = l$phone;
     final l$whatsapp = whatsapp;
-    _resultData['whatsapp'] = l$whatsapp;
+    resultData['whatsapp'] = l$whatsapp;
     final l$facebook = facebook;
-    _resultData['facebook'] = l$facebook;
+    resultData['facebook'] = l$facebook;
     final l$instagram = instagram;
-    _resultData['instagram'] = l$instagram;
+    resultData['instagram'] = l$instagram;
     final l$tiktok = tiktok;
-    _resultData['tiktok'] = l$tiktok;
+    resultData['tiktok'] = l$tiktok;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -694,6 +679,7 @@ class _CopyWithImpl$Query$GetMe$me<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -756,8 +742,9 @@ class _CopyWithStubImpl$Query$GetMe$me<TRes>
     implements CopyWith$Query$GetMe$me<TRes> {
   _CopyWithStubImpl$Query$GetMe$me(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -858,6 +845,7 @@ class _CopyWithImpl$Variables$Query$GetUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined}) => _then(Variables$Query$GetUser._({
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as String),
@@ -868,8 +856,9 @@ class _CopyWithStubImpl$Variables$Query$GetUser<TRes>
     implements CopyWith$Variables$Query$GetUser<TRes> {
   _CopyWithStubImpl$Variables$Query$GetUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? id}) => _res;
 }
 
@@ -895,12 +884,12 @@ class Query$GetUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$user = user;
-    _resultData['user'] = l$user?.toJson();
+    resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -971,6 +960,7 @@ class _CopyWithImpl$Query$GetUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? user = _undefined,
     Object? $__typename = _undefined,
@@ -983,6 +973,7 @@ class _CopyWithImpl$Query$GetUser<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Query$GetUser$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
@@ -995,14 +986,16 @@ class _CopyWithStubImpl$Query$GetUser<TRes>
     implements CopyWith$Query$GetUser<TRes> {
   _CopyWithStubImpl$Query$GetUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Query$GetUser$user? user,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Query$GetUser$user<TRes> get user =>
       CopyWith$Query$GetUser$user.stub(_res);
 }
@@ -1161,34 +1154,27 @@ typedef OnQueryComplete$Query$GetUser = FutureOr<void> Function(
 
 class Options$Query$GetUser extends graphql.QueryOptions<Query$GetUser> {
   Options$Query$GetUser({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetUser variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetUser? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetUser? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetUser(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetUser,
           parserFn: _parserFn$Query$GetUser,
         );
@@ -1207,41 +1193,31 @@ class Options$Query$GetUser extends graphql.QueryOptions<Query$GetUser> {
 class WatchOptions$Query$GetUser
     extends graphql.WatchQueryOptions<Query$GetUser> {
   WatchOptions$Query$GetUser({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetUser variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetUser? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetUser,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetUser,
         );
 }
 
 class FetchMoreOptions$Query$GetUser extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetUser({
-    required graphql.UpdateQuery updateQuery,
+    required super.updateQuery,
     required Variables$Query$GetUser variables,
   }) : super(
-          updateQuery: updateQuery,
           variables: variables.toJson(),
           document: documentNodeQueryGetUser,
         );
@@ -1250,18 +1226,18 @@ class FetchMoreOptions$Query$GetUser extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetUser on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetUser>> query$GetUser(
           Options$Query$GetUser options) async =>
-      await this.query(options);
+      await query(options);
 
   graphql.ObservableQuery<Query$GetUser> watchQuery$GetUser(
           WatchOptions$Query$GetUser options) =>
-      this.watchQuery(options);
+      watchQuery(options);
 
   void writeQuery$GetUser({
     required Query$GetUser data,
     required Variables$Query$GetUser variables,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetUser),
           variables: variables.toJson(),
@@ -1274,7 +1250,7 @@ extension ClientExtension$Query$GetUser on graphql.GraphQLClient {
     required Variables$Query$GetUser variables,
     bool optimistic = true,
   }) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
         operation: graphql.Operation(document: documentNodeQueryGetUser),
         variables: variables.toJson(),
@@ -1293,15 +1269,11 @@ graphql.ObservableQuery<Query$GetUser> useWatchQuery$GetUser(
     graphql_flutter.useWatchQuery(options);
 
 class Query$GetUser$Widget extends graphql_flutter.Query<Query$GetUser> {
-  Query$GetUser$Widget({
-    widgets.Key? key,
-    required Options$Query$GetUser options,
-    required graphql_flutter.QueryBuilder<Query$GetUser> builder,
-  }) : super(
-          key: key,
-          options: options,
-          builder: builder,
-        );
+  const Query$GetUser$Widget({
+    super.key,
+    required Options$Query$GetUser super.options,
+    required super.builder,
+  });
 }
 
 class Query$GetUser$user {
@@ -1389,38 +1361,38 @@ class Query$GetUser$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$email = email;
-    _resultData['email'] = l$email;
+    resultData['email'] = l$email;
     final l$picture = picture;
-    _resultData['picture'] = l$picture;
+    resultData['picture'] = l$picture;
     final l$isGoogleAuthenticated = isGoogleAuthenticated;
-    _resultData['isGoogleAuthenticated'] = l$isGoogleAuthenticated;
+    resultData['isGoogleAuthenticated'] = l$isGoogleAuthenticated;
     final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
+    resultData['role'] = toJson$Enum$Role(l$role);
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
+    resultData['badge'] = toJson$Enum$UserBadge(l$badge);
     final l$walletBalance = walletBalance;
-    _resultData['walletBalance'] = l$walletBalance;
+    resultData['walletBalance'] = l$walletBalance;
     final l$phone = phone;
-    _resultData['phone'] = l$phone;
+    resultData['phone'] = l$phone;
     final l$whatsapp = whatsapp;
-    _resultData['whatsapp'] = l$whatsapp;
+    resultData['whatsapp'] = l$whatsapp;
     final l$facebook = facebook;
-    _resultData['facebook'] = l$facebook;
+    resultData['facebook'] = l$facebook;
     final l$instagram = instagram;
-    _resultData['instagram'] = l$instagram;
+    resultData['instagram'] = l$instagram;
     final l$tiktok = tiktok;
-    _resultData['tiktok'] = l$tiktok;
+    resultData['tiktok'] = l$tiktok;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -1595,6 +1567,7 @@ class _CopyWithImpl$Query$GetUser$user<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -1657,8 +1630,9 @@ class _CopyWithStubImpl$Query$GetUser$user<TRes>
     implements CopyWith$Query$GetUser$user<TRes> {
   _CopyWithStubImpl$Query$GetUser$user(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -1702,12 +1676,12 @@ class Query$GetUsers {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$users = users;
-    _resultData['users'] = l$users.map((e) => e.toJson()).toList();
+    resultData['users'] = l$users.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -1773,7 +1747,7 @@ abstract class CopyWith$Query$GetUsers<TRes> {
   TRes users(
       Iterable<Query$GetUsers$users> Function(
               Iterable<CopyWith$Query$GetUsers$users<Query$GetUsers$users>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Query$GetUsers<TRes>
@@ -1789,6 +1763,7 @@ class _CopyWithImpl$Query$GetUsers<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? users = _undefined,
     Object? $__typename = _undefined,
@@ -1802,12 +1777,13 @@ class _CopyWithImpl$Query$GetUsers<TRes>
             : ($__typename as String),
       ));
 
+  @override
   TRes users(
           Iterable<Query$GetUsers$users> Function(
                   Iterable<CopyWith$Query$GetUsers$users<Query$GetUsers$users>>)
-              _fn) =>
+              fn) =>
       call(
-          users: _fn(_instance.users.map((e) => CopyWith$Query$GetUsers$users(
+          users: fn(_instance.users.map((e) => CopyWith$Query$GetUsers$users(
                 e,
                 (i) => i,
               ))).toList());
@@ -1817,15 +1793,17 @@ class _CopyWithStubImpl$Query$GetUsers<TRes>
     implements CopyWith$Query$GetUsers<TRes> {
   _CopyWithStubImpl$Query$GetUsers(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     List<Query$GetUsers$users>? users,
     String? $__typename,
   }) =>
       _res;
 
-  users(_fn) => _res;
+  @override
+  users(fn) => _res;
 }
 
 const documentNodeQueryGetUsers = DocumentNode(definitions: [
@@ -1918,32 +1896,25 @@ typedef OnQueryComplete$Query$GetUsers = FutureOr<void> Function(
 
 class Options$Query$GetUsers extends graphql.QueryOptions<Query$GetUsers> {
   Options$Query$GetUsers({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetUsers? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetUsers? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetUsers(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetUsers,
           parserFn: _parserFn$Query$GetUsers,
         );
@@ -1962,37 +1933,27 @@ class Options$Query$GetUsers extends graphql.QueryOptions<Query$GetUsers> {
 class WatchOptions$Query$GetUsers
     extends graphql.WatchQueryOptions<Query$GetUsers> {
   WatchOptions$Query$GetUsers({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetUsers? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetUsers,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetUsers,
         );
 }
 
 class FetchMoreOptions$Query$GetUsers extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetUsers({required graphql.UpdateQuery updateQuery})
+  FetchMoreOptions$Query$GetUsers({required super.updateQuery})
       : super(
-          updateQuery: updateQuery,
           document: documentNodeQueryGetUsers,
         );
 }
@@ -2000,17 +1961,17 @@ class FetchMoreOptions$Query$GetUsers extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetUsers on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetUsers>> query$GetUsers(
           [Options$Query$GetUsers? options]) async =>
-      await this.query(options ?? Options$Query$GetUsers());
+      await query(options ?? Options$Query$GetUsers());
 
   graphql.ObservableQuery<Query$GetUsers> watchQuery$GetUsers(
           [WatchOptions$Query$GetUsers? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetUsers());
+      watchQuery(options ?? WatchOptions$Query$GetUsers());
 
   void writeQuery$GetUsers({
     required Query$GetUsers data,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
             operation: graphql.Operation(document: documentNodeQueryGetUsers)),
         data: data.toJson(),
@@ -2018,7 +1979,7 @@ extension ClientExtension$Query$GetUsers on graphql.GraphQLClient {
       );
 
   Query$GetUsers? readQuery$GetUsers({bool optimistic = true}) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetUsers)),
       optimistic: optimistic,
@@ -2036,13 +1997,11 @@ graphql.ObservableQuery<Query$GetUsers> useWatchQuery$GetUsers(
 
 class Query$GetUsers$Widget extends graphql_flutter.Query<Query$GetUsers> {
   Query$GetUsers$Widget({
-    widgets.Key? key,
+    super.key,
     Options$Query$GetUsers? options,
-    required graphql_flutter.QueryBuilder<Query$GetUsers> builder,
+    required super.builder,
   }) : super(
-          key: key,
           options: options ?? Options$Query$GetUsers(),
-          builder: builder,
         );
 }
 
@@ -2096,24 +2055,24 @@ class Query$GetUsers$users {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$email = email;
-    _resultData['email'] = l$email;
+    resultData['email'] = l$email;
     final l$picture = picture;
-    _resultData['picture'] = l$picture;
+    resultData['picture'] = l$picture;
     final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
+    resultData['role'] = toJson$Enum$Role(l$role);
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
+    resultData['badge'] = toJson$Enum$UserBadge(l$badge);
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2232,6 +2191,7 @@ class _CopyWithImpl$Query$GetUsers$users<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -2271,8 +2231,9 @@ class _CopyWithStubImpl$Query$GetUsers$users<TRes>
     implements CopyWith$Query$GetUsers$users<TRes> {
   _CopyWithStubImpl$Query$GetUsers$users(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -2369,6 +2330,7 @@ class _CopyWithImpl$Variables$Mutation$InitSignUp<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$InitSignUp._({
         ..._instance._$data,
@@ -2381,8 +2343,9 @@ class _CopyWithStubImpl$Variables$Mutation$InitSignUp<TRes>
     implements CopyWith$Variables$Mutation$InitSignUp<TRes> {
   _CopyWithStubImpl$Variables$Mutation$InitSignUp(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Input$InitSignUpInput? input}) => _res;
 }
 
@@ -2406,12 +2369,12 @@ class Mutation$InitSignUp {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$initSignUp = initSignUp;
-    _resultData['initSignUp'] = l$initSignUp;
+    resultData['initSignUp'] = l$initSignUp;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2482,6 +2445,7 @@ class _CopyWithImpl$Mutation$InitSignUp<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? initSignUp = _undefined,
     Object? $__typename = _undefined,
@@ -2500,8 +2464,9 @@ class _CopyWithStubImpl$Mutation$InitSignUp<TRes>
     implements CopyWith$Mutation$InitSignUp<TRes> {
   _CopyWithStubImpl$Mutation$InitSignUp(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     bool? initSignUp,
     String? $__typename,
@@ -2558,34 +2523,27 @@ typedef OnMutationCompleted$Mutation$InitSignUp = FutureOr<void> Function(
 class Options$Mutation$InitSignUp
     extends graphql.MutationOptions<Mutation$InitSignUp> {
   Options$Mutation$InitSignUp({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$InitSignUp variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$InitSignUp? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$InitSignUp? onCompleted,
-    graphql.OnMutationUpdate<Mutation$InitSignUp>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$InitSignUp(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationInitSignUp,
           parserFn: _parserFn$Mutation$InitSignUp,
         );
@@ -2604,31 +2562,22 @@ class Options$Mutation$InitSignUp
 class WatchOptions$Mutation$InitSignUp
     extends graphql.WatchQueryOptions<Mutation$InitSignUp> {
   WatchOptions$Mutation$InitSignUp({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$InitSignUp variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$InitSignUp? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationInitSignUp,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$InitSignUp,
         );
 }
@@ -2636,11 +2585,11 @@ class WatchOptions$Mutation$InitSignUp
 extension ClientExtension$Mutation$InitSignUp on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$InitSignUp>> mutate$InitSignUp(
           Options$Mutation$InitSignUp options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$InitSignUp> watchMutation$InitSignUp(
           WatchOptions$Mutation$InitSignUp options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$InitSignUp$HookResult {
@@ -2675,32 +2624,25 @@ graphql.ObservableQuery<Mutation$InitSignUp> useWatchMutation$InitSignUp(
 class WidgetOptions$Mutation$InitSignUp
     extends graphql.MutationOptions<Mutation$InitSignUp> {
   WidgetOptions$Mutation$InitSignUp({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$InitSignUp? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$InitSignUp? onCompleted,
-    graphql.OnMutationUpdate<Mutation$InitSignUp>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$InitSignUp(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationInitSignUp,
           parserFn: _parserFn$Mutation$InitSignUp,
         );
@@ -2730,11 +2672,10 @@ typedef Builder$Mutation$InitSignUp = widgets.Widget Function(
 class Mutation$InitSignUp$Widget
     extends graphql_flutter.Mutation<Mutation$InitSignUp> {
   Mutation$InitSignUp$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$InitSignUp? options,
     required Builder$Mutation$InitSignUp builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$InitSignUp(),
           builder: (
             run,
@@ -2841,6 +2782,7 @@ class _CopyWithImpl$Variables$Mutation$CompleteSignUp<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$CompleteSignUp._({
         ..._instance._$data,
@@ -2853,8 +2795,9 @@ class _CopyWithStubImpl$Variables$Mutation$CompleteSignUp<TRes>
     implements CopyWith$Variables$Mutation$CompleteSignUp<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CompleteSignUp(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Input$CompleteSignUpInput? input}) => _res;
 }
 
@@ -2879,12 +2822,12 @@ class Mutation$CompleteSignUp {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$completeSignUp = completeSignUp;
-    _resultData['completeSignUp'] = l$completeSignUp.toJson();
+    resultData['completeSignUp'] = l$completeSignUp.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2956,6 +2899,7 @@ class _CopyWithImpl$Mutation$CompleteSignUp<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? completeSignUp = _undefined,
     Object? $__typename = _undefined,
@@ -2969,6 +2913,7 @@ class _CopyWithImpl$Mutation$CompleteSignUp<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$CompleteSignUp$completeSignUp<TRes> get completeSignUp {
     final local$completeSignUp = _instance.completeSignUp;
     return CopyWith$Mutation$CompleteSignUp$completeSignUp(
@@ -2980,14 +2925,16 @@ class _CopyWithStubImpl$Mutation$CompleteSignUp<TRes>
     implements CopyWith$Mutation$CompleteSignUp<TRes> {
   _CopyWithStubImpl$Mutation$CompleteSignUp(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Mutation$CompleteSignUp$completeSignUp? completeSignUp,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$CompleteSignUp$completeSignUp<TRes> get completeSignUp =>
       CopyWith$Mutation$CompleteSignUp$completeSignUp.stub(_res);
 }
@@ -3114,26 +3061,21 @@ typedef OnMutationCompleted$Mutation$CompleteSignUp = FutureOr<void> Function(
 class Options$Mutation$CompleteSignUp
     extends graphql.MutationOptions<Mutation$CompleteSignUp> {
   Options$Mutation$CompleteSignUp({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$CompleteSignUp variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CompleteSignUp? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$CompleteSignUp? onCompleted,
-    graphql.OnMutationUpdate<Mutation$CompleteSignUp>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -3142,8 +3084,6 @@ class Options$Mutation$CompleteSignUp
                         ? null
                         : _parserFn$Mutation$CompleteSignUp(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationCompleteSignUp,
           parserFn: _parserFn$Mutation$CompleteSignUp,
         );
@@ -3162,31 +3102,22 @@ class Options$Mutation$CompleteSignUp
 class WatchOptions$Mutation$CompleteSignUp
     extends graphql.WatchQueryOptions<Mutation$CompleteSignUp> {
   WatchOptions$Mutation$CompleteSignUp({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$CompleteSignUp variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CompleteSignUp? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationCompleteSignUp,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$CompleteSignUp,
         );
 }
@@ -3194,11 +3125,11 @@ class WatchOptions$Mutation$CompleteSignUp
 extension ClientExtension$Mutation$CompleteSignUp on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$CompleteSignUp>> mutate$CompleteSignUp(
           Options$Mutation$CompleteSignUp options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$CompleteSignUp> watchMutation$CompleteSignUp(
           WatchOptions$Mutation$CompleteSignUp options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$CompleteSignUp$HookResult {
@@ -3234,24 +3165,19 @@ graphql.ObservableQuery<Mutation$CompleteSignUp>
 class WidgetOptions$Mutation$CompleteSignUp
     extends graphql.MutationOptions<Mutation$CompleteSignUp> {
   WidgetOptions$Mutation$CompleteSignUp({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CompleteSignUp? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$CompleteSignUp? onCompleted,
-    graphql.OnMutationUpdate<Mutation$CompleteSignUp>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -3260,8 +3186,6 @@ class WidgetOptions$Mutation$CompleteSignUp
                         ? null
                         : _parserFn$Mutation$CompleteSignUp(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationCompleteSignUp,
           parserFn: _parserFn$Mutation$CompleteSignUp,
         );
@@ -3291,11 +3215,10 @@ typedef Builder$Mutation$CompleteSignUp = widgets.Widget Function(
 class Mutation$CompleteSignUp$Widget
     extends graphql_flutter.Mutation<Mutation$CompleteSignUp> {
   Mutation$CompleteSignUp$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$CompleteSignUp? options,
     required Builder$Mutation$CompleteSignUp builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$CompleteSignUp(),
           builder: (
             run,
@@ -3344,14 +3267,14 @@ class Mutation$CompleteSignUp$completeSignUp {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$token = token;
-    _resultData['token'] = l$token;
+    resultData['token'] = l$token;
     final l$user = user;
-    _resultData['user'] = l$user.toJson();
+    resultData['user'] = l$user.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -3434,6 +3357,7 @@ class _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? token = _undefined,
     Object? user = _undefined,
@@ -3451,6 +3375,7 @@ class _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> get user {
     final local$user = _instance.user;
     return CopyWith$Mutation$CompleteSignUp$completeSignUp$user(
@@ -3462,8 +3387,9 @@ class _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
     implements CopyWith$Mutation$CompleteSignUp$completeSignUp<TRes> {
   _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? token,
     Mutation$CompleteSignUp$completeSignUp$user? user,
@@ -3471,6 +3397,7 @@ class _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> get user =>
       CopyWith$Mutation$CompleteSignUp$completeSignUp$user.stub(_res);
 }
@@ -3521,22 +3448,22 @@ class Mutation$CompleteSignUp$completeSignUp$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$email = email;
-    _resultData['email'] = l$email;
+    resultData['email'] = l$email;
     final l$picture = picture;
-    _resultData['picture'] = l$picture;
+    resultData['picture'] = l$picture;
     final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
+    resultData['role'] = toJson$Enum$Role(l$role);
     final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
+    resultData['badge'] = toJson$Enum$UserBadge(l$badge);
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -3650,6 +3577,7 @@ class _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp$user<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -3685,8 +3613,9 @@ class _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp$user<TRes>
     implements CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> {
   _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp$user(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -3782,6 +3711,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$UpdateUser._({
         ..._instance._$data,
@@ -3794,8 +3724,9 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateUser<TRes>
     implements CopyWith$Variables$Mutation$UpdateUser<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Input$UpdateUserInput? input}) => _res;
 }
 
@@ -3820,12 +3751,12 @@ class Mutation$UpdateUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$updateUser = updateUser;
-    _resultData['updateUser'] = l$updateUser.toJson();
+    resultData['updateUser'] = l$updateUser.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -3897,6 +3828,7 @@ class _CopyWithImpl$Mutation$UpdateUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? updateUser = _undefined,
     Object? $__typename = _undefined,
@@ -3910,6 +3842,7 @@ class _CopyWithImpl$Mutation$UpdateUser<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$UpdateUser$updateUser<TRes> get updateUser {
     final local$updateUser = _instance.updateUser;
     return CopyWith$Mutation$UpdateUser$updateUser(
@@ -3921,14 +3854,16 @@ class _CopyWithStubImpl$Mutation$UpdateUser<TRes>
     implements CopyWith$Mutation$UpdateUser<TRes> {
   _CopyWithStubImpl$Mutation$UpdateUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Mutation$UpdateUser$updateUser? updateUser,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$UpdateUser$updateUser<TRes> get updateUser =>
       CopyWith$Mutation$UpdateUser$updateUser.stub(_res);
 }
@@ -4089,34 +4024,27 @@ typedef OnMutationCompleted$Mutation$UpdateUser = FutureOr<void> Function(
 class Options$Mutation$UpdateUser
     extends graphql.MutationOptions<Mutation$UpdateUser> {
   Options$Mutation$UpdateUser({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$UpdateUser variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateUser? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$UpdateUser? onCompleted,
-    graphql.OnMutationUpdate<Mutation$UpdateUser>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$UpdateUser(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationUpdateUser,
           parserFn: _parserFn$Mutation$UpdateUser,
         );
@@ -4135,31 +4063,22 @@ class Options$Mutation$UpdateUser
 class WatchOptions$Mutation$UpdateUser
     extends graphql.WatchQueryOptions<Mutation$UpdateUser> {
   WatchOptions$Mutation$UpdateUser({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$UpdateUser variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateUser? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationUpdateUser,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UpdateUser,
         );
 }
@@ -4167,11 +4086,11 @@ class WatchOptions$Mutation$UpdateUser
 extension ClientExtension$Mutation$UpdateUser on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$UpdateUser>> mutate$UpdateUser(
           Options$Mutation$UpdateUser options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$UpdateUser> watchMutation$UpdateUser(
           WatchOptions$Mutation$UpdateUser options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$UpdateUser$HookResult {
@@ -4206,32 +4125,25 @@ graphql.ObservableQuery<Mutation$UpdateUser> useWatchMutation$UpdateUser(
 class WidgetOptions$Mutation$UpdateUser
     extends graphql.MutationOptions<Mutation$UpdateUser> {
   WidgetOptions$Mutation$UpdateUser({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateUser? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$UpdateUser? onCompleted,
-    graphql.OnMutationUpdate<Mutation$UpdateUser>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$UpdateUser(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationUpdateUser,
           parserFn: _parserFn$Mutation$UpdateUser,
         );
@@ -4261,11 +4173,10 @@ typedef Builder$Mutation$UpdateUser = widgets.Widget Function(
 class Mutation$UpdateUser$Widget
     extends graphql_flutter.Mutation<Mutation$UpdateUser> {
   Mutation$UpdateUser$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$UpdateUser? options,
     required Builder$Mutation$UpdateUser builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$UpdateUser(),
           builder: (
             run,
@@ -4313,14 +4224,14 @@ class Mutation$UpdateUser$updateUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$token = token;
-    _resultData['token'] = l$token;
+    resultData['token'] = l$token;
     final l$user = user;
-    _resultData['user'] = l$user.toJson();
+    resultData['user'] = l$user.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -4402,6 +4313,7 @@ class _CopyWithImpl$Mutation$UpdateUser$updateUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? token = _undefined,
     Object? user = _undefined,
@@ -4419,6 +4331,7 @@ class _CopyWithImpl$Mutation$UpdateUser$updateUser<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$UpdateUser$updateUser$user<TRes> get user {
     final local$user = _instance.user;
     return CopyWith$Mutation$UpdateUser$updateUser$user(
@@ -4430,8 +4343,9 @@ class _CopyWithStubImpl$Mutation$UpdateUser$updateUser<TRes>
     implements CopyWith$Mutation$UpdateUser$updateUser<TRes> {
   _CopyWithStubImpl$Mutation$UpdateUser$updateUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? token,
     Mutation$UpdateUser$updateUser$user? user,
@@ -4439,6 +4353,7 @@ class _CopyWithStubImpl$Mutation$UpdateUser$updateUser<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$UpdateUser$updateUser$user<TRes> get user =>
       CopyWith$Mutation$UpdateUser$updateUser$user.stub(_res);
 }
@@ -4514,32 +4429,32 @@ class Mutation$UpdateUser$updateUser$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$email = email;
-    _resultData['email'] = l$email;
+    resultData['email'] = l$email;
     final l$picture = picture;
-    _resultData['picture'] = l$picture;
+    resultData['picture'] = l$picture;
     final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
+    resultData['role'] = toJson$Enum$Role(l$role);
     final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
+    resultData['badge'] = toJson$Enum$UserBadge(l$badge);
     final l$phone = phone;
-    _resultData['phone'] = l$phone;
+    resultData['phone'] = l$phone;
     final l$whatsapp = whatsapp;
-    _resultData['whatsapp'] = l$whatsapp;
+    resultData['whatsapp'] = l$whatsapp;
     final l$facebook = facebook;
-    _resultData['facebook'] = l$facebook;
+    resultData['facebook'] = l$facebook;
     final l$instagram = instagram;
-    _resultData['instagram'] = l$instagram;
+    resultData['instagram'] = l$instagram;
     final l$tiktok = tiktok;
-    _resultData['tiktok'] = l$tiktok;
+    resultData['tiktok'] = l$tiktok;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -4693,6 +4608,7 @@ class _CopyWithImpl$Mutation$UpdateUser$updateUser$user<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -4742,8 +4658,9 @@ class _CopyWithStubImpl$Mutation$UpdateUser$updateUser$user<TRes>
     implements CopyWith$Mutation$UpdateUser$updateUser$user<TRes> {
   _CopyWithStubImpl$Mutation$UpdateUser$updateUser$user(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -4846,6 +4763,7 @@ class _CopyWithImpl$Variables$Mutation$ChangePassword<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$ChangePassword._({
         ..._instance._$data,
@@ -4858,8 +4776,9 @@ class _CopyWithStubImpl$Variables$Mutation$ChangePassword<TRes>
     implements CopyWith$Variables$Mutation$ChangePassword<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ChangePassword(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Input$ChangePasswordInput? input}) => _res;
 }
 
@@ -4883,12 +4802,12 @@ class Mutation$ChangePassword {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$changePassword = changePassword;
-    _resultData['changePassword'] = l$changePassword;
+    resultData['changePassword'] = l$changePassword;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -4959,6 +4878,7 @@ class _CopyWithImpl$Mutation$ChangePassword<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? changePassword = _undefined,
     Object? $__typename = _undefined,
@@ -4977,8 +4897,9 @@ class _CopyWithStubImpl$Mutation$ChangePassword<TRes>
     implements CopyWith$Mutation$ChangePassword<TRes> {
   _CopyWithStubImpl$Mutation$ChangePassword(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     bool? changePassword,
     String? $__typename,
@@ -5036,26 +4957,21 @@ typedef OnMutationCompleted$Mutation$ChangePassword = FutureOr<void> Function(
 class Options$Mutation$ChangePassword
     extends graphql.MutationOptions<Mutation$ChangePassword> {
   Options$Mutation$ChangePassword({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$ChangePassword variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ChangePassword? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$ChangePassword? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ChangePassword>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -5064,8 +4980,6 @@ class Options$Mutation$ChangePassword
                         ? null
                         : _parserFn$Mutation$ChangePassword(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationChangePassword,
           parserFn: _parserFn$Mutation$ChangePassword,
         );
@@ -5084,31 +4998,22 @@ class Options$Mutation$ChangePassword
 class WatchOptions$Mutation$ChangePassword
     extends graphql.WatchQueryOptions<Mutation$ChangePassword> {
   WatchOptions$Mutation$ChangePassword({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$ChangePassword variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ChangePassword? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationChangePassword,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$ChangePassword,
         );
 }
@@ -5116,11 +5021,11 @@ class WatchOptions$Mutation$ChangePassword
 extension ClientExtension$Mutation$ChangePassword on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$ChangePassword>> mutate$ChangePassword(
           Options$Mutation$ChangePassword options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$ChangePassword> watchMutation$ChangePassword(
           WatchOptions$Mutation$ChangePassword options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$ChangePassword$HookResult {
@@ -5156,24 +5061,19 @@ graphql.ObservableQuery<Mutation$ChangePassword>
 class WidgetOptions$Mutation$ChangePassword
     extends graphql.MutationOptions<Mutation$ChangePassword> {
   WidgetOptions$Mutation$ChangePassword({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ChangePassword? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$ChangePassword? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ChangePassword>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
@@ -5182,8 +5082,6 @@ class WidgetOptions$Mutation$ChangePassword
                         ? null
                         : _parserFn$Mutation$ChangePassword(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationChangePassword,
           parserFn: _parserFn$Mutation$ChangePassword,
         );
@@ -5213,11 +5111,10 @@ typedef Builder$Mutation$ChangePassword = widgets.Widget Function(
 class Mutation$ChangePassword$Widget
     extends graphql_flutter.Mutation<Mutation$ChangePassword> {
   Mutation$ChangePassword$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$ChangePassword? options,
     required Builder$Mutation$ChangePassword builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$ChangePassword(),
           builder: (
             run,
@@ -5320,6 +5217,7 @@ class _CopyWithImpl$Variables$Mutation$DeleteUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Mutation$DeleteUser._({
         ..._instance._$data,
@@ -5331,8 +5229,9 @@ class _CopyWithStubImpl$Variables$Mutation$DeleteUser<TRes>
     implements CopyWith$Variables$Mutation$DeleteUser<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? id}) => _res;
 }
 
@@ -5356,12 +5255,12 @@ class Mutation$DeleteUser {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$deleteUser = deleteUser;
-    _resultData['deleteUser'] = l$deleteUser;
+    resultData['deleteUser'] = l$deleteUser;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -5432,6 +5331,7 @@ class _CopyWithImpl$Mutation$DeleteUser<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? deleteUser = _undefined,
     Object? $__typename = _undefined,
@@ -5450,8 +5350,9 @@ class _CopyWithStubImpl$Mutation$DeleteUser<TRes>
     implements CopyWith$Mutation$DeleteUser<TRes> {
   _CopyWithStubImpl$Mutation$DeleteUser(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     bool? deleteUser,
     String? $__typename,
@@ -5508,34 +5409,27 @@ typedef OnMutationCompleted$Mutation$DeleteUser = FutureOr<void> Function(
 class Options$Mutation$DeleteUser
     extends graphql.MutationOptions<Mutation$DeleteUser> {
   Options$Mutation$DeleteUser({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$DeleteUser variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteUser? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$DeleteUser? onCompleted,
-    graphql.OnMutationUpdate<Mutation$DeleteUser>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$DeleteUser(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationDeleteUser,
           parserFn: _parserFn$Mutation$DeleteUser,
         );
@@ -5554,31 +5448,22 @@ class Options$Mutation$DeleteUser
 class WatchOptions$Mutation$DeleteUser
     extends graphql.WatchQueryOptions<Mutation$DeleteUser> {
   WatchOptions$Mutation$DeleteUser({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$DeleteUser variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteUser? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationDeleteUser,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$DeleteUser,
         );
 }
@@ -5586,11 +5471,11 @@ class WatchOptions$Mutation$DeleteUser
 extension ClientExtension$Mutation$DeleteUser on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$DeleteUser>> mutate$DeleteUser(
           Options$Mutation$DeleteUser options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$DeleteUser> watchMutation$DeleteUser(
           WatchOptions$Mutation$DeleteUser options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$DeleteUser$HookResult {
@@ -5625,32 +5510,25 @@ graphql.ObservableQuery<Mutation$DeleteUser> useWatchMutation$DeleteUser(
 class WidgetOptions$Mutation$DeleteUser
     extends graphql.MutationOptions<Mutation$DeleteUser> {
   WidgetOptions$Mutation$DeleteUser({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteUser? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$DeleteUser? onCompleted,
-    graphql.OnMutationUpdate<Mutation$DeleteUser>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$DeleteUser(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationDeleteUser,
           parserFn: _parserFn$Mutation$DeleteUser,
         );
@@ -5680,11 +5558,10 @@ typedef Builder$Mutation$DeleteUser = widgets.Widget Function(
 class Mutation$DeleteUser$Widget
     extends graphql_flutter.Mutation<Mutation$DeleteUser> {
   Mutation$DeleteUser$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$DeleteUser? options,
     required Builder$Mutation$DeleteUser builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$DeleteUser(),
           builder: (
             run,

@@ -5,6 +5,8 @@ import 'pages/map_page.dart';
 import 'pages/management_page.dart';
 import 'pages/profile_page.dart';
 import 'services/graphql_service.dart';
+import 'navigation/app_router.dart';
+import 'navigation/route_names.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +27,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
         home: const MainNavigationPage(),
+        onGenerateRoute: AppRouter.generateRoute,
+        initialRoute: RouteNames.login,
       ),
     );
   }
@@ -61,7 +65,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         child: FloatingActionButton(
           onPressed: () {
             // Action quand on tape le bouton central
-            print("Bouton central tapé");
+            AppRouter.pushNamed(context, RouteNames.eventDetail);
           },
           shape: CircleBorder(),
           backgroundColor: Theme.of(context).colorScheme.primary,

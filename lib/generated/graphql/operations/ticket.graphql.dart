@@ -88,6 +88,7 @@ class _CopyWithImpl$Variables$Query$GetTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? id = _undefined}) => _then(Variables$Query$GetTicket._({
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as String),
@@ -98,8 +99,9 @@ class _CopyWithStubImpl$Variables$Query$GetTicket<TRes>
     implements CopyWith$Variables$Query$GetTicket<TRes> {
   _CopyWithStubImpl$Variables$Query$GetTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? id}) => _res;
 }
 
@@ -125,12 +127,12 @@ class Query$GetTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$ticket = ticket;
-    _resultData['ticket'] = l$ticket?.toJson();
+    resultData['ticket'] = l$ticket?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -202,6 +204,7 @@ class _CopyWithImpl$Query$GetTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? ticket = _undefined,
     Object? $__typename = _undefined,
@@ -215,6 +218,7 @@ class _CopyWithImpl$Query$GetTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Query$GetTicket$ticket<TRes> get ticket {
     final local$ticket = _instance.ticket;
     return local$ticket == null
@@ -227,14 +231,16 @@ class _CopyWithStubImpl$Query$GetTicket<TRes>
     implements CopyWith$Query$GetTicket<TRes> {
   _CopyWithStubImpl$Query$GetTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Query$GetTicket$ticket? ticket,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Query$GetTicket$ticket<TRes> get ticket =>
       CopyWith$Query$GetTicket$ticket.stub(_res);
 }
@@ -409,34 +415,27 @@ typedef OnQueryComplete$Query$GetTicket = FutureOr<void> Function(
 
 class Options$Query$GetTicket extends graphql.QueryOptions<Query$GetTicket> {
   Options$Query$GetTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetTicket? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetTicket? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetTicket(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetTicket,
           parserFn: _parserFn$Query$GetTicket,
         );
@@ -455,41 +454,31 @@ class Options$Query$GetTicket extends graphql.QueryOptions<Query$GetTicket> {
 class WatchOptions$Query$GetTicket
     extends graphql.WatchQueryOptions<Query$GetTicket> {
   WatchOptions$Query$GetTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetTicket? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetTicket,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetTicket,
         );
 }
 
 class FetchMoreOptions$Query$GetTicket extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetTicket({
-    required graphql.UpdateQuery updateQuery,
+    required super.updateQuery,
     required Variables$Query$GetTicket variables,
   }) : super(
-          updateQuery: updateQuery,
           variables: variables.toJson(),
           document: documentNodeQueryGetTicket,
         );
@@ -498,18 +487,18 @@ class FetchMoreOptions$Query$GetTicket extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetTicket on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetTicket>> query$GetTicket(
           Options$Query$GetTicket options) async =>
-      await this.query(options);
+      await query(options);
 
   graphql.ObservableQuery<Query$GetTicket> watchQuery$GetTicket(
           WatchOptions$Query$GetTicket options) =>
-      this.watchQuery(options);
+      watchQuery(options);
 
   void writeQuery$GetTicket({
     required Query$GetTicket data,
     required Variables$Query$GetTicket variables,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetTicket),
           variables: variables.toJson(),
@@ -522,7 +511,7 @@ extension ClientExtension$Query$GetTicket on graphql.GraphQLClient {
     required Variables$Query$GetTicket variables,
     bool optimistic = true,
   }) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
         operation: graphql.Operation(document: documentNodeQueryGetTicket),
         variables: variables.toJson(),
@@ -541,15 +530,11 @@ graphql.ObservableQuery<Query$GetTicket> useWatchQuery$GetTicket(
     graphql_flutter.useWatchQuery(options);
 
 class Query$GetTicket$Widget extends graphql_flutter.Query<Query$GetTicket> {
-  Query$GetTicket$Widget({
-    widgets.Key? key,
-    required Options$Query$GetTicket options,
-    required graphql_flutter.QueryBuilder<Query$GetTicket> builder,
-  }) : super(
-          key: key,
-          options: options,
-          builder: builder,
-        );
+  const Query$GetTicket$Widget({
+    super.key,
+    required Options$Query$GetTicket super.options,
+    required super.builder,
+  });
 }
 
 class Query$GetTicket$ticket {
@@ -616,28 +601,28 @@ class Query$GetTicket$ticket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$code = code;
-    _resultData['code'] = l$code;
+    resultData['code'] = l$code;
     final l$used = used;
-    _resultData['used'] = l$used;
+    resultData['used'] = l$used;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$event = event;
-    _resultData['event'] = l$event.toJson();
+    resultData['event'] = l$event.toJson();
     final l$user = user;
-    _resultData['user'] = l$user?.toJson();
+    resultData['user'] = l$user?.toJson();
     final l$buyerName = buyerName;
-    _resultData['buyerName'] = l$buyerName;
+    resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
-    _resultData['buyerPhone'] = l$buyerPhone;
+    resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
-    _resultData['buyerEmail'] = l$buyerEmail;
+    resultData['buyerEmail'] = l$buyerEmail;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -774,6 +759,7 @@ class _CopyWithImpl$Query$GetTicket$ticket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? code = _undefined,
@@ -817,12 +803,14 @@ class _CopyWithImpl$Query$GetTicket$ticket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Query$GetTicket$ticket$event<TRes> get event {
     final local$event = _instance.event;
     return CopyWith$Query$GetTicket$ticket$event(
         local$event, (e) => call(event: e));
   }
 
+  @override
   CopyWith$Query$GetTicket$ticket$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
@@ -836,8 +824,9 @@ class _CopyWithStubImpl$Query$GetTicket$ticket<TRes>
     implements CopyWith$Query$GetTicket$ticket<TRes> {
   _CopyWithStubImpl$Query$GetTicket$ticket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? code,
@@ -852,9 +841,11 @@ class _CopyWithStubImpl$Query$GetTicket$ticket<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Query$GetTicket$ticket$event<TRes> get event =>
       CopyWith$Query$GetTicket$ticket$event.stub(_res);
 
+  @override
   CopyWith$Query$GetTicket$ticket$user<TRes> get user =>
       CopyWith$Query$GetTicket$ticket$user.stub(_res);
 }
@@ -889,16 +880,16 @@ class Query$GetTicket$ticket$event {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$title = title;
-    _resultData['title'] = l$title;
+    resultData['title'] = l$title;
     final l$date = date;
-    _resultData['date'] = l$date.toIso8601String();
+    resultData['date'] = l$date.toIso8601String();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -987,6 +978,7 @@ class _CopyWithImpl$Query$GetTicket$ticket$event<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -1011,8 +1003,9 @@ class _CopyWithStubImpl$Query$GetTicket$ticket$event<TRes>
     implements CopyWith$Query$GetTicket$ticket$event<TRes> {
   _CopyWithStubImpl$Query$GetTicket$ticket$event(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? title,
@@ -1047,14 +1040,14 @@ class Query$GetTicket$ticket$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -1135,6 +1128,7 @@ class _CopyWithImpl$Query$GetTicket$ticket$user<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -1155,8 +1149,9 @@ class _CopyWithStubImpl$Query$GetTicket$ticket$user<TRes>
     implements CopyWith$Query$GetTicket$ticket$user<TRes> {
   _CopyWithStubImpl$Query$GetTicket$ticket$user(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -1246,6 +1241,7 @@ class _CopyWithImpl$Variables$Query$GetTickets<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? eventId = _undefined}) =>
       _then(Variables$Query$GetTickets._({
         ..._instance._$data,
@@ -1258,8 +1254,9 @@ class _CopyWithStubImpl$Variables$Query$GetTickets<TRes>
     implements CopyWith$Variables$Query$GetTickets<TRes> {
   _CopyWithStubImpl$Variables$Query$GetTickets(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? eventId}) => _res;
 }
 
@@ -1286,12 +1283,12 @@ class Query$GetTickets {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$tickets = tickets;
-    _resultData['tickets'] = l$tickets.map((e) => e.toJson()).toList();
+    resultData['tickets'] = l$tickets.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -1358,7 +1355,7 @@ abstract class CopyWith$Query$GetTickets<TRes> {
       Iterable<Query$GetTickets$tickets> Function(
               Iterable<
                   CopyWith$Query$GetTickets$tickets<Query$GetTickets$tickets>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Query$GetTickets<TRes>
@@ -1374,6 +1371,7 @@ class _CopyWithImpl$Query$GetTickets<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? tickets = _undefined,
     Object? $__typename = _undefined,
@@ -1387,14 +1385,15 @@ class _CopyWithImpl$Query$GetTickets<TRes>
             : ($__typename as String),
       ));
 
+  @override
   TRes tickets(
           Iterable<Query$GetTickets$tickets> Function(
                   Iterable<
                       CopyWith$Query$GetTickets$tickets<
                           Query$GetTickets$tickets>>)
-              _fn) =>
+              fn) =>
       call(
-          tickets: _fn(
+          tickets: fn(
               _instance.tickets.map((e) => CopyWith$Query$GetTickets$tickets(
                     e,
                     (i) => i,
@@ -1405,15 +1404,17 @@ class _CopyWithStubImpl$Query$GetTickets<TRes>
     implements CopyWith$Query$GetTickets<TRes> {
   _CopyWithStubImpl$Query$GetTickets(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     List<Query$GetTickets$tickets>? tickets,
     String? $__typename,
   }) =>
       _res;
 
-  tickets(_fn) => _res;
+  @override
+  tickets(fn) => _res;
 }
 
 const documentNodeQueryGetTickets = DocumentNode(definitions: [
@@ -1550,34 +1551,27 @@ typedef OnQueryComplete$Query$GetTickets = FutureOr<void> Function(
 
 class Options$Query$GetTickets extends graphql.QueryOptions<Query$GetTickets> {
   Options$Query$GetTickets({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetTickets variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetTickets? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetTickets? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetTickets(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetTickets,
           parserFn: _parserFn$Query$GetTickets,
         );
@@ -1596,41 +1590,31 @@ class Options$Query$GetTickets extends graphql.QueryOptions<Query$GetTickets> {
 class WatchOptions$Query$GetTickets
     extends graphql.WatchQueryOptions<Query$GetTickets> {
   WatchOptions$Query$GetTickets({
-    String? operationName,
+    super.operationName,
     required Variables$Query$GetTickets variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetTickets? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetTickets,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetTickets,
         );
 }
 
 class FetchMoreOptions$Query$GetTickets extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetTickets({
-    required graphql.UpdateQuery updateQuery,
+    required super.updateQuery,
     required Variables$Query$GetTickets variables,
   }) : super(
-          updateQuery: updateQuery,
           variables: variables.toJson(),
           document: documentNodeQueryGetTickets,
         );
@@ -1639,18 +1623,18 @@ class FetchMoreOptions$Query$GetTickets extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetTickets on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetTickets>> query$GetTickets(
           Options$Query$GetTickets options) async =>
-      await this.query(options);
+      await query(options);
 
   graphql.ObservableQuery<Query$GetTickets> watchQuery$GetTickets(
           WatchOptions$Query$GetTickets options) =>
-      this.watchQuery(options);
+      watchQuery(options);
 
   void writeQuery$GetTickets({
     required Query$GetTickets data,
     required Variables$Query$GetTickets variables,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetTickets),
           variables: variables.toJson(),
@@ -1663,7 +1647,7 @@ extension ClientExtension$Query$GetTickets on graphql.GraphQLClient {
     required Variables$Query$GetTickets variables,
     bool optimistic = true,
   }) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
         operation: graphql.Operation(document: documentNodeQueryGetTickets),
         variables: variables.toJson(),
@@ -1682,15 +1666,11 @@ graphql.ObservableQuery<Query$GetTickets> useWatchQuery$GetTickets(
     graphql_flutter.useWatchQuery(options);
 
 class Query$GetTickets$Widget extends graphql_flutter.Query<Query$GetTickets> {
-  Query$GetTickets$Widget({
-    widgets.Key? key,
-    required Options$Query$GetTickets options,
-    required graphql_flutter.QueryBuilder<Query$GetTickets> builder,
-  }) : super(
-          key: key,
-          options: options,
-          builder: builder,
-        );
+  const Query$GetTickets$Widget({
+    super.key,
+    required Options$Query$GetTickets super.options,
+    required super.builder,
+  });
 }
 
 class Query$GetTickets$tickets {
@@ -1751,26 +1731,26 @@ class Query$GetTickets$tickets {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$code = code;
-    _resultData['code'] = l$code;
+    resultData['code'] = l$code;
     final l$used = used;
-    _resultData['used'] = l$used;
+    resultData['used'] = l$used;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$buyerName = buyerName;
-    _resultData['buyerName'] = l$buyerName;
+    resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
-    _resultData['buyerPhone'] = l$buyerPhone;
+    resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
-    _resultData['buyerEmail'] = l$buyerEmail;
+    resultData['buyerEmail'] = l$buyerEmail;
     final l$user = user;
-    _resultData['user'] = l$user?.toJson();
+    resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -1900,6 +1880,7 @@ class _CopyWithImpl$Query$GetTickets$tickets<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? code = _undefined,
@@ -1939,6 +1920,7 @@ class _CopyWithImpl$Query$GetTickets$tickets<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Query$GetTickets$tickets$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
@@ -1952,8 +1934,9 @@ class _CopyWithStubImpl$Query$GetTickets$tickets<TRes>
     implements CopyWith$Query$GetTickets$tickets<TRes> {
   _CopyWithStubImpl$Query$GetTickets$tickets(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? code,
@@ -1967,6 +1950,7 @@ class _CopyWithStubImpl$Query$GetTickets$tickets<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Query$GetTickets$tickets$user<TRes> get user =>
       CopyWith$Query$GetTickets$tickets$user.stub(_res);
 }
@@ -1996,14 +1980,14 @@ class Query$GetTickets$tickets$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2084,6 +2068,7 @@ class _CopyWithImpl$Query$GetTickets$tickets$user<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -2104,8 +2089,9 @@ class _CopyWithStubImpl$Query$GetTickets$tickets$user<TRes>
     implements CopyWith$Query$GetTickets$tickets$user<TRes> {
   _CopyWithStubImpl$Query$GetTickets$tickets$user(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,
@@ -2137,12 +2123,12 @@ class Query$GetMyTickets {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$myTickets = myTickets;
-    _resultData['myTickets'] = l$myTickets.map((e) => e.toJson()).toList();
+    resultData['myTickets'] = l$myTickets.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2210,7 +2196,7 @@ abstract class CopyWith$Query$GetMyTickets<TRes> {
               Iterable<
                   CopyWith$Query$GetMyTickets$myTickets<
                       Query$GetMyTickets$myTickets>>)
-          _fn);
+          fn);
 }
 
 class _CopyWithImpl$Query$GetMyTickets<TRes>
@@ -2226,6 +2212,7 @@ class _CopyWithImpl$Query$GetMyTickets<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? myTickets = _undefined,
     Object? $__typename = _undefined,
@@ -2239,14 +2226,15 @@ class _CopyWithImpl$Query$GetMyTickets<TRes>
             : ($__typename as String),
       ));
 
+  @override
   TRes myTickets(
           Iterable<Query$GetMyTickets$myTickets> Function(
                   Iterable<
                       CopyWith$Query$GetMyTickets$myTickets<
                           Query$GetMyTickets$myTickets>>)
-              _fn) =>
+              fn) =>
       call(
-          myTickets: _fn(_instance.myTickets
+          myTickets: fn(_instance.myTickets
               .map((e) => CopyWith$Query$GetMyTickets$myTickets(
                     e,
                     (i) => i,
@@ -2257,15 +2245,17 @@ class _CopyWithStubImpl$Query$GetMyTickets<TRes>
     implements CopyWith$Query$GetMyTickets<TRes> {
   _CopyWithStubImpl$Query$GetMyTickets(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     List<Query$GetMyTickets$myTickets>? myTickets,
     String? $__typename,
   }) =>
       _res;
 
-  myTickets(_fn) => _res;
+  @override
+  myTickets(fn) => _res;
 }
 
 const documentNodeQueryGetMyTickets = DocumentNode(definitions: [
@@ -2402,32 +2392,25 @@ typedef OnQueryComplete$Query$GetMyTickets = FutureOr<void> Function(
 class Options$Query$GetMyTickets
     extends graphql.QueryOptions<Query$GetMyTickets> {
   Options$Query$GetMyTickets({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetMyTickets? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
+    super.pollInterval,
+    super.context,
     OnQueryComplete$Query$GetMyTickets? onComplete,
-    graphql.OnQueryError? onError,
+    super.onError,
   })  : onCompleteWithParsed = onComplete,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetMyTickets(data),
                   ),
-          onError: onError,
           document: documentNodeQueryGetMyTickets,
           parserFn: _parserFn$Query$GetMyTickets,
         );
@@ -2446,38 +2429,28 @@ class Options$Query$GetMyTickets
 class WatchOptions$Query$GetMyTickets
     extends graphql.WatchQueryOptions<Query$GetMyTickets> {
   WatchOptions$Query$GetMyTickets({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetMyTickets? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeQueryGetMyTickets,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetMyTickets,
         );
 }
 
 class FetchMoreOptions$Query$GetMyTickets extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetMyTickets(
-      {required graphql.UpdateQuery updateQuery})
+      {required super.updateQuery})
       : super(
-          updateQuery: updateQuery,
           document: documentNodeQueryGetMyTickets,
         );
 }
@@ -2485,17 +2458,17 @@ class FetchMoreOptions$Query$GetMyTickets extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetMyTickets on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetMyTickets>> query$GetMyTickets(
           [Options$Query$GetMyTickets? options]) async =>
-      await this.query(options ?? Options$Query$GetMyTickets());
+      await query(options ?? Options$Query$GetMyTickets());
 
   graphql.ObservableQuery<Query$GetMyTickets> watchQuery$GetMyTickets(
           [WatchOptions$Query$GetMyTickets? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetMyTickets());
+      watchQuery(options ?? WatchOptions$Query$GetMyTickets());
 
   void writeQuery$GetMyTickets({
     required Query$GetMyTickets data,
     bool broadcast = true,
   }) =>
-      this.writeQuery(
+      writeQuery(
         graphql.Request(
             operation:
                 graphql.Operation(document: documentNodeQueryGetMyTickets)),
@@ -2504,7 +2477,7 @@ extension ClientExtension$Query$GetMyTickets on graphql.GraphQLClient {
       );
 
   Query$GetMyTickets? readQuery$GetMyTickets({bool optimistic = true}) {
-    final result = this.readQuery(
+    final result = readQuery(
       graphql.Request(
           operation:
               graphql.Operation(document: documentNodeQueryGetMyTickets)),
@@ -2524,13 +2497,11 @@ graphql.ObservableQuery<Query$GetMyTickets> useWatchQuery$GetMyTickets(
 class Query$GetMyTickets$Widget
     extends graphql_flutter.Query<Query$GetMyTickets> {
   Query$GetMyTickets$Widget({
-    widgets.Key? key,
+    super.key,
     Options$Query$GetMyTickets? options,
-    required graphql_flutter.QueryBuilder<Query$GetMyTickets> builder,
+    required super.builder,
   }) : super(
-          key: key,
           options: options ?? Options$Query$GetMyTickets(),
-          builder: builder,
         );
 }
 
@@ -2590,26 +2561,26 @@ class Query$GetMyTickets$myTickets {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$code = code;
-    _resultData['code'] = l$code;
+    resultData['code'] = l$code;
     final l$used = used;
-    _resultData['used'] = l$used;
+    resultData['used'] = l$used;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$event = event;
-    _resultData['event'] = l$event.toJson();
+    resultData['event'] = l$event.toJson();
     final l$buyerName = buyerName;
-    _resultData['buyerName'] = l$buyerName;
+    resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
-    _resultData['buyerPhone'] = l$buyerPhone;
+    resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
-    _resultData['buyerEmail'] = l$buyerEmail;
+    resultData['buyerEmail'] = l$buyerEmail;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2739,6 +2710,7 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? code = _undefined,
@@ -2778,6 +2750,7 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Query$GetMyTickets$myTickets$event<TRes> get event {
     final local$event = _instance.event;
     return CopyWith$Query$GetMyTickets$myTickets$event(
@@ -2789,8 +2762,9 @@ class _CopyWithStubImpl$Query$GetMyTickets$myTickets<TRes>
     implements CopyWith$Query$GetMyTickets$myTickets<TRes> {
   _CopyWithStubImpl$Query$GetMyTickets$myTickets(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? code,
@@ -2804,6 +2778,7 @@ class _CopyWithStubImpl$Query$GetMyTickets$myTickets<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Query$GetMyTickets$myTickets$event<TRes> get event =>
       CopyWith$Query$GetMyTickets$myTickets$event.stub(_res);
 }
@@ -2844,18 +2819,18 @@ class Query$GetMyTickets$myTickets$event {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$title = title;
-    _resultData['title'] = l$title;
+    resultData['title'] = l$title;
     final l$date = date;
-    _resultData['date'] = l$date.toIso8601String();
+    resultData['date'] = l$date.toIso8601String();
     final l$location = location;
-    _resultData['location'] = l$location;
+    resultData['location'] = l$location;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -2953,6 +2928,7 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets$event<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -2981,8 +2957,9 @@ class _CopyWithStubImpl$Query$GetMyTickets$myTickets$event<TRes>
     implements CopyWith$Query$GetMyTickets$myTickets$event<TRes> {
   _CopyWithStubImpl$Query$GetMyTickets$myTickets$event(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? title,
@@ -3075,6 +3052,7 @@ class _CopyWithImpl$Variables$Mutation$BuyTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$BuyTicket._({
         ..._instance._$data,
@@ -3087,8 +3065,9 @@ class _CopyWithStubImpl$Variables$Mutation$BuyTicket<TRes>
     implements CopyWith$Variables$Mutation$BuyTicket<TRes> {
   _CopyWithStubImpl$Variables$Mutation$BuyTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Input$BuyTicketInput? input}) => _res;
 }
 
@@ -3115,12 +3094,12 @@ class Mutation$BuyTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$buyTicket = buyTicket;
-    _resultData['buyTicket'] = l$buyTicket?.toJson();
+    resultData['buyTicket'] = l$buyTicket?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -3192,6 +3171,7 @@ class _CopyWithImpl$Mutation$BuyTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? buyTicket = _undefined,
     Object? $__typename = _undefined,
@@ -3205,6 +3185,7 @@ class _CopyWithImpl$Mutation$BuyTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$BuyTicket$buyTicket<TRes> get buyTicket {
     final local$buyTicket = _instance.buyTicket;
     return local$buyTicket == null
@@ -3218,14 +3199,16 @@ class _CopyWithStubImpl$Mutation$BuyTicket<TRes>
     implements CopyWith$Mutation$BuyTicket<TRes> {
   _CopyWithStubImpl$Mutation$BuyTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Mutation$BuyTicket$buyTicket? buyTicket,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$BuyTicket$buyTicket<TRes> get buyTicket =>
       CopyWith$Mutation$BuyTicket$buyTicket.stub(_res);
 }
@@ -3344,34 +3327,27 @@ typedef OnMutationCompleted$Mutation$BuyTicket = FutureOr<void> Function(
 class Options$Mutation$BuyTicket
     extends graphql.MutationOptions<Mutation$BuyTicket> {
   Options$Mutation$BuyTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$BuyTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$BuyTicket? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$BuyTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$BuyTicket>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$BuyTicket(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationBuyTicket,
           parserFn: _parserFn$Mutation$BuyTicket,
         );
@@ -3390,31 +3366,22 @@ class Options$Mutation$BuyTicket
 class WatchOptions$Mutation$BuyTicket
     extends graphql.WatchQueryOptions<Mutation$BuyTicket> {
   WatchOptions$Mutation$BuyTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$BuyTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$BuyTicket? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationBuyTicket,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$BuyTicket,
         );
 }
@@ -3422,11 +3389,11 @@ class WatchOptions$Mutation$BuyTicket
 extension ClientExtension$Mutation$BuyTicket on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$BuyTicket>> mutate$BuyTicket(
           Options$Mutation$BuyTicket options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$BuyTicket> watchMutation$BuyTicket(
           WatchOptions$Mutation$BuyTicket options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$BuyTicket$HookResult {
@@ -3461,32 +3428,25 @@ graphql.ObservableQuery<Mutation$BuyTicket> useWatchMutation$BuyTicket(
 class WidgetOptions$Mutation$BuyTicket
     extends graphql.MutationOptions<Mutation$BuyTicket> {
   WidgetOptions$Mutation$BuyTicket({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$BuyTicket? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$BuyTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$BuyTicket>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$BuyTicket(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationBuyTicket,
           parserFn: _parserFn$Mutation$BuyTicket,
         );
@@ -3516,11 +3476,10 @@ typedef Builder$Mutation$BuyTicket = widgets.Widget Function(
 class Mutation$BuyTicket$Widget
     extends graphql_flutter.Mutation<Mutation$BuyTicket> {
   Mutation$BuyTicket$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$BuyTicket? options,
     required Builder$Mutation$BuyTicket builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$BuyTicket(),
           builder: (
             run,
@@ -3583,20 +3542,20 @@ class Mutation$BuyTicket$buyTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$code = code;
-    _resultData['code'] = l$code;
+    resultData['code'] = l$code;
     final l$used = used;
-    _resultData['used'] = l$used;
+    resultData['used'] = l$used;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$event = event;
-    _resultData['event'] = l$event.toJson();
+    resultData['event'] = l$event.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -3702,6 +3661,7 @@ class _CopyWithImpl$Mutation$BuyTicket$buyTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? code = _undefined,
@@ -3729,6 +3689,7 @@ class _CopyWithImpl$Mutation$BuyTicket$buyTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> get event {
     final local$event = _instance.event;
     return CopyWith$Mutation$BuyTicket$buyTicket$event(
@@ -3740,8 +3701,9 @@ class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket<TRes>
     implements CopyWith$Mutation$BuyTicket$buyTicket<TRes> {
   _CopyWithStubImpl$Mutation$BuyTicket$buyTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? code,
@@ -3752,6 +3714,7 @@ class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> get event =>
       CopyWith$Mutation$BuyTicket$buyTicket$event.stub(_res);
 }
@@ -3782,14 +3745,14 @@ class Mutation$BuyTicket$buyTicket$event {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$title = title;
-    _resultData['title'] = l$title;
+    resultData['title'] = l$title;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -3871,6 +3834,7 @@ class _CopyWithImpl$Mutation$BuyTicket$buyTicket$event<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -3891,8 +3855,9 @@ class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$event<TRes>
     implements CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> {
   _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$event(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? title,
@@ -3985,6 +3950,7 @@ class _CopyWithImpl$Variables$Mutation$CreateTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$CreateTicket._({
         ..._instance._$data,
@@ -3997,8 +3963,9 @@ class _CopyWithStubImpl$Variables$Mutation$CreateTicket<TRes>
     implements CopyWith$Variables$Mutation$CreateTicket<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreateTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({Input$CreateTicketInput? input}) => _res;
 }
 
@@ -4025,12 +3992,12 @@ class Mutation$CreateTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$createTicket = createTicket;
-    _resultData['createTicket'] = l$createTicket?.toJson();
+    resultData['createTicket'] = l$createTicket?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -4102,6 +4069,7 @@ class _CopyWithImpl$Mutation$CreateTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? createTicket = _undefined,
     Object? $__typename = _undefined,
@@ -4115,6 +4083,7 @@ class _CopyWithImpl$Mutation$CreateTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$CreateTicket$createTicket<TRes> get createTicket {
     final local$createTicket = _instance.createTicket;
     return local$createTicket == null
@@ -4128,14 +4097,16 @@ class _CopyWithStubImpl$Mutation$CreateTicket<TRes>
     implements CopyWith$Mutation$CreateTicket<TRes> {
   _CopyWithStubImpl$Mutation$CreateTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Mutation$CreateTicket$createTicket? createTicket,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$CreateTicket$createTicket<TRes> get createTicket =>
       CopyWith$Mutation$CreateTicket$createTicket.stub(_res);
 }
@@ -4276,34 +4247,27 @@ typedef OnMutationCompleted$Mutation$CreateTicket = FutureOr<void> Function(
 class Options$Mutation$CreateTicket
     extends graphql.MutationOptions<Mutation$CreateTicket> {
   Options$Mutation$CreateTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$CreateTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateTicket? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$CreateTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$CreateTicket>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$CreateTicket(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationCreateTicket,
           parserFn: _parserFn$Mutation$CreateTicket,
         );
@@ -4322,31 +4286,22 @@ class Options$Mutation$CreateTicket
 class WatchOptions$Mutation$CreateTicket
     extends graphql.WatchQueryOptions<Mutation$CreateTicket> {
   WatchOptions$Mutation$CreateTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$CreateTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateTicket? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationCreateTicket,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$CreateTicket,
         );
 }
@@ -4354,11 +4309,11 @@ class WatchOptions$Mutation$CreateTicket
 extension ClientExtension$Mutation$CreateTicket on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$CreateTicket>> mutate$CreateTicket(
           Options$Mutation$CreateTicket options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$CreateTicket> watchMutation$CreateTicket(
           WatchOptions$Mutation$CreateTicket options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$CreateTicket$HookResult {
@@ -4393,32 +4348,25 @@ graphql.ObservableQuery<Mutation$CreateTicket> useWatchMutation$CreateTicket(
 class WidgetOptions$Mutation$CreateTicket
     extends graphql.MutationOptions<Mutation$CreateTicket> {
   WidgetOptions$Mutation$CreateTicket({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateTicket? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$CreateTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$CreateTicket>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$CreateTicket(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationCreateTicket,
           parserFn: _parserFn$Mutation$CreateTicket,
         );
@@ -4448,11 +4396,10 @@ typedef Builder$Mutation$CreateTicket = widgets.Widget Function(
 class Mutation$CreateTicket$Widget
     extends graphql_flutter.Mutation<Mutation$CreateTicket> {
   Mutation$CreateTicket$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$CreateTicket? options,
     required Builder$Mutation$CreateTicket builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$CreateTicket(),
           builder: (
             run,
@@ -4531,26 +4478,26 @@ class Mutation$CreateTicket$createTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$code = code;
-    _resultData['code'] = l$code;
+    resultData['code'] = l$code;
     final l$used = used;
-    _resultData['used'] = l$used;
+    resultData['used'] = l$used;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$event = event;
-    _resultData['event'] = l$event.toJson();
+    resultData['event'] = l$event.toJson();
     final l$buyerName = buyerName;
-    _resultData['buyerName'] = l$buyerName;
+    resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
-    _resultData['buyerPhone'] = l$buyerPhone;
+    resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
-    _resultData['buyerEmail'] = l$buyerEmail;
+    resultData['buyerEmail'] = l$buyerEmail;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -4681,6 +4628,7 @@ class _CopyWithImpl$Mutation$CreateTicket$createTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? code = _undefined,
@@ -4720,6 +4668,7 @@ class _CopyWithImpl$Mutation$CreateTicket$createTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$CreateTicket$createTicket$event<TRes> get event {
     final local$event = _instance.event;
     return CopyWith$Mutation$CreateTicket$createTicket$event(
@@ -4731,8 +4680,9 @@ class _CopyWithStubImpl$Mutation$CreateTicket$createTicket<TRes>
     implements CopyWith$Mutation$CreateTicket$createTicket<TRes> {
   _CopyWithStubImpl$Mutation$CreateTicket$createTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? code,
@@ -4746,6 +4696,7 @@ class _CopyWithStubImpl$Mutation$CreateTicket$createTicket<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$CreateTicket$createTicket$event<TRes> get event =>
       CopyWith$Mutation$CreateTicket$createTicket$event.stub(_res);
 }
@@ -4776,14 +4727,14 @@ class Mutation$CreateTicket$createTicket$event {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$title = title;
-    _resultData['title'] = l$title;
+    resultData['title'] = l$title;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -4865,6 +4816,7 @@ class _CopyWithImpl$Mutation$CreateTicket$createTicket$event<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -4885,8 +4837,9 @@ class _CopyWithStubImpl$Mutation$CreateTicket$createTicket$event<TRes>
     implements CopyWith$Mutation$CreateTicket$createTicket$event<TRes> {
   _CopyWithStubImpl$Mutation$CreateTicket$createTicket$event(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? title,
@@ -4976,6 +4929,7 @@ class _CopyWithImpl$Variables$Mutation$ScanTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({Object? code = _undefined}) =>
       _then(Variables$Mutation$ScanTicket._({
         ..._instance._$data,
@@ -4987,8 +4941,9 @@ class _CopyWithStubImpl$Variables$Mutation$ScanTicket<TRes>
     implements CopyWith$Variables$Mutation$ScanTicket<TRes> {
   _CopyWithStubImpl$Variables$Mutation$ScanTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({String? code}) => _res;
 }
 
@@ -5015,12 +4970,12 @@ class Mutation$ScanTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$scanTicket = scanTicket;
-    _resultData['scanTicket'] = l$scanTicket?.toJson();
+    resultData['scanTicket'] = l$scanTicket?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -5092,6 +5047,7 @@ class _CopyWithImpl$Mutation$ScanTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? scanTicket = _undefined,
     Object? $__typename = _undefined,
@@ -5105,6 +5061,7 @@ class _CopyWithImpl$Mutation$ScanTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$ScanTicket$scanTicket<TRes> get scanTicket {
     final local$scanTicket = _instance.scanTicket;
     return local$scanTicket == null
@@ -5118,14 +5075,16 @@ class _CopyWithStubImpl$Mutation$ScanTicket<TRes>
     implements CopyWith$Mutation$ScanTicket<TRes> {
   _CopyWithStubImpl$Mutation$ScanTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     Mutation$ScanTicket$scanTicket? scanTicket,
     String? $__typename,
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$ScanTicket$scanTicket<TRes> get scanTicket =>
       CopyWith$Mutation$ScanTicket$scanTicket.stub(_res);
 }
@@ -5273,34 +5232,27 @@ typedef OnMutationCompleted$Mutation$ScanTicket = FutureOr<void> Function(
 class Options$Mutation$ScanTicket
     extends graphql.MutationOptions<Mutation$ScanTicket> {
   Options$Mutation$ScanTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$ScanTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ScanTicket? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$ScanTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ScanTicket>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$ScanTicket(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationScanTicket,
           parserFn: _parserFn$Mutation$ScanTicket,
         );
@@ -5319,31 +5271,22 @@ class Options$Mutation$ScanTicket
 class WatchOptions$Mutation$ScanTicket
     extends graphql.WatchQueryOptions<Mutation$ScanTicket> {
   WatchOptions$Mutation$ScanTicket({
-    String? operationName,
+    super.operationName,
     required Variables$Mutation$ScanTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ScanTicket? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
+    super.context,
+    super.pollInterval,
+    super.eagerlyFetchResults,
+    super.carryForwardDataOnException,
+    super.fetchResults,
   }) : super(
           variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           document: documentNodeMutationScanTicket,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$ScanTicket,
         );
 }
@@ -5351,11 +5294,11 @@ class WatchOptions$Mutation$ScanTicket
 extension ClientExtension$Mutation$ScanTicket on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$ScanTicket>> mutate$ScanTicket(
           Options$Mutation$ScanTicket options) async =>
-      await this.mutate(options);
+      await mutate(options);
 
   graphql.ObservableQuery<Mutation$ScanTicket> watchMutation$ScanTicket(
           WatchOptions$Mutation$ScanTicket options) =>
-      this.watchMutation(options);
+      watchMutation(options);
 }
 
 class Mutation$ScanTicket$HookResult {
@@ -5390,32 +5333,25 @@ graphql.ObservableQuery<Mutation$ScanTicket> useWatchMutation$ScanTicket(
 class WidgetOptions$Mutation$ScanTicket
     extends graphql.MutationOptions<Mutation$ScanTicket> {
   WidgetOptions$Mutation$ScanTicket({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    super.operationName,
+    super.fetchPolicy,
+    super.errorPolicy,
+    super.cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$ScanTicket? typedOptimisticResult,
-    graphql.Context? context,
+    super.context,
     OnMutationCompleted$Mutation$ScanTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ScanTicket>? update,
-    graphql.OnError? onError,
+    super.update,
+    super.onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$ScanTicket(data),
                   ),
-          update: update,
-          onError: onError,
           document: documentNodeMutationScanTicket,
           parserFn: _parserFn$Mutation$ScanTicket,
         );
@@ -5445,11 +5381,10 @@ typedef Builder$Mutation$ScanTicket = widgets.Widget Function(
 class Mutation$ScanTicket$Widget
     extends graphql_flutter.Mutation<Mutation$ScanTicket> {
   Mutation$ScanTicket$Widget({
-    widgets.Key? key,
+    super.key,
     WidgetOptions$Mutation$ScanTicket? options,
     required Builder$Mutation$ScanTicket builder,
   }) : super(
-          key: key,
           options: options ?? WidgetOptions$Mutation$ScanTicket(),
           builder: (
             run,
@@ -5520,22 +5455,22 @@ class Mutation$ScanTicket$scanTicket {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$code = code;
-    _resultData['code'] = l$code;
+    resultData['code'] = l$code;
     final l$used = used;
-    _resultData['used'] = l$used;
+    resultData['used'] = l$used;
     final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$event = event;
-    _resultData['event'] = l$event.toJson();
+    resultData['event'] = l$event.toJson();
     final l$user = user;
-    _resultData['user'] = l$user?.toJson();
+    resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -5650,6 +5585,7 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? code = _undefined,
@@ -5681,12 +5617,14 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket<TRes>
             : ($__typename as String),
       ));
 
+  @override
   CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> get event {
     final local$event = _instance.event;
     return CopyWith$Mutation$ScanTicket$scanTicket$event(
         local$event, (e) => call(event: e));
   }
 
+  @override
   CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
@@ -5700,8 +5638,9 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket<TRes>
     implements CopyWith$Mutation$ScanTicket$scanTicket<TRes> {
   _CopyWithStubImpl$Mutation$ScanTicket$scanTicket(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? code,
@@ -5713,9 +5652,11 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket<TRes>
   }) =>
       _res;
 
+  @override
   CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> get event =>
       CopyWith$Mutation$ScanTicket$scanTicket$event.stub(_res);
 
+  @override
   CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> get user =>
       CopyWith$Mutation$ScanTicket$scanTicket$user.stub(_res);
 }
@@ -5746,14 +5687,14 @@ class Mutation$ScanTicket$scanTicket$event {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$title = title;
-    _resultData['title'] = l$title;
+    resultData['title'] = l$title;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -5835,6 +5776,7 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$event<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -5855,8 +5797,9 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$event<TRes>
     implements CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> {
   _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$event(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? title,
@@ -5891,14 +5834,14 @@ class Mutation$ScanTicket$scanTicket$user {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
+    final resultData = <String, dynamic>{};
     final l$id = id;
-    _resultData['id'] = l$id;
+    resultData['id'] = l$id;
     final l$name = name;
-    _resultData['name'] = l$name;
+    resultData['name'] = l$name;
     final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
+    resultData['__typename'] = l$$__typename;
+    return resultData;
   }
 
   @override
@@ -5980,6 +5923,7 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$user<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
+  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -6000,8 +5944,9 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$user<TRes>
     implements CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> {
   _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$user(this._res);
 
-  TRes _res;
+  final TRes _res;
 
+  @override
   call({
     String? id,
     String? name,

@@ -1,0 +1,39 @@
+class RouteNames {
+  // Pages principales
+  static const String home = '/home';
+  static const String map = '/map';
+  static const String management = '/management';
+  static const String profile = '/profile';
+
+  // Pages d'événements
+  static const String eventDetail = '/event/detail';
+  static const String createEvent = '/event/create';
+  static const String editEvent = '/event/edit';
+  static const String eventsList = '/events/list';
+
+  // Pages de tickets
+  static const String ticketDetail = '/ticket/detail';
+  static const String createTicket = '/ticket/create';
+  static const String ticketsList = '/tickets/list';
+
+  // Pages d'authentification
+  static const String login = '/auth/login';
+  static const String register = '/auth/register';
+  static const String forgotPassword = '/auth/forgot-password';
+  static const String optRegister = '/auth/otp-register';
+
+  // Pages de paramètres
+  static const String settings = '/settings';
+  static const String profileEdit = '/profile/edit';
+  static const String notificationsSettings = '/settings/notifications';
+
+  // Pages de recherche
+  static const String search = '/search';
+  static const String searchResults = '/search/results';
+
+  // Pages utilitaires
+  static const String notifications = '/notifications';
+  static const String wallet = '/wallet';
+  static const String deposit = '/wallet/deposit';
+  static const String withdraw = '/wallet/withdraw';
+}

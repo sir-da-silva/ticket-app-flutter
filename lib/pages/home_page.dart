@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/navigation/app_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -127,23 +128,13 @@ class _HomePageState extends State<HomePage> {
       actualite['seen'] = true;
     });
 
-    // TODO: Naviguer vers la page de détail
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Ouverture de: ${actualite['titre']}'),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    // Naviguer vers la page de détail de l'événement
+    AppRouter.pushNamed(context, '/event/detail', arguments: actualite['id']);
   }
 
   void _onActiveAccountPressed() {
-    // TODO: Naviguer vers la page de création d'actualité
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Créer une nouvelle actualité'),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
+    // Naviguer vers la page de création d'événement
+    AppRouter.pushNamed(context, '/event/create');
   }
 
   Widget _buildActiveAccountCard() {
@@ -200,8 +191,8 @@ class _HomePageState extends State<HomePage> {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Theme.of(context).colorScheme.primary.withOpacity(0.3),
-                        Colors.black.withOpacity(0.7),
+                        Colors.black.withOpacity(0.25),
+                        Colors.black.withOpacity(0.5),
                       ],
                       stops: const [0.2, 0.6, 1.0],
                     ),
