@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'jwt_service.dart';
 
 class GraphQLService {
-  static const String serverUrl = 'http://10.24.8.117:4000/graphql';
+  static const String serverUrl = 'http://10.24.8.139:4000/graphql';
 
   static GraphQLClient? _client;
 

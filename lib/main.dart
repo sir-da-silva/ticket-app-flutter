@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
-import 'package:my_first_flutter_app/services/jwt_service.dart';
 import 'package:provider/provider.dart';
 import 'services/graphql_service.dart';
 import 'navigation/app_router.dart';

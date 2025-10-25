@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
 import 'package:my_first_flutter_app/components/ticket.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
-import 'package:my_first_flutter_app/services/graphql_service.dart';
-import 'package:my_first_flutter_app/services/jwt_service.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -94,12 +91,17 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-                    child:
-                        // Query$GetMe$Widget(options: Options$Query$GetMe(
-                        //   onComplete: (_, data) {
-                        //   }
-                        // )),)
-                        Padding(
+                    child: Query$GetMe$Widget(
+                      options: Options$Query$GetMe(
+                        onComplete: (_, data) {
+                          //
+                        },
+                        onError: (error) {
+                          //
+                        },
+                      ),
+                      builder: (result, {fetchMore, refetch}) {
+                        return Padding(
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
                             children: [
@@ -175,6 +177,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                   'john.doe@example.com',
                                   style: TextStyle(
                                     fontSize: 16,
+                                    backgroundColor: result.isLoading
+                                        ? Colors.amber
+                                        : null,
                                     color: Theme.of(
                                       context,
                                     ).colorScheme.onSurface.withOpacity(0.7),
@@ -217,7 +222,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ],
                           ),
-                        ),
+                        );
+                      },
+                    ),
                   ),
                   Divider(height: 0),
                   // Activités Suivies Section
