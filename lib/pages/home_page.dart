@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
 import 'package:my_first_flutter_app/navigation/app_router.dart';
+import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -105,23 +107,6 @@ class _HomePageState extends State<HomePage> {
     },
   ];
 
-  void _onSearchPressed() {
-    // TODO: Implement search functionality
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Recherche activée'),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
-  }
-
-  void _onNotificationPressed() {
-    // TODO: Implement notification functionality
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Notifications')));
-  }
-
   void _onActualitePressed(Map<String, dynamic> actualite) {
     // Marquer comme vu
     setState(() {
@@ -158,6 +143,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Stack(
@@ -372,36 +358,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Acceuil'),
+        // title: const Text('My First Flutter App'),
+        title: SizedBox(
+          height: 24,
+          child: Image.asset("assets/images/logoipsum-311.png"),
+        ),
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           IconButton(
-            onPressed: _onSearchPressed,
+            onPressed: () => Navigator.pushNamed(context, RouteNames.search),
             icon: const Icon(Icons.search_rounded, size: 28),
             tooltip: 'Rechercher',
           ),
           const SizedBox(width: 4),
           IconButton(
-            onPressed: _onNotificationPressed,
+            onPressed: () =>
+                Navigator.pushNamed(context, RouteNames.notifications),
             icon: const Icon(Icons.notifications_outlined, size: 28),
             tooltip: 'Notifications',
           ),
         ],
       ),
+      floatingActionButton: CustomFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        activeScreen: RouteNames.home,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsetsGeometry.fromLTRB(16, 8, 16, 0),
-              child: Row(
-                children: [
-                  Text(
-                    "Actualités",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
             // Section Actualités avec liste horizontale
             SizedBox(
               height: 156,

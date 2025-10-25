@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
 import 'package:my_first_flutter_app/components/event.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/login_required.dart';
+import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({super.key});
@@ -132,6 +135,10 @@ class ManagementPage extends StatelessWidget {
     return events[index];
   }
 
+  bool isAuthenticated() {
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,207 +147,228 @@ class ManagementPage extends StatelessWidget {
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, RouteNames.search),
             icon: const Icon(Icons.search_rounded, size: 28),
             tooltip: 'Rechercher',
           ),
           const SizedBox(width: 4),
           IconButton(
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.pushNamed(context, RouteNames.notifications),
             icon: const Icon(Icons.notifications_outlined, size: 28),
             tooltip: 'Notifications',
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Balance Card
-            Container(
-              margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Theme.of(context).colorScheme.primary,
-                    Theme.of(context).colorScheme.primary.withOpacity(0.8),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.primary.withOpacity(0.3),
-                    blurRadius: 15,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
-              ),
-              child: Row(
+      floatingActionButton: CustomFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        activeScreen: RouteNames.management,
+      ),
+      body: !isAuthenticated()
+          ? LoginRequired(
+              icon: Icons.assignment,
+              title: "Gestion",
+              message: "Gérez vos activités et votre balance !",
+              routeOrigin: RouteNames.management,
+            )
+          : SingleChildScrollView(
+              child: Column(
                 children: [
+                  // Balance Card
                   Container(
-                    padding: const EdgeInsets.all(12),
+                    margin: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Theme.of(context).colorScheme.primary,
+                          Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.8),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.3),
+                          blurRadius: 15,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
                     ),
-                    child: Icon(
-                      Icons.account_balance_wallet_outlined,
-                      color: Colors.white,
-                      size: 28,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Row(
                       children: [
-                        Text(
-                          'Solde Disponible',
-                          style: TextStyle(
-                            color: Colors.white.withOpacity(0.9),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                        Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(
+                            Icons.account_balance_wallet_outlined,
+                            color: Colors.white,
+                            size: 28,
                           ),
                         ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Text(
-                              "25,000",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Solde Disponible',
+                                style: TextStyle(
+                                  color: Colors.white.withOpacity(0.9),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              "HTG",
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.9),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  Text(
+                                    "25,000",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    "HTG",
+                                    style: TextStyle(
+                                      color: Colors.white.withOpacity(0.9),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
 
-            // Actions Grid
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onSurface,
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Theme.of(context).colorScheme.primary.withOpacity(0.5),
-                    Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.shadow.withOpacity(0.1),
-                    blurRadius: 15,
-                    offset: const Offset(0, 8),
+                  // Actions Grid
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onSurface,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.5),
+                          Theme.of(
+                            context,
+                          ).colorScheme.primary.withOpacity(0.2),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.shadow.withOpacity(0.1),
+                          blurRadius: 15,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
+                    ),
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16,
+                      children: [
+                        _buildAction(
+                          context,
+                          Icons.add,
+                          "Nouvelle Activité",
+                          Colors.blue,
+                          () {},
+                        ),
+                        _buildAction(
+                          context,
+                          Icons.receipt_long,
+                          "Generer un Ticket",
+                          Colors.green,
+                          () {},
+                        ),
+                        _buildAction(
+                          context,
+                          Icons.edit_calendar_outlined,
+                          "Modifier un activite",
+                          Colors.orange,
+                          () {},
+                        ),
+                        _buildAction(
+                          context,
+                          Icons.confirmation_number,
+                          "Modifier un ticket",
+                          Colors.purple,
+                          () {},
+                        ),
+                        _buildAction(
+                          context,
+                          Icons.arrow_downward_rounded,
+                          "Faire un Depot",
+                          Colors.teal,
+                          () {},
+                        ),
+                        _buildAction(
+                          context,
+                          Icons.arrow_upward_rounded,
+                          "Faire un Retrait",
+                          Colors.red,
+                          () {},
+                        ),
+                      ],
+                    ),
                   ),
+                  // Mes Activités Section
+                  buildSectionHeader(
+                    context,
+                    'Mes Activités',
+                    Icons.calendar_month_outlined,
+                    () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Voir toutes les activités'),
+                        ),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: SizedBox(width: 300, child: _getEvents(index)),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 40),
                 ],
               ),
-              child: GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                children: [
-                  _buildAction(
-                    context,
-                    Icons.add,
-                    "Nouvelle Activité",
-                    Colors.blue,
-                    () {},
-                  ),
-                  _buildAction(
-                    context,
-                    Icons.receipt_long,
-                    "Generer un Ticket",
-                    Colors.green,
-                    () {},
-                  ),
-                  _buildAction(
-                    context,
-                    Icons.edit_calendar_outlined,
-                    "Modifier un activite",
-                    Colors.orange,
-                    () {},
-                  ),
-                  _buildAction(
-                    context,
-                    Icons.confirmation_number,
-                    "Modifier un ticket",
-                    Colors.purple,
-                    () {},
-                  ),
-                  _buildAction(
-                    context,
-                    Icons.arrow_downward_rounded,
-                    "Faire un Depot",
-                    Colors.teal,
-                    () {},
-                  ),
-                  _buildAction(
-                    context,
-                    Icons.arrow_upward_rounded,
-                    "Faire un Retrait",
-                    Colors.red,
-                    () {},
-                  ),
-                ],
-              ),
             ),
-            // Mes Activités Section
-            buildSectionHeader(
-              context,
-              'Mes Activités',
-              Icons.calendar_month_outlined,
-              () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Voir toutes les activités')),
-                );
-              },
-            ),
-            SizedBox(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: SizedBox(width: 300, child: _getEvents(index)),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 40),
-          ],
-        ),
-      ),
     );
   }
 }

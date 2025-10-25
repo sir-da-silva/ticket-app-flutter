@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  final String? routeOrigin;
+
+  const RegisterPage({super.key, this.routeOrigin});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -179,6 +181,14 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.optPage,
+                              arguments: {
+                                'routeOrigin': widget.routeOrigin,
+                                'email': emailController.text,
+                              },
+                            );
                             if (_formKey.currentState!.validate()) {
                               // TODO : logique d’inscription
                             }
@@ -214,10 +224,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           onPressed: () {
                             // TODO : Connexion Google
-                            Navigator.pushNamed(
-                              context,
-                              RouteNames.optRegister,
-                            );
                           },
                         ),
                       ),
@@ -242,6 +248,20 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                         ],
+                      ),
+
+                      SizedBox(height: 20),
+                      IconButton(
+                        icon: Row(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.arrow_back_rounded),
+                            Text("Annuler", style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ],
                   ),

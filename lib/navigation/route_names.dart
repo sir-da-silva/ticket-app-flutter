@@ -1,6 +1,6 @@
 class RouteNames {
   // Pages principales
-  static const String home = '/home';
+  static const String home = '/';
   static const String map = '/map';
   static const String management = '/management';
   static const String profile = '/profile';
@@ -20,7 +20,7 @@ class RouteNames {
   static const String login = '/auth/login';
   static const String register = '/auth/register';
   static const String forgotPassword = '/auth/forgot-password';
-  static const String optRegister = '/auth/otp-register';
+  static const String optPage = '/auth/otp';
 
   // Pages de paramètres
   static const String settings = '/settings';

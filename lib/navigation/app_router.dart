@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/pages/auth/forgot_password.dart';
 import 'package:my_first_flutter_app/pages/auth/login_page.dart';
-import 'package:my_first_flutter_app/pages/auth/otp_register_page.dart';
+import 'package:my_first_flutter_app/pages/auth/otp_page.dart';
 import 'package:my_first_flutter_app/pages/auth/register_page.dart';
 import 'package:my_first_flutter_app/pages/home_page.dart';
 import 'package:my_first_flutter_app/pages/map_page.dart';
@@ -9,10 +10,12 @@ import 'package:my_first_flutter_app/pages/profile_page.dart';
 import 'package:my_first_flutter_app/pages/events/event_detail_page.dart';
 import 'package:my_first_flutter_app/pages/events/create_event_page.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/pages/utilities/notification_page.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      // Principal pages
       case RouteNames.home:
         return MaterialPageRoute(
           builder: (_) => const HomePage(),
@@ -37,9 +40,16 @@ class AppRouter {
           settings: settings,
         );
 
+      // Authentification pages
       case RouteNames.login:
         return MaterialPageRoute(
           builder: (_) => const LoginPage(),
+          settings: settings,
+        );
+
+      case RouteNames.forgotPassword:
+        return MaterialPageRoute(
+          builder: (_) => const ForgotPasswordPage(),
           settings: settings,
         );
 
@@ -49,12 +59,20 @@ class AppRouter {
           settings: settings,
         );
 
-      case RouteNames.optRegister:
+      case RouteNames.optPage:
         return MaterialPageRoute(
-          builder: (_) => const OtpRegisterPage(),
+          builder: (_) => const OtpPage(),
           settings: settings,
         );
 
+      // Utility pages
+      case RouteNames.notifications:
+        return MaterialPageRoute(
+          builder: (_) => NotificationPage(),
+          settings: settings,
+        );
+
+      // Event pages
       case RouteNames.eventDetail:
         final eventId = settings.arguments as String?;
         return MaterialPageRoute(

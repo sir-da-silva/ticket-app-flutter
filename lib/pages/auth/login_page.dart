@@ -2,19 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/services/graphql_service.dart';
+import 'package:my_first_flutter_app/services/jwt_service.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final String? routeOrigin;
+
+  const LoginPage({super.key, this.routeOrigin});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final logged = JWTService.isAuthenticated().then((value) => value);
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool obscurePassword = true;
+  bool isLoading = false;
+
+  void login() async {
+    if (isLoading) return;
+
+    setState(() {
+      isLoading = true;
+    });
+    final result = await GraphQLService.query(
+      """
+        query Login(\$input: LoginInput!) {
+          login(input: \$input) {
+            token
+          }
+        }
+      """,
+      variables: {
+        'input': {
+          'email': emailController.text,
+          'password': passwordController.text,
+        },
+      },
+    );
+    setState(() {
+      isLoading = false;
+    });
+
+    if (result.hasException) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(result.exception!.graphqlErrors[0].message),
+          behavior: SnackBarBehavior.fixed,
+          showCloseIcon: true,
+        ),
+      );
+    } else {
+      final token = result.data?['login']['token'];
+
+      await JWTService.storeToken(token);
+      GraphQLService.refreshClient();
+
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +130,19 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        validator: (value) => value == null || value.isEmpty
-                            ? 'Entrez votre email'
-                            : null,
+                        validator: (value) {
+                          final emailRegExp = RegExp(
+                            r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                          );
+
+                          if (value == null || value.isEmpty) {
+                            return 'Entrez votre email';
+                          }
+                          if (!emailRegExp.hasMatch(value)) {
+                            return 'Email incorrecte';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 18),
                       TextFormField(
@@ -106,16 +165,18 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        validator: (value) => value == null || value.length < 6
-                            ? 'Mot de passe ≥ 6 caractères'
+                        validator: (value) => value == null || value.isEmpty
+                            ? 'Entrez votre mot de passe'
                             : null,
                       ),
                       const SizedBox(height: 16),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () =>
-                              Navigator.pushNamed(context, '/forgot_password'),
+                          onPressed: () => Navigator.pushNamed(
+                            context,
+                            RouteNames.forgotPassword,
+                          ),
                           child: const Text('Mot de passe oublié ?'),
                         ),
                       ),
@@ -131,10 +192,16 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              // TODO : logique connexion
+                              login();
                             }
                           },
-                          child: const Text('Se connecter'),
+                          child: isLoading
+                              ? const SizedBox(
+                                  height: 14,
+                                  width: 14,
+                                  child: CircularProgressIndicator(),
+                                )
+                              : const Text('Se connecter'),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -185,6 +252,19 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ],
+                      ),
+                      SizedBox(height: 20),
+                      IconButton(
+                        icon: Row(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.arrow_back_rounded),
+                            Text("Annuler", style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ],
                   ),

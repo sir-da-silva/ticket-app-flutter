@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
+import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class MapPage extends StatelessWidget {
   const MapPage({super.key});
@@ -10,17 +12,23 @@ class MapPage extends StatelessWidget {
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, RouteNames.search),
             icon: const Icon(Icons.search_rounded, size: 28),
             tooltip: 'Rechercher',
           ),
           const SizedBox(width: 4),
           IconButton(
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.pushNamed(context, RouteNames.notifications),
             icon: const Icon(Icons.notifications_outlined, size: 28),
             tooltip: 'Notifications',
           ),
         ],
+      ),
+      floatingActionButton: CustomFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: CustomBottomNavigationBar(
+        activeScreen: RouteNames.map,
       ),
       body: const Center(
         child: Column(

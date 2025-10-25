@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({super.key});
+  final String? routeOrigin;
+
+  const ForgotPasswordPage({super.key, this.routeOrigin});
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
@@ -120,7 +122,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         children: [
                           const Text("Retourner à "),
                           GestureDetector(
-                            onTap: () => Navigator.pushNamed(context, '/login'),
+                            onTap: () => Navigator.pop(context),
                             child: Text(
                               "la connexion",
                               style: GoogleFonts.poppins(

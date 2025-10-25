@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
-class OtpRegisterPage extends StatefulWidget {
-  const OtpRegisterPage({super.key});
+class OtpPage extends StatefulWidget {
+  final String? routeOrigin;
+  final String? email;
+
+  const OtpPage({super.key, this.routeOrigin, this.email});
 
   @override
-  State<OtpRegisterPage> createState() => _OtpRegisterPageState();
+  State<OtpPage> createState() => _OtpPageState();
 }
 
-class _OtpRegisterPageState extends State<OtpRegisterPage> {
+class _OtpPageState extends State<OtpPage> {
   final _formKey = GlobalKey<FormState>();
   final List<TextEditingController> otpControllers = List.generate(
     4,
@@ -157,7 +160,6 @@ class _OtpRegisterPageState extends State<OtpRegisterPage> {
 
                       /// 🔁 Renvoi du code
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Vous n'avez pas reçu de code ? ",
@@ -176,6 +178,23 @@ class _OtpRegisterPageState extends State<OtpRegisterPage> {
                             ),
                           ),
                         ],
+                      ),
+
+                      SizedBox(height: 20),
+                      IconButton(
+                        icon: Row(
+                          spacing: 10,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.arrow_back_rounded),
+                            Text(
+                              "Revenir en arrière",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                        onPressed: () => Navigator.pop(context),
                       ),
                     ],
                   ),
