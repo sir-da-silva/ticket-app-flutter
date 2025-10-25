@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'jwt_service.dart';
 
 class GraphQLService {
-  static const String serverUrl = 'http://172.17.128.1:4000/graphql';
+  static const String serverUrl = 'http://10.24.8.231:4000/graphql';
 
   static GraphQLClient? _client;
 
@@ -32,5 +33,33 @@ class GraphQLService {
   // Refresh the client (useful after login/logout)
   static void refreshClient() {
     _client = _createClient();
+  }
+
+  static void operationExceptionHandler(
+    BuildContext context,
+    OperationException? error,
+  ) {
+    if (error?.graphqlErrors != null && error!.graphqlErrors.isNotEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(error.graphqlErrors.first.message),
+          behavior: SnackBarBehavior.fixed,
+          showCloseIcon: true,
+        ),
+      );
+    }
+    if (error?.linkException != null) {
+      print("----- ${error!.linkException}");
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "Erreur de connexion au serveur ! Verifiez votre connexion internet !",
+          ),
+          behavior: SnackBarBehavior.fixed,
+          showCloseIcon: true,
+        ),
+      );
+    }
   }
 }

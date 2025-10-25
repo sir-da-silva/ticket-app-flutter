@@ -2287,29 +2287,29 @@ class _CopyWithStubImpl$Query$GetUsers$users<TRes>
 }
 
 class Variables$Mutation$Login {
-  factory Variables$Mutation$Login({required Input$LoginInput login}) =>
+  factory Variables$Mutation$Login({required Input$LoginInput input}) =>
       Variables$Mutation$Login._({
-        r'login': login,
+        r'input': input,
       });
 
   Variables$Mutation$Login._(this._$data);
 
   factory Variables$Mutation$Login.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$login = data['login'];
-    result$data['login'] =
-        Input$LoginInput.fromJson((l$login as Map<String, dynamic>));
+    final l$input = data['input'];
+    result$data['input'] =
+        Input$LoginInput.fromJson((l$input as Map<String, dynamic>));
     return Variables$Mutation$Login._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  Input$LoginInput get login => (_$data['login'] as Input$LoginInput);
+  Input$LoginInput get input => (_$data['input'] as Input$LoginInput);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$login = login;
-    result$data['login'] = l$login.toJson();
+    final l$input = input;
+    result$data['input'] = l$input.toJson();
     return result$data;
   }
 
@@ -2328,9 +2328,9 @@ class Variables$Mutation$Login {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$login = login;
-    final lOther$login = other.login;
-    if (l$login != lOther$login) {
+    final l$input = input;
+    final lOther$input = other.input;
+    if (l$input != lOther$input) {
       return false;
     }
     return true;
@@ -2338,8 +2338,8 @@ class Variables$Mutation$Login {
 
   @override
   int get hashCode {
-    final l$login = login;
-    return Object.hashAll([l$login]);
+    final l$input = input;
+    return Object.hashAll([l$input]);
   }
 }
 
@@ -2352,7 +2352,7 @@ abstract class CopyWith$Variables$Mutation$Login<TRes> {
   factory CopyWith$Variables$Mutation$Login.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$Login;
 
-  TRes call({Input$LoginInput? login});
+  TRes call({Input$LoginInput? input});
 }
 
 class _CopyWithImpl$Variables$Mutation$Login<TRes>
@@ -2368,10 +2368,10 @@ class _CopyWithImpl$Variables$Mutation$Login<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? login = _undefined}) => _then(Variables$Mutation$Login._({
+  TRes call({Object? input = _undefined}) => _then(Variables$Mutation$Login._({
         ..._instance._$data,
-        if (login != _undefined && login != null)
-          'login': (login as Input$LoginInput),
+        if (input != _undefined && input != null)
+          'input': (input as Input$LoginInput),
       }));
 }
 
@@ -2381,7 +2381,7 @@ class _CopyWithStubImpl$Variables$Mutation$Login<TRes>
 
   TRes _res;
 
-  call({Input$LoginInput? login}) => _res;
+  call({Input$LoginInput? input}) => _res;
 }
 
 class Mutation$Login {
@@ -2526,7 +2526,7 @@ const documentNodeMutationLogin = DocumentNode(definitions: [
     name: NameNode(value: 'Login'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'login')),
+        variable: VariableNode(name: NameNode(value: 'input')),
         type: NamedTypeNode(
           name: NameNode(value: 'LoginInput'),
           isNonNull: true,

@@ -48,7 +48,7 @@ query GetUsers {
   }
 }
 
-mutation Login($login: LoginInput!) {
+mutation Login($input: LoginInput!) {
   login(input: $input) {
     token
   }
