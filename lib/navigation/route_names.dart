@@ -1,9 +1,6 @@
 class RouteNames {
   // Pages principales
-  static const String home = '/';
-  static const String map = '/map';
-  static const String management = '/management';
-  static const String profile = '/profile';
+  static const String main = '/';
 
   // Pages d'événements
   static const String eventDetail = '/event/detail';

@@ -5,14 +5,12 @@ class LoginRequired extends StatelessWidget {
   final IconData icon;
   final String title;
   final String message;
-  final String routeOrigin;
 
   const LoginRequired({
     super.key,
     required this.icon,
     required this.title,
     required this.message,
-    required this.routeOrigin,
   });
 
   @override
@@ -44,19 +42,13 @@ class LoginRequired extends StatelessWidget {
               spacing: 10,
               children: [
                 ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    RouteNames.login,
-                    arguments: {"routeOrigin": routeOrigin},
-                  ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, RouteNames.login),
                   child: Text("Se Connecter"),
                 ),
                 ElevatedButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    RouteNames.register,
-                    arguments: {"routeOrigin": routeOrigin},
-                  ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, RouteNames.register),
                   child: Text("Créer un compte"),
                 ),
               ],

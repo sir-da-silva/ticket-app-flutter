@@ -8,9 +8,7 @@ import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:my_first_flutter_app/services/jwt_service.dart';
 
 class LoginPage extends StatefulWidget {
-  final String? routeOrigin;
-
-  const LoginPage({super.key, this.routeOrigin});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -51,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
           /// 🧊 Conteneur de formulaire
           Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
               child: Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
@@ -67,12 +65,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 child: Mutation$Login$Widget(
                   options: WidgetOptions$Mutation$Login(
-                    onCompleted: (_, data) async {
+                    onCompleted: (_, data) {
                       final token = data?.login?.token;
 
                       if (token != null) {
-                        await JWTService.storeToken(token);
-                        GraphQLService.refreshClient();
+                        JWTService.storeToken(
+                          token,
+                        ).then((_) => GraphQLService.refreshClient());
 
                         Navigator.pop(context);
                       }
@@ -212,7 +211,10 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 12,
                                 ),
-                                side: const BorderSide(width: 1),
+                                side: BorderSide(
+                                  width: 1,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class MapPage extends StatelessWidget {
@@ -24,11 +23,6 @@ class MapPage extends StatelessWidget {
             tooltip: 'Notifications',
           ),
         ],
-      ),
-      floatingActionButton: CustomFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomBottomNavigationBar(
-        activeScreen: RouteNames.map,
       ),
       body: const Center(
         child: Column(

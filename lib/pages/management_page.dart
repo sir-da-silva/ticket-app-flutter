@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
 import 'package:my_first_flutter_app/components/event.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
@@ -160,17 +159,11 @@ class ManagementPage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: CustomFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomBottomNavigationBar(
-        activeScreen: RouteNames.management,
-      ),
       body: !isAuthenticated()
           ? LoginRequired(
               icon: Icons.assignment,
               title: "Gestion",
               message: "Gérez vos activités et votre balance !",
-              routeOrigin: RouteNames.management,
             )
           : SingleChildScrollView(
               child: Column(

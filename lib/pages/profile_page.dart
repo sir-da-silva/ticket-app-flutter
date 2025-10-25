@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
 import 'package:my_first_flutter_app/components/ticket.dart';
@@ -76,17 +75,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             )
           : null,
-      floatingActionButton: CustomFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomBottomNavigationBar(
-        activeScreen: RouteNames.profile,
-      ),
       body: !isAuthenticated
           ? LoginRequired(
               icon: Icons.person,
               title: "Mon profil",
               message: "Gérer vos données personels.",
-              routeOrigin: RouteNames.profile,
             )
           : SingleChildScrollView(
               child: Column(

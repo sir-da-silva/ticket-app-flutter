@@ -4,9 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class RegisterPage extends StatefulWidget {
-  final String? routeOrigin;
-
-  const RegisterPage({super.key, this.routeOrigin});
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -49,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
           /// 🧊 Conteneur principal du formulaire
           Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
               child: Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
@@ -184,10 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Navigator.pushNamed(
                               context,
                               RouteNames.optPage,
-                              arguments: {
-                                'routeOrigin': widget.routeOrigin,
-                                'email': emailController.text,
-                              },
+                              arguments: {'email': emailController.text},
                             );
                             if (_formKey.currentState!.validate()) {
                               // TODO : logique d’inscription
@@ -217,7 +212,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           label: const Text("Continuer avec Google"),
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 12),
-                            side: const BorderSide(width: 1),
+                            side: BorderSide(
+                              width: 1,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),

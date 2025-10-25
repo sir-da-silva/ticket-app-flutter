@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
-import 'package:my_first_flutter_app/components/custom_bottom_navigation_bar.dart';
 import 'package:my_first_flutter_app/navigation/app_router.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
@@ -378,11 +377,6 @@ class _HomePageState extends State<HomePage> {
             tooltip: 'Notifications',
           ),
         ],
-      ),
-      floatingActionButton: CustomFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: CustomBottomNavigationBar(
-        activeScreen: RouteNames.home,
       ),
       body: SingleChildScrollView(
         child: Column(

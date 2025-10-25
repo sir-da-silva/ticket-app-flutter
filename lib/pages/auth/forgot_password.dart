@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  final String? routeOrigin;
-
-  const ForgotPasswordPage({super.key, this.routeOrigin});
+  const ForgotPasswordPage({super.key});
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
@@ -42,7 +40,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           /// 🧊 Contenu principal
           Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
               child: Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(

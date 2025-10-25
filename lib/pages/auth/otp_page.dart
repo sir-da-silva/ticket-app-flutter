@@ -3,10 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
 class OtpPage extends StatefulWidget {
-  final String? routeOrigin;
   final String? email;
 
-  const OtpPage({super.key, this.routeOrigin, this.email});
+  const OtpPage({super.key, this.email});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -47,7 +46,7 @@ class _OtpPageState extends State<OtpPage> {
           /// 🧊 Contenu principal
           Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
               child: Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(

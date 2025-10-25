@@ -3,10 +3,7 @@ import 'package:my_first_flutter_app/pages/auth/forgot_password.dart';
 import 'package:my_first_flutter_app/pages/auth/login_page.dart';
 import 'package:my_first_flutter_app/pages/auth/otp_page.dart';
 import 'package:my_first_flutter_app/pages/auth/register_page.dart';
-import 'package:my_first_flutter_app/pages/home_page.dart';
-import 'package:my_first_flutter_app/pages/map_page.dart';
-import 'package:my_first_flutter_app/pages/management_page.dart';
-import 'package:my_first_flutter_app/pages/profile_page.dart';
+import 'package:my_first_flutter_app/pages/main_navigation_page.dart';
 import 'package:my_first_flutter_app/pages/events/event_detail_page.dart';
 import 'package:my_first_flutter_app/pages/events/create_event_page.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
@@ -15,28 +12,10 @@ import 'package:my_first_flutter_app/pages/utilities/notification_page.dart';
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // Principal pages
-      case RouteNames.home:
+      // Pages de demmarage
+      case RouteNames.main:
         return MaterialPageRoute(
-          builder: (_) => const HomePage(),
-          settings: settings,
-        );
-
-      case RouteNames.map:
-        return MaterialPageRoute(
-          builder: (_) => const MapPage(),
-          settings: settings,
-        );
-
-      case RouteNames.management:
-        return MaterialPageRoute(
-          builder: (_) => const ManagementPage(),
-          settings: settings,
-        );
-
-      case RouteNames.profile:
-        return MaterialPageRoute(
-          builder: (_) => const ProfilePage(),
+          builder: (_) => const MainNavigationPage(),
           settings: settings,
         );
 
