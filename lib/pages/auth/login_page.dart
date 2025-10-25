@@ -4,8 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:my_first_flutter_app/services/jwt_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,6 +25,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -69,9 +73,10 @@ class _LoginPageState extends State<LoginPage> {
                       final token = data?.login?.token;
 
                       if (token != null) {
-                        JWTService.storeToken(
-                          token,
-                        ).then((_) => GraphQLService.refreshClient());
+                        JWTService.storeToken(token).then((_) {
+                          GraphQLService.refreshClient();
+                          auth.refreshSession();
+                        });
 
                         Navigator.pop(context);
                       }

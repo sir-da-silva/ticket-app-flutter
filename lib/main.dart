@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:my_first_flutter_app/services/auth_provider.dart';
+import 'package:my_first_flutter_app/services/jwt_service.dart';
+import 'package:provider/provider.dart';
 import 'services/graphql_service.dart';
 import 'navigation/app_router.dart';
 import 'navigation/route_names.dart';
@@ -10,7 +13,13 @@ void main() async {
   // Initialize GraphQL client
   await initHiveForFlutter();
 
-  runApp(const MyApp());
+  // UI auth state
+  final authProvider = AuthProvider();
+  await authProvider.initSession();
+
+  runApp(
+    ChangeNotifierProvider(create: (_) => authProvider, child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
