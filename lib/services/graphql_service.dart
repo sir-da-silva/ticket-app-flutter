@@ -29,45 +29,6 @@ class GraphQLService {
     );
   }
 
-  // Execute a GraphQL query
-  static Future<QueryResult> query(
-    String query, {
-    Map<String, dynamic>? variables,
-  }) async {
-    final options = QueryOptions(
-      document: gql(query),
-      variables: variables ?? {},
-    );
-
-    return await client.query(options);
-  }
-
-  // Execute a GraphQL mutation
-  static Future<QueryResult> mutate(
-    String mutation, {
-    Map<String, dynamic>? variables,
-  }) async {
-    final options = MutationOptions(
-      document: gql(mutation),
-      variables: variables ?? {},
-    );
-
-    return await client.mutate(options);
-  }
-
-  // Subscribe to GraphQL subscription
-  static Stream<QueryResult> subscribe(
-    String subscription, {
-    Map<String, dynamic>? variables,
-  }) {
-    final options = SubscriptionOptions(
-      document: gql(subscription),
-      variables: variables ?? {},
-    );
-
-    return client.subscribe(options);
-  }
-
   // Refresh the client (useful after login/logout)
   static void refreshClient() {
     _client = _createClient();

@@ -30,12 +30,12 @@ class Query$GetEvents {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$events = events;
-    resultData['events'] = l$events.map((e) => e.toJson()).toList();
+    _resultData['events'] = l$events.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -101,7 +101,7 @@ abstract class CopyWith$Query$GetEvents<TRes> {
   TRes events(
       Iterable<Query$GetEvents$events> Function(
               Iterable<CopyWith$Query$GetEvents$events<Query$GetEvents$events>>)
-          fn);
+          _fn);
 }
 
 class _CopyWithImpl$Query$GetEvents<TRes>
@@ -117,7 +117,6 @@ class _CopyWithImpl$Query$GetEvents<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? events = _undefined,
     Object? $__typename = _undefined,
@@ -131,15 +130,14 @@ class _CopyWithImpl$Query$GetEvents<TRes>
             : ($__typename as String),
       ));
 
-  @override
   TRes events(
           Iterable<Query$GetEvents$events> Function(
                   Iterable<
                       CopyWith$Query$GetEvents$events<Query$GetEvents$events>>)
-              fn) =>
+              _fn) =>
       call(
           events:
-              fn(_instance.events.map((e) => CopyWith$Query$GetEvents$events(
+              _fn(_instance.events.map((e) => CopyWith$Query$GetEvents$events(
                     e,
                     (i) => i,
                   ))).toList());
@@ -149,17 +147,15 @@ class _CopyWithStubImpl$Query$GetEvents<TRes>
     implements CopyWith$Query$GetEvents<TRes> {
   _CopyWithStubImpl$Query$GetEvents(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     List<Query$GetEvents$events>? events,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  events(fn) => _res;
+  events(_fn) => _res;
 }
 
 const documentNodeQueryGetEvents = DocumentNode(definitions: [
@@ -281,25 +277,32 @@ typedef OnQueryComplete$Query$GetEvents = FutureOr<void> Function(
 
 class Options$Query$GetEvents extends graphql.QueryOptions<Query$GetEvents> {
   Options$Query$GetEvents({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetEvents? typedOptimisticResult,
-    super.pollInterval,
-    super.context,
+    Duration? pollInterval,
+    graphql.Context? context,
     OnQueryComplete$Query$GetEvents? onComplete,
-    super.onError,
+    graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetEvents(data),
                   ),
+          onError: onError,
           document: documentNodeQueryGetEvents,
           parserFn: _parserFn$Query$GetEvents,
         );
@@ -318,27 +321,37 @@ class Options$Query$GetEvents extends graphql.QueryOptions<Query$GetEvents> {
 class WatchOptions$Query$GetEvents
     extends graphql.WatchQueryOptions<Query$GetEvents> {
   WatchOptions$Query$GetEvents({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetEvents? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeQueryGetEvents,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetEvents,
         );
 }
 
 class FetchMoreOptions$Query$GetEvents extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetEvents({required super.updateQuery})
+  FetchMoreOptions$Query$GetEvents({required graphql.UpdateQuery updateQuery})
       : super(
+          updateQuery: updateQuery,
           document: documentNodeQueryGetEvents,
         );
 }
@@ -346,17 +359,17 @@ class FetchMoreOptions$Query$GetEvents extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetEvents on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetEvents>> query$GetEvents(
           [Options$Query$GetEvents? options]) async =>
-      await query(options ?? Options$Query$GetEvents());
+      await this.query(options ?? Options$Query$GetEvents());
 
   graphql.ObservableQuery<Query$GetEvents> watchQuery$GetEvents(
           [WatchOptions$Query$GetEvents? options]) =>
-      watchQuery(options ?? WatchOptions$Query$GetEvents());
+      this.watchQuery(options ?? WatchOptions$Query$GetEvents());
 
   void writeQuery$GetEvents({
     required Query$GetEvents data,
     bool broadcast = true,
   }) =>
-      writeQuery(
+      this.writeQuery(
         graphql.Request(
             operation: graphql.Operation(document: documentNodeQueryGetEvents)),
         data: data.toJson(),
@@ -364,7 +377,7 @@ extension ClientExtension$Query$GetEvents on graphql.GraphQLClient {
       );
 
   Query$GetEvents? readQuery$GetEvents({bool optimistic = true}) {
-    final result = readQuery(
+    final result = this.readQuery(
       graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetEvents)),
       optimistic: optimistic,
@@ -382,11 +395,13 @@ graphql.ObservableQuery<Query$GetEvents> useWatchQuery$GetEvents(
 
 class Query$GetEvents$Widget extends graphql_flutter.Query<Query$GetEvents> {
   Query$GetEvents$Widget({
-    super.key,
+    widgets.Key? key,
     Options$Query$GetEvents? options,
-    required super.builder,
+    required graphql_flutter.QueryBuilder<Query$GetEvents> builder,
   }) : super(
+          key: key,
           options: options ?? Options$Query$GetEvents(),
+          builder: builder,
         );
 }
 
@@ -448,26 +463,26 @@ class Query$GetEvents$events {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$id = id;
-    resultData['id'] = l$id;
+    _resultData['id'] = l$id;
     final l$title = title;
-    resultData['title'] = l$title;
+    _resultData['title'] = l$title;
     final l$description = description;
-    resultData['description'] = l$description;
+    _resultData['description'] = l$description;
     final l$picture = picture;
-    resultData['picture'] = l$picture;
+    _resultData['picture'] = l$picture;
     final l$location = location;
-    resultData['location'] = l$location;
+    _resultData['location'] = l$location;
     final l$category = category;
-    resultData['category'] = l$category;
+    _resultData['category'] = l$category;
     final l$date = date;
-    resultData['date'] = l$date.toIso8601String();
+    _resultData['date'] = l$date.toIso8601String();
     final l$createdBy = createdBy;
-    resultData['createdBy'] = l$createdBy?.toJson();
+    _resultData['createdBy'] = l$createdBy?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -595,7 +610,6 @@ class _CopyWithImpl$Query$GetEvents$events<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -635,7 +649,6 @@ class _CopyWithImpl$Query$GetEvents$events<TRes>
             : ($__typename as String),
       ));
 
-  @override
   CopyWith$Query$GetEvents$events$createdBy<TRes> get createdBy {
     final local$createdBy = _instance.createdBy;
     return local$createdBy == null
@@ -649,9 +662,8 @@ class _CopyWithStubImpl$Query$GetEvents$events<TRes>
     implements CopyWith$Query$GetEvents$events<TRes> {
   _CopyWithStubImpl$Query$GetEvents$events(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? id,
     String? title,
@@ -665,7 +677,6 @@ class _CopyWithStubImpl$Query$GetEvents$events<TRes>
   }) =>
       _res;
 
-  @override
   CopyWith$Query$GetEvents$events$createdBy<TRes> get createdBy =>
       CopyWith$Query$GetEvents$events$createdBy.stub(_res);
 }
@@ -695,14 +706,14 @@ class Query$GetEvents$events$createdBy {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$id = id;
-    resultData['id'] = l$id;
+    _resultData['id'] = l$id;
     final l$name = name;
-    resultData['name'] = l$name;
+    _resultData['name'] = l$name;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -783,7 +794,6 @@ class _CopyWithImpl$Query$GetEvents$events$createdBy<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -804,9 +814,8 @@ class _CopyWithStubImpl$Query$GetEvents$events$createdBy<TRes>
     implements CopyWith$Query$GetEvents$events$createdBy<TRes> {
   _CopyWithStubImpl$Query$GetEvents$events$createdBy(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? id,
     String? name,
@@ -896,7 +905,6 @@ class _CopyWithImpl$Variables$Query$GetEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({Object? id = _undefined}) => _then(Variables$Query$GetEvent._({
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as String),
@@ -907,9 +915,8 @@ class _CopyWithStubImpl$Variables$Query$GetEvent<TRes>
     implements CopyWith$Variables$Query$GetEvent<TRes> {
   _CopyWithStubImpl$Variables$Query$GetEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({String? id}) => _res;
 }
 
@@ -935,12 +942,12 @@ class Query$GetEvent {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$event = event;
-    resultData['event'] = l$event?.toJson();
+    _resultData['event'] = l$event?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1012,7 +1019,6 @@ class _CopyWithImpl$Query$GetEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? event = _undefined,
     Object? $__typename = _undefined,
@@ -1026,7 +1032,6 @@ class _CopyWithImpl$Query$GetEvent<TRes>
             : ($__typename as String),
       ));
 
-  @override
   CopyWith$Query$GetEvent$event<TRes> get event {
     final local$event = _instance.event;
     return local$event == null
@@ -1039,16 +1044,14 @@ class _CopyWithStubImpl$Query$GetEvent<TRes>
     implements CopyWith$Query$GetEvent<TRes> {
   _CopyWithStubImpl$Query$GetEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     Query$GetEvent$event? event,
     String? $__typename,
   }) =>
       _res;
 
-  @override
   CopyWith$Query$GetEvent$event<TRes> get event =>
       CopyWith$Query$GetEvent$event.stub(_res);
 }
@@ -1187,27 +1190,34 @@ typedef OnQueryComplete$Query$GetEvent = FutureOr<void> Function(
 
 class Options$Query$GetEvent extends graphql.QueryOptions<Query$GetEvent> {
   Options$Query$GetEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Query$GetEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetEvent? typedOptimisticResult,
-    super.pollInterval,
-    super.context,
+    Duration? pollInterval,
+    graphql.Context? context,
     OnQueryComplete$Query$GetEvent? onComplete,
-    super.onError,
+    graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetEvent(data),
                   ),
+          onError: onError,
           document: documentNodeQueryGetEvent,
           parserFn: _parserFn$Query$GetEvent,
         );
@@ -1226,31 +1236,41 @@ class Options$Query$GetEvent extends graphql.QueryOptions<Query$GetEvent> {
 class WatchOptions$Query$GetEvent
     extends graphql.WatchQueryOptions<Query$GetEvent> {
   WatchOptions$Query$GetEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Query$GetEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetEvent? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeQueryGetEvent,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetEvent,
         );
 }
 
 class FetchMoreOptions$Query$GetEvent extends graphql.FetchMoreOptions {
   FetchMoreOptions$Query$GetEvent({
-    required super.updateQuery,
+    required graphql.UpdateQuery updateQuery,
     required Variables$Query$GetEvent variables,
   }) : super(
+          updateQuery: updateQuery,
           variables: variables.toJson(),
           document: documentNodeQueryGetEvent,
         );
@@ -1259,18 +1279,18 @@ class FetchMoreOptions$Query$GetEvent extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetEvent on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetEvent>> query$GetEvent(
           Options$Query$GetEvent options) async =>
-      await query(options);
+      await this.query(options);
 
   graphql.ObservableQuery<Query$GetEvent> watchQuery$GetEvent(
           WatchOptions$Query$GetEvent options) =>
-      watchQuery(options);
+      this.watchQuery(options);
 
   void writeQuery$GetEvent({
     required Query$GetEvent data,
     required Variables$Query$GetEvent variables,
     bool broadcast = true,
   }) =>
-      writeQuery(
+      this.writeQuery(
         graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetEvent),
           variables: variables.toJson(),
@@ -1283,7 +1303,7 @@ extension ClientExtension$Query$GetEvent on graphql.GraphQLClient {
     required Variables$Query$GetEvent variables,
     bool optimistic = true,
   }) {
-    final result = readQuery(
+    final result = this.readQuery(
       graphql.Request(
         operation: graphql.Operation(document: documentNodeQueryGetEvent),
         variables: variables.toJson(),
@@ -1302,11 +1322,15 @@ graphql.ObservableQuery<Query$GetEvent> useWatchQuery$GetEvent(
     graphql_flutter.useWatchQuery(options);
 
 class Query$GetEvent$Widget extends graphql_flutter.Query<Query$GetEvent> {
-  const Query$GetEvent$Widget({
-    super.key,
-    required Options$Query$GetEvent super.options,
-    required super.builder,
-  });
+  Query$GetEvent$Widget({
+    widgets.Key? key,
+    required Options$Query$GetEvent options,
+    required graphql_flutter.QueryBuilder<Query$GetEvent> builder,
+  }) : super(
+          key: key,
+          options: options,
+          builder: builder,
+        );
 }
 
 class Query$GetEvent$event {
@@ -1367,26 +1391,26 @@ class Query$GetEvent$event {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$id = id;
-    resultData['id'] = l$id;
+    _resultData['id'] = l$id;
     final l$title = title;
-    resultData['title'] = l$title;
+    _resultData['title'] = l$title;
     final l$description = description;
-    resultData['description'] = l$description;
+    _resultData['description'] = l$description;
     final l$picture = picture;
-    resultData['picture'] = l$picture;
+    _resultData['picture'] = l$picture;
     final l$location = location;
-    resultData['location'] = l$location;
+    _resultData['location'] = l$location;
     final l$category = category;
-    resultData['category'] = l$category;
+    _resultData['category'] = l$category;
     final l$date = date;
-    resultData['date'] = l$date.toIso8601String();
+    _resultData['date'] = l$date.toIso8601String();
     final l$createdBy = createdBy;
-    resultData['createdBy'] = l$createdBy?.toJson();
+    _resultData['createdBy'] = l$createdBy?.toJson();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1514,7 +1538,6 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -1554,7 +1577,6 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
             : ($__typename as String),
       ));
 
-  @override
   CopyWith$Query$GetEvent$event$createdBy<TRes> get createdBy {
     final local$createdBy = _instance.createdBy;
     return local$createdBy == null
@@ -1568,9 +1590,8 @@ class _CopyWithStubImpl$Query$GetEvent$event<TRes>
     implements CopyWith$Query$GetEvent$event<TRes> {
   _CopyWithStubImpl$Query$GetEvent$event(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? id,
     String? title,
@@ -1584,7 +1605,6 @@ class _CopyWithStubImpl$Query$GetEvent$event<TRes>
   }) =>
       _res;
 
-  @override
   CopyWith$Query$GetEvent$event$createdBy<TRes> get createdBy =>
       CopyWith$Query$GetEvent$event$createdBy.stub(_res);
 }
@@ -1614,14 +1634,14 @@ class Query$GetEvent$event$createdBy {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$id = id;
-    resultData['id'] = l$id;
+    _resultData['id'] = l$id;
     final l$name = name;
-    resultData['name'] = l$name;
+    _resultData['name'] = l$name;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1702,7 +1722,6 @@ class _CopyWithImpl$Query$GetEvent$event$createdBy<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
@@ -1723,9 +1742,8 @@ class _CopyWithStubImpl$Query$GetEvent$event$createdBy<TRes>
     implements CopyWith$Query$GetEvent$event$createdBy<TRes> {
   _CopyWithStubImpl$Query$GetEvent$event$createdBy(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? id,
     String? name,
@@ -1757,12 +1775,12 @@ class Query$GetMyEvents {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$myEvents = myEvents;
-    resultData['myEvents'] = l$myEvents.map((e) => e.toJson()).toList();
+    _resultData['myEvents'] = l$myEvents.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -1830,7 +1848,7 @@ abstract class CopyWith$Query$GetMyEvents<TRes> {
               Iterable<
                   CopyWith$Query$GetMyEvents$myEvents<
                       Query$GetMyEvents$myEvents>>)
-          fn);
+          _fn);
 }
 
 class _CopyWithImpl$Query$GetMyEvents<TRes>
@@ -1846,7 +1864,6 @@ class _CopyWithImpl$Query$GetMyEvents<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? myEvents = _undefined,
     Object? $__typename = _undefined,
@@ -1860,15 +1877,14 @@ class _CopyWithImpl$Query$GetMyEvents<TRes>
             : ($__typename as String),
       ));
 
-  @override
   TRes myEvents(
           Iterable<Query$GetMyEvents$myEvents> Function(
                   Iterable<
                       CopyWith$Query$GetMyEvents$myEvents<
                           Query$GetMyEvents$myEvents>>)
-              fn) =>
+              _fn) =>
       call(
-          myEvents: fn(
+          myEvents: _fn(
               _instance.myEvents.map((e) => CopyWith$Query$GetMyEvents$myEvents(
                     e,
                     (i) => i,
@@ -1879,17 +1895,15 @@ class _CopyWithStubImpl$Query$GetMyEvents<TRes>
     implements CopyWith$Query$GetMyEvents<TRes> {
   _CopyWithStubImpl$Query$GetMyEvents(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     List<Query$GetMyEvents$myEvents>? myEvents,
     String? $__typename,
   }) =>
       _res;
 
-  @override
-  myEvents(fn) => _res;
+  myEvents(_fn) => _res;
 }
 
 const documentNodeQueryGetMyEvents = DocumentNode(definitions: [
@@ -1983,25 +1997,32 @@ typedef OnQueryComplete$Query$GetMyEvents = FutureOr<void> Function(
 class Options$Query$GetMyEvents
     extends graphql.QueryOptions<Query$GetMyEvents> {
   Options$Query$GetMyEvents({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetMyEvents? typedOptimisticResult,
-    super.pollInterval,
-    super.context,
+    Duration? pollInterval,
+    graphql.Context? context,
     OnQueryComplete$Query$GetMyEvents? onComplete,
-    super.onError,
+    graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
           onComplete: onComplete == null
               ? null
               : (data) => onComplete(
                     data,
                     data == null ? null : _parserFn$Query$GetMyEvents(data),
                   ),
+          onError: onError,
           document: documentNodeQueryGetMyEvents,
           parserFn: _parserFn$Query$GetMyEvents,
         );
@@ -2020,27 +2041,37 @@ class Options$Query$GetMyEvents
 class WatchOptions$Query$GetMyEvents
     extends graphql.WatchQueryOptions<Query$GetMyEvents> {
   WatchOptions$Query$GetMyEvents({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Query$GetMyEvents? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeQueryGetMyEvents,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Query$GetMyEvents,
         );
 }
 
 class FetchMoreOptions$Query$GetMyEvents extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetMyEvents({required super.updateQuery})
+  FetchMoreOptions$Query$GetMyEvents({required graphql.UpdateQuery updateQuery})
       : super(
+          updateQuery: updateQuery,
           document: documentNodeQueryGetMyEvents,
         );
 }
@@ -2048,17 +2079,17 @@ class FetchMoreOptions$Query$GetMyEvents extends graphql.FetchMoreOptions {
 extension ClientExtension$Query$GetMyEvents on graphql.GraphQLClient {
   Future<graphql.QueryResult<Query$GetMyEvents>> query$GetMyEvents(
           [Options$Query$GetMyEvents? options]) async =>
-      await query(options ?? Options$Query$GetMyEvents());
+      await this.query(options ?? Options$Query$GetMyEvents());
 
   graphql.ObservableQuery<Query$GetMyEvents> watchQuery$GetMyEvents(
           [WatchOptions$Query$GetMyEvents? options]) =>
-      watchQuery(options ?? WatchOptions$Query$GetMyEvents());
+      this.watchQuery(options ?? WatchOptions$Query$GetMyEvents());
 
   void writeQuery$GetMyEvents({
     required Query$GetMyEvents data,
     bool broadcast = true,
   }) =>
-      writeQuery(
+      this.writeQuery(
         graphql.Request(
             operation:
                 graphql.Operation(document: documentNodeQueryGetMyEvents)),
@@ -2067,7 +2098,7 @@ extension ClientExtension$Query$GetMyEvents on graphql.GraphQLClient {
       );
 
   Query$GetMyEvents? readQuery$GetMyEvents({bool optimistic = true}) {
-    final result = readQuery(
+    final result = this.readQuery(
       graphql.Request(
           operation: graphql.Operation(document: documentNodeQueryGetMyEvents)),
       optimistic: optimistic,
@@ -2086,11 +2117,13 @@ graphql.ObservableQuery<Query$GetMyEvents> useWatchQuery$GetMyEvents(
 class Query$GetMyEvents$Widget
     extends graphql_flutter.Query<Query$GetMyEvents> {
   Query$GetMyEvents$Widget({
-    super.key,
+    widgets.Key? key,
     Options$Query$GetMyEvents? options,
-    required super.builder,
+    required graphql_flutter.QueryBuilder<Query$GetMyEvents> builder,
   }) : super(
+          key: key,
           options: options ?? Options$Query$GetMyEvents(),
+          builder: builder,
         );
 }
 
@@ -2144,24 +2177,24 @@ class Query$GetMyEvents$myEvents {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$id = id;
-    resultData['id'] = l$id;
+    _resultData['id'] = l$id;
     final l$title = title;
-    resultData['title'] = l$title;
+    _resultData['title'] = l$title;
     final l$description = description;
-    resultData['description'] = l$description;
+    _resultData['description'] = l$description;
     final l$picture = picture;
-    resultData['picture'] = l$picture;
+    _resultData['picture'] = l$picture;
     final l$location = location;
-    resultData['location'] = l$location;
+    _resultData['location'] = l$location;
     final l$category = category;
-    resultData['category'] = l$category;
+    _resultData['category'] = l$category;
     final l$date = date;
-    resultData['date'] = l$date.toIso8601String();
+    _resultData['date'] = l$date.toIso8601String();
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -2282,7 +2315,6 @@ class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
@@ -2323,9 +2355,8 @@ class _CopyWithStubImpl$Query$GetMyEvents$myEvents<TRes>
     implements CopyWith$Query$GetMyEvents$myEvents<TRes> {
   _CopyWithStubImpl$Query$GetMyEvents$myEvents(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? id,
     String? title,
@@ -2423,7 +2454,6 @@ class _CopyWithImpl$Variables$Mutation$CreateEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$CreateEvent._({
         ..._instance._$data,
@@ -2436,9 +2466,8 @@ class _CopyWithStubImpl$Variables$Mutation$CreateEvent<TRes>
     implements CopyWith$Variables$Mutation$CreateEvent<TRes> {
   _CopyWithStubImpl$Variables$Mutation$CreateEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({Input$CreateEventInput? input}) => _res;
 }
 
@@ -2462,12 +2491,12 @@ class Mutation$CreateEvent {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$createEvent = createEvent;
-    resultData['createEvent'] = l$createEvent;
+    _resultData['createEvent'] = l$createEvent;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -2538,7 +2567,6 @@ class _CopyWithImpl$Mutation$CreateEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? createEvent = _undefined,
     Object? $__typename = _undefined,
@@ -2557,9 +2585,8 @@ class _CopyWithStubImpl$Mutation$CreateEvent<TRes>
     implements CopyWith$Mutation$CreateEvent<TRes> {
   _CopyWithStubImpl$Mutation$CreateEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     String? createEvent,
     String? $__typename,
@@ -2617,27 +2644,34 @@ typedef OnMutationCompleted$Mutation$CreateEvent = FutureOr<void> Function(
 class Options$Mutation$CreateEvent
     extends graphql.MutationOptions<Mutation$CreateEvent> {
   Options$Mutation$CreateEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$CreateEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateEvent? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$CreateEvent? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$CreateEvent>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$CreateEvent(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationCreateEvent,
           parserFn: _parserFn$Mutation$CreateEvent,
         );
@@ -2656,22 +2690,31 @@ class Options$Mutation$CreateEvent
 class WatchOptions$Mutation$CreateEvent
     extends graphql.WatchQueryOptions<Mutation$CreateEvent> {
   WatchOptions$Mutation$CreateEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$CreateEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateEvent? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationCreateEvent,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$CreateEvent,
         );
 }
@@ -2679,11 +2722,11 @@ class WatchOptions$Mutation$CreateEvent
 extension ClientExtension$Mutation$CreateEvent on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$CreateEvent>> mutate$CreateEvent(
           Options$Mutation$CreateEvent options) async =>
-      await mutate(options);
+      await this.mutate(options);
 
   graphql.ObservableQuery<Mutation$CreateEvent> watchMutation$CreateEvent(
           WatchOptions$Mutation$CreateEvent options) =>
-      watchMutation(options);
+      this.watchMutation(options);
 }
 
 class Mutation$CreateEvent$HookResult {
@@ -2718,25 +2761,32 @@ graphql.ObservableQuery<Mutation$CreateEvent> useWatchMutation$CreateEvent(
 class WidgetOptions$Mutation$CreateEvent
     extends graphql.MutationOptions<Mutation$CreateEvent> {
   WidgetOptions$Mutation$CreateEvent({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$CreateEvent? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$CreateEvent? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$CreateEvent>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$CreateEvent(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationCreateEvent,
           parserFn: _parserFn$Mutation$CreateEvent,
         );
@@ -2766,10 +2816,11 @@ typedef Builder$Mutation$CreateEvent = widgets.Widget Function(
 class Mutation$CreateEvent$Widget
     extends graphql_flutter.Mutation<Mutation$CreateEvent> {
   Mutation$CreateEvent$Widget({
-    super.key,
+    widgets.Key? key,
     WidgetOptions$Mutation$CreateEvent? options,
     required Builder$Mutation$CreateEvent builder,
   }) : super(
+          key: key,
           options: options ?? WidgetOptions$Mutation$CreateEvent(),
           builder: (
             run,
@@ -2875,7 +2926,6 @@ class _CopyWithImpl$Variables$Mutation$UpdateEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({Object? input = _undefined}) =>
       _then(Variables$Mutation$UpdateEvent._({
         ..._instance._$data,
@@ -2888,9 +2938,8 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateEvent<TRes>
     implements CopyWith$Variables$Mutation$UpdateEvent<TRes> {
   _CopyWithStubImpl$Variables$Mutation$UpdateEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({Input$CreateEventInput? input}) => _res;
 }
 
@@ -2914,12 +2963,12 @@ class Mutation$UpdateEvent {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$updateEvent = updateEvent;
-    resultData['updateEvent'] = l$updateEvent;
+    _resultData['updateEvent'] = l$updateEvent;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -2990,7 +3039,6 @@ class _CopyWithImpl$Mutation$UpdateEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? updateEvent = _undefined,
     Object? $__typename = _undefined,
@@ -3009,9 +3057,8 @@ class _CopyWithStubImpl$Mutation$UpdateEvent<TRes>
     implements CopyWith$Mutation$UpdateEvent<TRes> {
   _CopyWithStubImpl$Mutation$UpdateEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? updateEvent,
     String? $__typename,
@@ -3069,27 +3116,34 @@ typedef OnMutationCompleted$Mutation$UpdateEvent = FutureOr<void> Function(
 class Options$Mutation$UpdateEvent
     extends graphql.MutationOptions<Mutation$UpdateEvent> {
   Options$Mutation$UpdateEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$UpdateEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateEvent? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateEvent? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$UpdateEvent>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$UpdateEvent(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationUpdateEvent,
           parserFn: _parserFn$Mutation$UpdateEvent,
         );
@@ -3108,22 +3162,31 @@ class Options$Mutation$UpdateEvent
 class WatchOptions$Mutation$UpdateEvent
     extends graphql.WatchQueryOptions<Mutation$UpdateEvent> {
   WatchOptions$Mutation$UpdateEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$UpdateEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateEvent? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationUpdateEvent,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$UpdateEvent,
         );
 }
@@ -3131,11 +3194,11 @@ class WatchOptions$Mutation$UpdateEvent
 extension ClientExtension$Mutation$UpdateEvent on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$UpdateEvent>> mutate$UpdateEvent(
           Options$Mutation$UpdateEvent options) async =>
-      await mutate(options);
+      await this.mutate(options);
 
   graphql.ObservableQuery<Mutation$UpdateEvent> watchMutation$UpdateEvent(
           WatchOptions$Mutation$UpdateEvent options) =>
-      watchMutation(options);
+      this.watchMutation(options);
 }
 
 class Mutation$UpdateEvent$HookResult {
@@ -3170,25 +3233,32 @@ graphql.ObservableQuery<Mutation$UpdateEvent> useWatchMutation$UpdateEvent(
 class WidgetOptions$Mutation$UpdateEvent
     extends graphql.MutationOptions<Mutation$UpdateEvent> {
   WidgetOptions$Mutation$UpdateEvent({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$UpdateEvent? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$UpdateEvent? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$UpdateEvent>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$UpdateEvent(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationUpdateEvent,
           parserFn: _parserFn$Mutation$UpdateEvent,
         );
@@ -3218,10 +3288,11 @@ typedef Builder$Mutation$UpdateEvent = widgets.Widget Function(
 class Mutation$UpdateEvent$Widget
     extends graphql_flutter.Mutation<Mutation$UpdateEvent> {
   Mutation$UpdateEvent$Widget({
-    super.key,
+    widgets.Key? key,
     WidgetOptions$Mutation$UpdateEvent? options,
     required Builder$Mutation$UpdateEvent builder,
   }) : super(
+          key: key,
           options: options ?? WidgetOptions$Mutation$UpdateEvent(),
           builder: (
             run,
@@ -3324,7 +3395,6 @@ class _CopyWithImpl$Variables$Mutation$DeleteEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({Object? id = _undefined}) =>
       _then(Variables$Mutation$DeleteEvent._({
         ..._instance._$data,
@@ -3336,9 +3406,8 @@ class _CopyWithStubImpl$Variables$Mutation$DeleteEvent<TRes>
     implements CopyWith$Variables$Mutation$DeleteEvent<TRes> {
   _CopyWithStubImpl$Variables$Mutation$DeleteEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({String? id}) => _res;
 }
 
@@ -3362,12 +3431,12 @@ class Mutation$DeleteEvent {
   final String $__typename;
 
   Map<String, dynamic> toJson() {
-    final resultData = <String, dynamic>{};
+    final _resultData = <String, dynamic>{};
     final l$deleteEvent = deleteEvent;
-    resultData['deleteEvent'] = l$deleteEvent;
+    _resultData['deleteEvent'] = l$deleteEvent;
     final l$$__typename = $__typename;
-    resultData['__typename'] = l$$__typename;
-    return resultData;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
   }
 
   @override
@@ -3438,7 +3507,6 @@ class _CopyWithImpl$Mutation$DeleteEvent<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  @override
   TRes call({
     Object? deleteEvent = _undefined,
     Object? $__typename = _undefined,
@@ -3457,9 +3525,8 @@ class _CopyWithStubImpl$Mutation$DeleteEvent<TRes>
     implements CopyWith$Mutation$DeleteEvent<TRes> {
   _CopyWithStubImpl$Mutation$DeleteEvent(this._res);
 
-  final TRes _res;
+  TRes _res;
 
-  @override
   call({
     bool? deleteEvent,
     String? $__typename,
@@ -3517,27 +3584,34 @@ typedef OnMutationCompleted$Mutation$DeleteEvent = FutureOr<void> Function(
 class Options$Mutation$DeleteEvent
     extends graphql.MutationOptions<Mutation$DeleteEvent> {
   Options$Mutation$DeleteEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$DeleteEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteEvent? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$DeleteEvent? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$DeleteEvent>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$DeleteEvent(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationDeleteEvent,
           parserFn: _parserFn$Mutation$DeleteEvent,
         );
@@ -3556,22 +3630,31 @@ class Options$Mutation$DeleteEvent
 class WatchOptions$Mutation$DeleteEvent
     extends graphql.WatchQueryOptions<Mutation$DeleteEvent> {
   WatchOptions$Mutation$DeleteEvent({
-    super.operationName,
+    String? operationName,
     required Variables$Mutation$DeleteEvent variables,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteEvent? typedOptimisticResult,
-    super.context,
-    super.pollInterval,
-    super.eagerlyFetchResults,
-    super.carryForwardDataOnException,
-    super.fetchResults,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
   }) : super(
           variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           document: documentNodeMutationDeleteEvent,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
           parserFn: _parserFn$Mutation$DeleteEvent,
         );
 }
@@ -3579,11 +3662,11 @@ class WatchOptions$Mutation$DeleteEvent
 extension ClientExtension$Mutation$DeleteEvent on graphql.GraphQLClient {
   Future<graphql.QueryResult<Mutation$DeleteEvent>> mutate$DeleteEvent(
           Options$Mutation$DeleteEvent options) async =>
-      await mutate(options);
+      await this.mutate(options);
 
   graphql.ObservableQuery<Mutation$DeleteEvent> watchMutation$DeleteEvent(
           WatchOptions$Mutation$DeleteEvent options) =>
-      watchMutation(options);
+      this.watchMutation(options);
 }
 
 class Mutation$DeleteEvent$HookResult {
@@ -3618,25 +3701,32 @@ graphql.ObservableQuery<Mutation$DeleteEvent> useWatchMutation$DeleteEvent(
 class WidgetOptions$Mutation$DeleteEvent
     extends graphql.MutationOptions<Mutation$DeleteEvent> {
   WidgetOptions$Mutation$DeleteEvent({
-    super.operationName,
-    super.fetchPolicy,
-    super.errorPolicy,
-    super.cacheRereadPolicy,
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
     Mutation$DeleteEvent? typedOptimisticResult,
-    super.context,
+    graphql.Context? context,
     OnMutationCompleted$Mutation$DeleteEvent? onCompleted,
-    super.update,
-    super.onError,
+    graphql.OnMutationUpdate<Mutation$DeleteEvent>? update,
+    graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
           onCompleted: onCompleted == null
               ? null
               : (data) => onCompleted(
                     data,
                     data == null ? null : _parserFn$Mutation$DeleteEvent(data),
                   ),
+          update: update,
+          onError: onError,
           document: documentNodeMutationDeleteEvent,
           parserFn: _parserFn$Mutation$DeleteEvent,
         );
@@ -3666,10 +3756,11 @@ typedef Builder$Mutation$DeleteEvent = widgets.Widget Function(
 class Mutation$DeleteEvent$Widget
     extends graphql_flutter.Mutation<Mutation$DeleteEvent> {
   Mutation$DeleteEvent$Widget({
-    super.key,
+    widgets.Key? key,
     WidgetOptions$Mutation$DeleteEvent? options,
     required Builder$Mutation$DeleteEvent builder,
   }) : super(
+          key: key,
           options: options ?? WidgetOptions$Mutation$DeleteEvent(),
           builder: (
             run,

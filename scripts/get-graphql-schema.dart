@@ -2,16 +2,14 @@ import 'dart:io';
 
 Future<void> main() async {
   const endpoint = 'http://localhost:4000/graphql';
-  const outputPath = 'lib/graphql/generated/schema.graphql';
+  const outputPath = 'lib/graphql/schema.graphql';
 
   print('🛰  Exécution de get-graphql-schema...');
 
   // Commande exacte
-  final result = await Process.run(
-    'get-graphql-schema',
-    [endpoint],
-    runInShell: true,
-  );
+  final result = await Process.run('get-graphql-schema', [
+    endpoint,
+  ], runInShell: true);
 
   // Vérification de la sortie ou des erreurs
   if (result.exitCode != 0) {

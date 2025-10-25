@@ -48,6 +48,12 @@ query GetUsers {
   }
 }
 
+mutation Login($login: LoginInput!) {
+  login(input: $input) {
+    token
+  }
+}
+
 mutation InitSignUp($input: InitSignUpInput!) {
   initSignUp(input: $input)
 }

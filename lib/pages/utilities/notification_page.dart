@@ -4,6 +4,8 @@ import 'package:my_first_flutter_app/components/login_required.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
+
   bool isAuthenticated() {
     return false;
   }

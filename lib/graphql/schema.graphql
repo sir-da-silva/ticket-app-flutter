@@ -1,6 +1,10 @@
-"""Exposes a URL that specifies the behavior of this scalar."""
+"""
+Exposes a URL that specifies the behavior of this scalar.
+"""
 directive @specifiedBy(
-  """The URL that specifies the behavior of this scalar."""
+  """
+  The URL that specifies the behavior of this scalar.
+  """
   url: String!
 ) on SCALAR
 
@@ -82,6 +86,7 @@ type Mutation {
   buyTicket(input: BuyTicketInput!): Ticket
   createTicket(input: CreateTicketInput!): Ticket
   scanTicket(code: String!): Ticket
+  login(input: LoginInput!): AuthPayload
   initSignUp(input: InitSignUpInput!): Boolean!
   completeSignUp(input: CompleteSignUpInput!): AuthPayload!
   updateUser(input: UpdateUserInput!): AuthPayload!
@@ -99,7 +104,6 @@ type Query {
   me: User
   user(id: ID!): User
   users: [User!]!
-  login(input: LoginInput!): AuthPayload
 }
 
 enum Role {
@@ -151,4 +155,3 @@ enum UserBadge {
   SILVER
   GOLD
 }
-
