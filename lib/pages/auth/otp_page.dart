@@ -54,7 +54,7 @@ class _OtpPageState extends State<OtpPage> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 12,
                       offset: const Offset(0, 6),
                     ),
@@ -77,10 +77,7 @@ class _OtpPageState extends State<OtpPage> {
                       Text(
                         "Entrez le code que nous avons envoyé à votre adresse e-mail.",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: Colors.grey[700],
-                        ),
+                        style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey[700]),
                       ),
                       const SizedBox(height: 30),
 
@@ -109,15 +106,10 @@ class _OtpPageState extends State<OtpPage> {
                               decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.grey[100],
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
-                                  borderSide: const BorderSide(
-                                    color: Color(0xFF667EEA),
-                                    width: 2,
-                                  ),
+                                  borderSide: const BorderSide(color: Color(0xFF667EEA), width: 2),
                                 ),
                               ),
                             ),
@@ -132,23 +124,15 @@ class _OtpPageState extends State<OtpPage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           ),
                           onPressed: () {
-                            final otpCode = otpControllers
-                                .map((c) => c.text)
-                                .join();
+                            final otpCode = otpControllers.map((c) => c.text).join();
                             if (otpCode.length == 4) {
                               // TODO : logique de validation du code
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "Veuillez entrer le code complet.",
-                                  ),
-                                ),
+                                const SnackBar(content: Text("Veuillez entrer le code complet.")),
                               );
                             }
                           },
@@ -187,10 +171,7 @@ class _OtpPageState extends State<OtpPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.arrow_back_rounded),
-                            Text(
-                              "Revenir en arrière",
-                              style: TextStyle(fontSize: 14),
-                            ),
+                            Text("Revenir en arrière", style: TextStyle(fontSize: 14)),
                           ],
                         ),
                         onPressed: () => Navigator.pop(context),
@@ -213,12 +194,7 @@ class WaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(0, size.height - 50);
-    path.quadraticBezierTo(
-      size.width / 2,
-      size.height + 30,
-      size.width,
-      size.height - 50,
-    );
+    path.quadraticBezierTo(size.width / 2, size.height + 30, size.width, size.height - 50);
     path.lineTo(size.width, 0);
     path.close();
     return path;

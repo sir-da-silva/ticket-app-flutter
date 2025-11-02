@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildSectionHeader(
-  BuildContext context,
-  String title,
-  IconData? icon,
-  VoidCallback onTap,
-) {
+Widget buildSectionHeader(BuildContext context, String title, IconData? icon, VoidCallback onTap) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     child: Row(
@@ -16,14 +11,10 @@ Widget buildSectionHeader(
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(
-                icon,
-                color: Theme.of(context).colorScheme.primary,
-                size: 20,
-              ),
+              child: Icon(icon, color: Theme.of(context).colorScheme.primary, size: 20),
             ),
             const SizedBox(width: 12),
             Text(

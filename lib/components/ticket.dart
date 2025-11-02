@@ -67,9 +67,7 @@ class TicketCard extends StatelessWidget {
                     color: Theme.of(context).colorScheme.surfaceContainerHighest,
                     child: Icon(
                       Icons.image_not_supported,
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.onSurface.withOpacity(0.5),
+                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
                     ),
                   );
                 },
@@ -85,25 +83,18 @@ class TicketCard extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.1),
+                        color: Colors.blue.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Icon(
-                        Icons.confirmation_number,
-                        color: Colors.blue,
-                        size: 24,
-                      ),
+                      child: const Icon(Icons.confirmation_number, color: Colors.blue, size: 24),
                     ),
                     const Spacer(),
                     // Used badge
                     if (used)
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.green.withOpacity(0.15),
+                          color: Colors.green.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Text(
@@ -117,12 +108,9 @@ class TicketCard extends StatelessWidget {
                       )
                     else
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: statusColor.withOpacity(0.1),
+                          color: statusColor.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
@@ -148,10 +136,7 @@ class TicketCard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -170,10 +155,7 @@ class TicketCard extends StatelessWidget {
                         ),
                       )
                     else
-                      Text(
-                        date,
-                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                      ),
+                      Text(date, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
                   ],
                 ),
               ],

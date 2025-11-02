@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 12,
                       offset: const Offset(0, 6),
                     ),
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Mutation$Login$Widget(
                   options: WidgetOptions$Mutation$Login(
                     onCompleted: (_, data) {
-                      final token = data?.login?.token;
+                      final token = data?.login.token;
 
                       if (token != null) {
                         JWTService.storeToken(token).then((_) {
@@ -105,14 +105,10 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.email),
                               hintText: 'Votre email',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
                             validator: (value) {
-                              final emailRegExp = RegExp(
-                                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                              );
+                              final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
                               if (value == null || value.isEmpty) {
                                 return 'Entrez votre email';
@@ -131,31 +127,22 @@ class _LoginPageState extends State<LoginPage> {
                               prefixIcon: const Icon(Icons.lock),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  obscurePassword
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
+                                  obscurePassword ? Icons.visibility_off : Icons.visibility,
                                 ),
-                                onPressed: () => setState(
-                                  () => obscurePassword = !obscurePassword,
-                                ),
+                                onPressed: () => setState(() => obscurePassword = !obscurePassword),
                               ),
                               hintText: 'Mot de passe',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            validator: (value) => value == null || value.isEmpty
-                                ? 'Entrez votre mot de passe'
-                                : null,
+                            validator: (value) =>
+                                value == null || value.isEmpty ? 'Entrez votre mot de passe' : null,
                           ),
                           const SizedBox(height: 16),
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                              onPressed: () => Navigator.pushNamed(
-                                context,
-                                RouteNames.forgotPassword,
-                              ),
+                              onPressed: () =>
+                                  Navigator.pushNamed(context, RouteNames.forgotPassword),
                               child: const Text('Mot de passe oublié ?'),
                             ),
                           ),
@@ -164,9 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: double.infinity,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 14),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -207,15 +192,10 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             width: double.infinity,
                             child: OutlinedButton.icon(
-                              icon: const Icon(
-                                FontAwesomeIcons.google,
-                                size: 20,
-                              ),
+                              icon: const Icon(FontAwesomeIcons.google, size: 20),
                               label: const Text('Continuer avec Google'),
                               style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 12,
-                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
                                 side: BorderSide(
                                   width: 1,
                                   color: Theme.of(context).colorScheme.primary,
@@ -235,10 +215,8 @@ class _LoginPageState extends State<LoginPage> {
                             children: [
                               const Text("Pas encore de compte ? "),
                               GestureDetector(
-                                onTap: () => Navigator.pushReplacementNamed(
-                                  context,
-                                  RouteNames.register,
-                                ),
+                                onTap: () =>
+                                    Navigator.pushReplacementNamed(context, RouteNames.register),
                                 child: Text(
                                   "S'inscrire",
                                   style: GoogleFonts.poppins(
@@ -282,12 +260,7 @@ class WaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(0, size.height - 50);
-    path.quadraticBezierTo(
-      size.width / 2,
-      size.height + 30,
-      size.width,
-      size.height - 50,
-    );
+    path.quadraticBezierTo(size.width / 2, size.height + 30, size.width, size.height - 50);
     path.lineTo(size.width, 0);
     path.close();
     return path;

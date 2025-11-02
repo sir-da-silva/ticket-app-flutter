@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 
 class Event extends StatelessWidget {
   final String title;
@@ -26,6 +27,10 @@ class Event extends StatelessWidget {
     required this.owner,
   });
 
+  // Event.fromFollowedEvents(Query$GetFollowedEvents? event, {required Key key});
+  
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -51,9 +56,7 @@ class Event extends StatelessWidget {
                         color: Theme.of(context).colorScheme.surfaceContainerHighest,
                         child: Icon(
                           Icons.image_not_supported,
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withOpacity(0.5),
+                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
                         ),
                       );
                     },
@@ -63,14 +66,9 @@ class Event extends StatelessWidget {
                   top: 8,
                   left: 8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.primary.withOpacity(0.9),
+                      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.9),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -95,10 +93,7 @@ class Event extends StatelessWidget {
                 // Nom
                 Text(
                   title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -108,10 +103,7 @@ class Event extends StatelessWidget {
                   children: [
                     const Icon(Icons.event, size: 16, color: Colors.grey),
                     const SizedBox(width: 6),
-                    Text(
-                      eventDate,
-                      style: TextStyle(fontSize: 13, color: Colors.grey[700]),
-                    ),
+                    Text(eventDate, style: TextStyle(fontSize: 13, color: Colors.grey[700])),
                     const SizedBox(width: 12),
                     const Icon(Icons.location_on, size: 16, color: Colors.grey),
                     const SizedBox(width: 6),
@@ -130,11 +122,7 @@ class Event extends StatelessWidget {
                 if (ticketsSold != null)
                   Row(
                     children: [
-                      const Icon(
-                        Icons.confirmation_number_outlined,
-                        size: 16,
-                        color: Colors.grey,
-                      ),
+                      const Icon(Icons.confirmation_number_outlined, size: 16, color: Colors.grey),
                       const SizedBox(width: 6),
                       Text(
                         '$ticketsSold vendus',

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_flutter_app/navigation/app_router.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
+import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
+import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/services/graphql_service.dart';
 
 class CreateEventPage extends StatefulWidget {
   const CreateEventPage({super.key});
@@ -39,10 +42,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
   }
 
   Future<void> _selectTime() async {
-    final TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: TimeOfDay.now(),
-    );
+    final TimeOfDay? picked = await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (picked != null && picked != _selectedTime) {
       setState(() {
         _selectedTime = picked;
@@ -50,138 +50,151 @@ class _CreateEventPageState extends State<CreateEventPage> {
     }
   }
 
-  void _submitForm() {
-    if (_formKey.currentState!.validate()) {
-      // TODO: Implémenter la création de l'événement
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Événement créé avec succès!')),
-      );
-      AppRouter.pop(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Créer un événement'),
-        actions: [
-          TextButton(onPressed: _submitForm, child: const Text('Créer')),
-        ],
-      ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Titre
-              TextFormField(
-                controller: _titleController,
-                decoration: const InputDecoration(
-                  labelText: 'Titre de l\'événement',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer un titre';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Description
-              TextFormField(
-                controller: _descriptionController,
-                decoration: const InputDecoration(
-                  labelText: 'Description',
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 4,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer une description';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Date et heure
-              Row(
+      appBar: AppBar(title: const Text('Créer un événement')),
+      body: Mutation$CreateEvent$Widget(
+        options: WidgetOptions$Mutation$CreateEvent(
+          onCompleted: (_, data) {
+            if (data?.createEvent != null) {
+              Navigator.pushReplacementNamed(
+                context,
+                RouteNames.eventDetail,
+                arguments: {"eventId": data?.createEvent},
+              );
+            }
+          },
+          onError: (error) {
+            GraphQLService.operationExceptionHandler(context, error);
+          },
+        ),
+        builder: (runMutation, result) {
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: _selectDate,
-                      child: InputDecorator(
-                        decoration: const InputDecoration(
-                          labelText: 'Date',
-                          border: OutlineInputBorder(),
-                        ),
-                        child: Text(
-                          _selectedDate != null
-                              ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
-                              : 'Sélectionner une date',
-                        ),
-                      ),
+                  // Titre
+                  TextFormField(
+                    controller: _titleController,
+                    decoration: const InputDecoration(
+                      labelText: 'Titre de l\'événement',
+                      border: OutlineInputBorder(),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un titre';
+                      }
+                      return null;
+                    },
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: InkWell(
-                      onTap: _selectTime,
-                      child: InputDecorator(
-                        decoration: const InputDecoration(
-                          labelText: 'Heure',
-                          border: OutlineInputBorder(),
-                        ),
-                        child: Text(
-                          _selectedTime != null
-                              ? _selectedTime!.format(context)
-                              : 'Sélectionner une heure',
+                  const SizedBox(height: 16),
+
+                  // Description
+                  TextFormField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                      border: OutlineInputBorder(),
+                    ),
+                    maxLines: 4,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer une description';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Date et heure
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InkWell(
+                          onTap: _selectDate,
+                          child: InputDecorator(
+                            decoration: const InputDecoration(
+                              labelText: 'Date',
+                              border: OutlineInputBorder(),
+                            ),
+                            child: Text(
+                              _selectedDate != null
+                                  ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
+                                  : 'Sélectionner une date',
+                            ),
+                          ),
                         ),
                       ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: InkWell(
+                          onTap: _selectTime,
+                          child: InputDecorator(
+                            decoration: const InputDecoration(
+                              labelText: 'Heure',
+                              border: OutlineInputBorder(),
+                            ),
+                            child: Text(
+                              _selectedTime != null
+                                  ? _selectedTime!.format(context)
+                                  : 'Sélectionner une heure',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Lieu
+                  TextFormField(
+                    controller: _locationController,
+                    decoration: const InputDecoration(
+                      labelText: 'Lieu',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer un lieu';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Bouton de soumission
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          runMutation(
+                            Variables$Mutation$CreateEvent(
+                              input: Input$CreateEventInput(
+                                title: _titleController.text,
+                                location: _locationController.text,
+                                category: "category",
+                                date: _selectedDate!,
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      child: const Text('Créer l\'événement', style: TextStyle(fontSize: 18)),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-
-              // Lieu
-              TextFormField(
-                controller: _locationController,
-                decoration: const InputDecoration(
-                  labelText: 'Lieu',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer un lieu';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 24),
-
-              // Bouton de soumission
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _submitForm,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                  ),
-                  child: const Text(
-                    'Créer l\'événement',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

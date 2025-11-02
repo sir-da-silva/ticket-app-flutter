@@ -1,5 +1,5 @@
-query GetEvents {
-  events {
+query GetFollowedEvents {
+  followedEvents {
     id
     title
     description
@@ -11,6 +11,18 @@ query GetEvents {
       id
       name
     }
+  }
+}
+
+query GetMyEvents($fetchAll: Boolean, $page: Int) {
+  myEvents(fetchAll: $fetchAll, page: $page) {
+    id
+    title
+    description
+    picture
+    location
+    category
+    date
   }
 }
 
@@ -27,18 +39,6 @@ query GetEvent($id: ID!) {
       id
       name
     }
-  }
-}
-
-query GetMyEvents {
-  myEvents {
-    id
-    title
-    description
-    picture
-    location
-    category
-    date
   }
 }
 

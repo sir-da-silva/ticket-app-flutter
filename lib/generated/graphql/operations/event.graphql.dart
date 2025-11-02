@@ -7,32 +7,33 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 import 'package:graphql_flutter/graphql_flutter.dart' as graphql_flutter;
 
-class Query$GetEvents {
-  Query$GetEvents({
-    required this.events,
+class Query$GetFollowedEvents {
+  Query$GetFollowedEvents({
+    required this.followedEvents,
     this.$__typename = 'Query',
   });
 
-  factory Query$GetEvents.fromJson(Map<String, dynamic> json) {
-    final l$events = json['events'];
+  factory Query$GetFollowedEvents.fromJson(Map<String, dynamic> json) {
+    final l$followedEvents = json['followedEvents'];
     final l$$__typename = json['__typename'];
-    return Query$GetEvents(
-      events: (l$events as List<dynamic>)
-          .map((e) =>
-              Query$GetEvents$events.fromJson((e as Map<String, dynamic>)))
+    return Query$GetFollowedEvents(
+      followedEvents: (l$followedEvents as List<dynamic>)
+          .map((e) => Query$GetFollowedEvents$followedEvents.fromJson(
+              (e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<Query$GetEvents$events> events;
+  final List<Query$GetFollowedEvents$followedEvents> followedEvents;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$events = events;
-    _resultData['events'] = l$events.map((e) => e.toJson()).toList();
+    final l$followedEvents = followedEvents;
+    _resultData['followedEvents'] =
+        l$followedEvents.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -40,10 +41,10 @@ class Query$GetEvents {
 
   @override
   int get hashCode {
-    final l$events = events;
+    final l$followedEvents = followedEvents;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      Object.hashAll(l$events.map((v) => v)),
+      Object.hashAll(l$followedEvents.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -53,18 +54,18 @@ class Query$GetEvents {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$GetEvents || runtimeType != other.runtimeType) {
+    if (other is! Query$GetFollowedEvents || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$events = events;
-    final lOther$events = other.events;
-    if (l$events.length != lOther$events.length) {
+    final l$followedEvents = followedEvents;
+    final lOther$followedEvents = other.followedEvents;
+    if (l$followedEvents.length != lOther$followedEvents.length) {
       return false;
     }
-    for (int i = 0; i < l$events.length; i++) {
-      final l$events$entry = l$events[i];
-      final lOther$events$entry = lOther$events[i];
-      if (l$events$entry != lOther$events$entry) {
+    for (int i = 0; i < l$followedEvents.length; i++) {
+      final l$followedEvents$entry = l$followedEvents[i];
+      final lOther$followedEvents$entry = lOther$followedEvents[i];
+      if (l$followedEvents$entry != lOther$followedEvents$entry) {
         return false;
       }
     }
@@ -77,96 +78,99 @@ class Query$GetEvents {
   }
 }
 
-extension UtilityExtension$Query$GetEvents on Query$GetEvents {
-  CopyWith$Query$GetEvents<Query$GetEvents> get copyWith =>
-      CopyWith$Query$GetEvents(
+extension UtilityExtension$Query$GetFollowedEvents on Query$GetFollowedEvents {
+  CopyWith$Query$GetFollowedEvents<Query$GetFollowedEvents> get copyWith =>
+      CopyWith$Query$GetFollowedEvents(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Query$GetEvents<TRes> {
-  factory CopyWith$Query$GetEvents(
-    Query$GetEvents instance,
-    TRes Function(Query$GetEvents) then,
-  ) = _CopyWithImpl$Query$GetEvents;
+abstract class CopyWith$Query$GetFollowedEvents<TRes> {
+  factory CopyWith$Query$GetFollowedEvents(
+    Query$GetFollowedEvents instance,
+    TRes Function(Query$GetFollowedEvents) then,
+  ) = _CopyWithImpl$Query$GetFollowedEvents;
 
-  factory CopyWith$Query$GetEvents.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetEvents;
+  factory CopyWith$Query$GetFollowedEvents.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetFollowedEvents;
 
   TRes call({
-    List<Query$GetEvents$events>? events,
+    List<Query$GetFollowedEvents$followedEvents>? followedEvents,
     String? $__typename,
   });
-  TRes events(
-      Iterable<Query$GetEvents$events> Function(
-              Iterable<CopyWith$Query$GetEvents$events<Query$GetEvents$events>>)
+  TRes followedEvents(
+      Iterable<Query$GetFollowedEvents$followedEvents> Function(
+              Iterable<
+                  CopyWith$Query$GetFollowedEvents$followedEvents<
+                      Query$GetFollowedEvents$followedEvents>>)
           _fn);
 }
 
-class _CopyWithImpl$Query$GetEvents<TRes>
-    implements CopyWith$Query$GetEvents<TRes> {
-  _CopyWithImpl$Query$GetEvents(
+class _CopyWithImpl$Query$GetFollowedEvents<TRes>
+    implements CopyWith$Query$GetFollowedEvents<TRes> {
+  _CopyWithImpl$Query$GetFollowedEvents(
     this._instance,
     this._then,
   );
 
-  final Query$GetEvents _instance;
+  final Query$GetFollowedEvents _instance;
 
-  final TRes Function(Query$GetEvents) _then;
+  final TRes Function(Query$GetFollowedEvents) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? events = _undefined,
+    Object? followedEvents = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetEvents(
-        events: events == _undefined || events == null
-            ? _instance.events
-            : (events as List<Query$GetEvents$events>),
+      _then(Query$GetFollowedEvents(
+        followedEvents: followedEvents == _undefined || followedEvents == null
+            ? _instance.followedEvents
+            : (followedEvents as List<Query$GetFollowedEvents$followedEvents>),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  TRes events(
-          Iterable<Query$GetEvents$events> Function(
+  TRes followedEvents(
+          Iterable<Query$GetFollowedEvents$followedEvents> Function(
                   Iterable<
-                      CopyWith$Query$GetEvents$events<Query$GetEvents$events>>)
+                      CopyWith$Query$GetFollowedEvents$followedEvents<
+                          Query$GetFollowedEvents$followedEvents>>)
               _fn) =>
       call(
-          events:
-              _fn(_instance.events.map((e) => CopyWith$Query$GetEvents$events(
+          followedEvents: _fn(_instance.followedEvents
+              .map((e) => CopyWith$Query$GetFollowedEvents$followedEvents(
                     e,
                     (i) => i,
                   ))).toList());
 }
 
-class _CopyWithStubImpl$Query$GetEvents<TRes>
-    implements CopyWith$Query$GetEvents<TRes> {
-  _CopyWithStubImpl$Query$GetEvents(this._res);
+class _CopyWithStubImpl$Query$GetFollowedEvents<TRes>
+    implements CopyWith$Query$GetFollowedEvents<TRes> {
+  _CopyWithStubImpl$Query$GetFollowedEvents(this._res);
 
   TRes _res;
 
   call({
-    List<Query$GetEvents$events>? events,
+    List<Query$GetFollowedEvents$followedEvents>? followedEvents,
     String? $__typename,
   }) =>
       _res;
 
-  events(_fn) => _res;
+  followedEvents(_fn) => _res;
 }
 
-const documentNodeQueryGetEvents = DocumentNode(definitions: [
+const documentNodeQueryGetFollowedEvents = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.query,
-    name: NameNode(value: 'GetEvents'),
+    name: NameNode(value: 'GetFollowedEvents'),
     variableDefinitions: [],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'events'),
+        name: NameNode(value: 'followedEvents'),
         alias: null,
         arguments: [],
         directives: [],
@@ -268,24 +272,26 @@ const documentNodeQueryGetEvents = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Query$GetEvents _parserFn$Query$GetEvents(Map<String, dynamic> data) =>
-    Query$GetEvents.fromJson(data);
-typedef OnQueryComplete$Query$GetEvents = FutureOr<void> Function(
+Query$GetFollowedEvents _parserFn$Query$GetFollowedEvents(
+        Map<String, dynamic> data) =>
+    Query$GetFollowedEvents.fromJson(data);
+typedef OnQueryComplete$Query$GetFollowedEvents = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Query$GetEvents?,
+  Query$GetFollowedEvents?,
 );
 
-class Options$Query$GetEvents extends graphql.QueryOptions<Query$GetEvents> {
-  Options$Query$GetEvents({
+class Options$Query$GetFollowedEvents
+    extends graphql.QueryOptions<Query$GetFollowedEvents> {
+  Options$Query$GetFollowedEvents({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$GetEvents? typedOptimisticResult,
+    Query$GetFollowedEvents? typedOptimisticResult,
     Duration? pollInterval,
     graphql.Context? context,
-    OnQueryComplete$Query$GetEvents? onComplete,
+    OnQueryComplete$Query$GetFollowedEvents? onComplete,
     graphql.OnQueryError? onError,
   })  : onCompleteWithParsed = onComplete,
         super(
@@ -300,14 +306,16 @@ class Options$Query$GetEvents extends graphql.QueryOptions<Query$GetEvents> {
               ? null
               : (data) => onComplete(
                     data,
-                    data == null ? null : _parserFn$Query$GetEvents(data),
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetFollowedEvents(data),
                   ),
           onError: onError,
-          document: documentNodeQueryGetEvents,
-          parserFn: _parserFn$Query$GetEvents,
+          document: documentNodeQueryGetFollowedEvents,
+          parserFn: _parserFn$Query$GetFollowedEvents,
         );
 
-  final OnQueryComplete$Query$GetEvents? onCompleteWithParsed;
+  final OnQueryComplete$Query$GetFollowedEvents? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -318,15 +326,15 @@ class Options$Query$GetEvents extends graphql.QueryOptions<Query$GetEvents> {
       ];
 }
 
-class WatchOptions$Query$GetEvents
-    extends graphql.WatchQueryOptions<Query$GetEvents> {
-  WatchOptions$Query$GetEvents({
+class WatchOptions$Query$GetFollowedEvents
+    extends graphql.WatchQueryOptions<Query$GetFollowedEvents> {
+  WatchOptions$Query$GetFollowedEvents({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Query$GetEvents? typedOptimisticResult,
+    Query$GetFollowedEvents? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -339,74 +347,82 @@ class WatchOptions$Query$GetEvents
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeQueryGetEvents,
+          document: documentNodeQueryGetFollowedEvents,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Query$GetEvents,
+          parserFn: _parserFn$Query$GetFollowedEvents,
         );
 }
 
-class FetchMoreOptions$Query$GetEvents extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetEvents({required graphql.UpdateQuery updateQuery})
+class FetchMoreOptions$Query$GetFollowedEvents
+    extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetFollowedEvents(
+      {required graphql.UpdateQuery updateQuery})
       : super(
           updateQuery: updateQuery,
-          document: documentNodeQueryGetEvents,
+          document: documentNodeQueryGetFollowedEvents,
         );
 }
 
-extension ClientExtension$Query$GetEvents on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$GetEvents>> query$GetEvents(
-          [Options$Query$GetEvents? options]) async =>
-      await this.query(options ?? Options$Query$GetEvents());
+extension ClientExtension$Query$GetFollowedEvents on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetFollowedEvents>> query$GetFollowedEvents(
+          [Options$Query$GetFollowedEvents? options]) async =>
+      await this.query(options ?? Options$Query$GetFollowedEvents());
 
-  graphql.ObservableQuery<Query$GetEvents> watchQuery$GetEvents(
-          [WatchOptions$Query$GetEvents? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetEvents());
+  graphql.ObservableQuery<Query$GetFollowedEvents> watchQuery$GetFollowedEvents(
+          [WatchOptions$Query$GetFollowedEvents? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetFollowedEvents());
 
-  void writeQuery$GetEvents({
-    required Query$GetEvents data,
+  void writeQuery$GetFollowedEvents({
+    required Query$GetFollowedEvents data,
     bool broadcast = true,
   }) =>
       this.writeQuery(
         graphql.Request(
-            operation: graphql.Operation(document: documentNodeQueryGetEvents)),
+            operation: graphql.Operation(
+                document: documentNodeQueryGetFollowedEvents)),
         data: data.toJson(),
         broadcast: broadcast,
       );
 
-  Query$GetEvents? readQuery$GetEvents({bool optimistic = true}) {
+  Query$GetFollowedEvents? readQuery$GetFollowedEvents(
+      {bool optimistic = true}) {
     final result = this.readQuery(
       graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryGetEvents)),
+          operation:
+              graphql.Operation(document: documentNodeQueryGetFollowedEvents)),
       optimistic: optimistic,
     );
-    return result == null ? null : Query$GetEvents.fromJson(result);
+    return result == null ? null : Query$GetFollowedEvents.fromJson(result);
   }
 }
 
-graphql_flutter.QueryHookResult<Query$GetEvents> useQuery$GetEvents(
-        [Options$Query$GetEvents? options]) =>
-    graphql_flutter.useQuery(options ?? Options$Query$GetEvents());
-graphql.ObservableQuery<Query$GetEvents> useWatchQuery$GetEvents(
-        [WatchOptions$Query$GetEvents? options]) =>
-    graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$GetEvents());
+graphql_flutter.QueryHookResult<Query$GetFollowedEvents>
+    useQuery$GetFollowedEvents([Options$Query$GetFollowedEvents? options]) =>
+        graphql_flutter.useQuery(options ?? Options$Query$GetFollowedEvents());
+graphql.ObservableQuery<Query$GetFollowedEvents>
+    useWatchQuery$GetFollowedEvents(
+            [WatchOptions$Query$GetFollowedEvents? options]) =>
+        graphql_flutter
+            .useWatchQuery(options ?? WatchOptions$Query$GetFollowedEvents());
 
-class Query$GetEvents$Widget extends graphql_flutter.Query<Query$GetEvents> {
-  Query$GetEvents$Widget({
+class Query$GetFollowedEvents$Widget
+    extends graphql_flutter.Query<Query$GetFollowedEvents> {
+  Query$GetFollowedEvents$Widget({
     widgets.Key? key,
-    Options$Query$GetEvents? options,
-    required graphql_flutter.QueryBuilder<Query$GetEvents> builder,
+    Options$Query$GetFollowedEvents? options,
+    required graphql_flutter.QueryBuilder<Query$GetFollowedEvents> builder,
   }) : super(
           key: key,
-          options: options ?? Options$Query$GetEvents(),
+          options: options ?? Options$Query$GetFollowedEvents(),
           builder: builder,
         );
 }
 
-class Query$GetEvents$events {
-  Query$GetEvents$events({
+class Query$GetFollowedEvents$followedEvents {
+  Query$GetFollowedEvents$followedEvents({
     required this.id,
     required this.title,
     this.description,
@@ -418,7 +434,8 @@ class Query$GetEvents$events {
     this.$__typename = 'Event',
   });
 
-  factory Query$GetEvents$events.fromJson(Map<String, dynamic> json) {
+  factory Query$GetFollowedEvents$followedEvents.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$description = json['description'];
@@ -428,7 +445,7 @@ class Query$GetEvents$events {
     final l$date = json['date'];
     final l$createdBy = json['createdBy'];
     final l$$__typename = json['__typename'];
-    return Query$GetEvents$events(
+    return Query$GetFollowedEvents$followedEvents(
       id: (l$id as String),
       title: (l$title as String),
       description: (l$description as String?),
@@ -438,7 +455,7 @@ class Query$GetEvents$events {
       date: DateTime.parse((l$date as String)),
       createdBy: l$createdBy == null
           ? null
-          : Query$GetEvents$events$createdBy.fromJson(
+          : Query$GetFollowedEvents$followedEvents$createdBy.fromJson(
               (l$createdBy as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
@@ -458,7 +475,7 @@ class Query$GetEvents$events {
 
   final DateTime date;
 
-  final Query$GetEvents$events$createdBy? createdBy;
+  final Query$GetFollowedEvents$followedEvents$createdBy? createdBy;
 
   final String $__typename;
 
@@ -514,7 +531,8 @@ class Query$GetEvents$events {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$GetEvents$events || runtimeType != other.runtimeType) {
+    if (other is! Query$GetFollowedEvents$followedEvents ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -566,22 +584,24 @@ class Query$GetEvents$events {
   }
 }
 
-extension UtilityExtension$Query$GetEvents$events on Query$GetEvents$events {
-  CopyWith$Query$GetEvents$events<Query$GetEvents$events> get copyWith =>
-      CopyWith$Query$GetEvents$events(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Query$GetFollowedEvents$followedEvents
+    on Query$GetFollowedEvents$followedEvents {
+  CopyWith$Query$GetFollowedEvents$followedEvents<
+          Query$GetFollowedEvents$followedEvents>
+      get copyWith => CopyWith$Query$GetFollowedEvents$followedEvents(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Query$GetEvents$events<TRes> {
-  factory CopyWith$Query$GetEvents$events(
-    Query$GetEvents$events instance,
-    TRes Function(Query$GetEvents$events) then,
-  ) = _CopyWithImpl$Query$GetEvents$events;
+abstract class CopyWith$Query$GetFollowedEvents$followedEvents<TRes> {
+  factory CopyWith$Query$GetFollowedEvents$followedEvents(
+    Query$GetFollowedEvents$followedEvents instance,
+    TRes Function(Query$GetFollowedEvents$followedEvents) then,
+  ) = _CopyWithImpl$Query$GetFollowedEvents$followedEvents;
 
-  factory CopyWith$Query$GetEvents$events.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetEvents$events;
+  factory CopyWith$Query$GetFollowedEvents$followedEvents.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents;
 
   TRes call({
     String? id,
@@ -591,22 +611,22 @@ abstract class CopyWith$Query$GetEvents$events<TRes> {
     String? location,
     String? category,
     DateTime? date,
-    Query$GetEvents$events$createdBy? createdBy,
+    Query$GetFollowedEvents$followedEvents$createdBy? createdBy,
     String? $__typename,
   });
-  CopyWith$Query$GetEvents$events$createdBy<TRes> get createdBy;
+  CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes> get createdBy;
 }
 
-class _CopyWithImpl$Query$GetEvents$events<TRes>
-    implements CopyWith$Query$GetEvents$events<TRes> {
-  _CopyWithImpl$Query$GetEvents$events(
+class _CopyWithImpl$Query$GetFollowedEvents$followedEvents<TRes>
+    implements CopyWith$Query$GetFollowedEvents$followedEvents<TRes> {
+  _CopyWithImpl$Query$GetFollowedEvents$followedEvents(
     this._instance,
     this._then,
   );
 
-  final Query$GetEvents$events _instance;
+  final Query$GetFollowedEvents$followedEvents _instance;
 
-  final TRes Function(Query$GetEvents$events) _then;
+  final TRes Function(Query$GetFollowedEvents$followedEvents) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -621,7 +641,7 @@ class _CopyWithImpl$Query$GetEvents$events<TRes>
     Object? createdBy = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetEvents$events(
+      _then(Query$GetFollowedEvents$followedEvents(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
@@ -643,24 +663,26 @@ class _CopyWithImpl$Query$GetEvents$events<TRes>
             : (date as DateTime),
         createdBy: createdBy == _undefined
             ? _instance.createdBy
-            : (createdBy as Query$GetEvents$events$createdBy?),
+            : (createdBy as Query$GetFollowedEvents$followedEvents$createdBy?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Query$GetEvents$events$createdBy<TRes> get createdBy {
+  CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes>
+      get createdBy {
     final local$createdBy = _instance.createdBy;
     return local$createdBy == null
-        ? CopyWith$Query$GetEvents$events$createdBy.stub(_then(_instance))
-        : CopyWith$Query$GetEvents$events$createdBy(
+        ? CopyWith$Query$GetFollowedEvents$followedEvents$createdBy.stub(
+            _then(_instance))
+        : CopyWith$Query$GetFollowedEvents$followedEvents$createdBy(
             local$createdBy, (e) => call(createdBy: e));
   }
 }
 
-class _CopyWithStubImpl$Query$GetEvents$events<TRes>
-    implements CopyWith$Query$GetEvents$events<TRes> {
-  _CopyWithStubImpl$Query$GetEvents$events(this._res);
+class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents<TRes>
+    implements CopyWith$Query$GetFollowedEvents$followedEvents<TRes> {
+  _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents(this._res);
 
   TRes _res;
 
@@ -672,27 +694,29 @@ class _CopyWithStubImpl$Query$GetEvents$events<TRes>
     String? location,
     String? category,
     DateTime? date,
-    Query$GetEvents$events$createdBy? createdBy,
+    Query$GetFollowedEvents$followedEvents$createdBy? createdBy,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Query$GetEvents$events$createdBy<TRes> get createdBy =>
-      CopyWith$Query$GetEvents$events$createdBy.stub(_res);
+  CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes>
+      get createdBy =>
+          CopyWith$Query$GetFollowedEvents$followedEvents$createdBy.stub(_res);
 }
 
-class Query$GetEvents$events$createdBy {
-  Query$GetEvents$events$createdBy({
+class Query$GetFollowedEvents$followedEvents$createdBy {
+  Query$GetFollowedEvents$followedEvents$createdBy({
     required this.id,
     required this.name,
     this.$__typename = 'User',
   });
 
-  factory Query$GetEvents$events$createdBy.fromJson(Map<String, dynamic> json) {
+  factory Query$GetFollowedEvents$followedEvents$createdBy.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$$__typename = json['__typename'];
-    return Query$GetEvents$events$createdBy(
+    return Query$GetFollowedEvents$followedEvents$createdBy(
       id: (l$id as String),
       name: (l$name as String),
       $__typename: (l$$__typename as String),
@@ -733,7 +757,7 @@ class Query$GetEvents$events$createdBy {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$GetEvents$events$createdBy ||
+    if (other is! Query$GetFollowedEvents$followedEvents$createdBy ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -756,23 +780,25 @@ class Query$GetEvents$events$createdBy {
   }
 }
 
-extension UtilityExtension$Query$GetEvents$events$createdBy
-    on Query$GetEvents$events$createdBy {
-  CopyWith$Query$GetEvents$events$createdBy<Query$GetEvents$events$createdBy>
-      get copyWith => CopyWith$Query$GetEvents$events$createdBy(
+extension UtilityExtension$Query$GetFollowedEvents$followedEvents$createdBy
+    on Query$GetFollowedEvents$followedEvents$createdBy {
+  CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<
+          Query$GetFollowedEvents$followedEvents$createdBy>
+      get copyWith => CopyWith$Query$GetFollowedEvents$followedEvents$createdBy(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$GetEvents$events$createdBy<TRes> {
-  factory CopyWith$Query$GetEvents$events$createdBy(
-    Query$GetEvents$events$createdBy instance,
-    TRes Function(Query$GetEvents$events$createdBy) then,
-  ) = _CopyWithImpl$Query$GetEvents$events$createdBy;
+abstract class CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes> {
+  factory CopyWith$Query$GetFollowedEvents$followedEvents$createdBy(
+    Query$GetFollowedEvents$followedEvents$createdBy instance,
+    TRes Function(Query$GetFollowedEvents$followedEvents$createdBy) then,
+  ) = _CopyWithImpl$Query$GetFollowedEvents$followedEvents$createdBy;
 
-  factory CopyWith$Query$GetEvents$events$createdBy.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetEvents$events$createdBy;
+  factory CopyWith$Query$GetFollowedEvents$followedEvents$createdBy.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$createdBy;
 
   TRes call({
     String? id,
@@ -781,16 +807,16 @@ abstract class CopyWith$Query$GetEvents$events$createdBy<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$GetEvents$events$createdBy<TRes>
-    implements CopyWith$Query$GetEvents$events$createdBy<TRes> {
-  _CopyWithImpl$Query$GetEvents$events$createdBy(
+class _CopyWithImpl$Query$GetFollowedEvents$followedEvents$createdBy<TRes>
+    implements CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes> {
+  _CopyWithImpl$Query$GetFollowedEvents$followedEvents$createdBy(
     this._instance,
     this._then,
   );
 
-  final Query$GetEvents$events$createdBy _instance;
+  final Query$GetFollowedEvents$followedEvents$createdBy _instance;
 
-  final TRes Function(Query$GetEvents$events$createdBy) _then;
+  final TRes Function(Query$GetFollowedEvents$followedEvents$createdBy) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -799,7 +825,7 @@ class _CopyWithImpl$Query$GetEvents$events$createdBy<TRes>
     Object? name = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetEvents$events$createdBy(
+      _then(Query$GetFollowedEvents$followedEvents$createdBy(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         name: name == _undefined || name == null
             ? _instance.name
@@ -810,15 +836,817 @@ class _CopyWithImpl$Query$GetEvents$events$createdBy<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$GetEvents$events$createdBy<TRes>
-    implements CopyWith$Query$GetEvents$events$createdBy<TRes> {
-  _CopyWithStubImpl$Query$GetEvents$events$createdBy(this._res);
+class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$createdBy<TRes>
+    implements CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes> {
+  _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$createdBy(this._res);
 
   TRes _res;
 
   call({
     String? id,
     String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Variables$Query$GetMyEvents {
+  factory Variables$Query$GetMyEvents({
+    bool? fetchAll,
+    int? page,
+  }) =>
+      Variables$Query$GetMyEvents._({
+        if (fetchAll != null) r'fetchAll': fetchAll,
+        if (page != null) r'page': page,
+      });
+
+  Variables$Query$GetMyEvents._(this._$data);
+
+  factory Variables$Query$GetMyEvents.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('fetchAll')) {
+      final l$fetchAll = data['fetchAll'];
+      result$data['fetchAll'] = (l$fetchAll as bool?);
+    }
+    if (data.containsKey('page')) {
+      final l$page = data['page'];
+      result$data['page'] = (l$page as int?);
+    }
+    return Variables$Query$GetMyEvents._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool? get fetchAll => (_$data['fetchAll'] as bool?);
+
+  int? get page => (_$data['page'] as int?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('fetchAll')) {
+      final l$fetchAll = fetchAll;
+      result$data['fetchAll'] = l$fetchAll;
+    }
+    if (_$data.containsKey('page')) {
+      final l$page = page;
+      result$data['page'] = l$page;
+    }
+    return result$data;
+  }
+
+  CopyWith$Variables$Query$GetMyEvents<Variables$Query$GetMyEvents>
+      get copyWith => CopyWith$Variables$Query$GetMyEvents(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Query$GetMyEvents ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$fetchAll = fetchAll;
+    final lOther$fetchAll = other.fetchAll;
+    if (_$data.containsKey('fetchAll') !=
+        other._$data.containsKey('fetchAll')) {
+      return false;
+    }
+    if (l$fetchAll != lOther$fetchAll) {
+      return false;
+    }
+    final l$page = page;
+    final lOther$page = other.page;
+    if (_$data.containsKey('page') != other._$data.containsKey('page')) {
+      return false;
+    }
+    if (l$page != lOther$page) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$fetchAll = fetchAll;
+    final l$page = page;
+    return Object.hashAll([
+      _$data.containsKey('fetchAll') ? l$fetchAll : const {},
+      _$data.containsKey('page') ? l$page : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Variables$Query$GetMyEvents<TRes> {
+  factory CopyWith$Variables$Query$GetMyEvents(
+    Variables$Query$GetMyEvents instance,
+    TRes Function(Variables$Query$GetMyEvents) then,
+  ) = _CopyWithImpl$Variables$Query$GetMyEvents;
+
+  factory CopyWith$Variables$Query$GetMyEvents.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Query$GetMyEvents;
+
+  TRes call({
+    bool? fetchAll,
+    int? page,
+  });
+}
+
+class _CopyWithImpl$Variables$Query$GetMyEvents<TRes>
+    implements CopyWith$Variables$Query$GetMyEvents<TRes> {
+  _CopyWithImpl$Variables$Query$GetMyEvents(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Query$GetMyEvents _instance;
+
+  final TRes Function(Variables$Query$GetMyEvents) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? fetchAll = _undefined,
+    Object? page = _undefined,
+  }) =>
+      _then(Variables$Query$GetMyEvents._({
+        ..._instance._$data,
+        if (fetchAll != _undefined) 'fetchAll': (fetchAll as bool?),
+        if (page != _undefined) 'page': (page as int?),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Query$GetMyEvents<TRes>
+    implements CopyWith$Variables$Query$GetMyEvents<TRes> {
+  _CopyWithStubImpl$Variables$Query$GetMyEvents(this._res);
+
+  TRes _res;
+
+  call({
+    bool? fetchAll,
+    int? page,
+  }) =>
+      _res;
+}
+
+class Query$GetMyEvents {
+  Query$GetMyEvents({
+    required this.myEvents,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$GetMyEvents.fromJson(Map<String, dynamic> json) {
+    final l$myEvents = json['myEvents'];
+    final l$$__typename = json['__typename'];
+    return Query$GetMyEvents(
+      myEvents: (l$myEvents as List<dynamic>)
+          .map((e) =>
+              Query$GetMyEvents$myEvents.fromJson((e as Map<String, dynamic>)))
+          .toList(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final List<Query$GetMyEvents$myEvents> myEvents;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$myEvents = myEvents;
+    _resultData['myEvents'] = l$myEvents.map((e) => e.toJson()).toList();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$myEvents = myEvents;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      Object.hashAll(l$myEvents.map((v) => v)),
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetMyEvents || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$myEvents = myEvents;
+    final lOther$myEvents = other.myEvents;
+    if (l$myEvents.length != lOther$myEvents.length) {
+      return false;
+    }
+    for (int i = 0; i < l$myEvents.length; i++) {
+      final l$myEvents$entry = l$myEvents[i];
+      final lOther$myEvents$entry = lOther$myEvents[i];
+      if (l$myEvents$entry != lOther$myEvents$entry) {
+        return false;
+      }
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetMyEvents on Query$GetMyEvents {
+  CopyWith$Query$GetMyEvents<Query$GetMyEvents> get copyWith =>
+      CopyWith$Query$GetMyEvents(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$GetMyEvents<TRes> {
+  factory CopyWith$Query$GetMyEvents(
+    Query$GetMyEvents instance,
+    TRes Function(Query$GetMyEvents) then,
+  ) = _CopyWithImpl$Query$GetMyEvents;
+
+  factory CopyWith$Query$GetMyEvents.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetMyEvents;
+
+  TRes call({
+    List<Query$GetMyEvents$myEvents>? myEvents,
+    String? $__typename,
+  });
+  TRes myEvents(
+      Iterable<Query$GetMyEvents$myEvents> Function(
+              Iterable<
+                  CopyWith$Query$GetMyEvents$myEvents<
+                      Query$GetMyEvents$myEvents>>)
+          _fn);
+}
+
+class _CopyWithImpl$Query$GetMyEvents<TRes>
+    implements CopyWith$Query$GetMyEvents<TRes> {
+  _CopyWithImpl$Query$GetMyEvents(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetMyEvents _instance;
+
+  final TRes Function(Query$GetMyEvents) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? myEvents = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetMyEvents(
+        myEvents: myEvents == _undefined || myEvents == null
+            ? _instance.myEvents
+            : (myEvents as List<Query$GetMyEvents$myEvents>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  TRes myEvents(
+          Iterable<Query$GetMyEvents$myEvents> Function(
+                  Iterable<
+                      CopyWith$Query$GetMyEvents$myEvents<
+                          Query$GetMyEvents$myEvents>>)
+              _fn) =>
+      call(
+          myEvents: _fn(
+              _instance.myEvents.map((e) => CopyWith$Query$GetMyEvents$myEvents(
+                    e,
+                    (i) => i,
+                  ))).toList());
+}
+
+class _CopyWithStubImpl$Query$GetMyEvents<TRes>
+    implements CopyWith$Query$GetMyEvents<TRes> {
+  _CopyWithStubImpl$Query$GetMyEvents(this._res);
+
+  TRes _res;
+
+  call({
+    List<Query$GetMyEvents$myEvents>? myEvents,
+    String? $__typename,
+  }) =>
+      _res;
+
+  myEvents(_fn) => _res;
+}
+
+const documentNodeQueryGetMyEvents = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'GetMyEvents'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'fetchAll')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Boolean'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'page')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'myEvents'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'fetchAll'),
+            value: VariableNode(name: NameNode(value: 'fetchAll')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'page'),
+            value: VariableNode(name: NameNode(value: 'page')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'title'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'description'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'picture'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'location'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'category'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'date'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$GetMyEvents _parserFn$Query$GetMyEvents(Map<String, dynamic> data) =>
+    Query$GetMyEvents.fromJson(data);
+typedef OnQueryComplete$Query$GetMyEvents = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetMyEvents?,
+);
+
+class Options$Query$GetMyEvents
+    extends graphql.QueryOptions<Query$GetMyEvents> {
+  Options$Query$GetMyEvents({
+    String? operationName,
+    Variables$Query$GetMyEvents? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetMyEvents? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$GetMyEvents? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$GetMyEvents(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryGetMyEvents,
+          parserFn: _parserFn$Query$GetMyEvents,
+        );
+
+  final OnQueryComplete$Query$GetMyEvents? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$GetMyEvents
+    extends graphql.WatchQueryOptions<Query$GetMyEvents> {
+  WatchOptions$Query$GetMyEvents({
+    String? operationName,
+    Variables$Query$GetMyEvents? variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetMyEvents? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryGetMyEvents,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$GetMyEvents,
+        );
+}
+
+class FetchMoreOptions$Query$GetMyEvents extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetMyEvents({
+    required graphql.UpdateQuery updateQuery,
+    Variables$Query$GetMyEvents? variables,
+  }) : super(
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryGetMyEvents,
+        );
+}
+
+extension ClientExtension$Query$GetMyEvents on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetMyEvents>> query$GetMyEvents(
+          [Options$Query$GetMyEvents? options]) async =>
+      await this.query(options ?? Options$Query$GetMyEvents());
+
+  graphql.ObservableQuery<Query$GetMyEvents> watchQuery$GetMyEvents(
+          [WatchOptions$Query$GetMyEvents? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetMyEvents());
+
+  void writeQuery$GetMyEvents({
+    required Query$GetMyEvents data,
+    Variables$Query$GetMyEvents? variables,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation: graphql.Operation(document: documentNodeQueryGetMyEvents),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+
+  Query$GetMyEvents? readQuery$GetMyEvents({
+    Variables$Query$GetMyEvents? variables,
+    bool optimistic = true,
+  }) {
+    final result = this.readQuery(
+      graphql.Request(
+        operation: graphql.Operation(document: documentNodeQueryGetMyEvents),
+        variables: variables?.toJson() ?? const {},
+      ),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$GetMyEvents.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetMyEvents> useQuery$GetMyEvents(
+        [Options$Query$GetMyEvents? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$GetMyEvents());
+graphql.ObservableQuery<Query$GetMyEvents> useWatchQuery$GetMyEvents(
+        [WatchOptions$Query$GetMyEvents? options]) =>
+    graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$GetMyEvents());
+
+class Query$GetMyEvents$Widget
+    extends graphql_flutter.Query<Query$GetMyEvents> {
+  Query$GetMyEvents$Widget({
+    widgets.Key? key,
+    Options$Query$GetMyEvents? options,
+    required graphql_flutter.QueryBuilder<Query$GetMyEvents> builder,
+  }) : super(
+          key: key,
+          options: options ?? Options$Query$GetMyEvents(),
+          builder: builder,
+        );
+}
+
+class Query$GetMyEvents$myEvents {
+  Query$GetMyEvents$myEvents({
+    required this.id,
+    required this.title,
+    this.description,
+    required this.picture,
+    required this.location,
+    required this.category,
+    required this.date,
+    this.$__typename = 'Event',
+  });
+
+  factory Query$GetMyEvents$myEvents.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$title = json['title'];
+    final l$description = json['description'];
+    final l$picture = json['picture'];
+    final l$location = json['location'];
+    final l$category = json['category'];
+    final l$date = json['date'];
+    final l$$__typename = json['__typename'];
+    return Query$GetMyEvents$myEvents(
+      id: (l$id as String),
+      title: (l$title as String),
+      description: (l$description as String?),
+      picture: (l$picture as String),
+      location: (l$location as String),
+      category: (l$category as String),
+      date: DateTime.parse((l$date as String)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String title;
+
+  final String? description;
+
+  final String picture;
+
+  final String location;
+
+  final String category;
+
+  final DateTime date;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$title = title;
+    _resultData['title'] = l$title;
+    final l$description = description;
+    _resultData['description'] = l$description;
+    final l$picture = picture;
+    _resultData['picture'] = l$picture;
+    final l$location = location;
+    _resultData['location'] = l$location;
+    final l$category = category;
+    _resultData['category'] = l$category;
+    final l$date = date;
+    _resultData['date'] = l$date.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$title = title;
+    final l$description = description;
+    final l$picture = picture;
+    final l$location = location;
+    final l$category = category;
+    final l$date = date;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$title,
+      l$description,
+      l$picture,
+      l$location,
+      l$category,
+      l$date,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetMyEvents$myEvents ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$picture = picture;
+    final lOther$picture = other.picture;
+    if (l$picture != lOther$picture) {
+      return false;
+    }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (l$location != lOther$location) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$date = date;
+    final lOther$date = other.date;
+    if (l$date != lOther$date) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetMyEvents$myEvents
+    on Query$GetMyEvents$myEvents {
+  CopyWith$Query$GetMyEvents$myEvents<Query$GetMyEvents$myEvents>
+      get copyWith => CopyWith$Query$GetMyEvents$myEvents(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetMyEvents$myEvents<TRes> {
+  factory CopyWith$Query$GetMyEvents$myEvents(
+    Query$GetMyEvents$myEvents instance,
+    TRes Function(Query$GetMyEvents$myEvents) then,
+  ) = _CopyWithImpl$Query$GetMyEvents$myEvents;
+
+  factory CopyWith$Query$GetMyEvents$myEvents.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetMyEvents$myEvents;
+
+  TRes call({
+    String? id,
+    String? title,
+    String? description,
+    String? picture,
+    String? location,
+    String? category,
+    DateTime? date,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
+    implements CopyWith$Query$GetMyEvents$myEvents<TRes> {
+  _CopyWithImpl$Query$GetMyEvents$myEvents(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetMyEvents$myEvents _instance;
+
+  final TRes Function(Query$GetMyEvents$myEvents) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? picture = _undefined,
+    Object? location = _undefined,
+    Object? category = _undefined,
+    Object? date = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetMyEvents$myEvents(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        title: title == _undefined || title == null
+            ? _instance.title
+            : (title as String),
+        description: description == _undefined
+            ? _instance.description
+            : (description as String?),
+        picture: picture == _undefined || picture == null
+            ? _instance.picture
+            : (picture as String),
+        location: location == _undefined || location == null
+            ? _instance.location
+            : (location as String),
+        category: category == _undefined || category == null
+            ? _instance.category
+            : (category as String),
+        date: date == _undefined || date == null
+            ? _instance.date
+            : (date as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetMyEvents$myEvents<TRes>
+    implements CopyWith$Query$GetMyEvents$myEvents<TRes> {
+  _CopyWithStubImpl$Query$GetMyEvents$myEvents(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? title,
+    String? description,
+    String? picture,
+    String? location,
+    String? category,
+    DateTime? date,
     String? $__typename,
   }) =>
       _res;
@@ -1752,624 +2580,6 @@ class _CopyWithStubImpl$Query$GetEvent$event$createdBy<TRes>
       _res;
 }
 
-class Query$GetMyEvents {
-  Query$GetMyEvents({
-    required this.myEvents,
-    this.$__typename = 'Query',
-  });
-
-  factory Query$GetMyEvents.fromJson(Map<String, dynamic> json) {
-    final l$myEvents = json['myEvents'];
-    final l$$__typename = json['__typename'];
-    return Query$GetMyEvents(
-      myEvents: (l$myEvents as List<dynamic>)
-          .map((e) =>
-              Query$GetMyEvents$myEvents.fromJson((e as Map<String, dynamic>)))
-          .toList(),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final List<Query$GetMyEvents$myEvents> myEvents;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$myEvents = myEvents;
-    _resultData['myEvents'] = l$myEvents.map((e) => e.toJson()).toList();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$myEvents = myEvents;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      Object.hashAll(l$myEvents.map((v) => v)),
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$GetMyEvents || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$myEvents = myEvents;
-    final lOther$myEvents = other.myEvents;
-    if (l$myEvents.length != lOther$myEvents.length) {
-      return false;
-    }
-    for (int i = 0; i < l$myEvents.length; i++) {
-      final l$myEvents$entry = l$myEvents[i];
-      final lOther$myEvents$entry = lOther$myEvents[i];
-      if (l$myEvents$entry != lOther$myEvents$entry) {
-        return false;
-      }
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetMyEvents on Query$GetMyEvents {
-  CopyWith$Query$GetMyEvents<Query$GetMyEvents> get copyWith =>
-      CopyWith$Query$GetMyEvents(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Query$GetMyEvents<TRes> {
-  factory CopyWith$Query$GetMyEvents(
-    Query$GetMyEvents instance,
-    TRes Function(Query$GetMyEvents) then,
-  ) = _CopyWithImpl$Query$GetMyEvents;
-
-  factory CopyWith$Query$GetMyEvents.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetMyEvents;
-
-  TRes call({
-    List<Query$GetMyEvents$myEvents>? myEvents,
-    String? $__typename,
-  });
-  TRes myEvents(
-      Iterable<Query$GetMyEvents$myEvents> Function(
-              Iterable<
-                  CopyWith$Query$GetMyEvents$myEvents<
-                      Query$GetMyEvents$myEvents>>)
-          _fn);
-}
-
-class _CopyWithImpl$Query$GetMyEvents<TRes>
-    implements CopyWith$Query$GetMyEvents<TRes> {
-  _CopyWithImpl$Query$GetMyEvents(
-    this._instance,
-    this._then,
-  );
-
-  final Query$GetMyEvents _instance;
-
-  final TRes Function(Query$GetMyEvents) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? myEvents = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$GetMyEvents(
-        myEvents: myEvents == _undefined || myEvents == null
-            ? _instance.myEvents
-            : (myEvents as List<Query$GetMyEvents$myEvents>),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  TRes myEvents(
-          Iterable<Query$GetMyEvents$myEvents> Function(
-                  Iterable<
-                      CopyWith$Query$GetMyEvents$myEvents<
-                          Query$GetMyEvents$myEvents>>)
-              _fn) =>
-      call(
-          myEvents: _fn(
-              _instance.myEvents.map((e) => CopyWith$Query$GetMyEvents$myEvents(
-                    e,
-                    (i) => i,
-                  ))).toList());
-}
-
-class _CopyWithStubImpl$Query$GetMyEvents<TRes>
-    implements CopyWith$Query$GetMyEvents<TRes> {
-  _CopyWithStubImpl$Query$GetMyEvents(this._res);
-
-  TRes _res;
-
-  call({
-    List<Query$GetMyEvents$myEvents>? myEvents,
-    String? $__typename,
-  }) =>
-      _res;
-
-  myEvents(_fn) => _res;
-}
-
-const documentNodeQueryGetMyEvents = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.query,
-    name: NameNode(value: 'GetMyEvents'),
-    variableDefinitions: [],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'myEvents'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'id'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'title'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'description'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'picture'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'location'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'category'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'date'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Query$GetMyEvents _parserFn$Query$GetMyEvents(Map<String, dynamic> data) =>
-    Query$GetMyEvents.fromJson(data);
-typedef OnQueryComplete$Query$GetMyEvents = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Query$GetMyEvents?,
-);
-
-class Options$Query$GetMyEvents
-    extends graphql.QueryOptions<Query$GetMyEvents> {
-  Options$Query$GetMyEvents({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$GetMyEvents? typedOptimisticResult,
-    Duration? pollInterval,
-    graphql.Context? context,
-    OnQueryComplete$Query$GetMyEvents? onComplete,
-    graphql.OnQueryError? onError,
-  })  : onCompleteWithParsed = onComplete,
-        super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          pollInterval: pollInterval,
-          context: context,
-          onComplete: onComplete == null
-              ? null
-              : (data) => onComplete(
-                    data,
-                    data == null ? null : _parserFn$Query$GetMyEvents(data),
-                  ),
-          onError: onError,
-          document: documentNodeQueryGetMyEvents,
-          parserFn: _parserFn$Query$GetMyEvents,
-        );
-
-  final OnQueryComplete$Query$GetMyEvents? onCompleteWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onComplete == null
-            ? super.properties
-            : super.properties.where((property) => property != onComplete),
-        onCompleteWithParsed,
-      ];
-}
-
-class WatchOptions$Query$GetMyEvents
-    extends graphql.WatchQueryOptions<Query$GetMyEvents> {
-  WatchOptions$Query$GetMyEvents({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Query$GetMyEvents? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeQueryGetMyEvents,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Query$GetMyEvents,
-        );
-}
-
-class FetchMoreOptions$Query$GetMyEvents extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$GetMyEvents({required graphql.UpdateQuery updateQuery})
-      : super(
-          updateQuery: updateQuery,
-          document: documentNodeQueryGetMyEvents,
-        );
-}
-
-extension ClientExtension$Query$GetMyEvents on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$GetMyEvents>> query$GetMyEvents(
-          [Options$Query$GetMyEvents? options]) async =>
-      await this.query(options ?? Options$Query$GetMyEvents());
-
-  graphql.ObservableQuery<Query$GetMyEvents> watchQuery$GetMyEvents(
-          [WatchOptions$Query$GetMyEvents? options]) =>
-      this.watchQuery(options ?? WatchOptions$Query$GetMyEvents());
-
-  void writeQuery$GetMyEvents({
-    required Query$GetMyEvents data,
-    bool broadcast = true,
-  }) =>
-      this.writeQuery(
-        graphql.Request(
-            operation:
-                graphql.Operation(document: documentNodeQueryGetMyEvents)),
-        data: data.toJson(),
-        broadcast: broadcast,
-      );
-
-  Query$GetMyEvents? readQuery$GetMyEvents({bool optimistic = true}) {
-    final result = this.readQuery(
-      graphql.Request(
-          operation: graphql.Operation(document: documentNodeQueryGetMyEvents)),
-      optimistic: optimistic,
-    );
-    return result == null ? null : Query$GetMyEvents.fromJson(result);
-  }
-}
-
-graphql_flutter.QueryHookResult<Query$GetMyEvents> useQuery$GetMyEvents(
-        [Options$Query$GetMyEvents? options]) =>
-    graphql_flutter.useQuery(options ?? Options$Query$GetMyEvents());
-graphql.ObservableQuery<Query$GetMyEvents> useWatchQuery$GetMyEvents(
-        [WatchOptions$Query$GetMyEvents? options]) =>
-    graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$GetMyEvents());
-
-class Query$GetMyEvents$Widget
-    extends graphql_flutter.Query<Query$GetMyEvents> {
-  Query$GetMyEvents$Widget({
-    widgets.Key? key,
-    Options$Query$GetMyEvents? options,
-    required graphql_flutter.QueryBuilder<Query$GetMyEvents> builder,
-  }) : super(
-          key: key,
-          options: options ?? Options$Query$GetMyEvents(),
-          builder: builder,
-        );
-}
-
-class Query$GetMyEvents$myEvents {
-  Query$GetMyEvents$myEvents({
-    required this.id,
-    required this.title,
-    this.description,
-    required this.picture,
-    required this.location,
-    required this.category,
-    required this.date,
-    this.$__typename = 'Event',
-  });
-
-  factory Query$GetMyEvents$myEvents.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$description = json['description'];
-    final l$picture = json['picture'];
-    final l$location = json['location'];
-    final l$category = json['category'];
-    final l$date = json['date'];
-    final l$$__typename = json['__typename'];
-    return Query$GetMyEvents$myEvents(
-      id: (l$id as String),
-      title: (l$title as String),
-      description: (l$description as String?),
-      picture: (l$picture as String),
-      location: (l$location as String),
-      category: (l$category as String),
-      date: DateTime.parse((l$date as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final String? description;
-
-  final String picture;
-
-  final String location;
-
-  final String category;
-
-  final DateTime date;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$description = description;
-    _resultData['description'] = l$description;
-    final l$picture = picture;
-    _resultData['picture'] = l$picture;
-    final l$location = location;
-    _resultData['location'] = l$location;
-    final l$category = category;
-    _resultData['category'] = l$category;
-    final l$date = date;
-    _resultData['date'] = l$date.toIso8601String();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$description = description;
-    final l$picture = picture;
-    final l$location = location;
-    final l$category = category;
-    final l$date = date;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$description,
-      l$picture,
-      l$location,
-      l$category,
-      l$date,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$GetMyEvents$myEvents ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$description = description;
-    final lOther$description = other.description;
-    if (l$description != lOther$description) {
-      return false;
-    }
-    final l$picture = picture;
-    final lOther$picture = other.picture;
-    if (l$picture != lOther$picture) {
-      return false;
-    }
-    final l$location = location;
-    final lOther$location = other.location;
-    if (l$location != lOther$location) {
-      return false;
-    }
-    final l$category = category;
-    final lOther$category = other.category;
-    if (l$category != lOther$category) {
-      return false;
-    }
-    final l$date = date;
-    final lOther$date = other.date;
-    if (l$date != lOther$date) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetMyEvents$myEvents
-    on Query$GetMyEvents$myEvents {
-  CopyWith$Query$GetMyEvents$myEvents<Query$GetMyEvents$myEvents>
-      get copyWith => CopyWith$Query$GetMyEvents$myEvents(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$GetMyEvents$myEvents<TRes> {
-  factory CopyWith$Query$GetMyEvents$myEvents(
-    Query$GetMyEvents$myEvents instance,
-    TRes Function(Query$GetMyEvents$myEvents) then,
-  ) = _CopyWithImpl$Query$GetMyEvents$myEvents;
-
-  factory CopyWith$Query$GetMyEvents$myEvents.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetMyEvents$myEvents;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? description,
-    String? picture,
-    String? location,
-    String? category,
-    DateTime? date,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
-    implements CopyWith$Query$GetMyEvents$myEvents<TRes> {
-  _CopyWithImpl$Query$GetMyEvents$myEvents(
-    this._instance,
-    this._then,
-  );
-
-  final Query$GetMyEvents$myEvents _instance;
-
-  final TRes Function(Query$GetMyEvents$myEvents) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? description = _undefined,
-    Object? picture = _undefined,
-    Object? location = _undefined,
-    Object? category = _undefined,
-    Object? date = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Query$GetMyEvents$myEvents(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        description: description == _undefined
-            ? _instance.description
-            : (description as String?),
-        picture: picture == _undefined || picture == null
-            ? _instance.picture
-            : (picture as String),
-        location: location == _undefined || location == null
-            ? _instance.location
-            : (location as String),
-        category: category == _undefined || category == null
-            ? _instance.category
-            : (category as String),
-        date: date == _undefined || date == null
-            ? _instance.date
-            : (date as DateTime),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Query$GetMyEvents$myEvents<TRes>
-    implements CopyWith$Query$GetMyEvents$myEvents<TRes> {
-  _CopyWithStubImpl$Query$GetMyEvents$myEvents(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    String? description,
-    String? picture,
-    String? location,
-    String? category,
-    DateTime? date,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
 class Variables$Mutation$CreateEvent {
   factory Variables$Mutation$CreateEvent(
           {required Input$CreateEventInput input}) =>
@@ -2473,7 +2683,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateEvent<TRes>
 
 class Mutation$CreateEvent {
   Mutation$CreateEvent({
-    this.createEvent,
+    required this.createEvent,
     this.$__typename = 'Mutation',
   });
 
@@ -2481,12 +2691,12 @@ class Mutation$CreateEvent {
     final l$createEvent = json['createEvent'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateEvent(
-      createEvent: (l$createEvent as String?),
+      createEvent: (l$createEvent as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String? createEvent;
+  final String createEvent;
 
   final String $__typename;
 
@@ -2572,9 +2782,9 @@ class _CopyWithImpl$Mutation$CreateEvent<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateEvent(
-        createEvent: createEvent == _undefined
+        createEvent: createEvent == _undefined || createEvent == null
             ? _instance.createEvent
-            : (createEvent as String?),
+            : (createEvent as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),

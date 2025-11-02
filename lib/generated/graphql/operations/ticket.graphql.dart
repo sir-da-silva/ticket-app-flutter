@@ -3094,7 +3094,7 @@ class _CopyWithStubImpl$Variables$Mutation$BuyTicket<TRes>
 
 class Mutation$BuyTicket {
   Mutation$BuyTicket({
-    this.buyTicket,
+    required this.buyTicket,
     this.$__typename = 'Mutation',
   });
 
@@ -3102,22 +3102,20 @@ class Mutation$BuyTicket {
     final l$buyTicket = json['buyTicket'];
     final l$$__typename = json['__typename'];
     return Mutation$BuyTicket(
-      buyTicket: l$buyTicket == null
-          ? null
-          : Mutation$BuyTicket$buyTicket.fromJson(
-              (l$buyTicket as Map<String, dynamic>)),
+      buyTicket: Mutation$BuyTicket$buyTicket.fromJson(
+          (l$buyTicket as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$BuyTicket$buyTicket? buyTicket;
+  final Mutation$BuyTicket$buyTicket buyTicket;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$buyTicket = buyTicket;
-    _resultData['buyTicket'] = l$buyTicket?.toJson();
+    _resultData['buyTicket'] = l$buyTicket.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3197,9 +3195,9 @@ class _CopyWithImpl$Mutation$BuyTicket<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$BuyTicket(
-        buyTicket: buyTicket == _undefined
+        buyTicket: buyTicket == _undefined || buyTicket == null
             ? _instance.buyTicket
-            : (buyTicket as Mutation$BuyTicket$buyTicket?),
+            : (buyTicket as Mutation$BuyTicket$buyTicket),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -3207,10 +3205,8 @@ class _CopyWithImpl$Mutation$BuyTicket<TRes>
 
   CopyWith$Mutation$BuyTicket$buyTicket<TRes> get buyTicket {
     final local$buyTicket = _instance.buyTicket;
-    return local$buyTicket == null
-        ? CopyWith$Mutation$BuyTicket$buyTicket.stub(_then(_instance))
-        : CopyWith$Mutation$BuyTicket$buyTicket(
-            local$buyTicket, (e) => call(buyTicket: e));
+    return CopyWith$Mutation$BuyTicket$buyTicket(
+        local$buyTicket, (e) => call(buyTicket: e));
   }
 }
 
@@ -4004,7 +4000,7 @@ class _CopyWithStubImpl$Variables$Mutation$CreateTicket<TRes>
 
 class Mutation$CreateTicket {
   Mutation$CreateTicket({
-    this.createTicket,
+    required this.createTicket,
     this.$__typename = 'Mutation',
   });
 
@@ -4012,22 +4008,20 @@ class Mutation$CreateTicket {
     final l$createTicket = json['createTicket'];
     final l$$__typename = json['__typename'];
     return Mutation$CreateTicket(
-      createTicket: l$createTicket == null
-          ? null
-          : Mutation$CreateTicket$createTicket.fromJson(
-              (l$createTicket as Map<String, dynamic>)),
+      createTicket: Mutation$CreateTicket$createTicket.fromJson(
+          (l$createTicket as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$CreateTicket$createTicket? createTicket;
+  final Mutation$CreateTicket$createTicket createTicket;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$createTicket = createTicket;
-    _resultData['createTicket'] = l$createTicket?.toJson();
+    _resultData['createTicket'] = l$createTicket.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4107,9 +4101,9 @@ class _CopyWithImpl$Mutation$CreateTicket<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CreateTicket(
-        createTicket: createTicket == _undefined
+        createTicket: createTicket == _undefined || createTicket == null
             ? _instance.createTicket
-            : (createTicket as Mutation$CreateTicket$createTicket?),
+            : (createTicket as Mutation$CreateTicket$createTicket),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -4117,10 +4111,8 @@ class _CopyWithImpl$Mutation$CreateTicket<TRes>
 
   CopyWith$Mutation$CreateTicket$createTicket<TRes> get createTicket {
     final local$createTicket = _instance.createTicket;
-    return local$createTicket == null
-        ? CopyWith$Mutation$CreateTicket$createTicket.stub(_then(_instance))
-        : CopyWith$Mutation$CreateTicket$createTicket(
-            local$createTicket, (e) => call(createTicket: e));
+    return CopyWith$Mutation$CreateTicket$createTicket(
+        local$createTicket, (e) => call(createTicket: e));
   }
 }
 
@@ -4994,7 +4986,7 @@ class _CopyWithStubImpl$Variables$Mutation$ScanTicket<TRes>
 
 class Mutation$ScanTicket {
   Mutation$ScanTicket({
-    this.scanTicket,
+    required this.scanTicket,
     this.$__typename = 'Mutation',
   });
 
@@ -5002,22 +4994,20 @@ class Mutation$ScanTicket {
     final l$scanTicket = json['scanTicket'];
     final l$$__typename = json['__typename'];
     return Mutation$ScanTicket(
-      scanTicket: l$scanTicket == null
-          ? null
-          : Mutation$ScanTicket$scanTicket.fromJson(
-              (l$scanTicket as Map<String, dynamic>)),
+      scanTicket: Mutation$ScanTicket$scanTicket.fromJson(
+          (l$scanTicket as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$ScanTicket$scanTicket? scanTicket;
+  final Mutation$ScanTicket$scanTicket scanTicket;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$scanTicket = scanTicket;
-    _resultData['scanTicket'] = l$scanTicket?.toJson();
+    _resultData['scanTicket'] = l$scanTicket.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -5097,9 +5087,9 @@ class _CopyWithImpl$Mutation$ScanTicket<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ScanTicket(
-        scanTicket: scanTicket == _undefined
+        scanTicket: scanTicket == _undefined || scanTicket == null
             ? _instance.scanTicket
-            : (scanTicket as Mutation$ScanTicket$scanTicket?),
+            : (scanTicket as Mutation$ScanTicket$scanTicket),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -5107,10 +5097,8 @@ class _CopyWithImpl$Mutation$ScanTicket<TRes>
 
   CopyWith$Mutation$ScanTicket$scanTicket<TRes> get scanTicket {
     final local$scanTicket = _instance.scanTicket;
-    return local$scanTicket == null
-        ? CopyWith$Mutation$ScanTicket$scanTicket.stub(_then(_instance))
-        : CopyWith$Mutation$ScanTicket$scanTicket(
-            local$scanTicket, (e) => call(scanTicket: e));
+    return CopyWith$Mutation$ScanTicket$scanTicket(
+        local$scanTicket, (e) => call(scanTicket: e));
   }
 }
 

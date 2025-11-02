@@ -48,7 +48,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 12,
                       offset: const Offset(0, 6),
                     ),
@@ -71,10 +71,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       Text(
                         "Entrez votre adresse e-mail pour recevoir un lien de réinitialisation.",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: Colors.grey[700],
-                        ),
+                        style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey[700]),
                       ),
                       const SizedBox(height: 30),
 
@@ -84,13 +81,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.email),
                           hintText: "Adresse e-mail",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        validator: (value) => value == null || value.isEmpty
-                            ? "Veuillez entrer votre e-mail"
-                            : null,
+                        validator: (value) =>
+                            value == null || value.isEmpty ? "Veuillez entrer votre e-mail" : null,
                       ),
                       const SizedBox(height: 24),
 
@@ -100,9 +94,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
@@ -149,12 +141,7 @@ class WaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(0, size.height - 50);
-    path.quadraticBezierTo(
-      size.width / 2,
-      size.height + 30,
-      size.width,
-      size.height - 50,
-    );
+    path.quadraticBezierTo(size.width / 2, size.height + 30, size.width, size.height - 50);
     path.lineTo(size.width, 0);
     path.close();
     return path;

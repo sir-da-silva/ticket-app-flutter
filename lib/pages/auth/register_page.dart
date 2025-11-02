@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 12,
                       offset: const Offset(0, 6),
                     ),
@@ -82,13 +82,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.person),
                           hintText: "Nom complet",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        validator: (value) => value == null || value.isEmpty
-                            ? "Entrez votre nom complet"
-                            : null,
+                        validator: (value) =>
+                            value == null || value.isEmpty ? "Entrez votre nom complet" : null,
                       ),
                       const SizedBox(height: 18),
 
@@ -98,13 +95,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.email),
                           hintText: "Adresse email",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        validator: (value) => value == null || value.isEmpty
-                            ? "Entrez votre email"
-                            : null,
+                        validator: (value) =>
+                            value == null || value.isEmpty ? "Entrez votre email" : null,
                       ),
                       const SizedBox(height: 18),
 
@@ -115,19 +109,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
-                            icon: Icon(
-                              obscurePassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
-                            ),
-                            onPressed: () => setState(
-                              () => obscurePassword = !obscurePassword,
-                            ),
+                            icon: Icon(obscurePassword ? Icons.visibility_off : Icons.visibility),
+                            onPressed: () => setState(() => obscurePassword = !obscurePassword),
                           ),
                           hintText: "Mot de passe",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (value) => value == null || value.length < 6
                             ? "Mot de passe ≥ 6 caractères"
@@ -143,19 +129,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           prefixIcon: const Icon(Icons.lock_outline),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              obscureConfirmPassword
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
+                              obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
                             ),
-                            onPressed: () => setState(
-                              () => obscureConfirmPassword =
-                                  !obscureConfirmPassword,
-                            ),
+                            onPressed: () =>
+                                setState(() => obscureConfirmPassword = !obscureConfirmPassword),
                           ),
                           hintText: "Confirmer le mot de passe",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -174,9 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           ),
                           onPressed: () {
                             Navigator.pushNamed(
@@ -197,10 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Row(
                         children: const [
                           Expanded(child: Divider()),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 12),
-                            child: Text("OU"),
-                          ),
+                          Padding(padding: EdgeInsets.symmetric(horizontal: 12), child: Text("OU")),
                           Expanded(child: Divider()),
                         ],
                       ),
@@ -216,9 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               width: 1,
                               color: Theme.of(context).colorScheme.primary,
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                           ),
                           onPressed: () {
                             // TODO : Connexion Google
@@ -233,10 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           const Text("Déjà un compte ? "),
                           GestureDetector(
-                            onTap: () => Navigator.pushReplacementNamed(
-                              context,
-                              RouteNames.login,
-                            ),
+                            onTap: () => Navigator.pushReplacementNamed(context, RouteNames.login),
                             child: Text(
                               "Se connecter",
                               style: GoogleFonts.poppins(
@@ -279,12 +249,7 @@ class WaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final path = Path();
     path.lineTo(0, size.height - 50);
-    path.quadraticBezierTo(
-      size.width / 2,
-      size.height + 30,
-      size.width,
-      size.height - 50,
-    );
+    path.quadraticBezierTo(size.width / 2, size.height + 30, size.width, size.height - 50);
     path.lineTo(size.width, 0);
     path.close();
     return path;

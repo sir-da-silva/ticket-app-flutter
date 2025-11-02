@@ -1000,6 +1000,228 @@ class _CopyWithStubImpl$Input$LoginInput<TRes>
       _res;
 }
 
+class Input$UpdateEventInput {
+  factory Input$UpdateEventInput({
+    String? title,
+    String? description,
+    String? location,
+    String? category,
+    DateTime? date,
+  }) =>
+      Input$UpdateEventInput._({
+        if (title != null) r'title': title,
+        if (description != null) r'description': description,
+        if (location != null) r'location': location,
+        if (category != null) r'category': category,
+        if (date != null) r'date': date,
+      });
+
+  Input$UpdateEventInput._(this._$data);
+
+  factory Input$UpdateEventInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    if (data.containsKey('title')) {
+      final l$title = data['title'];
+      result$data['title'] = (l$title as String?);
+    }
+    if (data.containsKey('description')) {
+      final l$description = data['description'];
+      result$data['description'] = (l$description as String?);
+    }
+    if (data.containsKey('location')) {
+      final l$location = data['location'];
+      result$data['location'] = (l$location as String?);
+    }
+    if (data.containsKey('category')) {
+      final l$category = data['category'];
+      result$data['category'] = (l$category as String?);
+    }
+    if (data.containsKey('date')) {
+      final l$date = data['date'];
+      result$data['date'] =
+          l$date == null ? null : DateTime.parse((l$date as String));
+    }
+    return Input$UpdateEventInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String? get title => (_$data['title'] as String?);
+
+  String? get description => (_$data['description'] as String?);
+
+  String? get location => (_$data['location'] as String?);
+
+  String? get category => (_$data['category'] as String?);
+
+  DateTime? get date => (_$data['date'] as DateTime?);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    if (_$data.containsKey('title')) {
+      final l$title = title;
+      result$data['title'] = l$title;
+    }
+    if (_$data.containsKey('description')) {
+      final l$description = description;
+      result$data['description'] = l$description;
+    }
+    if (_$data.containsKey('location')) {
+      final l$location = location;
+      result$data['location'] = l$location;
+    }
+    if (_$data.containsKey('category')) {
+      final l$category = category;
+      result$data['category'] = l$category;
+    }
+    if (_$data.containsKey('date')) {
+      final l$date = date;
+      result$data['date'] = l$date?.toIso8601String();
+    }
+    return result$data;
+  }
+
+  CopyWith$Input$UpdateEventInput<Input$UpdateEventInput> get copyWith =>
+      CopyWith$Input$UpdateEventInput(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$UpdateEventInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$title = title;
+    final lOther$title = other.title;
+    if (_$data.containsKey('title') != other._$data.containsKey('title')) {
+      return false;
+    }
+    if (l$title != lOther$title) {
+      return false;
+    }
+    final l$description = description;
+    final lOther$description = other.description;
+    if (_$data.containsKey('description') !=
+        other._$data.containsKey('description')) {
+      return false;
+    }
+    if (l$description != lOther$description) {
+      return false;
+    }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (_$data.containsKey('location') !=
+        other._$data.containsKey('location')) {
+      return false;
+    }
+    if (l$location != lOther$location) {
+      return false;
+    }
+    final l$category = category;
+    final lOther$category = other.category;
+    if (_$data.containsKey('category') !=
+        other._$data.containsKey('category')) {
+      return false;
+    }
+    if (l$category != lOther$category) {
+      return false;
+    }
+    final l$date = date;
+    final lOther$date = other.date;
+    if (_$data.containsKey('date') != other._$data.containsKey('date')) {
+      return false;
+    }
+    if (l$date != lOther$date) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$title = title;
+    final l$description = description;
+    final l$location = location;
+    final l$category = category;
+    final l$date = date;
+    return Object.hashAll([
+      _$data.containsKey('title') ? l$title : const {},
+      _$data.containsKey('description') ? l$description : const {},
+      _$data.containsKey('location') ? l$location : const {},
+      _$data.containsKey('category') ? l$category : const {},
+      _$data.containsKey('date') ? l$date : const {},
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$UpdateEventInput<TRes> {
+  factory CopyWith$Input$UpdateEventInput(
+    Input$UpdateEventInput instance,
+    TRes Function(Input$UpdateEventInput) then,
+  ) = _CopyWithImpl$Input$UpdateEventInput;
+
+  factory CopyWith$Input$UpdateEventInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$UpdateEventInput;
+
+  TRes call({
+    String? title,
+    String? description,
+    String? location,
+    String? category,
+    DateTime? date,
+  });
+}
+
+class _CopyWithImpl$Input$UpdateEventInput<TRes>
+    implements CopyWith$Input$UpdateEventInput<TRes> {
+  _CopyWithImpl$Input$UpdateEventInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$UpdateEventInput _instance;
+
+  final TRes Function(Input$UpdateEventInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? title = _undefined,
+    Object? description = _undefined,
+    Object? location = _undefined,
+    Object? category = _undefined,
+    Object? date = _undefined,
+  }) =>
+      _then(Input$UpdateEventInput._({
+        ..._instance._$data,
+        if (title != _undefined) 'title': (title as String?),
+        if (description != _undefined) 'description': (description as String?),
+        if (location != _undefined) 'location': (location as String?),
+        if (category != _undefined) 'category': (category as String?),
+        if (date != _undefined) 'date': (date as DateTime?),
+      }));
+}
+
+class _CopyWithStubImpl$Input$UpdateEventInput<TRes>
+    implements CopyWith$Input$UpdateEventInput<TRes> {
+  _CopyWithStubImpl$Input$UpdateEventInput(this._res);
+
+  TRes _res;
+
+  call({
+    String? title,
+    String? description,
+    String? location,
+    String? category,
+    DateTime? date,
+  }) =>
+      _res;
+}
+
 class Input$UpdateUserInput {
   factory Input$UpdateUserInput({
     String? name,

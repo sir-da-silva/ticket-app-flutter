@@ -1,10 +1,6 @@
-"""
-Exposes a URL that specifies the behavior of this scalar.
-"""
+"""Exposes a URL that specifies the behavior of this scalar."""
 directive @specifiedBy(
-  """
-  The URL that specifies the behavior of this scalar.
-  """
+  """The URL that specifies the behavior of this scalar."""
   url: String!
 ) on SCALAR
 
@@ -23,7 +19,7 @@ type Actuality {
 
 type AuthPayload {
   token: String!
-  user: User!
+  user: Me!
 }
 
 input BuyTicketInput {
@@ -79,14 +75,32 @@ input LoginInput {
   password: String!
 }
 
+type Me {
+  id: ID!
+  name: String!
+  email: String!
+  picture: String
+  isGoogleAuthenticated: Boolean!
+  role: Role!
+  createdAt: DateTime!
+  badge: UserBadge!
+  walletBalance: Float!
+  phone: String
+  whatsapp: String
+  facebook: String
+  instagram: String
+  tiktok: String
+}
+
 type Mutation {
-  createEvent(input: CreateEventInput!): ID
-  updateEvent(input: CreateEventInput!): Boolean!
+  viewActuality(id: ID!): Boolean!
+  createEvent(input: CreateEventInput!): ID!
+  updateEvent(input: UpdateEventInput!): Boolean!
   deleteEvent(id: ID!): Boolean!
-  buyTicket(input: BuyTicketInput!): Ticket
-  createTicket(input: CreateTicketInput!): Ticket
-  scanTicket(code: String!): Ticket
-  login(input: LoginInput!): AuthPayload
+  buyTicket(input: BuyTicketInput!): Ticket!
+  createTicket(input: CreateTicketInput!): Ticket!
+  scanTicket(code: String!): Ticket!
+  login(input: LoginInput!): AuthPayload!
   initSignUp(input: InitSignUpInput!): Boolean!
   completeSignUp(input: CompleteSignUpInput!): AuthPayload!
   updateUser(input: UpdateUserInput!): AuthPayload!
@@ -95,13 +109,16 @@ type Mutation {
 }
 
 type Query {
+  myLastActuality: Actuality
+  lastActualities: [Actuality!]!
+  userActualities(userId: ID): [Actuality!]!
   event(id: ID!): Event
-  events: [Event!]!
-  myEvents: [Event!]!
+  myEvents(fetchAll: Boolean, page: Int): [Event!]!
+  followedEvents: [Event!]!
   ticket(id: ID!): Ticket
   tickets(eventId: ID!): [Ticket!]!
   myTickets: [Ticket!]!
-  me: User
+  me: Me
   user(id: ID!): User
   users: [User!]!
 }
@@ -123,6 +140,14 @@ type Ticket {
   buyerEmail: String
 }
 
+input UpdateEventInput {
+  title: String
+  description: String
+  location: String
+  category: String
+  date: DateTime
+}
+
 input UpdateUserInput {
   name: String
   email: String
@@ -138,11 +163,7 @@ type User {
   name: String!
   email: String!
   picture: String
-  isGoogleAuthenticated: Boolean!
-  role: Role!
-  createdAt: DateTime!
   badge: UserBadge!
-  walletBalance: Float
   phone: String
   whatsapp: String
   facebook: String
@@ -155,3 +176,4 @@ enum UserBadge {
   SILVER
   GOLD
 }
+

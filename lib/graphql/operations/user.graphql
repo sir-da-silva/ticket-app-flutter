@@ -8,12 +8,17 @@ query GetMe {
     role
     createdAt
     badge
-    walletBalance
     phone
     whatsapp
     facebook
     instagram
     tiktok
+  }
+}
+
+query GetWalletBalance {
+  me {
+    walletBalance
   }
 }
 
@@ -23,11 +28,7 @@ query GetUser($id: ID!) {
     name
     email
     picture
-    isGoogleAuthenticated
-    role
-    createdAt
     badge
-    walletBalance
     phone
     whatsapp
     facebook
@@ -42,9 +43,12 @@ query GetUsers {
     name
     email
     picture
-    role
-    createdAt
     badge
+    phone
+    whatsapp
+    facebook
+    instagram
+    tiktok
   }
 }
 
@@ -61,33 +65,12 @@ mutation InitSignUp($input: InitSignUpInput!) {
 mutation CompleteSignUp($input: CompleteSignUpInput!) {
   completeSignUp(input: $input) {
     token
-    user {
-      id
-      name
-      email
-      picture
-      role
-      badge
-    }
   }
 }
 
 mutation UpdateUser($input: UpdateUserInput!) {
   updateUser(input: $input) {
     token
-    user {
-      id
-      name
-      email
-      picture
-      role
-      badge
-      phone
-      whatsapp
-      facebook
-      instagram
-      tiktok
-    }
   }
 }
 

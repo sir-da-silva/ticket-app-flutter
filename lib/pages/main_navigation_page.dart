@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/pages/events/select_event_modal.dart';
 import 'package:my_first_flutter_app/pages/home_page.dart';
 import 'package:my_first_flutter_app/pages/management_page.dart';
 import 'package:my_first_flutter_app/pages/map_page.dart';
 import 'package:my_first_flutter_app/pages/profile_page.dart';
+import 'package:my_first_flutter_app/services/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({super.key});
@@ -23,6 +27,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
+
     return Scaffold(
       body: _pages[_currentIndex],
       floatingActionButton: SizedBox(
@@ -30,10 +36,20 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         height: 44,
         // pour “surélever” un peu plus, tu peux ajuster margin ou position
         child: FloatingActionButton(
-          onPressed: () {
-            // Action quand on tape le bouton central
-            // Navigator.pushNamed(context, RouteNames.scanPage);
-          },
+          onPressed: () => auth.isAuthenticated
+              ? selectEvent(context, (eventId) {
+                  Navigator.pushNamed(context, RouteNames.scanTicket);
+                })
+              : setState(() {
+                  _currentIndex = 2;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Vous devez d'abbord vous connecter à votre compte."),
+                      behavior: SnackBarBehavior.floating,
+                      showCloseIcon: true,
+                    ),
+                  );
+                }),
           shape: CircleBorder(),
           backgroundColor: Theme.of(context).colorScheme.primary,
           child: Icon(Icons.crop_free_rounded, color: Colors.white, size: 24),
@@ -127,9 +143,7 @@ class _NavItem extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: selected
-                  ? Theme.of(context).colorScheme.primary
-                  : Colors.grey,
+              color: selected ? Theme.of(context).colorScheme.primary : Colors.grey,
               size: 24,
             ),
             SizedBox(height: 3),
@@ -138,9 +152,7 @@ class _NavItem extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: selected ? FontWeight.bold : FontWeight.w400,
-                color: selected
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.grey,
+                color: selected ? Theme.of(context).colorScheme.primary : Colors.grey,
               ),
             ),
           ],

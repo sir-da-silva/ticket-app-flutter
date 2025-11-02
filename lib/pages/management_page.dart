@@ -1,148 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_flutter_app/components/event.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/pages/events/select_event_modal.dart';
+import 'package:my_first_flutter_app/services/auth_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ManagementPage extends StatelessWidget {
   const ManagementPage({super.key});
 
-  Event _getEvents(index) {
-    List<Event> events = [
-      Event(
-        title: "Festival de Musique Imballin",
-        subtitle: "3 jours de vibes et de performances inoubliables",
-        time: "18:00",
-        imageUrl: "https://example.com/images/music_festival.jpg",
-        eventName: "Imballin Fest 2025",
-        eventDate: "2025-11-12",
-        location: "Cap-Haïtien, Haïti",
-        category: "Musique",
-        owner: "Imballin Production",
-        ticketsSold: 480,
-      ),
-      Event(
-        title: "Salon de l’Innovation Technologique",
-        subtitle:
-            "Découvre les nouvelles tendances tech et startups haïtiennes",
-        time: "09:00",
-        imageUrl: "https://example.com/images/tech_expo.jpg",
-        eventName: "Haiti Tech Expo 2025",
-        eventDate: "2025-12-02",
-        location: "Port-au-Prince, Haïti",
-        category: "Technologie",
-        owner: "TechHaiti",
-        ticketsSold: 325,
-      ),
-      Event(
-        title: "Soirée Cinéma Plein Air",
-        subtitle: "Projection de films haïtiens sous les étoiles",
-        time: "19:30",
-        imageUrl: "https://example.com/images/open_air_cinema.jpg",
-        eventName: "Ciné Lakay",
-        eventDate: "2025-10-27",
-        location: "Jacmel, Haïti",
-        category: "Cinéma",
-        owner: "CinéKreyo",
-        ticketsSold: 210,
-      ),
-      Event(
-        title: "Compétition de Danse Urbaine",
-        subtitle: "Les meilleurs danseurs du pays s’affrontent",
-        time: "16:00",
-        imageUrl: "https://example.com/images/dance_battle.jpg",
-        eventName: "Move Battle 2025",
-        eventDate: "2025-11-20",
-        location: "Gonaïves, Haïti",
-        category: "Danse",
-        owner: "UrbanVibes",
-        ticketsSold: 150,
-      ),
-      Event(
-        title: "Exposition d’Art Contemporain",
-        subtitle: "Les artistes émergents à l’honneur",
-        time: "10:00",
-        imageUrl: "https://example.com/images/art_expo.jpg",
-        eventName: "Art Vision 2025",
-        eventDate: "2025-11-05",
-        location: "Pétion-Ville, Haïti",
-        category: "Art",
-        owner: "Haïti Création",
-        ticketsSold: 275,
-      ),
-      Event(
-        title: "Tournoi de Football des Jeunes",
-        subtitle: "Un événement sportif pour la nouvelle génération",
-        time: "13:00",
-        imageUrl: "https://example.com/images/football_tournament.jpg",
-        eventName: "Goal Future Cup",
-        eventDate: "2025-12-10",
-        location: "Les Cayes, Haïti",
-        category: "Sport",
-        owner: "Fédération Jeunesse Sportive",
-        ticketsSold: 620,
-      ),
-      Event(
-        title: "Conférence Leadership et Entrepreneuriat",
-        subtitle: "Apprends à transformer tes idées en entreprises solides",
-        time: "08:30",
-        imageUrl: "https://example.com/images/leadership_conference.jpg",
-        eventName: "LeadUp 2025",
-        eventDate: "2025-11-28",
-        location: "Port-au-Prince, Haïti",
-        category: "Éducation",
-        owner: "BizHaiti",
-        ticketsSold: 410,
-      ),
-      Event(
-        title: "Festival Gastronomique Haïtien",
-        subtitle: "Une explosion de saveurs locales et internationales",
-        time: "12:00",
-        imageUrl: "https://example.com/images/food_festival.jpg",
-        eventName: "Goût Lakay 2025",
-        eventDate: "2025-11-15",
-        location: "Cap-Haïtien, Haïti",
-        category: "Gastronomie",
-        owner: "Saveur Créole",
-        ticketsSold: 530,
-      ),
-      Event(
-        title: "Salon du Livre et de la Culture",
-        subtitle: "Rencontre avec les auteurs et penseurs haïtiens",
-        time: "10:00",
-        imageUrl: "https://example.com/images/book_fair.jpg",
-        eventName: "Livres & Idées 2025",
-        eventDate: "2025-12-03",
-        location: "Port-de-Paix, Haïti",
-        category: "Culture",
-        owner: "Éditions Lakay",
-        ticketsSold: 340,
-      ),
-      Event(
-        title: "Soirée Élégance & Mode Imballin",
-        subtitle: "Défilé de mode haut de gamme par la marque Imballin",
-        time: "20:00",
-        imageUrl: "https://example.com/images/imballin_fashion.jpg",
-        eventName: "Imballin Fashion Night",
-        eventDate: "2025-12-22",
-        location: "Port-au-Prince, Haïti",
-        category: "Mode",
-        owner: "Imballin",
-        ticketsSold: 700,
-      ),
-    ];
-    return events[index];
-  }
-
-  bool isAuthenticated() {
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Createur'),
+        title: const Text('Gestion'),
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           IconButton(
@@ -152,14 +28,13 @@ class ManagementPage extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           IconButton(
-            onPressed: () =>
-                Navigator.pushNamed(context, RouteNames.notifications),
+            onPressed: () => Navigator.pushNamed(context, RouteNames.notifications),
             icon: const Icon(Icons.notifications_outlined, size: 28),
             tooltip: 'Notifications',
           ),
         ],
       ),
-      body: !isAuthenticated()
+      body: !auth.isAuthenticated
           ? LoginRequired(
               icon: Icons.assignment,
               title: "Gestion",
@@ -178,73 +53,146 @@ class ManagementPage extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors: [
                           Theme.of(context).colorScheme.primary,
-                          Theme.of(
-                            context,
-                          ).colorScheme.primary.withOpacity(0.8),
+                          Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.primary.withOpacity(0.3),
+                          color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
                           blurRadius: 15,
                           offset: const Offset(0, 8),
                         ),
                       ],
                     ),
-                    child: Row(
+                    child: Column(
+                      spacing: 20,
                       children: [
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Icon(
-                            Icons.account_balance_wallet_outlined,
-                            color: Colors.white,
-                            size: 28,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Solde Disponible',
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.9),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.2),
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                              const SizedBox(height: 4),
-                              Row(
+                              child: Icon(
+                                Icons.account_balance_wallet_outlined,
+                                color: Colors.white,
+                                size: 28,
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "25,000",
+                                    'Solde Disponible',
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white.withValues(alpha: 0.9),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    "HTG",
-                                    style: TextStyle(
-                                      color: Colors.white.withOpacity(0.9),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                  const SizedBox(height: 4),
+
+                                  Query$GetWalletBalance$Widget(
+                                    builder: (result, {fetchMore, refetch}) {
+                                      Query$GetWalletBalance? data;
+
+                                      if (result.data != null) {
+                                        data = Query$GetWalletBalance.fromJson(result.data!);
+                                      }
+
+                                      return result.isLoading
+                                          ? ClipRRect(
+                                              borderRadius: BorderRadiusGeometry.all(
+                                                Radius.circular(10),
+                                              ),
+                                              child: Shimmer(
+                                                duration: Duration(seconds: 1),
+                                                child: Container(
+                                                  width: 125,
+                                                  color: Colors.white.withValues(alpha: 0.1),
+                                                  child: Text("", style: TextStyle(fontSize: 24)),
+                                                ),
+                                              ),
+                                            )
+                                          : Row(
+                                              children: [
+                                                Text(
+                                                  data?.me?.walletBalance.toString() ?? "0",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 8),
+                                                Text(
+                                                  "HTG",
+                                                  style: TextStyle(
+                                                    color: Colors.white.withValues(alpha: 0.9),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                    },
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          spacing: 10,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, "/debit");
+                                },
+                                icon: Icon(Icons.arrow_downward_rounded),
+                                label: Text(
+                                  "Depot",
+                                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                                ),
+                                style: ButtonStyle(
+                                  iconColor: WidgetStatePropertyAll(
+                                    Theme.of(context).colorScheme.primary,
+                                  ),
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    Colors.white.withValues(alpha: 0.85),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, "/withdrawal");
+                                },
+                                icon: Icon(Icons.arrow_upward_rounded),
+                                label: Text(
+                                  "Retrait",
+                                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                                ),
+                                style: ButtonStyle(
+                                  iconColor: WidgetStatePropertyAll(
+                                    Theme.of(context).colorScheme.primary,
+                                  ),
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    Colors.white.withValues(alpha: 0.85),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -260,20 +208,14 @@ class ManagementPage extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Theme.of(
-                            context,
-                          ).colorScheme.primary.withOpacity(0.5),
-                          Theme.of(
-                            context,
-                          ).colorScheme.primary.withOpacity(0.2),
+                          Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
+                          Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.shadow.withOpacity(0.1),
+                          color: Theme.of(context).colorScheme.shadow.withValues(alpha: 0.1),
                           blurRadius: 15,
                           offset: const Offset(0, 8),
                         ),
@@ -289,75 +231,160 @@ class ManagementPage extends StatelessWidget {
                         _buildAction(
                           context,
                           Icons.add,
-                          "Nouvelle Activité",
+                          "Creer un Evenement",
                           Colors.blue,
-                          () {},
+                          () => Navigator.pushNamed(context, RouteNames.createEvent),
                         ),
                         _buildAction(
                           context,
                           Icons.receipt_long,
                           "Generer un Ticket",
                           Colors.green,
-                          () {},
+                          () => selectEvent(context, (eventId) {
+                            Navigator.pushNamed(context, RouteNames.createTicket);
+                          }),
                         ),
                         _buildAction(
                           context,
                           Icons.edit_calendar_outlined,
-                          "Modifier un activite",
+                          "Modifier un Evenement",
                           Colors.orange,
-                          () {},
+                          () => selectEvent(context, (eventId) {
+                            Navigator.pushNamed(context, RouteNames.editEvent);
+                          }),
                         ),
                         _buildAction(
                           context,
                           Icons.confirmation_number,
-                          "Modifier un ticket",
+                          "Modifier un Ticket",
                           Colors.purple,
-                          () {},
-                        ),
-                        _buildAction(
-                          context,
-                          Icons.arrow_downward_rounded,
-                          "Faire un Depot",
-                          Colors.teal,
-                          () {},
-                        ),
-                        _buildAction(
-                          context,
-                          Icons.arrow_upward_rounded,
-                          "Faire un Retrait",
-                          Colors.red,
-                          () {},
+                          () => selectEvent(context, (eventId) {
+                            Navigator.pushNamed(context, RouteNames.editTicket);
+                          }),
                         ),
                       ],
                     ),
                   ),
+
                   // Mes Activités Section
-                  buildSectionHeader(
-                    context,
-                    'Mes Activités',
-                    Icons.calendar_month_outlined,
-                    () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Voir toutes les activités'),
-                        ),
+                  Query$GetMyEvents$Widget(
+                    builder: (result, {fetchMore, refetch}) {
+                      Query$GetMyEvents? data;
+
+                      if (result.data != null) {
+                        data = Query$GetMyEvents.fromJson(result.data!);
+                      }
+
+                      return Column(
+                        children: result.isLoading
+                            ? [
+                                Center(
+                                  heightFactor: 5,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [CircularProgressIndicator()],
+                                  ),
+                                ),
+                              ]
+                            : [
+                                buildSectionHeader(
+                                  context,
+                                  'Mes Evenements',
+                                  Icons.calendar_month_outlined,
+                                  () {
+                                    Navigator.pushNamed(context, "/myEvents");
+                                  },
+                                ),
+
+                                if (data?.myEvents == null)
+                                  Padding(
+                                    padding: EdgeInsetsGeometry.fromLTRB(16, 24, 16, 24),
+                                    child: Center(
+                                      child: Column(
+                                        spacing: 10,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Erreur lors de la recuperation des donnees",
+                                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  refetch!();
+                                                },
+                                                child: Row(
+                                                  spacing: 10,
+                                                  children: [
+                                                    Icon(Icons.refresh),
+                                                    Text("Reessayer"),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                else if (data!.myEvents.isEmpty)
+                                  Padding(
+                                    padding: EdgeInsetsGeometry.fromLTRB(16, 50, 16, 50),
+                                    child: Center(
+                                      child: Text(
+                                        "Vous n'organisez aucun évenement pour les dates a venir. Cliquer sur le boutton + en haut pour creer un évenement.",
+                                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  )
+                                else
+                                  SizedBox(
+                                    height: 200,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                                      itemCount: 10,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.only(right: 12),
+                                          // child: SizedBox(width: 300, child: _getEvents(index)),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                              ],
                       );
                     },
                   ),
-                  SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: SizedBox(width: 300, child: _getEvents(index)),
-                        );
-                      },
+
+                  Divider(),
+
+                  Padding(
+                    padding: EdgeInsetsGeometry.fromLTRB(16, 24, 16, 24),
+                    child: Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          children: [
+                            TextSpan(text: "Cliquez sur le boutton "),
+                            WidgetSpan(child: Icon(Icons.crop_free_rounded, size: 18)),
+                            TextSpan(
+                              text: " en-dessous pour commencer à authentifier des tickets.",
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
+
                   const SizedBox(height: 40),
                 ],
               ),
@@ -381,13 +408,9 @@ Widget _buildAction(
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        // border: Border.all(color: color.withOpacity(0.2), width: 1),
+        // border: Border.all(color: color.withValues(alpha: 0.2), width: 1),
         boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
+          BoxShadow(color: color.withValues(alpha: 0.1), blurRadius: 8, offset: const Offset(0, 4)),
         ],
       ),
       child: Column(
@@ -397,7 +420,7 @@ Widget _buildAction(
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(icon, size: 28, color: color),

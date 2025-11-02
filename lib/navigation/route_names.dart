@@ -12,6 +12,8 @@ class RouteNames {
   static const String ticketDetail = '/ticket/detail';
   static const String createTicket = '/ticket/create';
   static const String ticketsList = '/tickets/list';
+  static const String scanTicket = '/tickets/scan';
+  static const String editTicket = '/ticket/edit';
 
   // Pages d'authentification
   static const String login = '/auth/login';
@@ -22,7 +24,6 @@ class RouteNames {
   // Pages de paramètres
   static const String settings = '/settings';
   static const String profileEdit = '/profile/edit';
-  static const String notificationsSettings = '/settings/notifications';
 
   // Pages de recherche
   static const String search = '/search';
@@ -30,7 +31,6 @@ class RouteNames {
 
   // Pages utilitaires
   static const String notifications = '/notifications';
-  static const String wallet = '/wallet';
   static const String deposit = '/wallet/deposit';
   static const String withdraw = '/wallet/withdraw';
 }

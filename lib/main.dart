@@ -16,9 +16,7 @@ void main() async {
   final authProvider = AuthProvider();
   await authProvider.initSession();
 
-  runApp(
-    ChangeNotifierProvider(create: (_) => authProvider, child: const MyApp()),
-  );
+  runApp(ChangeNotifierProvider(create: (_) => authProvider, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,9 +28,7 @@ class MyApp extends StatelessWidget {
       client: ValueNotifier(GraphQLService.client),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        ),
+        theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
         onGenerateRoute: AppRouter.generateRoute,
         initialRoute: RouteNames.main,
       ),

@@ -207,13 +207,6 @@ const documentNodeQueryGetMe = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'walletBalance'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'phone'),
             alias: null,
             arguments: [],
@@ -413,13 +406,12 @@ class Query$GetMe$me {
     required this.role,
     required this.createdAt,
     required this.badge,
-    this.walletBalance,
     this.phone,
     this.whatsapp,
     this.facebook,
     this.instagram,
     this.tiktok,
-    this.$__typename = 'User',
+    this.$__typename = 'Me',
   });
 
   factory Query$GetMe$me.fromJson(Map<String, dynamic> json) {
@@ -431,7 +423,6 @@ class Query$GetMe$me {
     final l$role = json['role'];
     final l$createdAt = json['createdAt'];
     final l$badge = json['badge'];
-    final l$walletBalance = json['walletBalance'];
     final l$phone = json['phone'];
     final l$whatsapp = json['whatsapp'];
     final l$facebook = json['facebook'];
@@ -447,7 +438,6 @@ class Query$GetMe$me {
       role: fromJson$Enum$Role((l$role as String)),
       createdAt: DateTime.parse((l$createdAt as String)),
       badge: fromJson$Enum$UserBadge((l$badge as String)),
-      walletBalance: (l$walletBalance as num?)?.toDouble(),
       phone: (l$phone as String?),
       whatsapp: (l$whatsapp as String?),
       facebook: (l$facebook as String?),
@@ -472,8 +462,6 @@ class Query$GetMe$me {
   final DateTime createdAt;
 
   final Enum$UserBadge badge;
-
-  final double? walletBalance;
 
   final String? phone;
 
@@ -505,8 +493,6 @@ class Query$GetMe$me {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$badge = badge;
     _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
-    final l$walletBalance = walletBalance;
-    _resultData['walletBalance'] = l$walletBalance;
     final l$phone = phone;
     _resultData['phone'] = l$phone;
     final l$whatsapp = whatsapp;
@@ -532,7 +518,6 @@ class Query$GetMe$me {
     final l$role = role;
     final l$createdAt = createdAt;
     final l$badge = badge;
-    final l$walletBalance = walletBalance;
     final l$phone = phone;
     final l$whatsapp = whatsapp;
     final l$facebook = facebook;
@@ -548,7 +533,6 @@ class Query$GetMe$me {
       l$role,
       l$createdAt,
       l$badge,
-      l$walletBalance,
       l$phone,
       l$whatsapp,
       l$facebook,
@@ -604,11 +588,6 @@ class Query$GetMe$me {
     final l$badge = badge;
     final lOther$badge = other.badge;
     if (l$badge != lOther$badge) {
-      return false;
-    }
-    final l$walletBalance = walletBalance;
-    final lOther$walletBalance = other.walletBalance;
-    if (l$walletBalance != lOther$walletBalance) {
       return false;
     }
     final l$phone = phone;
@@ -671,7 +650,6 @@ abstract class CopyWith$Query$GetMe$me<TRes> {
     Enum$Role? role,
     DateTime? createdAt,
     Enum$UserBadge? badge,
-    double? walletBalance,
     String? phone,
     String? whatsapp,
     String? facebook,
@@ -703,7 +681,6 @@ class _CopyWithImpl$Query$GetMe$me<TRes>
     Object? role = _undefined,
     Object? createdAt = _undefined,
     Object? badge = _undefined,
-    Object? walletBalance = _undefined,
     Object? phone = _undefined,
     Object? whatsapp = _undefined,
     Object? facebook = _undefined,
@@ -734,9 +711,6 @@ class _CopyWithImpl$Query$GetMe$me<TRes>
         badge: badge == _undefined || badge == null
             ? _instance.badge
             : (badge as Enum$UserBadge),
-        walletBalance: walletBalance == _undefined
-            ? _instance.walletBalance
-            : (walletBalance as double?),
         phone: phone == _undefined ? _instance.phone : (phone as String?),
         whatsapp:
             whatsapp == _undefined ? _instance.whatsapp : (whatsapp as String?),
@@ -767,12 +741,457 @@ class _CopyWithStubImpl$Query$GetMe$me<TRes>
     Enum$Role? role,
     DateTime? createdAt,
     Enum$UserBadge? badge,
-    double? walletBalance,
     String? phone,
     String? whatsapp,
     String? facebook,
     String? instagram,
     String? tiktok,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetWalletBalance {
+  Query$GetWalletBalance({
+    this.me,
+    this.$__typename = 'Query',
+  });
+
+  factory Query$GetWalletBalance.fromJson(Map<String, dynamic> json) {
+    final l$me = json['me'];
+    final l$$__typename = json['__typename'];
+    return Query$GetWalletBalance(
+      me: l$me == null
+          ? null
+          : Query$GetWalletBalance$me.fromJson((l$me as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final Query$GetWalletBalance$me? me;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$me = me;
+    _resultData['me'] = l$me?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$me = me;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$me,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetWalletBalance || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$me = me;
+    final lOther$me = other.me;
+    if (l$me != lOther$me) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetWalletBalance on Query$GetWalletBalance {
+  CopyWith$Query$GetWalletBalance<Query$GetWalletBalance> get copyWith =>
+      CopyWith$Query$GetWalletBalance(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$GetWalletBalance<TRes> {
+  factory CopyWith$Query$GetWalletBalance(
+    Query$GetWalletBalance instance,
+    TRes Function(Query$GetWalletBalance) then,
+  ) = _CopyWithImpl$Query$GetWalletBalance;
+
+  factory CopyWith$Query$GetWalletBalance.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetWalletBalance;
+
+  TRes call({
+    Query$GetWalletBalance$me? me,
+    String? $__typename,
+  });
+  CopyWith$Query$GetWalletBalance$me<TRes> get me;
+}
+
+class _CopyWithImpl$Query$GetWalletBalance<TRes>
+    implements CopyWith$Query$GetWalletBalance<TRes> {
+  _CopyWithImpl$Query$GetWalletBalance(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetWalletBalance _instance;
+
+  final TRes Function(Query$GetWalletBalance) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? me = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetWalletBalance(
+        me: me == _undefined
+            ? _instance.me
+            : (me as Query$GetWalletBalance$me?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Query$GetWalletBalance$me<TRes> get me {
+    final local$me = _instance.me;
+    return local$me == null
+        ? CopyWith$Query$GetWalletBalance$me.stub(_then(_instance))
+        : CopyWith$Query$GetWalletBalance$me(local$me, (e) => call(me: e));
+  }
+}
+
+class _CopyWithStubImpl$Query$GetWalletBalance<TRes>
+    implements CopyWith$Query$GetWalletBalance<TRes> {
+  _CopyWithStubImpl$Query$GetWalletBalance(this._res);
+
+  TRes _res;
+
+  call({
+    Query$GetWalletBalance$me? me,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Query$GetWalletBalance$me<TRes> get me =>
+      CopyWith$Query$GetWalletBalance$me.stub(_res);
+}
+
+const documentNodeQueryGetWalletBalance = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'GetWalletBalance'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'me'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'walletBalance'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$GetWalletBalance _parserFn$Query$GetWalletBalance(
+        Map<String, dynamic> data) =>
+    Query$GetWalletBalance.fromJson(data);
+typedef OnQueryComplete$Query$GetWalletBalance = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$GetWalletBalance?,
+);
+
+class Options$Query$GetWalletBalance
+    extends graphql.QueryOptions<Query$GetWalletBalance> {
+  Options$Query$GetWalletBalance({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetWalletBalance? typedOptimisticResult,
+    Duration? pollInterval,
+    graphql.Context? context,
+    OnQueryComplete$Query$GetWalletBalance? onComplete,
+    graphql.OnQueryError? onError,
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null
+                        ? null
+                        : _parserFn$Query$GetWalletBalance(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryGetWalletBalance,
+          parserFn: _parserFn$Query$GetWalletBalance,
+        );
+
+  final OnQueryComplete$Query$GetWalletBalance? onCompleteWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
+}
+
+class WatchOptions$Query$GetWalletBalance
+    extends graphql.WatchQueryOptions<Query$GetWalletBalance> {
+  WatchOptions$Query$GetWalletBalance({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Query$GetWalletBalance? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryGetWalletBalance,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$GetWalletBalance,
+        );
+}
+
+class FetchMoreOptions$Query$GetWalletBalance extends graphql.FetchMoreOptions {
+  FetchMoreOptions$Query$GetWalletBalance(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryGetWalletBalance,
+        );
+}
+
+extension ClientExtension$Query$GetWalletBalance on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Query$GetWalletBalance>> query$GetWalletBalance(
+          [Options$Query$GetWalletBalance? options]) async =>
+      await this.query(options ?? Options$Query$GetWalletBalance());
+
+  graphql.ObservableQuery<Query$GetWalletBalance> watchQuery$GetWalletBalance(
+          [WatchOptions$Query$GetWalletBalance? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$GetWalletBalance());
+
+  void writeQuery$GetWalletBalance({
+    required Query$GetWalletBalance data,
+    bool broadcast = true,
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryGetWalletBalance)),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
+
+  Query$GetWalletBalance? readQuery$GetWalletBalance({bool optimistic = true}) {
+    final result = this.readQuery(
+      graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryGetWalletBalance)),
+      optimistic: optimistic,
+    );
+    return result == null ? null : Query$GetWalletBalance.fromJson(result);
+  }
+}
+
+graphql_flutter.QueryHookResult<Query$GetWalletBalance>
+    useQuery$GetWalletBalance([Options$Query$GetWalletBalance? options]) =>
+        graphql_flutter.useQuery(options ?? Options$Query$GetWalletBalance());
+graphql.ObservableQuery<Query$GetWalletBalance> useWatchQuery$GetWalletBalance(
+        [WatchOptions$Query$GetWalletBalance? options]) =>
+    graphql_flutter
+        .useWatchQuery(options ?? WatchOptions$Query$GetWalletBalance());
+
+class Query$GetWalletBalance$Widget
+    extends graphql_flutter.Query<Query$GetWalletBalance> {
+  Query$GetWalletBalance$Widget({
+    widgets.Key? key,
+    Options$Query$GetWalletBalance? options,
+    required graphql_flutter.QueryBuilder<Query$GetWalletBalance> builder,
+  }) : super(
+          key: key,
+          options: options ?? Options$Query$GetWalletBalance(),
+          builder: builder,
+        );
+}
+
+class Query$GetWalletBalance$me {
+  Query$GetWalletBalance$me({
+    required this.walletBalance,
+    this.$__typename = 'Me',
+  });
+
+  factory Query$GetWalletBalance$me.fromJson(Map<String, dynamic> json) {
+    final l$walletBalance = json['walletBalance'];
+    final l$$__typename = json['__typename'];
+    return Query$GetWalletBalance$me(
+      walletBalance: (l$walletBalance as num).toDouble(),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final double walletBalance;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$walletBalance = walletBalance;
+    _resultData['walletBalance'] = l$walletBalance;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$walletBalance = walletBalance;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$walletBalance,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetWalletBalance$me ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$walletBalance = walletBalance;
+    final lOther$walletBalance = other.walletBalance;
+    if (l$walletBalance != lOther$walletBalance) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetWalletBalance$me
+    on Query$GetWalletBalance$me {
+  CopyWith$Query$GetWalletBalance$me<Query$GetWalletBalance$me> get copyWith =>
+      CopyWith$Query$GetWalletBalance$me(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Query$GetWalletBalance$me<TRes> {
+  factory CopyWith$Query$GetWalletBalance$me(
+    Query$GetWalletBalance$me instance,
+    TRes Function(Query$GetWalletBalance$me) then,
+  ) = _CopyWithImpl$Query$GetWalletBalance$me;
+
+  factory CopyWith$Query$GetWalletBalance$me.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetWalletBalance$me;
+
+  TRes call({
+    double? walletBalance,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetWalletBalance$me<TRes>
+    implements CopyWith$Query$GetWalletBalance$me<TRes> {
+  _CopyWithImpl$Query$GetWalletBalance$me(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetWalletBalance$me _instance;
+
+  final TRes Function(Query$GetWalletBalance$me) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? walletBalance = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetWalletBalance$me(
+        walletBalance: walletBalance == _undefined || walletBalance == null
+            ? _instance.walletBalance
+            : (walletBalance as double),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetWalletBalance$me<TRes>
+    implements CopyWith$Query$GetWalletBalance$me<TRes> {
+  _CopyWithStubImpl$Query$GetWalletBalance$me(this._res);
+
+  TRes _res;
+
+  call({
+    double? walletBalance,
     String? $__typename,
   }) =>
       _res;
@@ -1064,35 +1483,7 @@ const documentNodeQueryGetUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'isGoogleAuthenticated'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'role'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'createdAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'badge'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'walletBalance'),
             alias: null,
             arguments: [],
             directives: [],
@@ -1310,11 +1701,7 @@ class Query$GetUser$user {
     required this.name,
     required this.email,
     this.picture,
-    required this.isGoogleAuthenticated,
-    required this.role,
-    required this.createdAt,
     required this.badge,
-    this.walletBalance,
     this.phone,
     this.whatsapp,
     this.facebook,
@@ -1328,11 +1715,7 @@ class Query$GetUser$user {
     final l$name = json['name'];
     final l$email = json['email'];
     final l$picture = json['picture'];
-    final l$isGoogleAuthenticated = json['isGoogleAuthenticated'];
-    final l$role = json['role'];
-    final l$createdAt = json['createdAt'];
     final l$badge = json['badge'];
-    final l$walletBalance = json['walletBalance'];
     final l$phone = json['phone'];
     final l$whatsapp = json['whatsapp'];
     final l$facebook = json['facebook'];
@@ -1344,11 +1727,7 @@ class Query$GetUser$user {
       name: (l$name as String),
       email: (l$email as String),
       picture: (l$picture as String?),
-      isGoogleAuthenticated: (l$isGoogleAuthenticated as bool),
-      role: fromJson$Enum$Role((l$role as String)),
-      createdAt: DateTime.parse((l$createdAt as String)),
       badge: fromJson$Enum$UserBadge((l$badge as String)),
-      walletBalance: (l$walletBalance as num?)?.toDouble(),
       phone: (l$phone as String?),
       whatsapp: (l$whatsapp as String?),
       facebook: (l$facebook as String?),
@@ -1366,15 +1745,7 @@ class Query$GetUser$user {
 
   final String? picture;
 
-  final bool isGoogleAuthenticated;
-
-  final Enum$Role role;
-
-  final DateTime createdAt;
-
   final Enum$UserBadge badge;
-
-  final double? walletBalance;
 
   final String? phone;
 
@@ -1398,16 +1769,8 @@ class Query$GetUser$user {
     _resultData['email'] = l$email;
     final l$picture = picture;
     _resultData['picture'] = l$picture;
-    final l$isGoogleAuthenticated = isGoogleAuthenticated;
-    _resultData['isGoogleAuthenticated'] = l$isGoogleAuthenticated;
-    final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$badge = badge;
     _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
-    final l$walletBalance = walletBalance;
-    _resultData['walletBalance'] = l$walletBalance;
     final l$phone = phone;
     _resultData['phone'] = l$phone;
     final l$whatsapp = whatsapp;
@@ -1429,11 +1792,7 @@ class Query$GetUser$user {
     final l$name = name;
     final l$email = email;
     final l$picture = picture;
-    final l$isGoogleAuthenticated = isGoogleAuthenticated;
-    final l$role = role;
-    final l$createdAt = createdAt;
     final l$badge = badge;
-    final l$walletBalance = walletBalance;
     final l$phone = phone;
     final l$whatsapp = whatsapp;
     final l$facebook = facebook;
@@ -1445,11 +1804,7 @@ class Query$GetUser$user {
       l$name,
       l$email,
       l$picture,
-      l$isGoogleAuthenticated,
-      l$role,
-      l$createdAt,
       l$badge,
-      l$walletBalance,
       l$phone,
       l$whatsapp,
       l$facebook,
@@ -1487,29 +1842,9 @@ class Query$GetUser$user {
     if (l$picture != lOther$picture) {
       return false;
     }
-    final l$isGoogleAuthenticated = isGoogleAuthenticated;
-    final lOther$isGoogleAuthenticated = other.isGoogleAuthenticated;
-    if (l$isGoogleAuthenticated != lOther$isGoogleAuthenticated) {
-      return false;
-    }
-    final l$role = role;
-    final lOther$role = other.role;
-    if (l$role != lOther$role) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
     final l$badge = badge;
     final lOther$badge = other.badge;
     if (l$badge != lOther$badge) {
-      return false;
-    }
-    final l$walletBalance = walletBalance;
-    final lOther$walletBalance = other.walletBalance;
-    if (l$walletBalance != lOther$walletBalance) {
       return false;
     }
     final l$phone = phone;
@@ -1568,11 +1903,7 @@ abstract class CopyWith$Query$GetUser$user<TRes> {
     String? name,
     String? email,
     String? picture,
-    bool? isGoogleAuthenticated,
-    Enum$Role? role,
-    DateTime? createdAt,
     Enum$UserBadge? badge,
-    double? walletBalance,
     String? phone,
     String? whatsapp,
     String? facebook,
@@ -1600,11 +1931,7 @@ class _CopyWithImpl$Query$GetUser$user<TRes>
     Object? name = _undefined,
     Object? email = _undefined,
     Object? picture = _undefined,
-    Object? isGoogleAuthenticated = _undefined,
-    Object? role = _undefined,
-    Object? createdAt = _undefined,
     Object? badge = _undefined,
-    Object? walletBalance = _undefined,
     Object? phone = _undefined,
     Object? whatsapp = _undefined,
     Object? facebook = _undefined,
@@ -1622,22 +1949,9 @@ class _CopyWithImpl$Query$GetUser$user<TRes>
             : (email as String),
         picture:
             picture == _undefined ? _instance.picture : (picture as String?),
-        isGoogleAuthenticated:
-            isGoogleAuthenticated == _undefined || isGoogleAuthenticated == null
-                ? _instance.isGoogleAuthenticated
-                : (isGoogleAuthenticated as bool),
-        role: role == _undefined || role == null
-            ? _instance.role
-            : (role as Enum$Role),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
         badge: badge == _undefined || badge == null
             ? _instance.badge
             : (badge as Enum$UserBadge),
-        walletBalance: walletBalance == _undefined
-            ? _instance.walletBalance
-            : (walletBalance as double?),
         phone: phone == _undefined ? _instance.phone : (phone as String?),
         whatsapp:
             whatsapp == _undefined ? _instance.whatsapp : (whatsapp as String?),
@@ -1664,11 +1978,7 @@ class _CopyWithStubImpl$Query$GetUser$user<TRes>
     String? name,
     String? email,
     String? picture,
-    bool? isGoogleAuthenticated,
-    Enum$Role? role,
-    DateTime? createdAt,
     Enum$UserBadge? badge,
-    double? walletBalance,
     String? phone,
     String? whatsapp,
     String? facebook,
@@ -1870,21 +2180,42 @@ const documentNodeQueryGetUsers = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'role'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'createdAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'badge'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'phone'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'whatsapp'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'facebook'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'instagram'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'tiktok'),
             alias: null,
             arguments: [],
             directives: [],
@@ -2052,9 +2383,12 @@ class Query$GetUsers$users {
     required this.name,
     required this.email,
     this.picture,
-    required this.role,
-    required this.createdAt,
     required this.badge,
+    this.phone,
+    this.whatsapp,
+    this.facebook,
+    this.instagram,
+    this.tiktok,
     this.$__typename = 'User',
   });
 
@@ -2063,18 +2397,24 @@ class Query$GetUsers$users {
     final l$name = json['name'];
     final l$email = json['email'];
     final l$picture = json['picture'];
-    final l$role = json['role'];
-    final l$createdAt = json['createdAt'];
     final l$badge = json['badge'];
+    final l$phone = json['phone'];
+    final l$whatsapp = json['whatsapp'];
+    final l$facebook = json['facebook'];
+    final l$instagram = json['instagram'];
+    final l$tiktok = json['tiktok'];
     final l$$__typename = json['__typename'];
     return Query$GetUsers$users(
       id: (l$id as String),
       name: (l$name as String),
       email: (l$email as String),
       picture: (l$picture as String?),
-      role: fromJson$Enum$Role((l$role as String)),
-      createdAt: DateTime.parse((l$createdAt as String)),
       badge: fromJson$Enum$UserBadge((l$badge as String)),
+      phone: (l$phone as String?),
+      whatsapp: (l$whatsapp as String?),
+      facebook: (l$facebook as String?),
+      instagram: (l$instagram as String?),
+      tiktok: (l$tiktok as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2087,11 +2427,17 @@ class Query$GetUsers$users {
 
   final String? picture;
 
-  final Enum$Role role;
-
-  final DateTime createdAt;
-
   final Enum$UserBadge badge;
+
+  final String? phone;
+
+  final String? whatsapp;
+
+  final String? facebook;
+
+  final String? instagram;
+
+  final String? tiktok;
 
   final String $__typename;
 
@@ -2105,12 +2451,18 @@ class Query$GetUsers$users {
     _resultData['email'] = l$email;
     final l$picture = picture;
     _resultData['picture'] = l$picture;
-    final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$badge = badge;
     _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
+    final l$phone = phone;
+    _resultData['phone'] = l$phone;
+    final l$whatsapp = whatsapp;
+    _resultData['whatsapp'] = l$whatsapp;
+    final l$facebook = facebook;
+    _resultData['facebook'] = l$facebook;
+    final l$instagram = instagram;
+    _resultData['instagram'] = l$instagram;
+    final l$tiktok = tiktok;
+    _resultData['tiktok'] = l$tiktok;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2122,18 +2474,24 @@ class Query$GetUsers$users {
     final l$name = name;
     final l$email = email;
     final l$picture = picture;
-    final l$role = role;
-    final l$createdAt = createdAt;
     final l$badge = badge;
+    final l$phone = phone;
+    final l$whatsapp = whatsapp;
+    final l$facebook = facebook;
+    final l$instagram = instagram;
+    final l$tiktok = tiktok;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$name,
       l$email,
       l$picture,
-      l$role,
-      l$createdAt,
       l$badge,
+      l$phone,
+      l$whatsapp,
+      l$facebook,
+      l$instagram,
+      l$tiktok,
       l$$__typename,
     ]);
   }
@@ -2166,19 +2524,34 @@ class Query$GetUsers$users {
     if (l$picture != lOther$picture) {
       return false;
     }
-    final l$role = role;
-    final lOther$role = other.role;
-    if (l$role != lOther$role) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
     final l$badge = badge;
     final lOther$badge = other.badge;
     if (l$badge != lOther$badge) {
+      return false;
+    }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
+    final l$whatsapp = whatsapp;
+    final lOther$whatsapp = other.whatsapp;
+    if (l$whatsapp != lOther$whatsapp) {
+      return false;
+    }
+    final l$facebook = facebook;
+    final lOther$facebook = other.facebook;
+    if (l$facebook != lOther$facebook) {
+      return false;
+    }
+    final l$instagram = instagram;
+    final lOther$instagram = other.instagram;
+    if (l$instagram != lOther$instagram) {
+      return false;
+    }
+    final l$tiktok = tiktok;
+    final lOther$tiktok = other.tiktok;
+    if (l$tiktok != lOther$tiktok) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2212,9 +2585,12 @@ abstract class CopyWith$Query$GetUsers$users<TRes> {
     String? name,
     String? email,
     String? picture,
-    Enum$Role? role,
-    DateTime? createdAt,
     Enum$UserBadge? badge,
+    String? phone,
+    String? whatsapp,
+    String? facebook,
+    String? instagram,
+    String? tiktok,
     String? $__typename,
   });
 }
@@ -2237,9 +2613,12 @@ class _CopyWithImpl$Query$GetUsers$users<TRes>
     Object? name = _undefined,
     Object? email = _undefined,
     Object? picture = _undefined,
-    Object? role = _undefined,
-    Object? createdAt = _undefined,
     Object? badge = _undefined,
+    Object? phone = _undefined,
+    Object? whatsapp = _undefined,
+    Object? facebook = _undefined,
+    Object? instagram = _undefined,
+    Object? tiktok = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetUsers$users(
@@ -2252,15 +2631,18 @@ class _CopyWithImpl$Query$GetUsers$users<TRes>
             : (email as String),
         picture:
             picture == _undefined ? _instance.picture : (picture as String?),
-        role: role == _undefined || role == null
-            ? _instance.role
-            : (role as Enum$Role),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
         badge: badge == _undefined || badge == null
             ? _instance.badge
             : (badge as Enum$UserBadge),
+        phone: phone == _undefined ? _instance.phone : (phone as String?),
+        whatsapp:
+            whatsapp == _undefined ? _instance.whatsapp : (whatsapp as String?),
+        facebook:
+            facebook == _undefined ? _instance.facebook : (facebook as String?),
+        instagram: instagram == _undefined
+            ? _instance.instagram
+            : (instagram as String?),
+        tiktok: tiktok == _undefined ? _instance.tiktok : (tiktok as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2278,9 +2660,12 @@ class _CopyWithStubImpl$Query$GetUsers$users<TRes>
     String? name,
     String? email,
     String? picture,
-    Enum$Role? role,
-    DateTime? createdAt,
     Enum$UserBadge? badge,
+    String? phone,
+    String? whatsapp,
+    String? facebook,
+    String? instagram,
+    String? tiktok,
     String? $__typename,
   }) =>
       _res;
@@ -2386,7 +2771,7 @@ class _CopyWithStubImpl$Variables$Mutation$Login<TRes>
 
 class Mutation$Login {
   Mutation$Login({
-    this.login,
+    required this.login,
     this.$__typename = 'Mutation',
   });
 
@@ -2394,21 +2779,19 @@ class Mutation$Login {
     final l$login = json['login'];
     final l$$__typename = json['__typename'];
     return Mutation$Login(
-      login: l$login == null
-          ? null
-          : Mutation$Login$login.fromJson((l$login as Map<String, dynamic>)),
+      login: Mutation$Login$login.fromJson((l$login as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$Login$login? login;
+  final Mutation$Login$login login;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$login = login;
-    _resultData['login'] = l$login?.toJson();
+    _resultData['login'] = l$login.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2488,9 +2871,9 @@ class _CopyWithImpl$Mutation$Login<TRes>
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$Login(
-        login: login == _undefined
+        login: login == _undefined || login == null
             ? _instance.login
-            : (login as Mutation$Login$login?),
+            : (login as Mutation$Login$login),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2498,9 +2881,7 @@ class _CopyWithImpl$Mutation$Login<TRes>
 
   CopyWith$Mutation$Login$login<TRes> get login {
     final local$login = _instance.login;
-    return local$login == null
-        ? CopyWith$Mutation$Login$login.stub(_then(_instance))
-        : CopyWith$Mutation$Login$login(local$login, (e) => call(login: e));
+    return CopyWith$Mutation$Login$login(local$login, (e) => call(login: e));
   }
 }
 
@@ -3645,63 +4026,6 @@ const documentNodeMutationCompleteSignUp = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'user'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'email'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'picture'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'role'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'badge'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -3937,26 +4261,20 @@ class Mutation$CompleteSignUp$Widget
 class Mutation$CompleteSignUp$completeSignUp {
   Mutation$CompleteSignUp$completeSignUp({
     required this.token,
-    required this.user,
     this.$__typename = 'AuthPayload',
   });
 
   factory Mutation$CompleteSignUp$completeSignUp.fromJson(
       Map<String, dynamic> json) {
     final l$token = json['token'];
-    final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Mutation$CompleteSignUp$completeSignUp(
       token: (l$token as String),
-      user: Mutation$CompleteSignUp$completeSignUp$user.fromJson(
-          (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String token;
-
-  final Mutation$CompleteSignUp$completeSignUp$user user;
 
   final String $__typename;
 
@@ -3964,8 +4282,6 @@ class Mutation$CompleteSignUp$completeSignUp {
     final _resultData = <String, dynamic>{};
     final l$token = token;
     _resultData['token'] = l$token;
-    final l$user = user;
-    _resultData['user'] = l$user.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3974,11 +4290,9 @@ class Mutation$CompleteSignUp$completeSignUp {
   @override
   int get hashCode {
     final l$token = token;
-    final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$token,
-      l$user,
       l$$__typename,
     ]);
   }
@@ -3995,11 +4309,6 @@ class Mutation$CompleteSignUp$completeSignUp {
     final l$token = token;
     final lOther$token = other.token;
     if (l$token != lOther$token) {
-      return false;
-    }
-    final l$user = user;
-    final lOther$user = other.user;
-    if (l$user != lOther$user) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4032,10 +4341,8 @@ abstract class CopyWith$Mutation$CompleteSignUp$completeSignUp<TRes> {
 
   TRes call({
     String? token,
-    Mutation$CompleteSignUp$completeSignUp$user? user,
     String? $__typename,
   });
-  CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> get user;
 }
 
 class _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
@@ -4053,26 +4360,16 @@ class _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
 
   TRes call({
     Object? token = _undefined,
-    Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$CompleteSignUp$completeSignUp(
         token: token == _undefined || token == null
             ? _instance.token
             : (token as String),
-        user: user == _undefined || user == null
-            ? _instance.user
-            : (user as Mutation$CompleteSignUp$completeSignUp$user),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> get user {
-    final local$user = _instance.user;
-    return CopyWith$Mutation$CompleteSignUp$completeSignUp$user(
-        local$user, (e) => call(user: e));
-  }
 }
 
 class _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
@@ -4083,234 +4380,6 @@ class _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp<TRes>
 
   call({
     String? token,
-    Mutation$CompleteSignUp$completeSignUp$user? user,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> get user =>
-      CopyWith$Mutation$CompleteSignUp$completeSignUp$user.stub(_res);
-}
-
-class Mutation$CompleteSignUp$completeSignUp$user {
-  Mutation$CompleteSignUp$completeSignUp$user({
-    required this.id,
-    required this.name,
-    required this.email,
-    this.picture,
-    required this.role,
-    required this.badge,
-    this.$__typename = 'User',
-  });
-
-  factory Mutation$CompleteSignUp$completeSignUp$user.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$email = json['email'];
-    final l$picture = json['picture'];
-    final l$role = json['role'];
-    final l$badge = json['badge'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CompleteSignUp$completeSignUp$user(
-      id: (l$id as String),
-      name: (l$name as String),
-      email: (l$email as String),
-      picture: (l$picture as String?),
-      role: fromJson$Enum$Role((l$role as String)),
-      badge: fromJson$Enum$UserBadge((l$badge as String)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String name;
-
-  final String email;
-
-  final String? picture;
-
-  final Enum$Role role;
-
-  final Enum$UserBadge badge;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$email = email;
-    _resultData['email'] = l$email;
-    final l$picture = picture;
-    _resultData['picture'] = l$picture;
-    final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
-    final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$email = email;
-    final l$picture = picture;
-    final l$role = role;
-    final l$badge = badge;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$email,
-      l$picture,
-      l$role,
-      l$badge,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CompleteSignUp$completeSignUp$user ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$email = email;
-    final lOther$email = other.email;
-    if (l$email != lOther$email) {
-      return false;
-    }
-    final l$picture = picture;
-    final lOther$picture = other.picture;
-    if (l$picture != lOther$picture) {
-      return false;
-    }
-    final l$role = role;
-    final lOther$role = other.role;
-    if (l$role != lOther$role) {
-      return false;
-    }
-    final l$badge = badge;
-    final lOther$badge = other.badge;
-    if (l$badge != lOther$badge) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CompleteSignUp$completeSignUp$user
-    on Mutation$CompleteSignUp$completeSignUp$user {
-  CopyWith$Mutation$CompleteSignUp$completeSignUp$user<
-          Mutation$CompleteSignUp$completeSignUp$user>
-      get copyWith => CopyWith$Mutation$CompleteSignUp$completeSignUp$user(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> {
-  factory CopyWith$Mutation$CompleteSignUp$completeSignUp$user(
-    Mutation$CompleteSignUp$completeSignUp$user instance,
-    TRes Function(Mutation$CompleteSignUp$completeSignUp$user) then,
-  ) = _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp$user;
-
-  factory CopyWith$Mutation$CompleteSignUp$completeSignUp$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp$user;
-
-  TRes call({
-    String? id,
-    String? name,
-    String? email,
-    String? picture,
-    Enum$Role? role,
-    Enum$UserBadge? badge,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp$user<TRes>
-    implements CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> {
-  _CopyWithImpl$Mutation$CompleteSignUp$completeSignUp$user(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CompleteSignUp$completeSignUp$user _instance;
-
-  final TRes Function(Mutation$CompleteSignUp$completeSignUp$user) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? email = _undefined,
-    Object? picture = _undefined,
-    Object? role = _undefined,
-    Object? badge = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CompleteSignUp$completeSignUp$user(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        email: email == _undefined || email == null
-            ? _instance.email
-            : (email as String),
-        picture:
-            picture == _undefined ? _instance.picture : (picture as String?),
-        role: role == _undefined || role == null
-            ? _instance.role
-            : (role as Enum$Role),
-        badge: badge == _undefined || badge == null
-            ? _instance.badge
-            : (badge as Enum$UserBadge),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp$user<TRes>
-    implements CopyWith$Mutation$CompleteSignUp$completeSignUp$user<TRes> {
-  _CopyWithStubImpl$Mutation$CompleteSignUp$completeSignUp$user(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? name,
-    String? email,
-    String? picture,
-    Enum$Role? role,
-    Enum$UserBadge? badge,
     String? $__typename,
   }) =>
       _res;
@@ -4586,98 +4655,6 @@ const documentNodeMutationUpdateUser = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'user'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'email'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'picture'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'role'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'badge'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'phone'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'whatsapp'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'facebook'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'instagram'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'tiktok'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -4907,25 +4884,19 @@ class Mutation$UpdateUser$Widget
 class Mutation$UpdateUser$updateUser {
   Mutation$UpdateUser$updateUser({
     required this.token,
-    required this.user,
     this.$__typename = 'AuthPayload',
   });
 
   factory Mutation$UpdateUser$updateUser.fromJson(Map<String, dynamic> json) {
     final l$token = json['token'];
-    final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateUser$updateUser(
       token: (l$token as String),
-      user: Mutation$UpdateUser$updateUser$user.fromJson(
-          (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String token;
-
-  final Mutation$UpdateUser$updateUser$user user;
 
   final String $__typename;
 
@@ -4933,8 +4904,6 @@ class Mutation$UpdateUser$updateUser {
     final _resultData = <String, dynamic>{};
     final l$token = token;
     _resultData['token'] = l$token;
-    final l$user = user;
-    _resultData['user'] = l$user.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4943,11 +4912,9 @@ class Mutation$UpdateUser$updateUser {
   @override
   int get hashCode {
     final l$token = token;
-    final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$token,
-      l$user,
       l$$__typename,
     ]);
   }
@@ -4964,11 +4931,6 @@ class Mutation$UpdateUser$updateUser {
     final l$token = token;
     final lOther$token = other.token;
     if (l$token != lOther$token) {
-      return false;
-    }
-    final l$user = user;
-    final lOther$user = other.user;
-    if (l$user != lOther$user) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -5000,10 +4962,8 @@ abstract class CopyWith$Mutation$UpdateUser$updateUser<TRes> {
 
   TRes call({
     String? token,
-    Mutation$UpdateUser$updateUser$user? user,
     String? $__typename,
   });
-  CopyWith$Mutation$UpdateUser$updateUser$user<TRes> get user;
 }
 
 class _CopyWithImpl$Mutation$UpdateUser$updateUser<TRes>
@@ -5021,26 +4981,16 @@ class _CopyWithImpl$Mutation$UpdateUser$updateUser<TRes>
 
   TRes call({
     Object? token = _undefined,
-    Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$UpdateUser$updateUser(
         token: token == _undefined || token == null
             ? _instance.token
             : (token as String),
-        user: user == _undefined || user == null
-            ? _instance.user
-            : (user as Mutation$UpdateUser$updateUser$user),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Mutation$UpdateUser$updateUser$user<TRes> get user {
-    final local$user = _instance.user;
-    return CopyWith$Mutation$UpdateUser$updateUser$user(
-        local$user, (e) => call(user: e));
-  }
 }
 
 class _CopyWithStubImpl$Mutation$UpdateUser$updateUser<TRes>
@@ -5051,328 +5001,6 @@ class _CopyWithStubImpl$Mutation$UpdateUser$updateUser<TRes>
 
   call({
     String? token,
-    Mutation$UpdateUser$updateUser$user? user,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$UpdateUser$updateUser$user<TRes> get user =>
-      CopyWith$Mutation$UpdateUser$updateUser$user.stub(_res);
-}
-
-class Mutation$UpdateUser$updateUser$user {
-  Mutation$UpdateUser$updateUser$user({
-    required this.id,
-    required this.name,
-    required this.email,
-    this.picture,
-    required this.role,
-    required this.badge,
-    this.phone,
-    this.whatsapp,
-    this.facebook,
-    this.instagram,
-    this.tiktok,
-    this.$__typename = 'User',
-  });
-
-  factory Mutation$UpdateUser$updateUser$user.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$name = json['name'];
-    final l$email = json['email'];
-    final l$picture = json['picture'];
-    final l$role = json['role'];
-    final l$badge = json['badge'];
-    final l$phone = json['phone'];
-    final l$whatsapp = json['whatsapp'];
-    final l$facebook = json['facebook'];
-    final l$instagram = json['instagram'];
-    final l$tiktok = json['tiktok'];
-    final l$$__typename = json['__typename'];
-    return Mutation$UpdateUser$updateUser$user(
-      id: (l$id as String),
-      name: (l$name as String),
-      email: (l$email as String),
-      picture: (l$picture as String?),
-      role: fromJson$Enum$Role((l$role as String)),
-      badge: fromJson$Enum$UserBadge((l$badge as String)),
-      phone: (l$phone as String?),
-      whatsapp: (l$whatsapp as String?),
-      facebook: (l$facebook as String?),
-      instagram: (l$instagram as String?),
-      tiktok: (l$tiktok as String?),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String name;
-
-  final String email;
-
-  final String? picture;
-
-  final Enum$Role role;
-
-  final Enum$UserBadge badge;
-
-  final String? phone;
-
-  final String? whatsapp;
-
-  final String? facebook;
-
-  final String? instagram;
-
-  final String? tiktok;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$name = name;
-    _resultData['name'] = l$name;
-    final l$email = email;
-    _resultData['email'] = l$email;
-    final l$picture = picture;
-    _resultData['picture'] = l$picture;
-    final l$role = role;
-    _resultData['role'] = toJson$Enum$Role(l$role);
-    final l$badge = badge;
-    _resultData['badge'] = toJson$Enum$UserBadge(l$badge);
-    final l$phone = phone;
-    _resultData['phone'] = l$phone;
-    final l$whatsapp = whatsapp;
-    _resultData['whatsapp'] = l$whatsapp;
-    final l$facebook = facebook;
-    _resultData['facebook'] = l$facebook;
-    final l$instagram = instagram;
-    _resultData['instagram'] = l$instagram;
-    final l$tiktok = tiktok;
-    _resultData['tiktok'] = l$tiktok;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$name = name;
-    final l$email = email;
-    final l$picture = picture;
-    final l$role = role;
-    final l$badge = badge;
-    final l$phone = phone;
-    final l$whatsapp = whatsapp;
-    final l$facebook = facebook;
-    final l$instagram = instagram;
-    final l$tiktok = tiktok;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$name,
-      l$email,
-      l$picture,
-      l$role,
-      l$badge,
-      l$phone,
-      l$whatsapp,
-      l$facebook,
-      l$instagram,
-      l$tiktok,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$UpdateUser$updateUser$user ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$name = name;
-    final lOther$name = other.name;
-    if (l$name != lOther$name) {
-      return false;
-    }
-    final l$email = email;
-    final lOther$email = other.email;
-    if (l$email != lOther$email) {
-      return false;
-    }
-    final l$picture = picture;
-    final lOther$picture = other.picture;
-    if (l$picture != lOther$picture) {
-      return false;
-    }
-    final l$role = role;
-    final lOther$role = other.role;
-    if (l$role != lOther$role) {
-      return false;
-    }
-    final l$badge = badge;
-    final lOther$badge = other.badge;
-    if (l$badge != lOther$badge) {
-      return false;
-    }
-    final l$phone = phone;
-    final lOther$phone = other.phone;
-    if (l$phone != lOther$phone) {
-      return false;
-    }
-    final l$whatsapp = whatsapp;
-    final lOther$whatsapp = other.whatsapp;
-    if (l$whatsapp != lOther$whatsapp) {
-      return false;
-    }
-    final l$facebook = facebook;
-    final lOther$facebook = other.facebook;
-    if (l$facebook != lOther$facebook) {
-      return false;
-    }
-    final l$instagram = instagram;
-    final lOther$instagram = other.instagram;
-    if (l$instagram != lOther$instagram) {
-      return false;
-    }
-    final l$tiktok = tiktok;
-    final lOther$tiktok = other.tiktok;
-    if (l$tiktok != lOther$tiktok) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$UpdateUser$updateUser$user
-    on Mutation$UpdateUser$updateUser$user {
-  CopyWith$Mutation$UpdateUser$updateUser$user<
-          Mutation$UpdateUser$updateUser$user>
-      get copyWith => CopyWith$Mutation$UpdateUser$updateUser$user(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$UpdateUser$updateUser$user<TRes> {
-  factory CopyWith$Mutation$UpdateUser$updateUser$user(
-    Mutation$UpdateUser$updateUser$user instance,
-    TRes Function(Mutation$UpdateUser$updateUser$user) then,
-  ) = _CopyWithImpl$Mutation$UpdateUser$updateUser$user;
-
-  factory CopyWith$Mutation$UpdateUser$updateUser$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateUser$updateUser$user;
-
-  TRes call({
-    String? id,
-    String? name,
-    String? email,
-    String? picture,
-    Enum$Role? role,
-    Enum$UserBadge? badge,
-    String? phone,
-    String? whatsapp,
-    String? facebook,
-    String? instagram,
-    String? tiktok,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$UpdateUser$updateUser$user<TRes>
-    implements CopyWith$Mutation$UpdateUser$updateUser$user<TRes> {
-  _CopyWithImpl$Mutation$UpdateUser$updateUser$user(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$UpdateUser$updateUser$user _instance;
-
-  final TRes Function(Mutation$UpdateUser$updateUser$user) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? name = _undefined,
-    Object? email = _undefined,
-    Object? picture = _undefined,
-    Object? role = _undefined,
-    Object? badge = _undefined,
-    Object? phone = _undefined,
-    Object? whatsapp = _undefined,
-    Object? facebook = _undefined,
-    Object? instagram = _undefined,
-    Object? tiktok = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$UpdateUser$updateUser$user(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        name: name == _undefined || name == null
-            ? _instance.name
-            : (name as String),
-        email: email == _undefined || email == null
-            ? _instance.email
-            : (email as String),
-        picture:
-            picture == _undefined ? _instance.picture : (picture as String?),
-        role: role == _undefined || role == null
-            ? _instance.role
-            : (role as Enum$Role),
-        badge: badge == _undefined || badge == null
-            ? _instance.badge
-            : (badge as Enum$UserBadge),
-        phone: phone == _undefined ? _instance.phone : (phone as String?),
-        whatsapp:
-            whatsapp == _undefined ? _instance.whatsapp : (whatsapp as String?),
-        facebook:
-            facebook == _undefined ? _instance.facebook : (facebook as String?),
-        instagram: instagram == _undefined
-            ? _instance.instagram
-            : (instagram as String?),
-        tiktok: tiktok == _undefined ? _instance.tiktok : (tiktok as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$UpdateUser$updateUser$user<TRes>
-    implements CopyWith$Mutation$UpdateUser$updateUser$user<TRes> {
-  _CopyWithStubImpl$Mutation$UpdateUser$updateUser$user(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? name,
-    String? email,
-    String? picture,
-    Enum$Role? role,
-    Enum$UserBadge? badge,
-    String? phone,
-    String? whatsapp,
-    String? facebook,
-    String? instagram,
-    String? tiktok,
     String? $__typename,
   }) =>
       _res;
