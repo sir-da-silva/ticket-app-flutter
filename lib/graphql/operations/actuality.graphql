@@ -27,3 +27,7 @@ query userActualities($userId: ID) {
     createdAt
   }
 }
+
+# query eventMentionActualities ($eventId: String!) {
+#   eventMentionActuality
+# }

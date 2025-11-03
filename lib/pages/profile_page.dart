@@ -8,6 +8,7 @@ import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
+import 'package:my_first_flutter_app/utils/get_user_badge_color.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -64,285 +65,258 @@ class ProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Profile Header Section
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withValues(alpha: 0.1),
-                      // gradient: LinearGradient(
-                      //   begin: Alignment.topLeft,
-                      //   end: Alignment.bottomRight,
-                      //   colors: [
-                      //     Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
-                      //     Theme.of(context).colorScheme.secondary.withValues(alpha: 0.05),
-                      //   ],
-                      // ),
-                    ),
-                    child: Query$GetMe$Widget(
-                      options: Options$Query$GetMe(
-                        onComplete: (_, data) {
-                          //
-                        },
-                        onError: (error) {
-                          GraphQLService.operationExceptionHandler(context, error);
-                        },
-                      ),
-                      builder: (result, {fetchMore, refetch}) {
-                        Query$GetMe? data;
-
-                        if (result.data != null) {
-                          data = Query$GetMe.fromJson(result.data!);
-                        }
-
-                        return Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            children: result.isLoading || data == null || data.me == null
-                                ? [
-                                    ClipOval(
-                                      child: Shimmer(
-                                        enabled: result.isLoading,
-                                        duration: Duration(seconds: 1),
-                                        child: Container(
-                                          color: Colors.grey.withValues(alpha: 0.25),
-                                          width: 106,
-                                          height: 106,
-                                        ),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 10),
-
-                                    Shimmer(
-                                      enabled: result.isLoading,
-                                      duration: Duration(seconds: 1),
-                                      child: Container(
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.withValues(alpha: 0.25),
-                                        ),
-                                        child: Text("", style: TextStyle(fontSize: 24)),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 5),
-
-                                    Shimmer(
-                                      enabled: result.isLoading,
-                                      duration: Duration(seconds: 1),
-                                      child: Container(
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.withValues(alpha: 0.25),
-                                        ),
-                                        child: Text("", style: TextStyle(fontSize: 16)),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 15),
-
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      spacing: 16,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ]
-                                : [
-                                    // Profile Avatar with enhanced styling
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.primary.withValues(alpha: 0.5),
-                                          width: 3,
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.primary.withValues(alpha: 0.3),
-                                            blurRadius: 10,
-                                            offset: const Offset(2, 2),
-                                          ),
-                                        ],
-                                      ),
-                                      child: data.me!.picture == null
-                                          ? CircleAvatar(
-                                              radius: 50,
-                                              backgroundColor: Colors.white,
-                                              child: Icon(
-                                                Icons.person,
-                                                size: 50,
-                                                color: Colors.grey,
-                                              ),
-                                            )
-                                          : CircleAvatar(
-                                              radius: 50,
-                                              backgroundColor: Colors.white,
-                                              child: Image.network(
-                                                data.me!.picture!,
-                                                fit: BoxFit.cover,
-                                                errorBuilder: (context, error, stackTrace) {
-                                                  return Icon(
-                                                    Icons.image,
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.onSurface.withValues(alpha: 0.5),
-                                                    size: 32,
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                    ),
-
-                                    const SizedBox(height: 10),
-
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      spacing: 8,
-                                      children: [
-                                        Text(
-                                          data.me!.name,
-                                          style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold,
-                                            color: Theme.of(context).colorScheme.onSurface,
-                                          ),
-                                        ),
-                                        Icon(Icons.verified_rounded, size: 20, color: Colors.green),
-                                      ],
-                                    ),
-
-                                    // User Name
-                                    const SizedBox(height: 2),
-
-                                    // Email
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 8,
-                                        vertical: 4,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Text(
-                                        data.me!.email,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onSurface.withValues(alpha: 0.7),
-                                        ),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 15),
-
-                                    // Social Links
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      spacing: 16,
-                                      children: [
-                                        if (data.me!.whatsapp != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.whatsapp,
-                                            'WhatsApp',
-                                            const Color(0xFF25D366),
-                                          ),
-                                        if (data.me!.facebook != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.facebook,
-                                            'Facebook',
-                                            const Color(0xFF1877F2),
-                                          ),
-                                        if (data.me!.instagram != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.instagram,
-                                            'Instagram',
-                                            const Color(0xFFE4405F),
-                                          ),
-                                        if (data.me!.tiktok != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.tiktok,
-                                            'TikTok',
-                                            const Color(0xFF000000),
-                                          ),
-                                      ],
-                                    ),
-                                  ],
-                          ),
-                        );
+                  Query$GetMe$Widget(
+                    options: Options$Query$GetMe(
+                      onComplete: (_, data) {
+                        //
+                      },
+                      onError: (error) {
+                        GraphQLService.operationExceptionHandler(context, error);
                       },
                     ),
+                    builder: (result, {fetchMore, refetch}) {
+                      Query$GetMe? data;
+
+                      if (result.data != null) {
+                        data = Query$GetMe.fromJson(result.data!);
+                      }
+
+                      return Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          children: result.isLoading || data == null || data.me == null
+                              ? [
+                                  ClipOval(
+                                    child: Shimmer(
+                                      enabled: result.isLoading,
+                                      duration: Duration(seconds: 1),
+                                      child: Container(
+                                        color: Colors.grey.withValues(alpha: 0.25),
+                                        width: 45 * 2 + 6,
+                                        height: 45 * 2 + 6,
+                                      ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 10),
+
+                                  Shimmer(
+                                    enabled: result.isLoading,
+                                    duration: Duration(seconds: 1),
+                                    child: Container(
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.withValues(alpha: 0.25),
+                                      ),
+                                      child: Text("", style: TextStyle(fontSize: 24)),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 5),
+
+                                  Shimmer(
+                                    enabled: result.isLoading,
+                                    duration: Duration(seconds: 1),
+                                    child: Container(
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.withValues(alpha: 0.25),
+                                      ),
+                                      child: Text("", style: TextStyle(fontSize: 16)),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 15),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    spacing: 16,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadiusGeometry.all(Radius.circular(12)),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.withValues(alpha: 0.25),
+                                            ),
+                                            child: IconButton(onPressed: null, icon: Icon(null)),
+                                          ),
+                                        ),
+                                      ),
+
+                                      ClipRRect(
+                                        borderRadius: BorderRadiusGeometry.all(Radius.circular(12)),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.withValues(alpha: 0.25),
+                                            ),
+                                            child: IconButton(onPressed: null, icon: Icon(null)),
+                                          ),
+                                        ),
+                                      ),
+                                      ClipRRect(
+                                        borderRadius: BorderRadiusGeometry.all(Radius.circular(12)),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.withValues(alpha: 0.25),
+                                            ),
+                                            child: IconButton(onPressed: null, icon: Icon(null)),
+                                          ),
+                                        ),
+                                      ),
+                                      ClipRRect(
+                                        borderRadius: BorderRadiusGeometry.all(Radius.circular(12)),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.withValues(alpha: 0.25),
+                                            ),
+                                            child: IconButton(onPressed: null, icon: Icon(null)),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]
+                              : [
+                                  // Profile Avatar with enhanced styling
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.primary.withValues(alpha: 0.5),
+                                        width: 3,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.primary.withValues(alpha: 0.3),
+                                          blurRadius: 10,
+                                          offset: const Offset(2, 2),
+                                        ),
+                                      ],
+                                    ),
+                                    child: CircleAvatar(
+                                      radius: 45,
+                                      backgroundColor: Colors.white,
+                                      child: data.me!.picture == null
+                                          ? Icon(Icons.person, size: 50, color: Colors.grey)
+                                          : Image.network(
+                                              data.me!.picture!,
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (context, error, stackTrace) {
+                                                return Icon(
+                                                  Icons.image,
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.onSurface.withValues(alpha: 0.5),
+                                                  size: 32,
+                                                );
+                                              },
+                                            ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 10),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    spacing: 8,
+                                    children: [
+                                      Text(
+                                        data.me!.name,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context).colorScheme.onSurface,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.verified_rounded,
+                                        size: 20,
+                                        color: getUserBadgeColor(data.me!.badge),
+                                      ),
+                                    ],
+                                  ),
+
+                                  // User Name
+                                  const SizedBox(height: 2),
+
+                                  // Email
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Text(
+                                      data.me!.email,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSurface.withValues(alpha: 0.7),
+                                      ),
+                                    ),
+                                  ),
+
+                                  const SizedBox(height: 15),
+
+                                  // Social Links
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    spacing: 16,
+                                    children: [
+                                      if (data.me!.whatsapp != null)
+                                        _buildSocialButton(
+                                          context,
+                                          FontAwesomeIcons.whatsapp,
+                                          'WhatsApp',
+                                          const Color(0xFF25D366),
+                                        ),
+                                      if (data.me!.facebook != null)
+                                        _buildSocialButton(
+                                          context,
+                                          FontAwesomeIcons.facebook,
+                                          'Facebook',
+                                          const Color(0xFF1877F2),
+                                        ),
+                                      if (data.me!.instagram != null)
+                                        _buildSocialButton(
+                                          context,
+                                          FontAwesomeIcons.instagram,
+                                          'Instagram',
+                                          const Color(0xFFE4405F),
+                                        ),
+                                      if (data.me!.tiktok != null)
+                                        _buildSocialButton(
+                                          context,
+                                          FontAwesomeIcons.tiktok,
+                                          'TikTok',
+                                          const Color(0xFF000000),
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                        ),
+                      );
+                    },
                   ),
+
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 0), child: Divider()),
 
                   // Activités Suivies Section
                   Query$GetFollowedEvents$Widget(
@@ -435,25 +409,8 @@ class ProfilePage extends StatelessWidget {
                                           padding: const EdgeInsets.only(right: 12),
                                           child: SizedBox(
                                             width: 300,
-                                            child: Card(
-                                              child: InkWell(
-                                                onTap: () {
-                                                  Navigator.pushNamed(
-                                                    context,
-                                                    RouteNames.eventDetail,
-                                                    arguments: data!.followedEvents[index].id,
-                                                  );
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsetsGeometry.all(16),
-                                                  child: SizedBox(width: 300, height: 200),
-                                                ),
-                                              ),
-                                            ),
-                                            // Event(
-                                            // title: data!.followedEvents[index].title,
-                                            // category: data.followedEvents[index].category,
-                                            // ),
+                                            // TODO: Replace child by event card
+                                            child: null,
                                           ),
                                         );
                                       },

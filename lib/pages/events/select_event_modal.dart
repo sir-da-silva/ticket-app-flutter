@@ -142,38 +142,52 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                               borderRadius: BorderRadius.circular(12),
                               child: Stack(
                                 children: [
-                                  Positioned.fill(
-                                    child: Image.network(
-                                      filteredData![index].picture,
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return Icon(
-                                          Icons.image,
-                                          color: Colors.grey.withValues(alpha: 0.5),
-                                        );
-                                      },
+                                  Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 0,
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: Image.network(
+                                        filteredData![index].picture,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, error, stackTrace) {
+                                          return Icon(
+                                            Icons.image,
+                                            color: Colors.grey.withValues(alpha: 0.5),
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
-                                  Positioned.fill(
+
+                                  Positioned(
+                                    top: 0,
+                                    bottom: 0,
+                                    left: 0,
                                     child: Container(
+                                      width: 100,
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
                                           colors: [
-                                            Colors.black.withValues(alpha: 0.5),
-                                            Colors.black.withValues(alpha: 0.75),
+                                            Theme.of(
+                                              context,
+                                            ).colorScheme.onInverseSurface.withValues(alpha: 0.25),
+                                            Theme.of(
+                                              context,
+                                            ).colorScheme.onInverseSurface.withValues(alpha: 0.5),
+                                            Theme.of(context).colorScheme.onInverseSurface,
                                           ],
-                                          stops: const [0.4, 1.0],
+                                          stops: const [0.0, 0.4, 0.8],
                                         ),
                                       ),
                                     ),
                                   ),
+
                                   Padding(
-                                    padding: EdgeInsetsGeometry.symmetric(
-                                      vertical: 10,
-                                      horizontal: 10,
-                                    ),
+                                    padding: EdgeInsetsGeometry.fromLTRB(70, 10, 10, 10),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -183,7 +197,7 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white,
+                                            color: Theme.of(context).colorScheme.primary,
                                           ),
                                         ),
                                         Row(
@@ -191,12 +205,12 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                                           children: [
                                             Icon(
                                               Icons.location_on_rounded,
-                                              color: Colors.white,
+                                              color: Theme.of(context).colorScheme.primary,
                                               size: 14,
                                             ),
                                             Text(
                                               filteredData[index].location,
-                                              style: TextStyle(color: Colors.white),
+                                              style: TextStyle(fontWeight: FontWeight.bold),
                                             ),
                                           ],
                                         ),
@@ -206,12 +220,12 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                                           children: [
                                             Icon(
                                               Icons.calendar_month_rounded,
-                                              color: Colors.white,
+                                              color: Theme.of(context).colorScheme.primary,
                                               size: 14,
                                             ),
                                             Text(
                                               filteredData[index].date.toString(),
-                                              style: TextStyle(color: Colors.white),
+                                              style: TextStyle(fontWeight: FontWeight.bold),
                                             ),
                                           ],
                                         ),

@@ -66,7 +66,7 @@ class ManagementPage extends StatelessWidget {
                       ],
                     ),
                     child: Column(
-                      spacing: 20,
+                      spacing: 16,
                       children: [
                         Row(
                           children: [
@@ -148,7 +148,7 @@ class ManagementPage extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          spacing: 10,
+                          spacing: 16,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
@@ -354,7 +354,25 @@ class ManagementPage extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         return Padding(
                                           padding: const EdgeInsets.only(right: 12),
-                                          // child: SizedBox(width: 300, child: _getEvents(index)),
+                                          child: SizedBox(
+                                            width: 300,
+                                            // TODO: Replace child by event card
+                                            child: Card(
+                                              child: InkWell(
+                                                onTap: () {
+                                                  Navigator.pushNamed(
+                                                    context,
+                                                    RouteNames.eventDetail,
+                                                    arguments: data!.myEvents[index].id,
+                                                  );
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsetsGeometry.all(16),
+                                                  child: SizedBox(width: 300, height: 200),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         );
                                       },
                                     ),
