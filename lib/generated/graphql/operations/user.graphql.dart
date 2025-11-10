@@ -3394,12 +3394,12 @@ class Mutation$InitSignUp {
     final l$initSignUp = json['initSignUp'];
     final l$$__typename = json['__typename'];
     return Mutation$InitSignUp(
-      initSignUp: (l$initSignUp as bool),
+      initSignUp: (l$initSignUp as String),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final bool initSignUp;
+  final String initSignUp;
 
   final String $__typename;
 
@@ -3462,7 +3462,7 @@ abstract class CopyWith$Mutation$InitSignUp<TRes> {
       _CopyWithStubImpl$Mutation$InitSignUp;
 
   TRes call({
-    bool? initSignUp,
+    String? initSignUp,
     String? $__typename,
   });
 }
@@ -3487,7 +3487,7 @@ class _CopyWithImpl$Mutation$InitSignUp<TRes>
       _then(Mutation$InitSignUp(
         initSignUp: initSignUp == _undefined || initSignUp == null
             ? _instance.initSignUp
-            : (initSignUp as bool),
+            : (initSignUp as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -3501,7 +3501,7 @@ class _CopyWithStubImpl$Mutation$InitSignUp<TRes>
   TRes _res;
 
   call({
-    bool? initSignUp,
+    String? initSignUp,
     String? $__typename,
   }) =>
       _res;

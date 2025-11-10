@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/components/actuality_card.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/actuality.graphql.dart';
-import 'package:my_first_flutter_app/navigation/app_router.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class HomePage extends StatelessWidget {

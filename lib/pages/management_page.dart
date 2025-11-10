@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/event.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
@@ -241,7 +242,11 @@ class ManagementPage extends StatelessWidget {
                           "Generer un Ticket",
                           Colors.green,
                           () => selectEvent(context, (eventId) {
-                            Navigator.pushNamed(context, RouteNames.createTicket);
+                            Navigator.pushNamed(
+                              context,
+                              RouteNames.createTicket,
+                              arguments: eventId,
+                            );
                           }),
                         ),
                         _buildAction(
@@ -307,7 +312,7 @@ class ManagementPage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Erreur lors de la recuperation des donnees",
+                                            "Erreur lors de la recuperation \n des donnees",
                                             style: TextStyle(fontSize: 16, color: Colors.grey),
                                             textAlign: TextAlign.center,
                                           ),
@@ -338,7 +343,7 @@ class ManagementPage extends StatelessWidget {
                                     padding: EdgeInsetsGeometry.fromLTRB(16, 50, 16, 50),
                                     child: Center(
                                       child: Text(
-                                        "Vous n'organisez aucun évenement pour les dates a venir. Cliquer sur le boutton + en haut pour creer un évenement.",
+                                        "Vous n'organisez aucun évenement \n pour les dates a venir. \n\n Cliquer sur le boutton + en haut \n pour creer un évenement.",
                                         style: TextStyle(fontSize: 16, color: Colors.grey),
                                         textAlign: TextAlign.center,
                                       ),
@@ -346,7 +351,7 @@ class ManagementPage extends StatelessWidget {
                                   )
                                 else
                                   SizedBox(
-                                    height: 200,
+                                    height: 250,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -356,22 +361,7 @@ class ManagementPage extends StatelessWidget {
                                           padding: const EdgeInsets.only(right: 12),
                                           child: SizedBox(
                                             width: 300,
-                                            // TODO: Replace child by event card
-                                            child: Card(
-                                              child: InkWell(
-                                                onTap: () {
-                                                  Navigator.pushNamed(
-                                                    context,
-                                                    RouteNames.eventDetail,
-                                                    arguments: data!.myEvents[index].id,
-                                                  );
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsetsGeometry.all(16),
-                                                  child: SizedBox(width: 300, height: 200),
-                                                ),
-                                              ),
-                                            ),
+                                            child: Event.fromMyEvent(data!.myEvents[index]),
                                           ),
                                         );
                                       },

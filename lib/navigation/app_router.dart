@@ -7,6 +7,7 @@ import 'package:my_first_flutter_app/pages/main_navigation_page.dart';
 import 'package:my_first_flutter_app/pages/events/event_detail_page.dart';
 import 'package:my_first_flutter_app/pages/events/create_event_page.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/pages/tickets/create_ticket_page.dart';
 import 'package:my_first_flutter_app/pages/tickets/scan_ticket_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/notification_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/search_page.dart';
@@ -17,39 +18,84 @@ class AppRouter {
     switch (settings.name) {
       // Pages de demmarage
       case RouteNames.main:
-        return MaterialPageRoute(builder: (_) => const MainNavigationPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const MainNavigationPage(),
+          settings: settings,
+        );
 
       // Authentification pages
       case RouteNames.login:
-        return MaterialPageRoute(builder: (_) => const LoginPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const LoginPage(),
+          settings: settings,
+        );
       case RouteNames.forgotPassword:
-        return MaterialPageRoute(builder: (_) => const ForgotPasswordPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const ForgotPasswordPage(),
+          settings: settings,
+        );
       case RouteNames.register:
-        return MaterialPageRoute(builder: (_) => const RegisterPage(), settings: settings);
-      case RouteNames.optPage:
-        return MaterialPageRoute(builder: (_) => const OtpPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const RegisterPage(),
+          settings: settings,
+        );
+      case RouteNames.otpPage:
+        return MaterialPageRoute(
+          //
+          builder: (_) => const OtpPage(),
+          settings: settings,
+        );
 
       // Utility pages
       case RouteNames.notifications:
-        return MaterialPageRoute(builder: (_) => const NotificationPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const NotificationPage(),
+          settings: settings,
+        );
       case RouteNames.settings:
-        return MaterialPageRoute(builder: (_) => const SettingsPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const SettingsPage(),
+          settings: settings,
+        );
       case RouteNames.search:
-        return MaterialPageRoute(builder: (_) => const SearchPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const SearchPage(),
+          settings: settings,
+        );
 
       // Event pages
       case RouteNames.eventDetail:
-        final eventId = settings.arguments.toString();
         return MaterialPageRoute(
-          builder: (_) => EventDetailPage(eventId: eventId),
+          //
+          builder: (_) => EventDetailPage(eventId: settings.arguments.toString()),
           settings: settings,
         );
       case RouteNames.createEvent:
-        return MaterialPageRoute(builder: (_) => const CreateEventPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const CreateEventPage(),
+          settings: settings,
+        );
 
       // Ticket pages
       case RouteNames.scanTicket:
-        return MaterialPageRoute(builder: (_) => const ScanTicketPage(), settings: settings);
+        return MaterialPageRoute(
+          //
+          builder: (_) => const ScanTicketPage(),
+          settings: settings,
+        );
+      case RouteNames.createTicket:
+        return MaterialPageRoute(
+          builder: (_) => CreateTicketPage(eventId: settings.arguments.toString()),
+          settings: settings,
+        );
 
       // 404 Page
       default:

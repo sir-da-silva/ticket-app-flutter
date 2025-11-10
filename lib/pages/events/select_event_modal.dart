@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
+import 'package:my_first_flutter_app/utils/date_parser.dart';
 
 Future<void> selectEvent(BuildContext context, void Function(String eventId) callback) async {
   await showModalBottomSheet<String>(
@@ -18,7 +19,7 @@ Future<void> selectEvent(BuildContext context, void Function(String eventId) cal
 class _SelectEventModal extends StatefulWidget {
   final void Function(String eventId) callback;
 
-  const _SelectEventModal({required this.callback, super.key});
+  const _SelectEventModal({required this.callback});
 
   @override
   State<_SelectEventModal> createState() => _SelectEventModalState();
@@ -74,9 +75,10 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                     prefixIcon: Icon(Icons.search),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        Icons.backspace_outlined,
+                        Icons.close_rounded,
                         size: 20,
                         color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.bold,
                       ),
                       onPressed: () {
                         searchController.clear();
@@ -132,6 +134,8 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                       scrollDirection: Axis.vertical,
                       itemCount: filteredData.length,
                       itemBuilder: (context, index) {
+                        CustomDateParser date = CustomDateParser(date: filteredData![index].date);
+
                         return GestureDetector(
                           onTap: () {
                             widget.callback(filteredData![index].id);
@@ -149,7 +153,7 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                                     child: SizedBox(
                                       width: 100,
                                       child: Image.network(
-                                        filteredData![index].picture,
+                                        filteredData[index].picture,
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, error, stackTrace) {
                                           return Icon(
@@ -190,27 +194,42 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                                     padding: EdgeInsetsGeometry.fromLTRB(70, 10, 10, 10),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                      spacing: 3,
                                       children: [
                                         Text(
                                           filteredData[index].title,
-                                          maxLines: 2,
                                           style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
-                                            color: Theme.of(context).colorScheme.primary,
+                                            // color: Theme.of(context).colorScheme.primary,
+                                            overflow: TextOverflow.ellipsis,
                                           ),
+                                          maxLines: 2,
                                         ),
                                         Row(
                                           spacing: 5,
                                           children: [
-                                            Icon(
-                                              Icons.location_on_rounded,
-                                              color: Theme.of(context).colorScheme.primary,
-                                              size: 14,
+                                            DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.primary.withValues(alpha: 0.1),
+                                                borderRadius: BorderRadius.circular(4),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(2),
+                                                child: Icon(
+                                                  Icons.location_on_rounded,
+                                                  size: 14,
+                                                  color: Theme.of(context).colorScheme.primary,
+                                                ),
+                                              ),
                                             ),
-                                            Text(
-                                              filteredData[index].location,
-                                              style: TextStyle(fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                filteredData[index].location,
+                                                style: TextStyle(overflow: TextOverflow.ellipsis),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -218,14 +237,27 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                                         Row(
                                           spacing: 5,
                                           children: [
-                                            Icon(
-                                              Icons.calendar_month_rounded,
-                                              color: Theme.of(context).colorScheme.primary,
-                                              size: 14,
+                                            DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.primary.withValues(alpha: 0.1),
+                                                borderRadius: BorderRadius.circular(4),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(2),
+                                                child: Icon(
+                                                  Icons.calendar_month_rounded,
+                                                  size: 14,
+                                                  color: Theme.of(context).colorScheme.primary,
+                                                ),
+                                              ),
                                             ),
-                                            Text(
-                                              filteredData[index].date.toString(),
-                                              style: TextStyle(fontWeight: FontWeight.bold),
+                                            Expanded(
+                                              child: Text(
+                                                "${date.monthDayNumber} ${date.monthNameShort}  •  ${date.hour12}:${date.minute} ${date.meridiem}",
+                                                style: TextStyle(overflow: TextOverflow.ellipsis),
+                                              ),
                                             ),
                                           ],
                                         ),

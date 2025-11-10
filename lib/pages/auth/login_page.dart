@@ -101,6 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           const SizedBox(height: 24),
                           TextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             controller: emailController,
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.email),
@@ -121,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           const SizedBox(height: 18),
                           TextFormField(
+                            keyboardType: TextInputType.visiblePassword,
                             controller: passwordController,
                             obscureText: obscurePassword,
                             decoration: InputDecoration(
@@ -150,14 +152,9 @@ class _LoginPageState extends State<LoginPage> {
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 14),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                              ),
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
+                                if (_formKey.currentState!.validate() &&
+                                    (result?.isNotLoading ?? false)) {
                                   runMutation(
                                     Variables$Mutation$Login(
                                       input: Input$LoginInput(
@@ -168,13 +165,23 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                                 }
                               },
-                              child: result?.isLoading ?? false
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                              ),
+                              child: (result?.isLoading ?? false)
                                   ? const SizedBox(
-                                      height: 14,
-                                      width: 14,
-                                      child: CircularProgressIndicator(),
+                                      height: 18,
+                                      width: 18,
+                                      child: CircularProgressIndicator(color: Colors.white),
                                     )
-                                  : const Text('Se connecter'),
+                                  : const Text(
+                                      'Se connecter',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                             ),
                           ),
                           const SizedBox(height: 24),

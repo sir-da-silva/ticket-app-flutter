@@ -354,44 +354,56 @@ class _CopyWithStubImpl$Input$CompleteSignUpInput<TRes>
 
 class Input$CreateEventInput {
   factory Input$CreateEventInput({
+    required String picture,
     required String title,
-    String? description,
+    required String description,
     required String location,
     required String category,
     required DateTime date,
+    required double price,
+    required String priceCurrency,
   }) =>
       Input$CreateEventInput._({
+        r'picture': picture,
         r'title': title,
-        if (description != null) r'description': description,
+        r'description': description,
         r'location': location,
         r'category': category,
         r'date': date,
+        r'price': price,
+        r'priceCurrency': priceCurrency,
       });
 
   Input$CreateEventInput._(this._$data);
 
   factory Input$CreateEventInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    final l$picture = data['picture'];
+    result$data['picture'] = (l$picture as String);
     final l$title = data['title'];
     result$data['title'] = (l$title as String);
-    if (data.containsKey('description')) {
-      final l$description = data['description'];
-      result$data['description'] = (l$description as String?);
-    }
+    final l$description = data['description'];
+    result$data['description'] = (l$description as String);
     final l$location = data['location'];
     result$data['location'] = (l$location as String);
     final l$category = data['category'];
     result$data['category'] = (l$category as String);
     final l$date = data['date'];
     result$data['date'] = DateTime.parse((l$date as String));
+    final l$price = data['price'];
+    result$data['price'] = (l$price as num).toDouble();
+    final l$priceCurrency = data['priceCurrency'];
+    result$data['priceCurrency'] = (l$priceCurrency as String);
     return Input$CreateEventInput._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
+  String get picture => (_$data['picture'] as String);
+
   String get title => (_$data['title'] as String);
 
-  String? get description => (_$data['description'] as String?);
+  String get description => (_$data['description'] as String);
 
   String get location => (_$data['location'] as String);
 
@@ -399,20 +411,28 @@ class Input$CreateEventInput {
 
   DateTime get date => (_$data['date'] as DateTime);
 
+  double get price => (_$data['price'] as double);
+
+  String get priceCurrency => (_$data['priceCurrency'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    final l$picture = picture;
+    result$data['picture'] = l$picture;
     final l$title = title;
     result$data['title'] = l$title;
-    if (_$data.containsKey('description')) {
-      final l$description = description;
-      result$data['description'] = l$description;
-    }
+    final l$description = description;
+    result$data['description'] = l$description;
     final l$location = location;
     result$data['location'] = l$location;
     final l$category = category;
     result$data['category'] = l$category;
     final l$date = date;
     result$data['date'] = l$date.toIso8601String();
+    final l$price = price;
+    result$data['price'] = l$price;
+    final l$priceCurrency = priceCurrency;
+    result$data['priceCurrency'] = l$priceCurrency;
     return result$data;
   }
 
@@ -430,6 +450,11 @@ class Input$CreateEventInput {
     if (other is! Input$CreateEventInput || runtimeType != other.runtimeType) {
       return false;
     }
+    final l$picture = picture;
+    final lOther$picture = other.picture;
+    if (l$picture != lOther$picture) {
+      return false;
+    }
     final l$title = title;
     final lOther$title = other.title;
     if (l$title != lOther$title) {
@@ -437,10 +462,6 @@ class Input$CreateEventInput {
     }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
-      return false;
-    }
     if (l$description != lOther$description) {
       return false;
     }
@@ -459,22 +480,38 @@ class Input$CreateEventInput {
     if (l$date != lOther$date) {
       return false;
     }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$priceCurrency = priceCurrency;
+    final lOther$priceCurrency = other.priceCurrency;
+    if (l$priceCurrency != lOther$priceCurrency) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
+    final l$picture = picture;
     final l$title = title;
     final l$description = description;
     final l$location = location;
     final l$category = category;
     final l$date = date;
+    final l$price = price;
+    final l$priceCurrency = priceCurrency;
     return Object.hashAll([
+      l$picture,
       l$title,
-      _$data.containsKey('description') ? l$description : const {},
+      l$description,
       l$location,
       l$category,
       l$date,
+      l$price,
+      l$priceCurrency,
     ]);
   }
 }
@@ -489,11 +526,14 @@ abstract class CopyWith$Input$CreateEventInput<TRes> {
       _CopyWithStubImpl$Input$CreateEventInput;
 
   TRes call({
+    String? picture,
     String? title,
     String? description,
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
   });
 }
 
@@ -511,21 +551,30 @@ class _CopyWithImpl$Input$CreateEventInput<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? picture = _undefined,
     Object? title = _undefined,
     Object? description = _undefined,
     Object? location = _undefined,
     Object? category = _undefined,
     Object? date = _undefined,
+    Object? price = _undefined,
+    Object? priceCurrency = _undefined,
   }) =>
       _then(Input$CreateEventInput._({
         ..._instance._$data,
+        if (picture != _undefined && picture != null)
+          'picture': (picture as String),
         if (title != _undefined && title != null) 'title': (title as String),
-        if (description != _undefined) 'description': (description as String?),
+        if (description != _undefined && description != null)
+          'description': (description as String),
         if (location != _undefined && location != null)
           'location': (location as String),
         if (category != _undefined && category != null)
           'category': (category as String),
         if (date != _undefined && date != null) 'date': (date as DateTime),
+        if (price != _undefined && price != null) 'price': (price as double),
+        if (priceCurrency != _undefined && priceCurrency != null)
+          'priceCurrency': (priceCurrency as String),
       }));
 }
 
@@ -536,11 +585,14 @@ class _CopyWithStubImpl$Input$CreateEventInput<TRes>
   TRes _res;
 
   call({
+    String? picture,
     String? title,
     String? description,
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
   }) =>
       _res;
 }
@@ -1002,24 +1054,34 @@ class _CopyWithStubImpl$Input$LoginInput<TRes>
 
 class Input$UpdateEventInput {
   factory Input$UpdateEventInput({
+    String? picture,
     String? title,
     String? description,
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
   }) =>
       Input$UpdateEventInput._({
+        if (picture != null) r'picture': picture,
         if (title != null) r'title': title,
         if (description != null) r'description': description,
         if (location != null) r'location': location,
         if (category != null) r'category': category,
         if (date != null) r'date': date,
+        if (price != null) r'price': price,
+        if (priceCurrency != null) r'priceCurrency': priceCurrency,
       });
 
   Input$UpdateEventInput._(this._$data);
 
   factory Input$UpdateEventInput.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
+    if (data.containsKey('picture')) {
+      final l$picture = data['picture'];
+      result$data['picture'] = (l$picture as String?);
+    }
     if (data.containsKey('title')) {
       final l$title = data['title'];
       result$data['title'] = (l$title as String?);
@@ -1041,10 +1103,20 @@ class Input$UpdateEventInput {
       result$data['date'] =
           l$date == null ? null : DateTime.parse((l$date as String));
     }
+    if (data.containsKey('price')) {
+      final l$price = data['price'];
+      result$data['price'] = (l$price as num?)?.toDouble();
+    }
+    if (data.containsKey('priceCurrency')) {
+      final l$priceCurrency = data['priceCurrency'];
+      result$data['priceCurrency'] = (l$priceCurrency as String?);
+    }
     return Input$UpdateEventInput._(result$data);
   }
 
   Map<String, dynamic> _$data;
+
+  String? get picture => (_$data['picture'] as String?);
 
   String? get title => (_$data['title'] as String?);
 
@@ -1056,8 +1128,16 @@ class Input$UpdateEventInput {
 
   DateTime? get date => (_$data['date'] as DateTime?);
 
+  double? get price => (_$data['price'] as double?);
+
+  String? get priceCurrency => (_$data['priceCurrency'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
+    if (_$data.containsKey('picture')) {
+      final l$picture = picture;
+      result$data['picture'] = l$picture;
+    }
     if (_$data.containsKey('title')) {
       final l$title = title;
       result$data['title'] = l$title;
@@ -1078,6 +1158,14 @@ class Input$UpdateEventInput {
       final l$date = date;
       result$data['date'] = l$date?.toIso8601String();
     }
+    if (_$data.containsKey('price')) {
+      final l$price = price;
+      result$data['price'] = l$price;
+    }
+    if (_$data.containsKey('priceCurrency')) {
+      final l$priceCurrency = priceCurrency;
+      result$data['priceCurrency'] = l$priceCurrency;
+    }
     return result$data;
   }
 
@@ -1093,6 +1181,14 @@ class Input$UpdateEventInput {
       return true;
     }
     if (other is! Input$UpdateEventInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$picture = picture;
+    final lOther$picture = other.picture;
+    if (_$data.containsKey('picture') != other._$data.containsKey('picture')) {
+      return false;
+    }
+    if (l$picture != lOther$picture) {
       return false;
     }
     final l$title = title;
@@ -1138,22 +1234,45 @@ class Input$UpdateEventInput {
     if (l$date != lOther$date) {
       return false;
     }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (_$data.containsKey('price') != other._$data.containsKey('price')) {
+      return false;
+    }
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$priceCurrency = priceCurrency;
+    final lOther$priceCurrency = other.priceCurrency;
+    if (_$data.containsKey('priceCurrency') !=
+        other._$data.containsKey('priceCurrency')) {
+      return false;
+    }
+    if (l$priceCurrency != lOther$priceCurrency) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
+    final l$picture = picture;
     final l$title = title;
     final l$description = description;
     final l$location = location;
     final l$category = category;
     final l$date = date;
+    final l$price = price;
+    final l$priceCurrency = priceCurrency;
     return Object.hashAll([
+      _$data.containsKey('picture') ? l$picture : const {},
       _$data.containsKey('title') ? l$title : const {},
       _$data.containsKey('description') ? l$description : const {},
       _$data.containsKey('location') ? l$location : const {},
       _$data.containsKey('category') ? l$category : const {},
       _$data.containsKey('date') ? l$date : const {},
+      _$data.containsKey('price') ? l$price : const {},
+      _$data.containsKey('priceCurrency') ? l$priceCurrency : const {},
     ]);
   }
 }
@@ -1168,11 +1287,14 @@ abstract class CopyWith$Input$UpdateEventInput<TRes> {
       _CopyWithStubImpl$Input$UpdateEventInput;
 
   TRes call({
+    String? picture,
     String? title,
     String? description,
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
   });
 }
 
@@ -1190,19 +1312,26 @@ class _CopyWithImpl$Input$UpdateEventInput<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
+    Object? picture = _undefined,
     Object? title = _undefined,
     Object? description = _undefined,
     Object? location = _undefined,
     Object? category = _undefined,
     Object? date = _undefined,
+    Object? price = _undefined,
+    Object? priceCurrency = _undefined,
   }) =>
       _then(Input$UpdateEventInput._({
         ..._instance._$data,
+        if (picture != _undefined) 'picture': (picture as String?),
         if (title != _undefined) 'title': (title as String?),
         if (description != _undefined) 'description': (description as String?),
         if (location != _undefined) 'location': (location as String?),
         if (category != _undefined) 'category': (category as String?),
         if (date != _undefined) 'date': (date as DateTime?),
+        if (price != _undefined) 'price': (price as double?),
+        if (priceCurrency != _undefined)
+          'priceCurrency': (priceCurrency as String?),
       }));
 }
 
@@ -1213,11 +1342,14 @@ class _CopyWithStubImpl$Input$UpdateEventInput<TRes>
   TRes _res;
 
   call({
+    String? picture,
     String? title,
     String? description,
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
   }) =>
       _res;
 }

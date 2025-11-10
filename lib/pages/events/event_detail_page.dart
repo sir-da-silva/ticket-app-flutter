@@ -4,8 +4,6 @@ import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/actuality.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
-import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
-import 'package:my_first_flutter_app/navigation/app_router.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:my_first_flutter_app/utils/date_parser.dart';
@@ -43,6 +41,31 @@ class EventDetailPage extends StatelessWidget {
           }
         }
 
+        void followEvent() {
+          if (!auth.isAuthenticated) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                  "Vous devez être connecté pour suivre des évenements. Appuyez longuement sur le même icone pour vous connecter.",
+                ),
+                showCloseIcon: true,
+              ),
+            );
+          } else {
+            // TODO: Follow event
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Suivre')));
+          }
+        }
+
+        void loginPrompt() {
+          Navigator.pushNamed(context, RouteNames.login);
+        }
+
+        void shareEvent() {
+          // TODO: Share event
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Partager')));
+        }
+
         Widget infoRow(IconData icon, String info) {
           return Row(
             spacing: 8,
@@ -64,44 +87,31 @@ class EventDetailPage extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(title: const Text('Détails de l\'événement')),
-          body: SingleChildScrollView(
-            child: Column(
-              children: result.isLoading
-                  ? [
-                      Expanded(
-                        child: Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [CircularProgressIndicator()],
-                          ),
-                        ),
+          body: result.isLoading
+              ? Center(child: CircularProgressIndicator())
+              : data?.event == null
+              ? Center(
+                  child: Column(
+                    spacing: 10,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Erreur lors de la recuperation \n des données.",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        textAlign: TextAlign.center,
                       ),
-                    ]
-                  : data?.event == null
-                  ? [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsGeometry.fromLTRB(16, 50, 16, 50),
-                          child: Center(
-                            child: Column(
-                              spacing: 10,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("Erreur lors de la recuperation des données."),
-                                ElevatedButton.icon(
-                                  onPressed: refetch,
-                                  label: Text("Reessayer"),
-                                  icon: Icon(Icons.refresh),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      ElevatedButton.icon(
+                        onPressed: refetch,
+                        label: Text("Reessayer"),
+                        icon: Icon(Icons.refresh),
                       ),
-                    ]
-                  : [
+                    ],
+                  ),
+                )
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
                       Stack(
                         children: [
                           Container(
@@ -145,42 +155,29 @@ class EventDetailPage extends StatelessWidget {
                             right: 12,
                             child: Container(
                               decoration: BoxDecoration(
+                                // color: Colors.black.withValues(alpha: 0.6),
                                 color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
                                 borderRadius: BorderRadius.circular(50),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withValues(alpha: 0.25),
+                                    blurRadius: 4,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
                               ),
                               child: Row(
                                 children: [
                                   IconButton(
+                                    // color: Colors.white,
                                     icon: const Icon(Icons.notifications_on_outlined),
-                                    onPressed: () {
-                                      if (!auth.isAuthenticated) {
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          const SnackBar(
-                                            content: Text(
-                                              "Vous devez être connecté pour suivre des évenements. Appuyez longuement sur le même icone pour vous connecter.",
-                                            ),
-                                            showCloseIcon: true,
-                                          ),
-                                        );
-                                      } else {
-                                        // TODO: Follow event
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).showSnackBar(const SnackBar(content: Text('Suivre')));
-                                      }
-                                    },
-                                    onLongPress: !auth.isAuthenticated
-                                        ? () => Navigator.pushNamed(context, RouteNames.login)
-                                        : null,
+                                    onPressed: followEvent,
+                                    onLongPress: !auth.isAuthenticated ? loginPrompt : null,
                                   ),
                                   IconButton(
+                                    // color: Colors.white,
                                     icon: const Icon(Icons.share),
-                                    onPressed: () {
-                                      // TODO: Implémenter le partage
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(const SnackBar(content: Text('Partager')));
-                                    },
+                                    onPressed: shareEvent,
                                   ),
                                 ],
                               ),
@@ -212,22 +209,19 @@ class EventDetailPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (data.event!.description != null)
-                              Text(
-                                data.event!.description!,
-                                style: TextStyle(
-                                  //
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                            Text(
+                              data.event!.description,
+                              style: TextStyle(
+                                //
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
                               ),
+                            ),
 
                             SizedBox(height: 20),
-
                             infoRow(Icons.category_outlined, data.event!.category),
 
                             SizedBox(height: 20),
-
                             Row(
                               spacing: 8,
                               children: [
@@ -244,19 +238,18 @@ class EventDetailPage extends StatelessWidget {
                             ),
 
                             SizedBox(height: 20),
-
                             infoRow(Icons.location_on_outlined, data.event!.location),
 
                             SizedBox(height: 20),
-
-                            infoRow(Icons.confirmation_number_outlined, "250 HTG"),
+                            infoRow(
+                              Icons.confirmation_number_outlined,
+                              "${data.event!.price.toDouble()} ${data.event!.priceCurrency}",
+                            ),
 
                             SizedBox(height: 20),
-
                             Text("Crée par :", style: TextStyle(fontWeight: FontWeight.bold)),
 
                             SizedBox(height: 8),
-
                             if (data.event?.createdBy != null)
                               Query$GetUser$Widget(
                                 options: Options$Query$GetUser(
@@ -282,7 +275,7 @@ class EventDetailPage extends StatelessWidget {
                                                 decoration: BoxDecoration(
                                                   color: Theme.of(
                                                     context,
-                                                  ).colorScheme.surfaceContainer,
+                                                  ).colorScheme.primary.withValues(alpha: 0.1),
                                                 ),
                                                 child: Padding(
                                                   padding: EdgeInsets.all(8),
@@ -295,9 +288,10 @@ class EventDetailPage extends StatelessWidget {
                                                         child: Icon(
                                                           Icons.person,
                                                           size: 20,
-                                                          color: Theme.of(
-                                                            context,
-                                                          ).colorScheme.onInverseSurface,
+                                                          color: Theme.of(context)
+                                                              .colorScheme
+                                                              .primary
+                                                              .withValues(alpha: 0.1),
                                                         ),
                                                       ),
                                                     ],
@@ -311,7 +305,9 @@ class EventDetailPage extends StatelessWidget {
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(12),
-                                              color: Theme.of(context).colorScheme.surfaceContainer,
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.primary.withValues(alpha: 0.1),
                                             ),
                                             child: GestureDetector(
                                               onTap: () {
@@ -365,7 +361,6 @@ class EventDetailPage extends StatelessWidget {
                               ),
 
                             const SizedBox(height: 24),
-
                             Text("Mentions", style: TextStyle(fontWeight: FontWeight.bold)),
                           ],
                         ),
@@ -423,7 +418,7 @@ class EventDetailPage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Erreur lors de la recuperation des donnees",
+                                            "Erreur lors de la recuperation \n des donnees",
                                             style: TextStyle(fontSize: 16, color: Colors.grey),
                                             textAlign: TextAlign.center,
                                           ),
@@ -479,18 +474,18 @@ class EventDetailPage extends StatelessWidget {
                         ),
                       ),
 
-                      buildSectionHeader(context, "Meme createur", Icons.person, () {
+                      buildSectionHeader(context, "Même createur", Icons.person, () {
                         //
                       }),
 
-                      buildSectionHeader(context, "Meme categorie", Icons.category, () {
+                      buildSectionHeader(context, "Même categorie", Icons.category, () {
                         //
                       }),
 
                       SizedBox(height: 100),
                     ],
-            ),
-          ),
+                  ),
+                ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
           floatingActionButton: data?.event != null
               ? Padding(
@@ -504,7 +499,11 @@ class EventDetailPage extends StatelessWidget {
                     ),
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        AppRouter.pushNamed(context, '/ticket/create');
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.createTicket,
+                          arguments: data!.event!.id,
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),

@@ -35,6 +35,8 @@ query GetEvent($id: ID!) {
     location
     category
     date
+    price
+    priceCurrency
     createdBy {
       id
       name

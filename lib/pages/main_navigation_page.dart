@@ -61,7 +61,6 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         notchMargin: 8, // marge autour de l’encoche pour le bouton
         elevation: 5,
         color: Colors.white,
-
         child: SizedBox(
           height: 32,
           child: Row(

@@ -35,7 +35,12 @@ class _SeaarchPageState extends State<SearchPage> {
             ),
             suffixIcon: IconButton(
               onPressed: () => searchController.clear(),
-              icon: Icon(Icons.backspace_outlined),
+              icon: Icon(
+                Icons.close_rounded,
+                size: 20,
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

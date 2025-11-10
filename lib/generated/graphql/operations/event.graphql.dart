@@ -425,7 +425,7 @@ class Query$GetFollowedEvents$followedEvents {
   Query$GetFollowedEvents$followedEvents({
     required this.id,
     required this.title,
-    this.description,
+    required this.description,
     required this.picture,
     required this.location,
     required this.category,
@@ -448,7 +448,7 @@ class Query$GetFollowedEvents$followedEvents {
     return Query$GetFollowedEvents$followedEvents(
       id: (l$id as String),
       title: (l$title as String),
-      description: (l$description as String?),
+      description: (l$description as String),
       picture: (l$picture as String),
       location: (l$location as String),
       category: (l$category as String),
@@ -465,7 +465,7 @@ class Query$GetFollowedEvents$followedEvents {
 
   final String title;
 
-  final String? description;
+  final String description;
 
   final String picture;
 
@@ -646,9 +646,9 @@ class _CopyWithImpl$Query$GetFollowedEvents$followedEvents<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
-        description: description == _undefined
+        description: description == _undefined || description == null
             ? _instance.description
-            : (description as String?),
+            : (description as String),
         picture: picture == _undefined || picture == null
             ? _instance.picture
             : (picture as String),
@@ -1413,7 +1413,7 @@ class Query$GetMyEvents$myEvents {
   Query$GetMyEvents$myEvents({
     required this.id,
     required this.title,
-    this.description,
+    required this.description,
     required this.picture,
     required this.location,
     required this.category,
@@ -1433,7 +1433,7 @@ class Query$GetMyEvents$myEvents {
     return Query$GetMyEvents$myEvents(
       id: (l$id as String),
       title: (l$title as String),
-      description: (l$description as String?),
+      description: (l$description as String),
       picture: (l$picture as String),
       location: (l$location as String),
       category: (l$category as String),
@@ -1446,7 +1446,7 @@ class Query$GetMyEvents$myEvents {
 
   final String title;
 
-  final String? description;
+  final String description;
 
   final String picture;
 
@@ -1612,9 +1612,9 @@ class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
-        description: description == _undefined
+        description: description == _undefined || description == null
             ? _instance.description
-            : (description as String?),
+            : (description as String),
         picture: picture == _undefined || picture == null
             ? _instance.picture
             : (picture as String),
@@ -1962,6 +1962,20 @@ const documentNodeQueryGetEvent = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'price'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'priceCurrency'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'createdBy'),
             alias: null,
             arguments: [],
@@ -2165,11 +2179,13 @@ class Query$GetEvent$event {
   Query$GetEvent$event({
     required this.id,
     required this.title,
-    this.description,
+    required this.description,
     required this.picture,
     required this.location,
     required this.category,
     required this.date,
+    required this.price,
+    required this.priceCurrency,
     this.createdBy,
     this.$__typename = 'Event',
   });
@@ -2182,16 +2198,20 @@ class Query$GetEvent$event {
     final l$location = json['location'];
     final l$category = json['category'];
     final l$date = json['date'];
+    final l$price = json['price'];
+    final l$priceCurrency = json['priceCurrency'];
     final l$createdBy = json['createdBy'];
     final l$$__typename = json['__typename'];
     return Query$GetEvent$event(
       id: (l$id as String),
       title: (l$title as String),
-      description: (l$description as String?),
+      description: (l$description as String),
       picture: (l$picture as String),
       location: (l$location as String),
       category: (l$category as String),
       date: DateTime.parse((l$date as String)),
+      price: (l$price as num).toDouble(),
+      priceCurrency: (l$priceCurrency as String),
       createdBy: l$createdBy == null
           ? null
           : Query$GetEvent$event$createdBy.fromJson(
@@ -2204,7 +2224,7 @@ class Query$GetEvent$event {
 
   final String title;
 
-  final String? description;
+  final String description;
 
   final String picture;
 
@@ -2213,6 +2233,10 @@ class Query$GetEvent$event {
   final String category;
 
   final DateTime date;
+
+  final double price;
+
+  final String priceCurrency;
 
   final Query$GetEvent$event$createdBy? createdBy;
 
@@ -2234,6 +2258,10 @@ class Query$GetEvent$event {
     _resultData['category'] = l$category;
     final l$date = date;
     _resultData['date'] = l$date.toIso8601String();
+    final l$price = price;
+    _resultData['price'] = l$price;
+    final l$priceCurrency = priceCurrency;
+    _resultData['priceCurrency'] = l$priceCurrency;
     final l$createdBy = createdBy;
     _resultData['createdBy'] = l$createdBy?.toJson();
     final l$$__typename = $__typename;
@@ -2250,6 +2278,8 @@ class Query$GetEvent$event {
     final l$location = location;
     final l$category = category;
     final l$date = date;
+    final l$price = price;
+    final l$priceCurrency = priceCurrency;
     final l$createdBy = createdBy;
     final l$$__typename = $__typename;
     return Object.hashAll([
@@ -2260,6 +2290,8 @@ class Query$GetEvent$event {
       l$location,
       l$category,
       l$date,
+      l$price,
+      l$priceCurrency,
       l$createdBy,
       l$$__typename,
     ]);
@@ -2308,6 +2340,16 @@ class Query$GetEvent$event {
     if (l$date != lOther$date) {
       return false;
     }
+    final l$price = price;
+    final lOther$price = other.price;
+    if (l$price != lOther$price) {
+      return false;
+    }
+    final l$priceCurrency = priceCurrency;
+    final lOther$priceCurrency = other.priceCurrency;
+    if (l$priceCurrency != lOther$priceCurrency) {
+      return false;
+    }
     final l$createdBy = createdBy;
     final lOther$createdBy = other.createdBy;
     if (l$createdBy != lOther$createdBy) {
@@ -2347,6 +2389,8 @@ abstract class CopyWith$Query$GetEvent$event<TRes> {
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
     Query$GetEvent$event$createdBy? createdBy,
     String? $__typename,
   });
@@ -2374,6 +2418,8 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
     Object? location = _undefined,
     Object? category = _undefined,
     Object? date = _undefined,
+    Object? price = _undefined,
+    Object? priceCurrency = _undefined,
     Object? createdBy = _undefined,
     Object? $__typename = _undefined,
   }) =>
@@ -2382,9 +2428,9 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
-        description: description == _undefined
+        description: description == _undefined || description == null
             ? _instance.description
-            : (description as String?),
+            : (description as String),
         picture: picture == _undefined || picture == null
             ? _instance.picture
             : (picture as String),
@@ -2397,6 +2443,12 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
         date: date == _undefined || date == null
             ? _instance.date
             : (date as DateTime),
+        price: price == _undefined || price == null
+            ? _instance.price
+            : (price as double),
+        priceCurrency: priceCurrency == _undefined || priceCurrency == null
+            ? _instance.priceCurrency
+            : (priceCurrency as String),
         createdBy: createdBy == _undefined
             ? _instance.createdBy
             : (createdBy as Query$GetEvent$event$createdBy?),
@@ -2428,6 +2480,8 @@ class _CopyWithStubImpl$Query$GetEvent$event<TRes>
     String? location,
     String? category,
     DateTime? date,
+    double? price,
+    String? priceCurrency,
     Query$GetEvent$event$createdBy? createdBy,
     String? $__typename,
   }) =>

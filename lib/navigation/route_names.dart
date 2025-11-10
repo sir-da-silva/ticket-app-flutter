@@ -19,7 +19,7 @@ class RouteNames {
   static const String login = '/auth/login';
   static const String register = '/auth/register';
   static const String forgotPassword = '/auth/forgot-password';
-  static const String optPage = '/auth/otp';
+  static const String otpPage = '/auth/otp';
 
   // Pages de paramètres
   static const String settings = '/settings';

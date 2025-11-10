@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/event.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
 import 'package:my_first_flutter_app/components/ticket.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
@@ -359,7 +360,7 @@ class ProfilePage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Erreur lors de la recuperation des donnees",
+                                            "Erreur lors de la recuperation \n des donnees",
                                             style: TextStyle(fontSize: 16, color: Colors.grey),
                                             textAlign: TextAlign.center,
                                           ),
@@ -382,7 +383,7 @@ class ProfilePage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Vous ne suivez actuellement aucun évenement",
+                                            "Vous ne suivez actuellement \n aucun évenement",
                                             style: TextStyle(fontSize: 16, color: Colors.grey),
                                             textAlign: TextAlign.center,
                                           ),
@@ -399,7 +400,7 @@ class ProfilePage extends StatelessWidget {
                                   )
                                 else
                                   SizedBox(
-                                    height: 200,
+                                    height: 250,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
                                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -409,8 +410,9 @@ class ProfilePage extends StatelessWidget {
                                           padding: const EdgeInsets.only(right: 12),
                                           child: SizedBox(
                                             width: 300,
-                                            // TODO: Replace child by event card
-                                            child: null,
+                                            child: Event.fromFollowedEvents(
+                                              data!.followedEvents[index],
+                                            ),
                                           ),
                                         );
                                       },
@@ -460,7 +462,7 @@ class ProfilePage extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Erreur lors de la recuperation des donnees ",
+                                            "Erreur lors de la recuperation \n des donnees ",
                                             style: TextStyle(fontSize: 16, color: Colors.grey),
                                             textAlign: TextAlign.center,
                                           ),
@@ -490,7 +492,7 @@ class ProfilePage extends StatelessWidget {
                                   Padding(
                                     padding: EdgeInsetsGeometry.fromLTRB(16, 50, 16, 50),
                                     child: Text(
-                                      "Les tickets que vous achetez apparaitront ici.",
+                                      "Les tickets que vous achetez \n apparaitront ici.",
                                       style: TextStyle(fontSize: 16, color: Colors.grey),
                                       textAlign: TextAlign.center,
                                     ),
