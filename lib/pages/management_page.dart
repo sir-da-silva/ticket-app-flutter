@@ -35,6 +35,7 @@ class ManagementPage extends StatelessWidget {
           ),
         ],
       ),
+
       body: !auth.isAuthenticated
           ? LoginRequired(
               icon: Icons.assignment,
@@ -283,13 +284,9 @@ class ManagementPage extends StatelessWidget {
                       return Column(
                         children: result.isLoading
                             ? [
-                                Center(
-                                  heightFactor: 5,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [CircularProgressIndicator()],
-                                  ),
+                                Padding(
+                                  padding: EdgeInsetsGeometry.fromLTRB(16, 100, 16, 100),
+                                  child: Center(child: CircularProgressIndicator()),
                                 ),
                               ]
                             : [
@@ -304,43 +301,18 @@ class ManagementPage extends StatelessWidget {
 
                                 if (data?.myEvents == null)
                                   Padding(
-                                    padding: EdgeInsetsGeometry.fromLTRB(16, 24, 16, 24),
+                                    padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
                                     child: Center(
-                                      child: Column(
-                                        spacing: 10,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Erreur lors de la recuperation \n des donnees",
-                                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  refetch!();
-                                                },
-                                                child: Row(
-                                                  spacing: 10,
-                                                  children: [
-                                                    Icon(Icons.refresh),
-                                                    Text("Reessayer"),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                      child: Text(
+                                        "Erreur lors de la récuperation \n des évenements. Glissez vers le bas \n pour réactualiser.",
+                                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                                        textAlign: TextAlign.center,
                                       ),
                                     ),
                                   )
                                 else if (data!.myEvents.isEmpty)
                                   Padding(
-                                    padding: EdgeInsetsGeometry.fromLTRB(16, 50, 16, 50),
+                                    padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
                                     child: Center(
                                       child: Text(
                                         "Vous n'organisez aucun évenement \n pour les dates a venir. \n\n Cliquer sur le boutton + en haut \n pour creer un évenement.",
@@ -375,7 +347,7 @@ class ManagementPage extends StatelessWidget {
                   Divider(),
 
                   Padding(
-                    padding: EdgeInsetsGeometry.fromLTRB(16, 24, 16, 24),
+                    padding: EdgeInsetsGeometry.fromLTRB(16, 25, 16, 25),
                     child: Center(
                       child: RichText(
                         textAlign: TextAlign.center,
@@ -385,7 +357,7 @@ class ManagementPage extends StatelessWidget {
                             TextSpan(text: "Cliquez sur le boutton "),
                             WidgetSpan(child: Icon(Icons.crop_free_rounded, size: 18)),
                             TextSpan(
-                              text: " en-dessous pour commencer à authentifier des tickets.",
+                              text: " en-dessous \n pour commencer à checker \n des tickets.",
                             ),
                           ],
                         ),

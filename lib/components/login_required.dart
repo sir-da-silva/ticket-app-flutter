@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/navigation/app_router.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
 class LoginRequired extends StatelessWidget {
@@ -6,12 +7,7 @@ class LoginRequired extends StatelessWidget {
   final String title;
   final String message;
 
-  const LoginRequired({
-    super.key,
-    required this.icon,
-    required this.title,
-    required this.message,
-  });
+  const LoginRequired({super.key, required this.icon, required this.title, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +38,42 @@ class LoginRequired extends StatelessWidget {
               spacing: 10,
               children: [
                 ElevatedButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, RouteNames.login),
-                  child: Text("Se Connecter"),
+                  onPressed: null,
+                  child: Row(
+                    spacing: 12,
+                    children: [
+                      //
+                      InkWell(
+                        onTap: () {
+                          AppRouter.pushNamed(context, RouteNames.login);
+                        },
+                        child: Text(
+                          "Se connecter",
+                          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ),
+                      Text("|"),
+                      InkWell(
+                        onTap: () {
+                          AppRouter.pushNamed(context, RouteNames.login);
+                        },
+                        child: Text(
+                          "Créer un compte",
+                          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, RouteNames.register),
-                  child: Text("Créer un compte"),
-                ),
+
+                // ElevatedButton(
+                //   onPressed: () => Navigator.pushNamed(context, RouteNames.login),
+                //   child: Text("Se Connecter | Creer un compte"),
+                // ),
+                // ElevatedButton(
+                //   onPressed: () => Navigator.pushNamed(context, RouteNames.register),
+                //   child: Text("Créer un compte"),
+                // ),
               ],
             ),
           ],

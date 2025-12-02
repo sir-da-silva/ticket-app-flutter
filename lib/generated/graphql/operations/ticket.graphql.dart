@@ -316,7 +316,21 @@ const documentNodeQueryGetTicket = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'location'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: 'date'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'picture'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -863,19 +877,25 @@ class Query$GetTicket$ticket$event {
   Query$GetTicket$ticket$event({
     required this.id,
     required this.title,
+    required this.location,
     required this.date,
+    required this.picture,
     this.$__typename = 'Event',
   });
 
   factory Query$GetTicket$ticket$event.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
+    final l$location = json['location'];
     final l$date = json['date'];
+    final l$picture = json['picture'];
     final l$$__typename = json['__typename'];
     return Query$GetTicket$ticket$event(
       id: (l$id as String),
       title: (l$title as String),
+      location: (l$location as String),
       date: DateTime.parse((l$date as String)),
+      picture: (l$picture as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -884,7 +904,11 @@ class Query$GetTicket$ticket$event {
 
   final String title;
 
+  final String location;
+
   final DateTime date;
+
+  final String picture;
 
   final String $__typename;
 
@@ -894,8 +918,12 @@ class Query$GetTicket$ticket$event {
     _resultData['id'] = l$id;
     final l$title = title;
     _resultData['title'] = l$title;
+    final l$location = location;
+    _resultData['location'] = l$location;
     final l$date = date;
     _resultData['date'] = l$date.toIso8601String();
+    final l$picture = picture;
+    _resultData['picture'] = l$picture;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -905,12 +933,16 @@ class Query$GetTicket$ticket$event {
   int get hashCode {
     final l$id = id;
     final l$title = title;
+    final l$location = location;
     final l$date = date;
+    final l$picture = picture;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
+      l$location,
       l$date,
+      l$picture,
       l$$__typename,
     ]);
   }
@@ -934,9 +966,19 @@ class Query$GetTicket$ticket$event {
     if (l$title != lOther$title) {
       return false;
     }
+    final l$location = location;
+    final lOther$location = other.location;
+    if (l$location != lOther$location) {
+      return false;
+    }
     final l$date = date;
     final lOther$date = other.date;
     if (l$date != lOther$date) {
+      return false;
+    }
+    final l$picture = picture;
+    final lOther$picture = other.picture;
+    if (l$picture != lOther$picture) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -969,7 +1011,9 @@ abstract class CopyWith$Query$GetTicket$ticket$event<TRes> {
   TRes call({
     String? id,
     String? title,
+    String? location,
     DateTime? date,
+    String? picture,
     String? $__typename,
   });
 }
@@ -990,7 +1034,9 @@ class _CopyWithImpl$Query$GetTicket$ticket$event<TRes>
   TRes call({
     Object? id = _undefined,
     Object? title = _undefined,
+    Object? location = _undefined,
     Object? date = _undefined,
+    Object? picture = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetTicket$ticket$event(
@@ -998,9 +1044,15 @@ class _CopyWithImpl$Query$GetTicket$ticket$event<TRes>
         title: title == _undefined || title == null
             ? _instance.title
             : (title as String),
+        location: location == _undefined || location == null
+            ? _instance.location
+            : (location as String),
         date: date == _undefined || date == null
             ? _instance.date
             : (date as DateTime),
+        picture: picture == _undefined || picture == null
+            ? _instance.picture
+            : (picture as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -1016,7 +1068,9 @@ class _CopyWithStubImpl$Query$GetTicket$ticket$event<TRes>
   call({
     String? id,
     String? title,
+    String? location,
     DateTime? date,
+    String? picture,
     String? $__typename,
   }) =>
       _res;
@@ -2344,6 +2398,13 @@ const documentNodeQueryGetMyTickets = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'picture'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
                 name: NameNode(value: '__typename'),
                 alias: null,
                 arguments: [],
@@ -2814,6 +2875,7 @@ class Query$GetMyTickets$myTickets$event {
     required this.title,
     required this.date,
     required this.location,
+    required this.picture,
     this.$__typename = 'Event',
   });
 
@@ -2823,12 +2885,14 @@ class Query$GetMyTickets$myTickets$event {
     final l$title = json['title'];
     final l$date = json['date'];
     final l$location = json['location'];
+    final l$picture = json['picture'];
     final l$$__typename = json['__typename'];
     return Query$GetMyTickets$myTickets$event(
       id: (l$id as String),
       title: (l$title as String),
       date: DateTime.parse((l$date as String)),
       location: (l$location as String),
+      picture: (l$picture as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2840,6 +2904,8 @@ class Query$GetMyTickets$myTickets$event {
   final DateTime date;
 
   final String location;
+
+  final String picture;
 
   final String $__typename;
 
@@ -2853,6 +2919,8 @@ class Query$GetMyTickets$myTickets$event {
     _resultData['date'] = l$date.toIso8601String();
     final l$location = location;
     _resultData['location'] = l$location;
+    final l$picture = picture;
+    _resultData['picture'] = l$picture;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2864,12 +2932,14 @@ class Query$GetMyTickets$myTickets$event {
     final l$title = title;
     final l$date = date;
     final l$location = location;
+    final l$picture = picture;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$title,
       l$date,
       l$location,
+      l$picture,
       l$$__typename,
     ]);
   }
@@ -2901,6 +2971,11 @@ class Query$GetMyTickets$myTickets$event {
     final l$location = location;
     final lOther$location = other.location;
     if (l$location != lOther$location) {
+      return false;
+    }
+    final l$picture = picture;
+    final lOther$picture = other.picture;
+    if (l$picture != lOther$picture) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2936,6 +3011,7 @@ abstract class CopyWith$Query$GetMyTickets$myTickets$event<TRes> {
     String? title,
     DateTime? date,
     String? location,
+    String? picture,
     String? $__typename,
   });
 }
@@ -2958,6 +3034,7 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets$event<TRes>
     Object? title = _undefined,
     Object? date = _undefined,
     Object? location = _undefined,
+    Object? picture = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetMyTickets$myTickets$event(
@@ -2971,6 +3048,9 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets$event<TRes>
         location: location == _undefined || location == null
             ? _instance.location
             : (location as String),
+        picture: picture == _undefined || picture == null
+            ? _instance.picture
+            : (picture as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2988,6 +3068,7 @@ class _CopyWithStubImpl$Query$GetMyTickets$myTickets$event<TRes>
     String? title,
     DateTime? date,
     String? location,
+    String? picture,
     String? $__typename,
   }) =>
       _res;
@@ -3255,48 +3336,20 @@ const documentNodeMutationBuyTicket = DocumentNode(definitions: [
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'id'),
+            name: NameNode(value: 'isInternalPayment'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'code'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'used'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'createdAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'event'),
+            name: NameNode(value: 'ticket'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
                 name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'title'),
                 alias: null,
                 arguments: [],
                 directives: [],
@@ -3310,6 +3363,27 @@ const documentNodeMutationBuyTicket = DocumentNode(definitions: [
                 selectionSet: null,
               ),
             ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'isExternalPayment'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'paymentUri'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'stripeClientSecret'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -3540,56 +3614,58 @@ class Mutation$BuyTicket$Widget
 
 class Mutation$BuyTicket$buyTicket {
   Mutation$BuyTicket$buyTicket({
-    required this.id,
-    required this.code,
-    required this.used,
-    required this.createdAt,
-    required this.event,
-    this.$__typename = 'Ticket',
+    required this.isInternalPayment,
+    this.ticket,
+    required this.isExternalPayment,
+    this.paymentUri,
+    this.stripeClientSecret,
+    this.$__typename = 'BuyTicketResponse',
   });
 
   factory Mutation$BuyTicket$buyTicket.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$code = json['code'];
-    final l$used = json['used'];
-    final l$createdAt = json['createdAt'];
-    final l$event = json['event'];
+    final l$isInternalPayment = json['isInternalPayment'];
+    final l$ticket = json['ticket'];
+    final l$isExternalPayment = json['isExternalPayment'];
+    final l$paymentUri = json['paymentUri'];
+    final l$stripeClientSecret = json['stripeClientSecret'];
     final l$$__typename = json['__typename'];
     return Mutation$BuyTicket$buyTicket(
-      id: (l$id as String),
-      code: (l$code as String),
-      used: (l$used as bool),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      event: Mutation$BuyTicket$buyTicket$event.fromJson(
-          (l$event as Map<String, dynamic>)),
+      isInternalPayment: (l$isInternalPayment as bool),
+      ticket: l$ticket == null
+          ? null
+          : Mutation$BuyTicket$buyTicket$ticket.fromJson(
+              (l$ticket as Map<String, dynamic>)),
+      isExternalPayment: (l$isExternalPayment as bool),
+      paymentUri: (l$paymentUri as String?),
+      stripeClientSecret: (l$stripeClientSecret as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String id;
+  final bool isInternalPayment;
 
-  final String code;
+  final Mutation$BuyTicket$buyTicket$ticket? ticket;
 
-  final bool used;
+  final bool isExternalPayment;
 
-  final DateTime createdAt;
+  final String? paymentUri;
 
-  final Mutation$BuyTicket$buyTicket$event event;
+  final String? stripeClientSecret;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$code = code;
-    _resultData['code'] = l$code;
-    final l$used = used;
-    _resultData['used'] = l$used;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$event = event;
-    _resultData['event'] = l$event.toJson();
+    final l$isInternalPayment = isInternalPayment;
+    _resultData['isInternalPayment'] = l$isInternalPayment;
+    final l$ticket = ticket;
+    _resultData['ticket'] = l$ticket?.toJson();
+    final l$isExternalPayment = isExternalPayment;
+    _resultData['isExternalPayment'] = l$isExternalPayment;
+    final l$paymentUri = paymentUri;
+    _resultData['paymentUri'] = l$paymentUri;
+    final l$stripeClientSecret = stripeClientSecret;
+    _resultData['stripeClientSecret'] = l$stripeClientSecret;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -3597,18 +3673,18 @@ class Mutation$BuyTicket$buyTicket {
 
   @override
   int get hashCode {
-    final l$id = id;
-    final l$code = code;
-    final l$used = used;
-    final l$createdAt = createdAt;
-    final l$event = event;
+    final l$isInternalPayment = isInternalPayment;
+    final l$ticket = ticket;
+    final l$isExternalPayment = isExternalPayment;
+    final l$paymentUri = paymentUri;
+    final l$stripeClientSecret = stripeClientSecret;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
-      l$code,
-      l$used,
-      l$createdAt,
-      l$event,
+      l$isInternalPayment,
+      l$ticket,
+      l$isExternalPayment,
+      l$paymentUri,
+      l$stripeClientSecret,
       l$$__typename,
     ]);
   }
@@ -3622,29 +3698,29 @@ class Mutation$BuyTicket$buyTicket {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
+    final l$isInternalPayment = isInternalPayment;
+    final lOther$isInternalPayment = other.isInternalPayment;
+    if (l$isInternalPayment != lOther$isInternalPayment) {
       return false;
     }
-    final l$code = code;
-    final lOther$code = other.code;
-    if (l$code != lOther$code) {
+    final l$ticket = ticket;
+    final lOther$ticket = other.ticket;
+    if (l$ticket != lOther$ticket) {
       return false;
     }
-    final l$used = used;
-    final lOther$used = other.used;
-    if (l$used != lOther$used) {
+    final l$isExternalPayment = isExternalPayment;
+    final lOther$isExternalPayment = other.isExternalPayment;
+    if (l$isExternalPayment != lOther$isExternalPayment) {
       return false;
     }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
+    final l$paymentUri = paymentUri;
+    final lOther$paymentUri = other.paymentUri;
+    if (l$paymentUri != lOther$paymentUri) {
       return false;
     }
-    final l$event = event;
-    final lOther$event = other.event;
-    if (l$event != lOther$event) {
+    final l$stripeClientSecret = stripeClientSecret;
+    final lOther$stripeClientSecret = other.stripeClientSecret;
+    if (l$stripeClientSecret != lOther$stripeClientSecret) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -3675,14 +3751,14 @@ abstract class CopyWith$Mutation$BuyTicket$buyTicket<TRes> {
       _CopyWithStubImpl$Mutation$BuyTicket$buyTicket;
 
   TRes call({
-    String? id,
-    String? code,
-    bool? used,
-    DateTime? createdAt,
-    Mutation$BuyTicket$buyTicket$event? event,
+    bool? isInternalPayment,
+    Mutation$BuyTicket$buyTicket$ticket? ticket,
+    bool? isExternalPayment,
+    String? paymentUri,
+    String? stripeClientSecret,
     String? $__typename,
   });
-  CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> get event;
+  CopyWith$Mutation$BuyTicket$buyTicket$ticket<TRes> get ticket;
 }
 
 class _CopyWithImpl$Mutation$BuyTicket$buyTicket<TRes>
@@ -3699,36 +3775,42 @@ class _CopyWithImpl$Mutation$BuyTicket$buyTicket<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
-    Object? code = _undefined,
-    Object? used = _undefined,
-    Object? createdAt = _undefined,
-    Object? event = _undefined,
+    Object? isInternalPayment = _undefined,
+    Object? ticket = _undefined,
+    Object? isExternalPayment = _undefined,
+    Object? paymentUri = _undefined,
+    Object? stripeClientSecret = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$BuyTicket$buyTicket(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        code: code == _undefined || code == null
-            ? _instance.code
-            : (code as String),
-        used: used == _undefined || used == null
-            ? _instance.used
-            : (used as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        event: event == _undefined || event == null
-            ? _instance.event
-            : (event as Mutation$BuyTicket$buyTicket$event),
+        isInternalPayment:
+            isInternalPayment == _undefined || isInternalPayment == null
+                ? _instance.isInternalPayment
+                : (isInternalPayment as bool),
+        ticket: ticket == _undefined
+            ? _instance.ticket
+            : (ticket as Mutation$BuyTicket$buyTicket$ticket?),
+        isExternalPayment:
+            isExternalPayment == _undefined || isExternalPayment == null
+                ? _instance.isExternalPayment
+                : (isExternalPayment as bool),
+        paymentUri: paymentUri == _undefined
+            ? _instance.paymentUri
+            : (paymentUri as String?),
+        stripeClientSecret: stripeClientSecret == _undefined
+            ? _instance.stripeClientSecret
+            : (stripeClientSecret as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> get event {
-    final local$event = _instance.event;
-    return CopyWith$Mutation$BuyTicket$buyTicket$event(
-        local$event, (e) => call(event: e));
+  CopyWith$Mutation$BuyTicket$buyTicket$ticket<TRes> get ticket {
+    final local$ticket = _instance.ticket;
+    return local$ticket == null
+        ? CopyWith$Mutation$BuyTicket$buyTicket$ticket.stub(_then(_instance))
+        : CopyWith$Mutation$BuyTicket$buyTicket$ticket(
+            local$ticket, (e) => call(ticket: e));
   }
 }
 
@@ -3739,786 +3821,36 @@ class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket<TRes>
   TRes _res;
 
   call({
-    String? id,
-    String? code,
-    bool? used,
-    DateTime? createdAt,
-    Mutation$BuyTicket$buyTicket$event? event,
+    bool? isInternalPayment,
+    Mutation$BuyTicket$buyTicket$ticket? ticket,
+    bool? isExternalPayment,
+    String? paymentUri,
+    String? stripeClientSecret,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> get event =>
-      CopyWith$Mutation$BuyTicket$buyTicket$event.stub(_res);
+  CopyWith$Mutation$BuyTicket$buyTicket$ticket<TRes> get ticket =>
+      CopyWith$Mutation$BuyTicket$buyTicket$ticket.stub(_res);
 }
 
-class Mutation$BuyTicket$buyTicket$event {
-  Mutation$BuyTicket$buyTicket$event({
+class Mutation$BuyTicket$buyTicket$ticket {
+  Mutation$BuyTicket$buyTicket$ticket({
     required this.id,
-    required this.title,
-    this.$__typename = 'Event',
-  });
-
-  factory Mutation$BuyTicket$buyTicket$event.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Mutation$BuyTicket$buyTicket$event(
-      id: (l$id as String),
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$BuyTicket$buyTicket$event ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$BuyTicket$buyTicket$event
-    on Mutation$BuyTicket$buyTicket$event {
-  CopyWith$Mutation$BuyTicket$buyTicket$event<
-          Mutation$BuyTicket$buyTicket$event>
-      get copyWith => CopyWith$Mutation$BuyTicket$buyTicket$event(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> {
-  factory CopyWith$Mutation$BuyTicket$buyTicket$event(
-    Mutation$BuyTicket$buyTicket$event instance,
-    TRes Function(Mutation$BuyTicket$buyTicket$event) then,
-  ) = _CopyWithImpl$Mutation$BuyTicket$buyTicket$event;
-
-  factory CopyWith$Mutation$BuyTicket$buyTicket$event.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$event;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$BuyTicket$buyTicket$event<TRes>
-    implements CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> {
-  _CopyWithImpl$Mutation$BuyTicket$buyTicket$event(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$BuyTicket$buyTicket$event _instance;
-
-  final TRes Function(Mutation$BuyTicket$buyTicket$event) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$BuyTicket$buyTicket$event(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$event<TRes>
-    implements CopyWith$Mutation$BuyTicket$buyTicket$event<TRes> {
-  _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$event(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? title,
-    String? $__typename,
-  }) =>
-      _res;
-}
-
-class Variables$Mutation$CreateTicket {
-  factory Variables$Mutation$CreateTicket(
-          {required Input$CreateTicketInput input}) =>
-      Variables$Mutation$CreateTicket._({
-        r'input': input,
-      });
-
-  Variables$Mutation$CreateTicket._(this._$data);
-
-  factory Variables$Mutation$CreateTicket.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$input = data['input'];
-    result$data['input'] =
-        Input$CreateTicketInput.fromJson((l$input as Map<String, dynamic>));
-    return Variables$Mutation$CreateTicket._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  Input$CreateTicketInput get input =>
-      (_$data['input'] as Input$CreateTicketInput);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$input = input;
-    result$data['input'] = l$input.toJson();
-    return result$data;
-  }
-
-  CopyWith$Variables$Mutation$CreateTicket<Variables$Mutation$CreateTicket>
-      get copyWith => CopyWith$Variables$Mutation$CreateTicket(
-            this,
-            (i) => i,
-          );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Variables$Mutation$CreateTicket ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$input = input;
-    final lOther$input = other.input;
-    if (l$input != lOther$input) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$input = input;
-    return Object.hashAll([l$input]);
-  }
-}
-
-abstract class CopyWith$Variables$Mutation$CreateTicket<TRes> {
-  factory CopyWith$Variables$Mutation$CreateTicket(
-    Variables$Mutation$CreateTicket instance,
-    TRes Function(Variables$Mutation$CreateTicket) then,
-  ) = _CopyWithImpl$Variables$Mutation$CreateTicket;
-
-  factory CopyWith$Variables$Mutation$CreateTicket.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$CreateTicket;
-
-  TRes call({Input$CreateTicketInput? input});
-}
-
-class _CopyWithImpl$Variables$Mutation$CreateTicket<TRes>
-    implements CopyWith$Variables$Mutation$CreateTicket<TRes> {
-  _CopyWithImpl$Variables$Mutation$CreateTicket(
-    this._instance,
-    this._then,
-  );
-
-  final Variables$Mutation$CreateTicket _instance;
-
-  final TRes Function(Variables$Mutation$CreateTicket) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({Object? input = _undefined}) =>
-      _then(Variables$Mutation$CreateTicket._({
-        ..._instance._$data,
-        if (input != _undefined && input != null)
-          'input': (input as Input$CreateTicketInput),
-      }));
-}
-
-class _CopyWithStubImpl$Variables$Mutation$CreateTicket<TRes>
-    implements CopyWith$Variables$Mutation$CreateTicket<TRes> {
-  _CopyWithStubImpl$Variables$Mutation$CreateTicket(this._res);
-
-  TRes _res;
-
-  call({Input$CreateTicketInput? input}) => _res;
-}
-
-class Mutation$CreateTicket {
-  Mutation$CreateTicket({
-    required this.createTicket,
-    this.$__typename = 'Mutation',
-  });
-
-  factory Mutation$CreateTicket.fromJson(Map<String, dynamic> json) {
-    final l$createTicket = json['createTicket'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CreateTicket(
-      createTicket: Mutation$CreateTicket$createTicket.fromJson(
-          (l$createTicket as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final Mutation$CreateTicket$createTicket createTicket;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$createTicket = createTicket;
-    _resultData['createTicket'] = l$createTicket.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$createTicket = createTicket;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$createTicket,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CreateTicket || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$createTicket = createTicket;
-    final lOther$createTicket = other.createTicket;
-    if (l$createTicket != lOther$createTicket) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CreateTicket on Mutation$CreateTicket {
-  CopyWith$Mutation$CreateTicket<Mutation$CreateTicket> get copyWith =>
-      CopyWith$Mutation$CreateTicket(
-        this,
-        (i) => i,
-      );
-}
-
-abstract class CopyWith$Mutation$CreateTicket<TRes> {
-  factory CopyWith$Mutation$CreateTicket(
-    Mutation$CreateTicket instance,
-    TRes Function(Mutation$CreateTicket) then,
-  ) = _CopyWithImpl$Mutation$CreateTicket;
-
-  factory CopyWith$Mutation$CreateTicket.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateTicket;
-
-  TRes call({
-    Mutation$CreateTicket$createTicket? createTicket,
-    String? $__typename,
-  });
-  CopyWith$Mutation$CreateTicket$createTicket<TRes> get createTicket;
-}
-
-class _CopyWithImpl$Mutation$CreateTicket<TRes>
-    implements CopyWith$Mutation$CreateTicket<TRes> {
-  _CopyWithImpl$Mutation$CreateTicket(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CreateTicket _instance;
-
-  final TRes Function(Mutation$CreateTicket) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? createTicket = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CreateTicket(
-        createTicket: createTicket == _undefined || createTicket == null
-            ? _instance.createTicket
-            : (createTicket as Mutation$CreateTicket$createTicket),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Mutation$CreateTicket$createTicket<TRes> get createTicket {
-    final local$createTicket = _instance.createTicket;
-    return CopyWith$Mutation$CreateTicket$createTicket(
-        local$createTicket, (e) => call(createTicket: e));
-  }
-}
-
-class _CopyWithStubImpl$Mutation$CreateTicket<TRes>
-    implements CopyWith$Mutation$CreateTicket<TRes> {
-  _CopyWithStubImpl$Mutation$CreateTicket(this._res);
-
-  TRes _res;
-
-  call({
-    Mutation$CreateTicket$createTicket? createTicket,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$CreateTicket$createTicket<TRes> get createTicket =>
-      CopyWith$Mutation$CreateTicket$createTicket.stub(_res);
-}
-
-const documentNodeMutationCreateTicket = DocumentNode(definitions: [
-  OperationDefinitionNode(
-    type: OperationType.mutation,
-    name: NameNode(value: 'CreateTicket'),
-    variableDefinitions: [
-      VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'input')),
-        type: NamedTypeNode(
-          name: NameNode(value: 'CreateTicketInput'),
-          isNonNull: true,
-        ),
-        defaultValue: DefaultValueNode(value: null),
-        directives: [],
-      )
-    ],
-    directives: [],
-    selectionSet: SelectionSetNode(selections: [
-      FieldNode(
-        name: NameNode(value: 'createTicket'),
-        alias: null,
-        arguments: [
-          ArgumentNode(
-            name: NameNode(value: 'input'),
-            value: VariableNode(name: NameNode(value: 'input')),
-          )
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'id'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'code'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'used'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'createdAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'event'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'title'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerName'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerPhone'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerEmail'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-    ]),
-  ),
-]);
-Mutation$CreateTicket _parserFn$Mutation$CreateTicket(
-        Map<String, dynamic> data) =>
-    Mutation$CreateTicket.fromJson(data);
-typedef OnMutationCompleted$Mutation$CreateTicket = FutureOr<void> Function(
-  Map<String, dynamic>?,
-  Mutation$CreateTicket?,
-);
-
-class Options$Mutation$CreateTicket
-    extends graphql.MutationOptions<Mutation$CreateTicket> {
-  Options$Mutation$CreateTicket({
-    String? operationName,
-    required Variables$Mutation$CreateTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Mutation$CreateTicket? typedOptimisticResult,
-    graphql.Context? context,
-    OnMutationCompleted$Mutation$CreateTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$CreateTicket>? update,
-    graphql.OnError? onError,
-  })  : onCompletedWithParsed = onCompleted,
-        super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) => onCompleted(
-                    data,
-                    data == null ? null : _parserFn$Mutation$CreateTicket(data),
-                  ),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationCreateTicket,
-          parserFn: _parserFn$Mutation$CreateTicket,
-        );
-
-  final OnMutationCompleted$Mutation$CreateTicket? onCompletedWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
-        onCompletedWithParsed,
-      ];
-}
-
-class WatchOptions$Mutation$CreateTicket
-    extends graphql.WatchQueryOptions<Mutation$CreateTicket> {
-  WatchOptions$Mutation$CreateTicket({
-    String? operationName,
-    required Variables$Mutation$CreateTicket variables,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Mutation$CreateTicket? typedOptimisticResult,
-    graphql.Context? context,
-    Duration? pollInterval,
-    bool? eagerlyFetchResults,
-    bool carryForwardDataOnException = true,
-    bool fetchResults = false,
-  }) : super(
-          variables: variables.toJson(),
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          document: documentNodeMutationCreateTicket,
-          pollInterval: pollInterval,
-          eagerlyFetchResults: eagerlyFetchResults,
-          carryForwardDataOnException: carryForwardDataOnException,
-          fetchResults: fetchResults,
-          parserFn: _parserFn$Mutation$CreateTicket,
-        );
-}
-
-extension ClientExtension$Mutation$CreateTicket on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$CreateTicket>> mutate$CreateTicket(
-          Options$Mutation$CreateTicket options) async =>
-      await this.mutate(options);
-
-  graphql.ObservableQuery<Mutation$CreateTicket> watchMutation$CreateTicket(
-          WatchOptions$Mutation$CreateTicket options) =>
-      this.watchMutation(options);
-}
-
-class Mutation$CreateTicket$HookResult {
-  Mutation$CreateTicket$HookResult(
-    this.runMutation,
-    this.result,
-  );
-
-  final RunMutation$Mutation$CreateTicket runMutation;
-
-  final graphql.QueryResult<Mutation$CreateTicket> result;
-}
-
-Mutation$CreateTicket$HookResult useMutation$CreateTicket(
-    [WidgetOptions$Mutation$CreateTicket? options]) {
-  final result = graphql_flutter
-      .useMutation(options ?? WidgetOptions$Mutation$CreateTicket());
-  return Mutation$CreateTicket$HookResult(
-    (variables, {optimisticResult, typedOptimisticResult}) =>
-        result.runMutation(
-      variables.toJson(),
-      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-    ),
-    result.result,
-  );
-}
-
-graphql.ObservableQuery<Mutation$CreateTicket> useWatchMutation$CreateTicket(
-        WatchOptions$Mutation$CreateTicket options) =>
-    graphql_flutter.useWatchMutation(options);
-
-class WidgetOptions$Mutation$CreateTicket
-    extends graphql.MutationOptions<Mutation$CreateTicket> {
-  WidgetOptions$Mutation$CreateTicket({
-    String? operationName,
-    graphql.FetchPolicy? fetchPolicy,
-    graphql.ErrorPolicy? errorPolicy,
-    graphql.CacheRereadPolicy? cacheRereadPolicy,
-    Object? optimisticResult,
-    Mutation$CreateTicket? typedOptimisticResult,
-    graphql.Context? context,
-    OnMutationCompleted$Mutation$CreateTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$CreateTicket>? update,
-    graphql.OnError? onError,
-  })  : onCompletedWithParsed = onCompleted,
-        super(
-          operationName: operationName,
-          fetchPolicy: fetchPolicy,
-          errorPolicy: errorPolicy,
-          cacheRereadPolicy: cacheRereadPolicy,
-          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-          context: context,
-          onCompleted: onCompleted == null
-              ? null
-              : (data) => onCompleted(
-                    data,
-                    data == null ? null : _parserFn$Mutation$CreateTicket(data),
-                  ),
-          update: update,
-          onError: onError,
-          document: documentNodeMutationCreateTicket,
-          parserFn: _parserFn$Mutation$CreateTicket,
-        );
-
-  final OnMutationCompleted$Mutation$CreateTicket? onCompletedWithParsed;
-
-  @override
-  List<Object?> get properties => [
-        ...super.onCompleted == null
-            ? super.properties
-            : super.properties.where((property) => property != onCompleted),
-        onCompletedWithParsed,
-      ];
-}
-
-typedef RunMutation$Mutation$CreateTicket
-    = graphql.MultiSourceResult<Mutation$CreateTicket> Function(
-  Variables$Mutation$CreateTicket, {
-  Object? optimisticResult,
-  Mutation$CreateTicket? typedOptimisticResult,
-});
-typedef Builder$Mutation$CreateTicket = widgets.Widget Function(
-  RunMutation$Mutation$CreateTicket,
-  graphql.QueryResult<Mutation$CreateTicket>?,
-);
-
-class Mutation$CreateTicket$Widget
-    extends graphql_flutter.Mutation<Mutation$CreateTicket> {
-  Mutation$CreateTicket$Widget({
-    widgets.Key? key,
-    WidgetOptions$Mutation$CreateTicket? options,
-    required Builder$Mutation$CreateTicket builder,
-  }) : super(
-          key: key,
-          options: options ?? WidgetOptions$Mutation$CreateTicket(),
-          builder: (
-            run,
-            result,
-          ) =>
-              builder(
-            (
-              variables, {
-              optimisticResult,
-              typedOptimisticResult,
-            }) =>
-                run(
-              variables.toJson(),
-              optimisticResult:
-                  optimisticResult ?? typedOptimisticResult?.toJson(),
-            ),
-            result,
-          ),
-        );
-}
-
-class Mutation$CreateTicket$createTicket {
-  Mutation$CreateTicket$createTicket({
-    required this.id,
-    required this.code,
-    required this.used,
-    required this.createdAt,
-    required this.event,
-    this.buyerName,
-    this.buyerPhone,
-    this.buyerEmail,
     this.$__typename = 'Ticket',
   });
 
-  factory Mutation$CreateTicket$createTicket.fromJson(
+  factory Mutation$BuyTicket$buyTicket$ticket.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
-    final l$code = json['code'];
-    final l$used = json['used'];
-    final l$createdAt = json['createdAt'];
-    final l$event = json['event'];
-    final l$buyerName = json['buyerName'];
-    final l$buyerPhone = json['buyerPhone'];
-    final l$buyerEmail = json['buyerEmail'];
     final l$$__typename = json['__typename'];
-    return Mutation$CreateTicket$createTicket(
+    return Mutation$BuyTicket$buyTicket$ticket(
       id: (l$id as String),
-      code: (l$code as String),
-      used: (l$used as bool),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      event: Mutation$CreateTicket$createTicket$event.fromJson(
-          (l$event as Map<String, dynamic>)),
-      buyerName: (l$buyerName as String?),
-      buyerPhone: (l$buyerPhone as String?),
-      buyerEmail: (l$buyerEmail as String?),
       $__typename: (l$$__typename as String),
     );
   }
 
   final String id;
-
-  final String code;
-
-  final bool used;
-
-  final DateTime createdAt;
-
-  final Mutation$CreateTicket$createTicket$event event;
-
-  final String? buyerName;
-
-  final String? buyerPhone;
-
-  final String? buyerEmail;
 
   final String $__typename;
 
@@ -4526,20 +3858,6 @@ class Mutation$CreateTicket$createTicket {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
-    final l$code = code;
-    _resultData['code'] = l$code;
-    final l$used = used;
-    _resultData['used'] = l$used;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$event = event;
-    _resultData['event'] = l$event.toJson();
-    final l$buyerName = buyerName;
-    _resultData['buyerName'] = l$buyerName;
-    final l$buyerPhone = buyerPhone;
-    _resultData['buyerPhone'] = l$buyerPhone;
-    final l$buyerEmail = buyerEmail;
-    _resultData['buyerEmail'] = l$buyerEmail;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4548,23 +3866,9 @@ class Mutation$CreateTicket$createTicket {
   @override
   int get hashCode {
     final l$id = id;
-    final l$code = code;
-    final l$used = used;
-    final l$createdAt = createdAt;
-    final l$event = event;
-    final l$buyerName = buyerName;
-    final l$buyerPhone = buyerPhone;
-    final l$buyerEmail = buyerEmail;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
-      l$code,
-      l$used,
-      l$createdAt,
-      l$event,
-      l$buyerName,
-      l$buyerPhone,
-      l$buyerEmail,
       l$$__typename,
     ]);
   }
@@ -4574,48 +3878,13 @@ class Mutation$CreateTicket$createTicket {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$CreateTicket$createTicket ||
+    if (other is! Mutation$BuyTicket$buyTicket$ticket ||
         runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
     final lOther$id = other.id;
     if (l$id != lOther$id) {
-      return false;
-    }
-    final l$code = code;
-    final lOther$code = other.code;
-    if (l$code != lOther$code) {
-      return false;
-    }
-    final l$used = used;
-    final lOther$used = other.used;
-    if (l$used != lOther$used) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$event = event;
-    final lOther$event = other.event;
-    if (l$event != lOther$event) {
-      return false;
-    }
-    final l$buyerName = buyerName;
-    final lOther$buyerName = other.buyerName;
-    if (l$buyerName != lOther$buyerName) {
-      return false;
-    }
-    final l$buyerPhone = buyerPhone;
-    final lOther$buyerPhone = other.buyerPhone;
-    if (l$buyerPhone != lOther$buyerPhone) {
-      return false;
-    }
-    final l$buyerEmail = buyerEmail;
-    final lOther$buyerEmail = other.buyerEmail;
-    if (l$buyerEmail != lOther$buyerEmail) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4627,261 +3896,64 @@ class Mutation$CreateTicket$createTicket {
   }
 }
 
-extension UtilityExtension$Mutation$CreateTicket$createTicket
-    on Mutation$CreateTicket$createTicket {
-  CopyWith$Mutation$CreateTicket$createTicket<
-          Mutation$CreateTicket$createTicket>
-      get copyWith => CopyWith$Mutation$CreateTicket$createTicket(
+extension UtilityExtension$Mutation$BuyTicket$buyTicket$ticket
+    on Mutation$BuyTicket$buyTicket$ticket {
+  CopyWith$Mutation$BuyTicket$buyTicket$ticket<
+          Mutation$BuyTicket$buyTicket$ticket>
+      get copyWith => CopyWith$Mutation$BuyTicket$buyTicket$ticket(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$CreateTicket$createTicket<TRes> {
-  factory CopyWith$Mutation$CreateTicket$createTicket(
-    Mutation$CreateTicket$createTicket instance,
-    TRes Function(Mutation$CreateTicket$createTicket) then,
-  ) = _CopyWithImpl$Mutation$CreateTicket$createTicket;
+abstract class CopyWith$Mutation$BuyTicket$buyTicket$ticket<TRes> {
+  factory CopyWith$Mutation$BuyTicket$buyTicket$ticket(
+    Mutation$BuyTicket$buyTicket$ticket instance,
+    TRes Function(Mutation$BuyTicket$buyTicket$ticket) then,
+  ) = _CopyWithImpl$Mutation$BuyTicket$buyTicket$ticket;
 
-  factory CopyWith$Mutation$CreateTicket$createTicket.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateTicket$createTicket;
+  factory CopyWith$Mutation$BuyTicket$buyTicket$ticket.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$ticket;
 
   TRes call({
     String? id,
-    String? code,
-    bool? used,
-    DateTime? createdAt,
-    Mutation$CreateTicket$createTicket$event? event,
-    String? buyerName,
-    String? buyerPhone,
-    String? buyerEmail,
     String? $__typename,
   });
-  CopyWith$Mutation$CreateTicket$createTicket$event<TRes> get event;
 }
 
-class _CopyWithImpl$Mutation$CreateTicket$createTicket<TRes>
-    implements CopyWith$Mutation$CreateTicket$createTicket<TRes> {
-  _CopyWithImpl$Mutation$CreateTicket$createTicket(
+class _CopyWithImpl$Mutation$BuyTicket$buyTicket$ticket<TRes>
+    implements CopyWith$Mutation$BuyTicket$buyTicket$ticket<TRes> {
+  _CopyWithImpl$Mutation$BuyTicket$buyTicket$ticket(
     this._instance,
     this._then,
   );
 
-  final Mutation$CreateTicket$createTicket _instance;
+  final Mutation$BuyTicket$buyTicket$ticket _instance;
 
-  final TRes Function(Mutation$CreateTicket$createTicket) _then;
+  final TRes Function(Mutation$BuyTicket$buyTicket$ticket) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
-    Object? code = _undefined,
-    Object? used = _undefined,
-    Object? createdAt = _undefined,
-    Object? event = _undefined,
-    Object? buyerName = _undefined,
-    Object? buyerPhone = _undefined,
-    Object? buyerEmail = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$CreateTicket$createTicket(
+      _then(Mutation$BuyTicket$buyTicket$ticket(
         id: id == _undefined || id == null ? _instance.id : (id as String),
-        code: code == _undefined || code == null
-            ? _instance.code
-            : (code as String),
-        used: used == _undefined || used == null
-            ? _instance.used
-            : (used as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        event: event == _undefined || event == null
-            ? _instance.event
-            : (event as Mutation$CreateTicket$createTicket$event),
-        buyerName: buyerName == _undefined
-            ? _instance.buyerName
-            : (buyerName as String?),
-        buyerPhone: buyerPhone == _undefined
-            ? _instance.buyerPhone
-            : (buyerPhone as String?),
-        buyerEmail: buyerEmail == _undefined
-            ? _instance.buyerEmail
-            : (buyerEmail as String?),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-
-  CopyWith$Mutation$CreateTicket$createTicket$event<TRes> get event {
-    final local$event = _instance.event;
-    return CopyWith$Mutation$CreateTicket$createTicket$event(
-        local$event, (e) => call(event: e));
-  }
-}
-
-class _CopyWithStubImpl$Mutation$CreateTicket$createTicket<TRes>
-    implements CopyWith$Mutation$CreateTicket$createTicket<TRes> {
-  _CopyWithStubImpl$Mutation$CreateTicket$createTicket(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    String? code,
-    bool? used,
-    DateTime? createdAt,
-    Mutation$CreateTicket$createTicket$event? event,
-    String? buyerName,
-    String? buyerPhone,
-    String? buyerEmail,
-    String? $__typename,
-  }) =>
-      _res;
-
-  CopyWith$Mutation$CreateTicket$createTicket$event<TRes> get event =>
-      CopyWith$Mutation$CreateTicket$createTicket$event.stub(_res);
-}
-
-class Mutation$CreateTicket$createTicket$event {
-  Mutation$CreateTicket$createTicket$event({
-    required this.id,
-    required this.title,
-    this.$__typename = 'Event',
-  });
-
-  factory Mutation$CreateTicket$createTicket$event.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$title = json['title'];
-    final l$$__typename = json['__typename'];
-    return Mutation$CreateTicket$createTicket$event(
-      id: (l$id as String),
-      title: (l$title as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String id;
-
-  final String title;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$title = title;
-    _resultData['title'] = l$title;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$title = title;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$id,
-      l$title,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$CreateTicket$createTicket$event ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$title = title;
-    final lOther$title = other.title;
-    if (l$title != lOther$title) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$CreateTicket$createTicket$event
-    on Mutation$CreateTicket$createTicket$event {
-  CopyWith$Mutation$CreateTicket$createTicket$event<
-          Mutation$CreateTicket$createTicket$event>
-      get copyWith => CopyWith$Mutation$CreateTicket$createTicket$event(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$CreateTicket$createTicket$event<TRes> {
-  factory CopyWith$Mutation$CreateTicket$createTicket$event(
-    Mutation$CreateTicket$createTicket$event instance,
-    TRes Function(Mutation$CreateTicket$createTicket$event) then,
-  ) = _CopyWithImpl$Mutation$CreateTicket$createTicket$event;
-
-  factory CopyWith$Mutation$CreateTicket$createTicket$event.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$CreateTicket$createTicket$event;
-
-  TRes call({
-    String? id,
-    String? title,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$CreateTicket$createTicket$event<TRes>
-    implements CopyWith$Mutation$CreateTicket$createTicket$event<TRes> {
-  _CopyWithImpl$Mutation$CreateTicket$createTicket$event(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$CreateTicket$createTicket$event _instance;
-
-  final TRes Function(Mutation$CreateTicket$createTicket$event) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? title = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$CreateTicket$createTicket$event(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        title: title == _undefined || title == null
-            ? _instance.title
-            : (title as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$CreateTicket$createTicket$event<TRes>
-    implements CopyWith$Mutation$CreateTicket$createTicket$event<TRes> {
-  _CopyWithStubImpl$Mutation$CreateTicket$createTicket$event(this._res);
+class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$ticket<TRes>
+    implements CopyWith$Mutation$BuyTicket$buyTicket$ticket<TRes> {
+  _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$ticket(this._res);
 
   TRes _res;
 
   call({
     String? id,
-    String? title,
     String? $__typename,
   }) =>
       _res;

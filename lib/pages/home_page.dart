@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: const Text('My First Flutter App'),
         title: SizedBox(height: 24, child: Image.asset("assets/images/logoipsum-311.png")),
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [

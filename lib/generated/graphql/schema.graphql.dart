@@ -1,9 +1,19 @@
 // GENERATED FILE
 // DO NOT MODIFY
 class Input$BuyTicketInput {
-  factory Input$BuyTicketInput({required String eventId}) =>
+  factory Input$BuyTicketInput({
+    required String eventId,
+    required Enum$PaymentMethod paymentMethod,
+    required String buyerName,
+    String? buyerPhone,
+    String? buyerEmail,
+  }) =>
       Input$BuyTicketInput._({
         r'eventId': eventId,
+        r'paymentMethod': paymentMethod,
+        r'buyerName': buyerName,
+        if (buyerPhone != null) r'buyerPhone': buyerPhone,
+        if (buyerEmail != null) r'buyerEmail': buyerEmail,
       });
 
   Input$BuyTicketInput._(this._$data);
@@ -12,6 +22,19 @@ class Input$BuyTicketInput {
     final result$data = <String, dynamic>{};
     final l$eventId = data['eventId'];
     result$data['eventId'] = (l$eventId as String);
+    final l$paymentMethod = data['paymentMethod'];
+    result$data['paymentMethod'] =
+        fromJson$Enum$PaymentMethod((l$paymentMethod as String));
+    final l$buyerName = data['buyerName'];
+    result$data['buyerName'] = (l$buyerName as String);
+    if (data.containsKey('buyerPhone')) {
+      final l$buyerPhone = data['buyerPhone'];
+      result$data['buyerPhone'] = (l$buyerPhone as String?);
+    }
+    if (data.containsKey('buyerEmail')) {
+      final l$buyerEmail = data['buyerEmail'];
+      result$data['buyerEmail'] = (l$buyerEmail as String?);
+    }
     return Input$BuyTicketInput._(result$data);
   }
 
@@ -19,10 +42,31 @@ class Input$BuyTicketInput {
 
   String get eventId => (_$data['eventId'] as String);
 
+  Enum$PaymentMethod get paymentMethod =>
+      (_$data['paymentMethod'] as Enum$PaymentMethod);
+
+  String get buyerName => (_$data['buyerName'] as String);
+
+  String? get buyerPhone => (_$data['buyerPhone'] as String?);
+
+  String? get buyerEmail => (_$data['buyerEmail'] as String?);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$eventId = eventId;
     result$data['eventId'] = l$eventId;
+    final l$paymentMethod = paymentMethod;
+    result$data['paymentMethod'] = toJson$Enum$PaymentMethod(l$paymentMethod);
+    final l$buyerName = buyerName;
+    result$data['buyerName'] = l$buyerName;
+    if (_$data.containsKey('buyerPhone')) {
+      final l$buyerPhone = buyerPhone;
+      result$data['buyerPhone'] = l$buyerPhone;
+    }
+    if (_$data.containsKey('buyerEmail')) {
+      final l$buyerEmail = buyerEmail;
+      result$data['buyerEmail'] = l$buyerEmail;
+    }
     return result$data;
   }
 
@@ -45,13 +89,51 @@ class Input$BuyTicketInput {
     if (l$eventId != lOther$eventId) {
       return false;
     }
+    final l$paymentMethod = paymentMethod;
+    final lOther$paymentMethod = other.paymentMethod;
+    if (l$paymentMethod != lOther$paymentMethod) {
+      return false;
+    }
+    final l$buyerName = buyerName;
+    final lOther$buyerName = other.buyerName;
+    if (l$buyerName != lOther$buyerName) {
+      return false;
+    }
+    final l$buyerPhone = buyerPhone;
+    final lOther$buyerPhone = other.buyerPhone;
+    if (_$data.containsKey('buyerPhone') !=
+        other._$data.containsKey('buyerPhone')) {
+      return false;
+    }
+    if (l$buyerPhone != lOther$buyerPhone) {
+      return false;
+    }
+    final l$buyerEmail = buyerEmail;
+    final lOther$buyerEmail = other.buyerEmail;
+    if (_$data.containsKey('buyerEmail') !=
+        other._$data.containsKey('buyerEmail')) {
+      return false;
+    }
+    if (l$buyerEmail != lOther$buyerEmail) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$eventId = eventId;
-    return Object.hashAll([l$eventId]);
+    final l$paymentMethod = paymentMethod;
+    final l$buyerName = buyerName;
+    final l$buyerPhone = buyerPhone;
+    final l$buyerEmail = buyerEmail;
+    return Object.hashAll([
+      l$eventId,
+      l$paymentMethod,
+      l$buyerName,
+      _$data.containsKey('buyerPhone') ? l$buyerPhone : const {},
+      _$data.containsKey('buyerEmail') ? l$buyerEmail : const {},
+    ]);
   }
 }
 
@@ -64,7 +146,13 @@ abstract class CopyWith$Input$BuyTicketInput<TRes> {
   factory CopyWith$Input$BuyTicketInput.stub(TRes res) =
       _CopyWithStubImpl$Input$BuyTicketInput;
 
-  TRes call({String? eventId});
+  TRes call({
+    String? eventId,
+    Enum$PaymentMethod? paymentMethod,
+    String? buyerName,
+    String? buyerPhone,
+    String? buyerEmail,
+  });
 }
 
 class _CopyWithImpl$Input$BuyTicketInput<TRes>
@@ -80,10 +168,23 @@ class _CopyWithImpl$Input$BuyTicketInput<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? eventId = _undefined}) => _then(Input$BuyTicketInput._({
+  TRes call({
+    Object? eventId = _undefined,
+    Object? paymentMethod = _undefined,
+    Object? buyerName = _undefined,
+    Object? buyerPhone = _undefined,
+    Object? buyerEmail = _undefined,
+  }) =>
+      _then(Input$BuyTicketInput._({
         ..._instance._$data,
         if (eventId != _undefined && eventId != null)
           'eventId': (eventId as String),
+        if (paymentMethod != _undefined && paymentMethod != null)
+          'paymentMethod': (paymentMethod as Enum$PaymentMethod),
+        if (buyerName != _undefined && buyerName != null)
+          'buyerName': (buyerName as String),
+        if (buyerPhone != _undefined) 'buyerPhone': (buyerPhone as String?),
+        if (buyerEmail != _undefined) 'buyerEmail': (buyerEmail as String?),
       }));
 }
 
@@ -93,7 +194,14 @@ class _CopyWithStubImpl$Input$BuyTicketInput<TRes>
 
   TRes _res;
 
-  call({String? eventId}) => _res;
+  call({
+    String? eventId,
+    Enum$PaymentMethod? paymentMethod,
+    String? buyerName,
+    String? buyerPhone,
+    String? buyerEmail,
+  }) =>
+      _res;
 }
 
 class Input$ChangePasswordInput {
@@ -593,188 +701,6 @@ class _CopyWithStubImpl$Input$CreateEventInput<TRes>
     DateTime? date,
     double? price,
     String? priceCurrency,
-  }) =>
-      _res;
-}
-
-class Input$CreateTicketInput {
-  factory Input$CreateTicketInput({
-    required String eventId,
-    required String buyerName,
-    String? buyerPhone,
-    String? buyerEmail,
-  }) =>
-      Input$CreateTicketInput._({
-        r'eventId': eventId,
-        r'buyerName': buyerName,
-        if (buyerPhone != null) r'buyerPhone': buyerPhone,
-        if (buyerEmail != null) r'buyerEmail': buyerEmail,
-      });
-
-  Input$CreateTicketInput._(this._$data);
-
-  factory Input$CreateTicketInput.fromJson(Map<String, dynamic> data) {
-    final result$data = <String, dynamic>{};
-    final l$eventId = data['eventId'];
-    result$data['eventId'] = (l$eventId as String);
-    final l$buyerName = data['buyerName'];
-    result$data['buyerName'] = (l$buyerName as String);
-    if (data.containsKey('buyerPhone')) {
-      final l$buyerPhone = data['buyerPhone'];
-      result$data['buyerPhone'] = (l$buyerPhone as String?);
-    }
-    if (data.containsKey('buyerEmail')) {
-      final l$buyerEmail = data['buyerEmail'];
-      result$data['buyerEmail'] = (l$buyerEmail as String?);
-    }
-    return Input$CreateTicketInput._(result$data);
-  }
-
-  Map<String, dynamic> _$data;
-
-  String get eventId => (_$data['eventId'] as String);
-
-  String get buyerName => (_$data['buyerName'] as String);
-
-  String? get buyerPhone => (_$data['buyerPhone'] as String?);
-
-  String? get buyerEmail => (_$data['buyerEmail'] as String?);
-
-  Map<String, dynamic> toJson() {
-    final result$data = <String, dynamic>{};
-    final l$eventId = eventId;
-    result$data['eventId'] = l$eventId;
-    final l$buyerName = buyerName;
-    result$data['buyerName'] = l$buyerName;
-    if (_$data.containsKey('buyerPhone')) {
-      final l$buyerPhone = buyerPhone;
-      result$data['buyerPhone'] = l$buyerPhone;
-    }
-    if (_$data.containsKey('buyerEmail')) {
-      final l$buyerEmail = buyerEmail;
-      result$data['buyerEmail'] = l$buyerEmail;
-    }
-    return result$data;
-  }
-
-  CopyWith$Input$CreateTicketInput<Input$CreateTicketInput> get copyWith =>
-      CopyWith$Input$CreateTicketInput(
-        this,
-        (i) => i,
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Input$CreateTicketInput || runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$eventId = eventId;
-    final lOther$eventId = other.eventId;
-    if (l$eventId != lOther$eventId) {
-      return false;
-    }
-    final l$buyerName = buyerName;
-    final lOther$buyerName = other.buyerName;
-    if (l$buyerName != lOther$buyerName) {
-      return false;
-    }
-    final l$buyerPhone = buyerPhone;
-    final lOther$buyerPhone = other.buyerPhone;
-    if (_$data.containsKey('buyerPhone') !=
-        other._$data.containsKey('buyerPhone')) {
-      return false;
-    }
-    if (l$buyerPhone != lOther$buyerPhone) {
-      return false;
-    }
-    final l$buyerEmail = buyerEmail;
-    final lOther$buyerEmail = other.buyerEmail;
-    if (_$data.containsKey('buyerEmail') !=
-        other._$data.containsKey('buyerEmail')) {
-      return false;
-    }
-    if (l$buyerEmail != lOther$buyerEmail) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
-  int get hashCode {
-    final l$eventId = eventId;
-    final l$buyerName = buyerName;
-    final l$buyerPhone = buyerPhone;
-    final l$buyerEmail = buyerEmail;
-    return Object.hashAll([
-      l$eventId,
-      l$buyerName,
-      _$data.containsKey('buyerPhone') ? l$buyerPhone : const {},
-      _$data.containsKey('buyerEmail') ? l$buyerEmail : const {},
-    ]);
-  }
-}
-
-abstract class CopyWith$Input$CreateTicketInput<TRes> {
-  factory CopyWith$Input$CreateTicketInput(
-    Input$CreateTicketInput instance,
-    TRes Function(Input$CreateTicketInput) then,
-  ) = _CopyWithImpl$Input$CreateTicketInput;
-
-  factory CopyWith$Input$CreateTicketInput.stub(TRes res) =
-      _CopyWithStubImpl$Input$CreateTicketInput;
-
-  TRes call({
-    String? eventId,
-    String? buyerName,
-    String? buyerPhone,
-    String? buyerEmail,
-  });
-}
-
-class _CopyWithImpl$Input$CreateTicketInput<TRes>
-    implements CopyWith$Input$CreateTicketInput<TRes> {
-  _CopyWithImpl$Input$CreateTicketInput(
-    this._instance,
-    this._then,
-  );
-
-  final Input$CreateTicketInput _instance;
-
-  final TRes Function(Input$CreateTicketInput) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? eventId = _undefined,
-    Object? buyerName = _undefined,
-    Object? buyerPhone = _undefined,
-    Object? buyerEmail = _undefined,
-  }) =>
-      _then(Input$CreateTicketInput._({
-        ..._instance._$data,
-        if (eventId != _undefined && eventId != null)
-          'eventId': (eventId as String),
-        if (buyerName != _undefined && buyerName != null)
-          'buyerName': (buyerName as String),
-        if (buyerPhone != _undefined) 'buyerPhone': (buyerPhone as String?),
-        if (buyerEmail != _undefined) 'buyerEmail': (buyerEmail as String?),
-      }));
-}
-
-class _CopyWithStubImpl$Input$CreateTicketInput<TRes>
-    implements CopyWith$Input$CreateTicketInput<TRes> {
-  _CopyWithStubImpl$Input$CreateTicketInput(this._res);
-
-  TRes _res;
-
-  call({
-    String? eventId,
-    String? buyerName,
-    String? buyerPhone,
-    String? buyerEmail,
   }) =>
       _res;
 }
@@ -1625,6 +1551,54 @@ class _CopyWithStubImpl$Input$UpdateUserInput<TRes>
     String? tiktok,
   }) =>
       _res;
+}
+
+enum Enum$PaymentMethod {
+  INTERNAL,
+  CARD,
+  MONCASH,
+  PAYPAL,
+  CASHAPP,
+  $unknown;
+
+  factory Enum$PaymentMethod.fromJson(String value) =>
+      fromJson$Enum$PaymentMethod(value);
+
+  String toJson() => toJson$Enum$PaymentMethod(this);
+}
+
+String toJson$Enum$PaymentMethod(Enum$PaymentMethod e) {
+  switch (e) {
+    case Enum$PaymentMethod.INTERNAL:
+      return r'INTERNAL';
+    case Enum$PaymentMethod.CARD:
+      return r'CARD';
+    case Enum$PaymentMethod.MONCASH:
+      return r'MONCASH';
+    case Enum$PaymentMethod.PAYPAL:
+      return r'PAYPAL';
+    case Enum$PaymentMethod.CASHAPP:
+      return r'CASHAPP';
+    case Enum$PaymentMethod.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$PaymentMethod fromJson$Enum$PaymentMethod(String value) {
+  switch (value) {
+    case r'INTERNAL':
+      return Enum$PaymentMethod.INTERNAL;
+    case r'CARD':
+      return Enum$PaymentMethod.CARD;
+    case r'MONCASH':
+      return Enum$PaymentMethod.MONCASH;
+    case r'PAYPAL':
+      return Enum$PaymentMethod.PAYPAL;
+    case r'CASHAPP':
+      return Enum$PaymentMethod.CASHAPP;
+    default:
+      return Enum$PaymentMethod.$unknown;
+  }
 }
 
 enum Enum$Role {

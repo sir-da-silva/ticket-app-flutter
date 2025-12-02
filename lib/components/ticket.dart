@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
+import 'package:my_first_flutter_app/navigation/route_names.dart';
+import 'package:my_first_flutter_app/utils/date_parser.dart';
 
-class TicketCard extends StatelessWidget {
-  // Legacy fields (kept for backward compatibility)
-  final String ticketNumber;
-  final String title; // Nom de l'evenement
-  final String status;
-  final String date; // legacy display date
-  final Color statusColor;
+class Ticket extends StatelessWidget {
+  final String id;
+  final bool checked;
+  final String buyerName;
+  final String eventTitle;
+  final String eventLocation;
+  final String eventPicture;
+  final CustomDateParser date;
 
-  // New optional fields
-  final DateTime? eventDateTime; // pour countdown/counted-up
-  final bool? isUsed; // si utilisé ou non
-  final String? imageUrl; // optionnel
+  Ticket.fromtMyTickets(Query$GetMyTickets$myTickets data, {super.key})
+    : id = data.id,
+      buyerName = data.buyerName!,
+      checked = data.used,
+      eventTitle = data.event.title,
+      eventLocation = data.event.location,
+      eventPicture = data.event.picture,
+      date = CustomDateParser(date: data.event.date);
 
-  const TicketCard({
-    super.key,
-    required this.ticketNumber,
-    required this.title,
-    required this.status,
-    required this.date,
-    required this.statusColor,
-    this.eventDateTime,
-    this.isUsed,
-    this.imageUrl,
-  });
-
-  Duration? get _timeDiff {
-    if (eventDateTime == null) return null;
-    return eventDateTime!.difference(DateTime.now());
-  }
+  // Duration? get _timeDiff {
+  //   if (eventDateTime == null) return null;
+  //   return eventDateTime!.difference(DateTime.now());
+  // }
 
   String _formatCountdown(Duration d) {
     final bool isPast = d.isNegative;
@@ -42,126 +38,106 @@ class TicketCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Duration? diff = _timeDiff;
-    final String? countdown = diff != null ? _formatCountdown(diff) : null;
-    final bool used = isUsed ?? false;
-
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 4),
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Optional header image
-          if (imageUrl != null)
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.network(
-                imageUrl!,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stack) {
-                  return Container(
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                    child: Icon(
-                      Icons.image_not_supported,
-                      color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
-                    ),
-                  );
-                },
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, RouteNames.ticketDetail, arguments: id);
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 42,
+                        height: 42,
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.blue.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Image.network(
+                          eventPicture,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Icon(
+                              Icons.image,
+                              size: 18,
+                              color: Colors.grey.withValues(alpha: 0.5),
+                            );
+                          },
+                        ),
                       ),
-                      child: const Icon(Icons.confirmation_number, color: Colors.blue, size: 24),
-                    ),
-                    const Spacer(),
-                    // Used badge
-                    if (used)
+                      const Spacer(),
+
+                      // Used badge
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
-                          color: Colors.green.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Text(
-                          'Utilisé',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.green,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      )
-                    else
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: statusColor.withValues(alpha: 0.1),
+                          color: Colors.blue.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
-                          status,
+                          "Dans 23 jours",
                           style: TextStyle(
                             fontSize: 12,
-                            color: statusColor,
+                            color: Colors.blue,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  'Ticket #$ticketNumber',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.w500,
+                    ],
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  title,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Icon(Icons.schedule, size: 14, color: Colors.grey[600]),
-                    const SizedBox(width: 6),
-                    if (countdown != null)
-                      Text(
-                        countdown,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[800],
-                          fontWeight: FontWeight.w600,
+                  const SizedBox(height: 12),
+
+                  Text(
+                    eventTitle,
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                  Row(
+                    spacing: 8,
+                    children: [Icon(Icons.location_city, size: 18), Text(eventLocation)],
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  RichText(
+                    maxLines: 2,
+                    text: TextSpan(
+                      style: TextStyle(color: Colors.black),
+                      children: [
+                        TextSpan(text: "Beneficiaire : \n"),
+                        TextSpan(
+                          text: buyerName,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      )
-                    else
-                      Text(date, style: TextStyle(fontSize: 12, color: Colors.grey[600])),
-                  ],
-                ),
-              ],
+                      ],
+                    ),
+                  ),
+
+                  Row(children: [
+                    Text("Plus de detail")
+                  ],)
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'services/graphql_service.dart';
 import 'navigation/app_router.dart';
 import 'navigation/route_names.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,10 @@ void main() async {
   // UI auth state
   final authProvider = AuthProvider();
   await authProvider.initSession();
+
+  // Stripe
+  Stripe.publishableKey =
+      "pk_test_51RMYDNFY3oyIt7gWdKY0pekOq948u1rV2EfmdJLU3VgTtOKafMWOaHjA9nYJYWO0sqEvfCnUPOcgG6zLN9oLBA7c00du7wePw6";
 
   runApp(ChangeNotifierProvider(create: (_) => authProvider, child: const MyApp()));
 }

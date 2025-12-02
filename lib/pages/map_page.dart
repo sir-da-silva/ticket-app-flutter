@@ -8,6 +8,7 @@ class MapPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Carte"),
         actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           IconButton(
@@ -17,8 +18,7 @@ class MapPage extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           IconButton(
-            onPressed: () =>
-                Navigator.pushNamed(context, RouteNames.notifications),
+            onPressed: () => Navigator.pushNamed(context, RouteNames.notifications),
             icon: const Icon(Icons.notifications_outlined, size: 28),
             tooltip: 'Notifications',
           ),
@@ -30,15 +30,9 @@ class MapPage extends StatelessWidget {
           children: [
             Icon(Icons.location_on_rounded, size: 64, color: Colors.grey),
             SizedBox(height: 16),
-            Text(
-              "Carte d'activités",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
+            Text("Carte d'activités", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
-            Text(
-              'Localiser les activités...',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
-            ),
+            Text('Localiser les activités...', style: TextStyle(fontSize: 16, color: Colors.grey)),
           ],
         ),
       ),

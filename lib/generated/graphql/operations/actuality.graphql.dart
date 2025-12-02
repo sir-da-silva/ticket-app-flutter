@@ -22,10 +22,10 @@ class Query$LastActualities {
       myLastActuality: l$myLastActuality == null
           ? null
           : Query$LastActualities$myLastActuality.fromJson(
-              (l$myLastActuality as Map<String, dynamic>),
-            ),
+              (l$myLastActuality as Map<String, dynamic>)),
       lastActualities: (l$lastActualities as List<dynamic>)
-          .map((e) => Query$LastActualities$lastActualities.fromJson((e as Map<String, dynamic>)))
+          .map((e) => Query$LastActualities$lastActualities.fromJson(
+              (e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
@@ -42,7 +42,8 @@ class Query$LastActualities {
     final l$myLastActuality = myLastActuality;
     _resultData['myLastActuality'] = l$myLastActuality?.toJson();
     final l$lastActualities = lastActualities;
-    _resultData['lastActualities'] = l$lastActualities.map((e) => e.toJson()).toList();
+    _resultData['lastActualities'] =
+        l$lastActualities.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -96,7 +97,10 @@ class Query$LastActualities {
 
 extension UtilityExtension$Query$LastActualities on Query$LastActualities {
   CopyWith$Query$LastActualities<Query$LastActualities> get copyWith =>
-      CopyWith$Query$LastActualities(this, (i) => i);
+      CopyWith$Query$LastActualities(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Query$LastActualities<TRes> {
@@ -105,7 +109,8 @@ abstract class CopyWith$Query$LastActualities<TRes> {
     TRes Function(Query$LastActualities) then,
   ) = _CopyWithImpl$Query$LastActualities;
 
-  factory CopyWith$Query$LastActualities.stub(TRes res) = _CopyWithStubImpl$Query$LastActualities;
+  factory CopyWith$Query$LastActualities.stub(TRes res) =
+      _CopyWithStubImpl$Query$LastActualities;
 
   TRes call({
     Query$LastActualities$myLastActuality? myLastActuality,
@@ -114,17 +119,19 @@ abstract class CopyWith$Query$LastActualities<TRes> {
   });
   CopyWith$Query$LastActualities$myLastActuality<TRes> get myLastActuality;
   TRes lastActualities(
-    Iterable<Query$LastActualities$lastActualities> Function(
-      Iterable<
-        CopyWith$Query$LastActualities$lastActualities<Query$LastActualities$lastActualities>
-      >,
-    )
-    _fn,
-  );
+      Iterable<Query$LastActualities$lastActualities> Function(
+              Iterable<
+                  CopyWith$Query$LastActualities$lastActualities<
+                      Query$LastActualities$lastActualities>>)
+          _fn);
 }
 
-class _CopyWithImpl$Query$LastActualities<TRes> implements CopyWith$Query$LastActualities<TRes> {
-  _CopyWithImpl$Query$LastActualities(this._instance, this._then);
+class _CopyWithImpl$Query$LastActualities<TRes>
+    implements CopyWith$Query$LastActualities<TRes> {
+  _CopyWithImpl$Query$LastActualities(
+    this._instance,
+    this._then,
+  );
 
   final Query$LastActualities _instance;
 
@@ -136,44 +143,40 @@ class _CopyWithImpl$Query$LastActualities<TRes> implements CopyWith$Query$LastAc
     Object? myLastActuality = _undefined,
     Object? lastActualities = _undefined,
     Object? $__typename = _undefined,
-  }) => _then(
-    Query$LastActualities(
-      myLastActuality: myLastActuality == _undefined
-          ? _instance.myLastActuality
-          : (myLastActuality as Query$LastActualities$myLastActuality?),
-      lastActualities: lastActualities == _undefined || lastActualities == null
-          ? _instance.lastActualities
-          : (lastActualities as List<Query$LastActualities$lastActualities>),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  }) =>
+      _then(Query$LastActualities(
+        myLastActuality: myLastActuality == _undefined
+            ? _instance.myLastActuality
+            : (myLastActuality as Query$LastActualities$myLastActuality?),
+        lastActualities: lastActualities == _undefined ||
+                lastActualities == null
+            ? _instance.lastActualities
+            : (lastActualities as List<Query$LastActualities$lastActualities>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Query$LastActualities$myLastActuality<TRes> get myLastActuality {
     final local$myLastActuality = _instance.myLastActuality;
     return local$myLastActuality == null
         ? CopyWith$Query$LastActualities$myLastActuality.stub(_then(_instance))
         : CopyWith$Query$LastActualities$myLastActuality(
-            local$myLastActuality,
-            (e) => call(myLastActuality: e),
-          );
+            local$myLastActuality, (e) => call(myLastActuality: e));
   }
 
   TRes lastActualities(
-    Iterable<Query$LastActualities$lastActualities> Function(
-      Iterable<
-        CopyWith$Query$LastActualities$lastActualities<Query$LastActualities$lastActualities>
-      >,
-    )
-    _fn,
-  ) => call(
-    lastActualities: _fn(
-      _instance.lastActualities.map(
-        (e) => CopyWith$Query$LastActualities$lastActualities(e, (i) => i),
-      ),
-    ).toList(),
-  );
+          Iterable<Query$LastActualities$lastActualities> Function(
+                  Iterable<
+                      CopyWith$Query$LastActualities$lastActualities<
+                          Query$LastActualities$lastActualities>>)
+              _fn) =>
+      call(
+          lastActualities: _fn(_instance.lastActualities
+              .map((e) => CopyWith$Query$LastActualities$lastActualities(
+                    e,
+                    (i) => i,
+                  ))).toList());
 }
 
 class _CopyWithStubImpl$Query$LastActualities<TRes>
@@ -186,7 +189,8 @@ class _CopyWithStubImpl$Query$LastActualities<TRes>
     Query$LastActualities$myLastActuality? myLastActuality,
     List<Query$LastActualities$lastActualities>? lastActualities,
     String? $__typename,
-  }) => _res;
+  }) =>
+      _res;
 
   CopyWith$Query$LastActualities$myLastActuality<TRes> get myLastActuality =>
       CopyWith$Query$LastActualities$myLastActuality.stub(_res);
@@ -194,114 +198,32 @@ class _CopyWithStubImpl$Query$LastActualities<TRes>
   lastActualities(_fn) => _res;
 }
 
-const documentNodeQueryLastActualities = DocumentNode(
-  definitions: [
-    OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'LastActualities'),
-      variableDefinitions: [],
-      directives: [],
-      selectionSet: SelectionSetNode(
-        selections: [
+const documentNodeQueryLastActualities = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'LastActualities'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'myLastActuality'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'myLastActuality'),
+            name: NameNode(value: 'id'),
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'picture'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
+            selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'lastActualities'),
+            name: NameNode(value: 'picture'),
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'user'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'name'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'badge'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: 'picture'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -310,17 +232,93 @@ const documentNodeQueryLastActualities = DocumentNode(
             directives: [],
             selectionSet: null,
           ),
-        ],
+        ]),
       ),
-    ),
-  ],
-);
-Query$LastActualities _parserFn$Query$LastActualities(Map<String, dynamic> data) =>
+      FieldNode(
+        name: NameNode(value: 'lastActualities'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+            name: NameNode(value: 'id'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'user'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'badge'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'picture'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$LastActualities _parserFn$Query$LastActualities(
+        Map<String, dynamic> data) =>
     Query$LastActualities.fromJson(data);
-typedef OnQueryComplete$Query$LastActualities =
-    FutureOr<void> Function(Map<String, dynamic>?, Query$LastActualities?);
+typedef OnQueryComplete$Query$LastActualities = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$LastActualities?,
+);
 
-class Options$Query$LastActualities extends graphql.QueryOptions<Query$LastActualities> {
+class Options$Query$LastActualities
+    extends graphql.QueryOptions<Query$LastActualities> {
   Options$Query$LastActualities({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
@@ -332,36 +330,39 @@ class Options$Query$LastActualities extends graphql.QueryOptions<Query$LastActua
     graphql.Context? context,
     OnQueryComplete$Query$LastActualities? onComplete,
     graphql.OnQueryError? onError,
-  }) : onCompleteWithParsed = onComplete,
-       super(
-         operationName: operationName,
-         fetchPolicy: fetchPolicy,
-         errorPolicy: errorPolicy,
-         cacheRereadPolicy: cacheRereadPolicy,
-         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-         pollInterval: pollInterval,
-         context: context,
-         onComplete: onComplete == null
-             ? null
-             : (data) =>
-                   onComplete(data, data == null ? null : _parserFn$Query$LastActualities(data)),
-         onError: onError,
-         document: documentNodeQueryLastActualities,
-         parserFn: _parserFn$Query$LastActualities,
-       );
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$LastActualities(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryLastActualities,
+          parserFn: _parserFn$Query$LastActualities,
+        );
 
   final OnQueryComplete$Query$LastActualities? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
-    ...super.onComplete == null
-        ? super.properties
-        : super.properties.where((property) => property != onComplete),
-    onCompleteWithParsed,
-  ];
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
-class WatchOptions$Query$LastActualities extends graphql.WatchQueryOptions<Query$LastActualities> {
+class WatchOptions$Query$LastActualities
+    extends graphql.WatchQueryOptions<Query$LastActualities> {
   WatchOptions$Query$LastActualities({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
@@ -375,64 +376,81 @@ class WatchOptions$Query$LastActualities extends graphql.WatchQueryOptions<Query
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         operationName: operationName,
-         fetchPolicy: fetchPolicy,
-         errorPolicy: errorPolicy,
-         cacheRereadPolicy: cacheRereadPolicy,
-         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-         context: context,
-         document: documentNodeQueryLastActualities,
-         pollInterval: pollInterval,
-         eagerlyFetchResults: eagerlyFetchResults,
-         carryForwardDataOnException: carryForwardDataOnException,
-         fetchResults: fetchResults,
-         parserFn: _parserFn$Query$LastActualities,
-       );
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryLastActualities,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$LastActualities,
+        );
 }
 
 class FetchMoreOptions$Query$LastActualities extends graphql.FetchMoreOptions {
-  FetchMoreOptions$Query$LastActualities({required graphql.UpdateQuery updateQuery})
-    : super(updateQuery: updateQuery, document: documentNodeQueryLastActualities);
+  FetchMoreOptions$Query$LastActualities(
+      {required graphql.UpdateQuery updateQuery})
+      : super(
+          updateQuery: updateQuery,
+          document: documentNodeQueryLastActualities,
+        );
 }
 
 extension ClientExtension$Query$LastActualities on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$LastActualities>> query$LastActualities([
-    Options$Query$LastActualities? options,
-  ]) async => await this.query(options ?? Options$Query$LastActualities());
+  Future<graphql.QueryResult<Query$LastActualities>> query$LastActualities(
+          [Options$Query$LastActualities? options]) async =>
+      await this.query(options ?? Options$Query$LastActualities());
 
-  graphql.ObservableQuery<Query$LastActualities> watchQuery$LastActualities([
-    WatchOptions$Query$LastActualities? options,
-  ]) => this.watchQuery(options ?? WatchOptions$Query$LastActualities());
+  graphql.ObservableQuery<Query$LastActualities> watchQuery$LastActualities(
+          [WatchOptions$Query$LastActualities? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$LastActualities());
 
-  void writeQuery$LastActualities({required Query$LastActualities data, bool broadcast = true}) =>
+  void writeQuery$LastActualities({
+    required Query$LastActualities data,
+    bool broadcast = true,
+  }) =>
       this.writeQuery(
-        graphql.Request(operation: graphql.Operation(document: documentNodeQueryLastActualities)),
+        graphql.Request(
+            operation:
+                graphql.Operation(document: documentNodeQueryLastActualities)),
         data: data.toJson(),
         broadcast: broadcast,
       );
 
   Query$LastActualities? readQuery$LastActualities({bool optimistic = true}) {
     final result = this.readQuery(
-      graphql.Request(operation: graphql.Operation(document: documentNodeQueryLastActualities)),
+      graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryLastActualities)),
       optimistic: optimistic,
     );
     return result == null ? null : Query$LastActualities.fromJson(result);
   }
 }
 
-graphql_flutter.QueryHookResult<Query$LastActualities> useQuery$LastActualities([
-  Options$Query$LastActualities? options,
-]) => graphql_flutter.useQuery(options ?? Options$Query$LastActualities());
-graphql.ObservableQuery<Query$LastActualities> useWatchQuery$LastActualities([
-  WatchOptions$Query$LastActualities? options,
-]) => graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$LastActualities());
+graphql_flutter.QueryHookResult<Query$LastActualities> useQuery$LastActualities(
+        [Options$Query$LastActualities? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$LastActualities());
+graphql.ObservableQuery<Query$LastActualities> useWatchQuery$LastActualities(
+        [WatchOptions$Query$LastActualities? options]) =>
+    graphql_flutter
+        .useWatchQuery(options ?? WatchOptions$Query$LastActualities());
 
-class Query$LastActualities$Widget extends graphql_flutter.Query<Query$LastActualities> {
+class Query$LastActualities$Widget
+    extends graphql_flutter.Query<Query$LastActualities> {
   Query$LastActualities$Widget({
     widgets.Key? key,
     Options$Query$LastActualities? options,
     required graphql_flutter.QueryBuilder<Query$LastActualities> builder,
-  }) : super(key: key, options: options ?? Options$Query$LastActualities(), builder: builder);
+  }) : super(
+          key: key,
+          options: options ?? Options$Query$LastActualities(),
+          builder: builder,
+        );
 }
 
 class Query$LastActualities$myLastActuality {
@@ -442,7 +460,8 @@ class Query$LastActualities$myLastActuality {
     this.$__typename = 'Actuality',
   });
 
-  factory Query$LastActualities$myLastActuality.fromJson(Map<String, dynamic> json) {
+  factory Query$LastActualities$myLastActuality.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$picture = json['picture'];
     final l$$__typename = json['__typename'];
@@ -475,7 +494,11 @@ class Query$LastActualities$myLastActuality {
     final l$id = id;
     final l$picture = picture;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$picture, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$picture,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -483,7 +506,8 @@ class Query$LastActualities$myLastActuality {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$LastActualities$myLastActuality || runtimeType != other.runtimeType) {
+    if (other is! Query$LastActualities$myLastActuality ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -507,8 +531,12 @@ class Query$LastActualities$myLastActuality {
 
 extension UtilityExtension$Query$LastActualities$myLastActuality
     on Query$LastActualities$myLastActuality {
-  CopyWith$Query$LastActualities$myLastActuality<Query$LastActualities$myLastActuality>
-  get copyWith => CopyWith$Query$LastActualities$myLastActuality(this, (i) => i);
+  CopyWith$Query$LastActualities$myLastActuality<
+          Query$LastActualities$myLastActuality>
+      get copyWith => CopyWith$Query$LastActualities$myLastActuality(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Query$LastActualities$myLastActuality<TRes> {
@@ -520,12 +548,19 @@ abstract class CopyWith$Query$LastActualities$myLastActuality<TRes> {
   factory CopyWith$Query$LastActualities$myLastActuality.stub(TRes res) =
       _CopyWithStubImpl$Query$LastActualities$myLastActuality;
 
-  TRes call({String? id, String? picture, String? $__typename});
+  TRes call({
+    String? id,
+    String? picture,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Query$LastActualities$myLastActuality<TRes>
     implements CopyWith$Query$LastActualities$myLastActuality<TRes> {
-  _CopyWithImpl$Query$LastActualities$myLastActuality(this._instance, this._then);
+  _CopyWithImpl$Query$LastActualities$myLastActuality(
+    this._instance,
+    this._then,
+  );
 
   final Query$LastActualities$myLastActuality _instance;
 
@@ -537,15 +572,16 @@ class _CopyWithImpl$Query$LastActualities$myLastActuality<TRes>
     Object? id = _undefined,
     Object? picture = _undefined,
     Object? $__typename = _undefined,
-  }) => _then(
-    Query$LastActualities$myLastActuality(
-      id: id == _undefined || id == null ? _instance.id : (id as String),
-      picture: picture == _undefined || picture == null ? _instance.picture : (picture as String),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  }) =>
+      _then(Query$LastActualities$myLastActuality(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        picture: picture == _undefined || picture == null
+            ? _instance.picture
+            : (picture as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Query$LastActualities$myLastActuality<TRes>
@@ -554,7 +590,12 @@ class _CopyWithStubImpl$Query$LastActualities$myLastActuality<TRes>
 
   TRes _res;
 
-  call({String? id, String? picture, String? $__typename}) => _res;
+  call({
+    String? id,
+    String? picture,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Query$LastActualities$lastActualities {
@@ -565,14 +606,16 @@ class Query$LastActualities$lastActualities {
     this.$__typename = 'Actuality',
   });
 
-  factory Query$LastActualities$lastActualities.fromJson(Map<String, dynamic> json) {
+  factory Query$LastActualities$lastActualities.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$user = json['user'];
     final l$picture = json['picture'];
     final l$$__typename = json['__typename'];
     return Query$LastActualities$lastActualities(
       id: (l$id as String),
-      user: Query$LastActualities$lastActualities$user.fromJson((l$user as Map<String, dynamic>)),
+      user: Query$LastActualities$lastActualities$user.fromJson(
+          (l$user as Map<String, dynamic>)),
       picture: (l$picture as String),
       $__typename: (l$$__typename as String),
     );
@@ -605,7 +648,12 @@ class Query$LastActualities$lastActualities {
     final l$user = user;
     final l$picture = picture;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$user, l$picture, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$user,
+      l$picture,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -613,7 +661,8 @@ class Query$LastActualities$lastActualities {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$LastActualities$lastActualities || runtimeType != other.runtimeType) {
+    if (other is! Query$LastActualities$lastActualities ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -642,8 +691,12 @@ class Query$LastActualities$lastActualities {
 
 extension UtilityExtension$Query$LastActualities$lastActualities
     on Query$LastActualities$lastActualities {
-  CopyWith$Query$LastActualities$lastActualities<Query$LastActualities$lastActualities>
-  get copyWith => CopyWith$Query$LastActualities$lastActualities(this, (i) => i);
+  CopyWith$Query$LastActualities$lastActualities<
+          Query$LastActualities$lastActualities>
+      get copyWith => CopyWith$Query$LastActualities$lastActualities(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Query$LastActualities$lastActualities<TRes> {
@@ -666,7 +719,10 @@ abstract class CopyWith$Query$LastActualities$lastActualities<TRes> {
 
 class _CopyWithImpl$Query$LastActualities$lastActualities<TRes>
     implements CopyWith$Query$LastActualities$lastActualities<TRes> {
-  _CopyWithImpl$Query$LastActualities$lastActualities(this._instance, this._then);
+  _CopyWithImpl$Query$LastActualities$lastActualities(
+    this._instance,
+    this._then,
+  );
 
   final Query$LastActualities$lastActualities _instance;
 
@@ -679,22 +735,24 @@ class _CopyWithImpl$Query$LastActualities$lastActualities<TRes>
     Object? user = _undefined,
     Object? picture = _undefined,
     Object? $__typename = _undefined,
-  }) => _then(
-    Query$LastActualities$lastActualities(
-      id: id == _undefined || id == null ? _instance.id : (id as String),
-      user: user == _undefined || user == null
-          ? _instance.user
-          : (user as Query$LastActualities$lastActualities$user),
-      picture: picture == _undefined || picture == null ? _instance.picture : (picture as String),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  }) =>
+      _then(Query$LastActualities$lastActualities(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        user: user == _undefined || user == null
+            ? _instance.user
+            : (user as Query$LastActualities$lastActualities$user),
+        picture: picture == _undefined || picture == null
+            ? _instance.picture
+            : (picture as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Query$LastActualities$lastActualities$user<TRes> get user {
     final local$user = _instance.user;
-    return CopyWith$Query$LastActualities$lastActualities$user(local$user, (e) => call(user: e));
+    return CopyWith$Query$LastActualities$lastActualities$user(
+        local$user, (e) => call(user: e));
   }
 }
 
@@ -709,7 +767,8 @@ class _CopyWithStubImpl$Query$LastActualities$lastActualities<TRes>
     Query$LastActualities$lastActualities$user? user,
     String? picture,
     String? $__typename,
-  }) => _res;
+  }) =>
+      _res;
 
   CopyWith$Query$LastActualities$lastActualities$user<TRes> get user =>
       CopyWith$Query$LastActualities$lastActualities$user.stub(_res);
@@ -723,7 +782,8 @@ class Query$LastActualities$lastActualities$user {
     this.$__typename = 'User',
   });
 
-  factory Query$LastActualities$lastActualities$user.fromJson(Map<String, dynamic> json) {
+  factory Query$LastActualities$lastActualities$user.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$badge = json['badge'];
@@ -763,7 +823,12 @@ class Query$LastActualities$lastActualities$user {
     final l$name = name;
     final l$badge = badge;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$name, l$badge, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$badge,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -771,7 +836,8 @@ class Query$LastActualities$lastActualities$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$LastActualities$lastActualities$user || runtimeType != other.runtimeType) {
+    if (other is! Query$LastActualities$lastActualities$user ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -800,8 +866,12 @@ class Query$LastActualities$lastActualities$user {
 
 extension UtilityExtension$Query$LastActualities$lastActualities$user
     on Query$LastActualities$lastActualities$user {
-  CopyWith$Query$LastActualities$lastActualities$user<Query$LastActualities$lastActualities$user>
-  get copyWith => CopyWith$Query$LastActualities$lastActualities$user(this, (i) => i);
+  CopyWith$Query$LastActualities$lastActualities$user<
+          Query$LastActualities$lastActualities$user>
+      get copyWith => CopyWith$Query$LastActualities$lastActualities$user(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Query$LastActualities$lastActualities$user<TRes> {
@@ -813,12 +883,20 @@ abstract class CopyWith$Query$LastActualities$lastActualities$user<TRes> {
   factory CopyWith$Query$LastActualities$lastActualities$user.stub(TRes res) =
       _CopyWithStubImpl$Query$LastActualities$lastActualities$user;
 
-  TRes call({String? id, String? name, Enum$UserBadge? badge, String? $__typename});
+  TRes call({
+    String? id,
+    String? name,
+    Enum$UserBadge? badge,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Query$LastActualities$lastActualities$user<TRes>
     implements CopyWith$Query$LastActualities$lastActualities$user<TRes> {
-  _CopyWithImpl$Query$LastActualities$lastActualities$user(this._instance, this._then);
+  _CopyWithImpl$Query$LastActualities$lastActualities$user(
+    this._instance,
+    this._then,
+  );
 
   final Query$LastActualities$lastActualities$user _instance;
 
@@ -831,16 +909,19 @@ class _CopyWithImpl$Query$LastActualities$lastActualities$user<TRes>
     Object? name = _undefined,
     Object? badge = _undefined,
     Object? $__typename = _undefined,
-  }) => _then(
-    Query$LastActualities$lastActualities$user(
-      id: id == _undefined || id == null ? _instance.id : (id as String),
-      name: name == _undefined || name == null ? _instance.name : (name as String),
-      badge: badge == _undefined || badge == null ? _instance.badge : (badge as Enum$UserBadge),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  }) =>
+      _then(Query$LastActualities$lastActualities$user(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        badge: badge == _undefined || badge == null
+            ? _instance.badge
+            : (badge as Enum$UserBadge),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Query$LastActualities$lastActualities$user<TRes>
@@ -849,12 +930,20 @@ class _CopyWithStubImpl$Query$LastActualities$lastActualities$user<TRes>
 
   TRes _res;
 
-  call({String? id, String? name, Enum$UserBadge? badge, String? $__typename}) => _res;
+  call({
+    String? id,
+    String? name,
+    Enum$UserBadge? badge,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 class Variables$Query$userActualities {
   factory Variables$Query$userActualities({String? userId}) =>
-      Variables$Query$userActualities._({if (userId != null) r'userId': userId});
+      Variables$Query$userActualities._({
+        if (userId != null) r'userId': userId,
+      });
 
   Variables$Query$userActualities._(this._$data);
 
@@ -880,15 +969,19 @@ class Variables$Query$userActualities {
     return result$data;
   }
 
-  CopyWith$Variables$Query$userActualities<Variables$Query$userActualities> get copyWith =>
-      CopyWith$Variables$Query$userActualities(this, (i) => i);
+  CopyWith$Variables$Query$userActualities<Variables$Query$userActualities>
+      get copyWith => CopyWith$Variables$Query$userActualities(
+            this,
+            (i) => i,
+          );
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Query$userActualities || runtimeType != other.runtimeType) {
+    if (other is! Variables$Query$userActualities ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$userId = userId;
@@ -923,7 +1016,10 @@ abstract class CopyWith$Variables$Query$userActualities<TRes> {
 
 class _CopyWithImpl$Variables$Query$userActualities<TRes>
     implements CopyWith$Variables$Query$userActualities<TRes> {
-  _CopyWithImpl$Variables$Query$userActualities(this._instance, this._then);
+  _CopyWithImpl$Variables$Query$userActualities(
+    this._instance,
+    this._then,
+  );
 
   final Variables$Query$userActualities _instance;
 
@@ -931,12 +1027,11 @@ class _CopyWithImpl$Variables$Query$userActualities<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? userId = _undefined}) => _then(
-    Variables$Query$userActualities._({
-      ..._instance._$data,
-      if (userId != _undefined) 'userId': (userId as String?),
-    }),
-  );
+  TRes call({Object? userId = _undefined}) =>
+      _then(Variables$Query$userActualities._({
+        ..._instance._$data,
+        if (userId != _undefined) 'userId': (userId as String?),
+      }));
 }
 
 class _CopyWithStubImpl$Variables$Query$userActualities<TRes>
@@ -949,14 +1044,18 @@ class _CopyWithStubImpl$Variables$Query$userActualities<TRes>
 }
 
 class Query$userActualities {
-  Query$userActualities({required this.userActualities, this.$__typename = 'Query'});
+  Query$userActualities({
+    required this.userActualities,
+    this.$__typename = 'Query',
+  });
 
   factory Query$userActualities.fromJson(Map<String, dynamic> json) {
     final l$userActualities = json['userActualities'];
     final l$$__typename = json['__typename'];
     return Query$userActualities(
       userActualities: (l$userActualities as List<dynamic>)
-          .map((e) => Query$userActualities$userActualities.fromJson((e as Map<String, dynamic>)))
+          .map((e) => Query$userActualities$userActualities.fromJson(
+              (e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
@@ -969,7 +1068,8 @@ class Query$userActualities {
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$userActualities = userActualities;
-    _resultData['userActualities'] = l$userActualities.map((e) => e.toJson()).toList();
+    _resultData['userActualities'] =
+        l$userActualities.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -979,7 +1079,10 @@ class Query$userActualities {
   int get hashCode {
     final l$userActualities = userActualities;
     final l$$__typename = $__typename;
-    return Object.hashAll([Object.hashAll(l$userActualities.map((v) => v)), l$$__typename]);
+    return Object.hashAll([
+      Object.hashAll(l$userActualities.map((v) => v)),
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -1013,7 +1116,10 @@ class Query$userActualities {
 
 extension UtilityExtension$Query$userActualities on Query$userActualities {
   CopyWith$Query$userActualities<Query$userActualities> get copyWith =>
-      CopyWith$Query$userActualities(this, (i) => i);
+      CopyWith$Query$userActualities(
+        this,
+        (i) => i,
+      );
 }
 
 abstract class CopyWith$Query$userActualities<TRes> {
@@ -1022,21 +1128,27 @@ abstract class CopyWith$Query$userActualities<TRes> {
     TRes Function(Query$userActualities) then,
   ) = _CopyWithImpl$Query$userActualities;
 
-  factory CopyWith$Query$userActualities.stub(TRes res) = _CopyWithStubImpl$Query$userActualities;
+  factory CopyWith$Query$userActualities.stub(TRes res) =
+      _CopyWithStubImpl$Query$userActualities;
 
-  TRes call({List<Query$userActualities$userActualities>? userActualities, String? $__typename});
+  TRes call({
+    List<Query$userActualities$userActualities>? userActualities,
+    String? $__typename,
+  });
   TRes userActualities(
-    Iterable<Query$userActualities$userActualities> Function(
-      Iterable<
-        CopyWith$Query$userActualities$userActualities<Query$userActualities$userActualities>
-      >,
-    )
-    _fn,
-  );
+      Iterable<Query$userActualities$userActualities> Function(
+              Iterable<
+                  CopyWith$Query$userActualities$userActualities<
+                      Query$userActualities$userActualities>>)
+          _fn);
 }
 
-class _CopyWithImpl$Query$userActualities<TRes> implements CopyWith$Query$userActualities<TRes> {
-  _CopyWithImpl$Query$userActualities(this._instance, this._then);
+class _CopyWithImpl$Query$userActualities<TRes>
+    implements CopyWith$Query$userActualities<TRes> {
+  _CopyWithImpl$Query$userActualities(
+    this._instance,
+    this._then,
+  );
 
   final Query$userActualities _instance;
 
@@ -1044,31 +1156,32 @@ class _CopyWithImpl$Query$userActualities<TRes> implements CopyWith$Query$userAc
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? userActualities = _undefined, Object? $__typename = _undefined}) => _then(
-    Query$userActualities(
-      userActualities: userActualities == _undefined || userActualities == null
-          ? _instance.userActualities
-          : (userActualities as List<Query$userActualities$userActualities>),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  TRes call({
+    Object? userActualities = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$userActualities(
+        userActualities: userActualities == _undefined ||
+                userActualities == null
+            ? _instance.userActualities
+            : (userActualities as List<Query$userActualities$userActualities>),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   TRes userActualities(
-    Iterable<Query$userActualities$userActualities> Function(
-      Iterable<
-        CopyWith$Query$userActualities$userActualities<Query$userActualities$userActualities>
-      >,
-    )
-    _fn,
-  ) => call(
-    userActualities: _fn(
-      _instance.userActualities.map(
-        (e) => CopyWith$Query$userActualities$userActualities(e, (i) => i),
-      ),
-    ).toList(),
-  );
+          Iterable<Query$userActualities$userActualities> Function(
+                  Iterable<
+                      CopyWith$Query$userActualities$userActualities<
+                          Query$userActualities$userActualities>>)
+              _fn) =>
+      call(
+          userActualities: _fn(_instance.userActualities
+              .map((e) => CopyWith$Query$userActualities$userActualities(
+                    e,
+                    (i) => i,
+                  ))).toList());
 }
 
 class _CopyWithStubImpl$Query$userActualities<TRes>
@@ -1077,114 +1190,106 @@ class _CopyWithStubImpl$Query$userActualities<TRes>
 
   TRes _res;
 
-  call({List<Query$userActualities$userActualities>? userActualities, String? $__typename}) => _res;
+  call({
+    List<Query$userActualities$userActualities>? userActualities,
+    String? $__typename,
+  }) =>
+      _res;
 
   userActualities(_fn) => _res;
 }
 
-const documentNodeQueryuserActualities = DocumentNode(
-  definitions: [
-    OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'userActualities'),
-      variableDefinitions: [
-        VariableDefinitionNode(
-          variable: VariableNode(name: NameNode(value: 'userId')),
-          type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: false),
-          defaultValue: DefaultValueNode(value: null),
-          directives: [],
+const documentNodeQueryuserActualities = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'userActualities'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'userId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: false,
         ),
-      ],
-      directives: [],
-      selectionSet: SelectionSetNode(
-        selections: [
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'userActualities'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'userId'),
+            value: VariableNode(name: NameNode(value: 'userId')),
+          )
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'userActualities'),
+            name: NameNode(value: 'id'),
             alias: null,
-            arguments: [
-              ArgumentNode(
-                name: NameNode(value: 'userId'),
-                value: VariableNode(name: NameNode(value: 'userId')),
-              ),
-            ],
+            arguments: [],
             directives: [],
-            selectionSet: SelectionSetNode(
-              selections: [
-                FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'user'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(
-                    selections: [
-                      FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'name'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'picture'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: 'badge'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                      FieldNode(
-                        name: NameNode(value: '__typename'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null,
-                      ),
-                    ],
-                  ),
-                ),
-                FieldNode(
-                  name: NameNode(value: 'picture'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: 'createdAt'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                FieldNode(
-                  name: NameNode(value: '__typename'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ],
-            ),
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'user'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'name'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'picture'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'badge'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
+            name: NameNode(value: 'picture'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -1193,17 +1298,28 @@ const documentNodeQueryuserActualities = DocumentNode(
             directives: [],
             selectionSet: null,
           ),
-        ],
+        ]),
       ),
-    ),
-  ],
-);
-Query$userActualities _parserFn$Query$userActualities(Map<String, dynamic> data) =>
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Query$userActualities _parserFn$Query$userActualities(
+        Map<String, dynamic> data) =>
     Query$userActualities.fromJson(data);
-typedef OnQueryComplete$Query$userActualities =
-    FutureOr<void> Function(Map<String, dynamic>?, Query$userActualities?);
+typedef OnQueryComplete$Query$userActualities = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Query$userActualities?,
+);
 
-class Options$Query$userActualities extends graphql.QueryOptions<Query$userActualities> {
+class Options$Query$userActualities
+    extends graphql.QueryOptions<Query$userActualities> {
   Options$Query$userActualities({
     String? operationName,
     Variables$Query$userActualities? variables,
@@ -1216,37 +1332,40 @@ class Options$Query$userActualities extends graphql.QueryOptions<Query$userActua
     graphql.Context? context,
     OnQueryComplete$Query$userActualities? onComplete,
     graphql.OnQueryError? onError,
-  }) : onCompleteWithParsed = onComplete,
-       super(
-         variables: variables?.toJson() ?? {},
-         operationName: operationName,
-         fetchPolicy: fetchPolicy,
-         errorPolicy: errorPolicy,
-         cacheRereadPolicy: cacheRereadPolicy,
-         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-         pollInterval: pollInterval,
-         context: context,
-         onComplete: onComplete == null
-             ? null
-             : (data) =>
-                   onComplete(data, data == null ? null : _parserFn$Query$userActualities(data)),
-         onError: onError,
-         document: documentNodeQueryuserActualities,
-         parserFn: _parserFn$Query$userActualities,
-       );
+  })  : onCompleteWithParsed = onComplete,
+        super(
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          pollInterval: pollInterval,
+          context: context,
+          onComplete: onComplete == null
+              ? null
+              : (data) => onComplete(
+                    data,
+                    data == null ? null : _parserFn$Query$userActualities(data),
+                  ),
+          onError: onError,
+          document: documentNodeQueryuserActualities,
+          parserFn: _parserFn$Query$userActualities,
+        );
 
   final OnQueryComplete$Query$userActualities? onCompleteWithParsed;
 
   @override
   List<Object?> get properties => [
-    ...super.onComplete == null
-        ? super.properties
-        : super.properties.where((property) => property != onComplete),
-    onCompleteWithParsed,
-  ];
+        ...super.onComplete == null
+            ? super.properties
+            : super.properties.where((property) => property != onComplete),
+        onCompleteWithParsed,
+      ];
 }
 
-class WatchOptions$Query$userActualities extends graphql.WatchQueryOptions<Query$userActualities> {
+class WatchOptions$Query$userActualities
+    extends graphql.WatchQueryOptions<Query$userActualities> {
   WatchOptions$Query$userActualities({
     String? operationName,
     Variables$Query$userActualities? variables,
@@ -1261,20 +1380,20 @@ class WatchOptions$Query$userActualities extends graphql.WatchQueryOptions<Query
     bool carryForwardDataOnException = true,
     bool fetchResults = false,
   }) : super(
-         variables: variables?.toJson() ?? {},
-         operationName: operationName,
-         fetchPolicy: fetchPolicy,
-         errorPolicy: errorPolicy,
-         cacheRereadPolicy: cacheRereadPolicy,
-         optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
-         context: context,
-         document: documentNodeQueryuserActualities,
-         pollInterval: pollInterval,
-         eagerlyFetchResults: eagerlyFetchResults,
-         carryForwardDataOnException: carryForwardDataOnException,
-         fetchResults: fetchResults,
-         parserFn: _parserFn$Query$userActualities,
-       );
+          variables: variables?.toJson() ?? {},
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeQueryuserActualities,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Query$userActualities,
+        );
 }
 
 class FetchMoreOptions$Query$userActualities extends graphql.FetchMoreOptions {
@@ -1282,33 +1401,35 @@ class FetchMoreOptions$Query$userActualities extends graphql.FetchMoreOptions {
     required graphql.UpdateQuery updateQuery,
     Variables$Query$userActualities? variables,
   }) : super(
-         updateQuery: updateQuery,
-         variables: variables?.toJson() ?? {},
-         document: documentNodeQueryuserActualities,
-       );
+          updateQuery: updateQuery,
+          variables: variables?.toJson() ?? {},
+          document: documentNodeQueryuserActualities,
+        );
 }
 
 extension ClientExtension$Query$userActualities on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Query$userActualities>> query$userActualities([
-    Options$Query$userActualities? options,
-  ]) async => await this.query(options ?? Options$Query$userActualities());
+  Future<graphql.QueryResult<Query$userActualities>> query$userActualities(
+          [Options$Query$userActualities? options]) async =>
+      await this.query(options ?? Options$Query$userActualities());
 
-  graphql.ObservableQuery<Query$userActualities> watchQuery$userActualities([
-    WatchOptions$Query$userActualities? options,
-  ]) => this.watchQuery(options ?? WatchOptions$Query$userActualities());
+  graphql.ObservableQuery<Query$userActualities> watchQuery$userActualities(
+          [WatchOptions$Query$userActualities? options]) =>
+      this.watchQuery(options ?? WatchOptions$Query$userActualities());
 
   void writeQuery$userActualities({
     required Query$userActualities data,
     Variables$Query$userActualities? variables,
     bool broadcast = true,
-  }) => this.writeQuery(
-    graphql.Request(
-      operation: graphql.Operation(document: documentNodeQueryuserActualities),
-      variables: variables?.toJson() ?? const {},
-    ),
-    data: data.toJson(),
-    broadcast: broadcast,
-  );
+  }) =>
+      this.writeQuery(
+        graphql.Request(
+          operation:
+              graphql.Operation(document: documentNodeQueryuserActualities),
+          variables: variables?.toJson() ?? const {},
+        ),
+        data: data.toJson(),
+        broadcast: broadcast,
+      );
 
   Query$userActualities? readQuery$userActualities({
     Variables$Query$userActualities? variables,
@@ -1316,7 +1437,8 @@ extension ClientExtension$Query$userActualities on graphql.GraphQLClient {
   }) {
     final result = this.readQuery(
       graphql.Request(
-        operation: graphql.Operation(document: documentNodeQueryuserActualities),
+        operation:
+            graphql.Operation(document: documentNodeQueryuserActualities),
         variables: variables?.toJson() ?? const {},
       ),
       optimistic: optimistic,
@@ -1325,19 +1447,25 @@ extension ClientExtension$Query$userActualities on graphql.GraphQLClient {
   }
 }
 
-graphql_flutter.QueryHookResult<Query$userActualities> useQuery$userActualities([
-  Options$Query$userActualities? options,
-]) => graphql_flutter.useQuery(options ?? Options$Query$userActualities());
-graphql.ObservableQuery<Query$userActualities> useWatchQuery$userActualities([
-  WatchOptions$Query$userActualities? options,
-]) => graphql_flutter.useWatchQuery(options ?? WatchOptions$Query$userActualities());
+graphql_flutter.QueryHookResult<Query$userActualities> useQuery$userActualities(
+        [Options$Query$userActualities? options]) =>
+    graphql_flutter.useQuery(options ?? Options$Query$userActualities());
+graphql.ObservableQuery<Query$userActualities> useWatchQuery$userActualities(
+        [WatchOptions$Query$userActualities? options]) =>
+    graphql_flutter
+        .useWatchQuery(options ?? WatchOptions$Query$userActualities());
 
-class Query$userActualities$Widget extends graphql_flutter.Query<Query$userActualities> {
+class Query$userActualities$Widget
+    extends graphql_flutter.Query<Query$userActualities> {
   Query$userActualities$Widget({
     widgets.Key? key,
     Options$Query$userActualities? options,
     required graphql_flutter.QueryBuilder<Query$userActualities> builder,
-  }) : super(key: key, options: options ?? Options$Query$userActualities(), builder: builder);
+  }) : super(
+          key: key,
+          options: options ?? Options$Query$userActualities(),
+          builder: builder,
+        );
 }
 
 class Query$userActualities$userActualities {
@@ -1349,7 +1477,8 @@ class Query$userActualities$userActualities {
     this.$__typename = 'Actuality',
   });
 
-  factory Query$userActualities$userActualities.fromJson(Map<String, dynamic> json) {
+  factory Query$userActualities$userActualities.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$user = json['user'];
     final l$picture = json['picture'];
@@ -1357,7 +1486,8 @@ class Query$userActualities$userActualities {
     final l$$__typename = json['__typename'];
     return Query$userActualities$userActualities(
       id: (l$id as String),
-      user: Query$userActualities$userActualities$user.fromJson((l$user as Map<String, dynamic>)),
+      user: Query$userActualities$userActualities$user.fromJson(
+          (l$user as Map<String, dynamic>)),
       picture: (l$picture as String),
       createdAt: DateTime.parse((l$createdAt as String)),
       $__typename: (l$$__typename as String),
@@ -1396,7 +1526,13 @@ class Query$userActualities$userActualities {
     final l$picture = picture;
     final l$createdAt = createdAt;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$user, l$picture, l$createdAt, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$user,
+      l$picture,
+      l$createdAt,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -1404,7 +1540,8 @@ class Query$userActualities$userActualities {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$userActualities$userActualities || runtimeType != other.runtimeType) {
+    if (other is! Query$userActualities$userActualities ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -1438,8 +1575,12 @@ class Query$userActualities$userActualities {
 
 extension UtilityExtension$Query$userActualities$userActualities
     on Query$userActualities$userActualities {
-  CopyWith$Query$userActualities$userActualities<Query$userActualities$userActualities>
-  get copyWith => CopyWith$Query$userActualities$userActualities(this, (i) => i);
+  CopyWith$Query$userActualities$userActualities<
+          Query$userActualities$userActualities>
+      get copyWith => CopyWith$Query$userActualities$userActualities(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Query$userActualities$userActualities<TRes> {
@@ -1463,7 +1604,10 @@ abstract class CopyWith$Query$userActualities$userActualities<TRes> {
 
 class _CopyWithImpl$Query$userActualities$userActualities<TRes>
     implements CopyWith$Query$userActualities$userActualities<TRes> {
-  _CopyWithImpl$Query$userActualities$userActualities(this._instance, this._then);
+  _CopyWithImpl$Query$userActualities$userActualities(
+    this._instance,
+    this._then,
+  );
 
   final Query$userActualities$userActualities _instance;
 
@@ -1477,25 +1621,27 @@ class _CopyWithImpl$Query$userActualities$userActualities<TRes>
     Object? picture = _undefined,
     Object? createdAt = _undefined,
     Object? $__typename = _undefined,
-  }) => _then(
-    Query$userActualities$userActualities(
-      id: id == _undefined || id == null ? _instance.id : (id as String),
-      user: user == _undefined || user == null
-          ? _instance.user
-          : (user as Query$userActualities$userActualities$user),
-      picture: picture == _undefined || picture == null ? _instance.picture : (picture as String),
-      createdAt: createdAt == _undefined || createdAt == null
-          ? _instance.createdAt
-          : (createdAt as DateTime),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  }) =>
+      _then(Query$userActualities$userActualities(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        user: user == _undefined || user == null
+            ? _instance.user
+            : (user as Query$userActualities$userActualities$user),
+        picture: picture == _undefined || picture == null
+            ? _instance.picture
+            : (picture as String),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Query$userActualities$userActualities$user<TRes> get user {
     final local$user = _instance.user;
-    return CopyWith$Query$userActualities$userActualities$user(local$user, (e) => call(user: e));
+    return CopyWith$Query$userActualities$userActualities$user(
+        local$user, (e) => call(user: e));
   }
 }
 
@@ -1511,7 +1657,8 @@ class _CopyWithStubImpl$Query$userActualities$userActualities<TRes>
     String? picture,
     DateTime? createdAt,
     String? $__typename,
-  }) => _res;
+  }) =>
+      _res;
 
   CopyWith$Query$userActualities$userActualities$user<TRes> get user =>
       CopyWith$Query$userActualities$userActualities$user.stub(_res);
@@ -1526,7 +1673,8 @@ class Query$userActualities$userActualities$user {
     this.$__typename = 'User',
   });
 
-  factory Query$userActualities$userActualities$user.fromJson(Map<String, dynamic> json) {
+  factory Query$userActualities$userActualities$user.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$picture = json['picture'];
@@ -1573,7 +1721,13 @@ class Query$userActualities$userActualities$user {
     final l$picture = picture;
     final l$badge = badge;
     final l$$__typename = $__typename;
-    return Object.hashAll([l$id, l$name, l$picture, l$badge, l$$__typename]);
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$picture,
+      l$badge,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -1581,7 +1735,8 @@ class Query$userActualities$userActualities$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$userActualities$userActualities$user || runtimeType != other.runtimeType) {
+    if (other is! Query$userActualities$userActualities$user ||
+        runtimeType != other.runtimeType) {
       return false;
     }
     final l$id = id;
@@ -1615,8 +1770,12 @@ class Query$userActualities$userActualities$user {
 
 extension UtilityExtension$Query$userActualities$userActualities$user
     on Query$userActualities$userActualities$user {
-  CopyWith$Query$userActualities$userActualities$user<Query$userActualities$userActualities$user>
-  get copyWith => CopyWith$Query$userActualities$userActualities$user(this, (i) => i);
+  CopyWith$Query$userActualities$userActualities$user<
+          Query$userActualities$userActualities$user>
+      get copyWith => CopyWith$Query$userActualities$userActualities$user(
+            this,
+            (i) => i,
+          );
 }
 
 abstract class CopyWith$Query$userActualities$userActualities$user<TRes> {
@@ -1639,7 +1798,10 @@ abstract class CopyWith$Query$userActualities$userActualities$user<TRes> {
 
 class _CopyWithImpl$Query$userActualities$userActualities$user<TRes>
     implements CopyWith$Query$userActualities$userActualities$user<TRes> {
-  _CopyWithImpl$Query$userActualities$userActualities$user(this._instance, this._then);
+  _CopyWithImpl$Query$userActualities$userActualities$user(
+    this._instance,
+    this._then,
+  );
 
   final Query$userActualities$userActualities$user _instance;
 
@@ -1653,17 +1815,21 @@ class _CopyWithImpl$Query$userActualities$userActualities$user<TRes>
     Object? picture = _undefined,
     Object? badge = _undefined,
     Object? $__typename = _undefined,
-  }) => _then(
-    Query$userActualities$userActualities$user(
-      id: id == _undefined || id == null ? _instance.id : (id as String),
-      name: name == _undefined || name == null ? _instance.name : (name as String),
-      picture: picture == _undefined ? _instance.picture : (picture as String?),
-      badge: badge == _undefined || badge == null ? _instance.badge : (badge as Enum$UserBadge),
-      $__typename: $__typename == _undefined || $__typename == null
-          ? _instance.$__typename
-          : ($__typename as String),
-    ),
-  );
+  }) =>
+      _then(Query$userActualities$userActualities$user(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        picture:
+            picture == _undefined ? _instance.picture : (picture as String?),
+        badge: badge == _undefined || badge == null
+            ? _instance.badge
+            : (badge as Enum$UserBadge),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Query$userActualities$userActualities$user<TRes>
@@ -1672,6 +1838,12 @@ class _CopyWithStubImpl$Query$userActualities$userActualities$user<TRes>
 
   TRes _res;
 
-  call({String? id, String? name, String? picture, Enum$UserBadge? badge, String? $__typename}) =>
+  call({
+    String? id,
+    String? name,
+    String? picture,
+    Enum$UserBadge? badge,
+    String? $__typename,
+  }) =>
       _res;
 }

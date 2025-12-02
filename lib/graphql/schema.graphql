@@ -24,6 +24,18 @@ type AuthPayload {
 
 input BuyTicketInput {
   eventId: ID!
+  paymentMethod: PaymentMethod!
+  buyerName: String!
+  buyerPhone: String
+  buyerEmail: String
+}
+
+type BuyTicketResponse {
+  isInternalPayment: Boolean!
+  ticket: Ticket
+  isExternalPayment: Boolean!
+  paymentUri: String
+  stripeClientSecret: String
 }
 
 input ChangePasswordInput {
@@ -45,13 +57,6 @@ input CreateEventInput {
   date: DateTime!
   price: Float!
   priceCurrency: String!
-}
-
-input CreateTicketInput {
-  eventId: ID!
-  buyerName: String!
-  buyerPhone: String
-  buyerEmail: String
 }
 
 scalar DateTime
@@ -103,8 +108,7 @@ type Mutation {
   createEvent(input: CreateEventInput!): ID!
   updateEvent(input: UpdateEventInput!): Boolean!
   deleteEvent(id: ID!): Boolean!
-  buyTicket(input: BuyTicketInput!): Ticket!
-  createTicket(input: CreateTicketInput!): Ticket!
+  buyTicket(input: BuyTicketInput!): BuyTicketResponse!
   scanTicket(code: String!): Ticket!
   login(input: LoginInput!): AuthPayload!
   initSignUp(input: InitSignUpInput!): String!
@@ -112,6 +116,14 @@ type Mutation {
   updateUser(input: UpdateUserInput!): AuthPayload!
   changePassword(input: ChangePasswordInput!): Boolean!
   deleteUser(id: ID!): Boolean!
+}
+
+enum PaymentMethod {
+  INTERNAL
+  CARD
+  MONCASH
+  PAYPAL
+  CASHAPP
 }
 
 type Query {

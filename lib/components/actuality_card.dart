@@ -68,7 +68,7 @@ Widget actualiteCard(BuildContext context, {final actuality, bool isCurrentUser 
               ),
             ),
 
-            if (isCurrentUser)
+            if (isCurrentUser && actuality != null)
               Positioned(
                 top: 8,
                 right: 8,
@@ -97,8 +97,9 @@ Widget actualiteCard(BuildContext context, {final actuality, bool isCurrentUser 
                     ),
                   ),
                 ),
-              )
-            else
+              ),
+
+            if (!isCurrentUser && actuality != null)
               Positioned(
                 top: 8,
                 right: 8,

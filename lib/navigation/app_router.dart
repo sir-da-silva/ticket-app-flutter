@@ -9,9 +9,11 @@ import 'package:my_first_flutter_app/pages/events/create_event_page.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/pages/tickets/create_ticket_page.dart';
 import 'package:my_first_flutter_app/pages/tickets/scan_ticket_page.dart';
+import 'package:my_first_flutter_app/pages/tickets/ticket_detail_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/notification_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/search_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/settings_page.dart';
+import 'package:my_first_flutter_app/pages/utilities/web_view.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -50,6 +52,14 @@ class AppRouter {
           settings: settings,
         );
 
+      // Search pages
+      case RouteNames.search:
+        return MaterialPageRoute(
+          //
+          builder: (_) => const SearchPage(),
+          settings: settings,
+        );
+
       // Utility pages
       case RouteNames.notifications:
         return MaterialPageRoute(
@@ -63,10 +73,10 @@ class AppRouter {
           builder: (_) => const SettingsPage(),
           settings: settings,
         );
-      case RouteNames.search:
+      case RouteNames.webView:
         return MaterialPageRoute(
           //
-          builder: (_) => const SearchPage(),
+          builder: (_) => WebView(url: settings.arguments.toString()),
           settings: settings,
         );
 
@@ -94,6 +104,11 @@ class AppRouter {
       case RouteNames.createTicket:
         return MaterialPageRoute(
           builder: (_) => CreateTicketPage(eventId: settings.arguments.toString()),
+          settings: settings,
+        );
+      case RouteNames.ticketDetail:
+        return MaterialPageRoute(
+          builder: (_) => TicketDetailPage(eventId: settings.arguments.toString()),
           settings: settings,
         );
 

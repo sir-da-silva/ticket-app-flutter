@@ -7,7 +7,9 @@ query GetTicket($id: ID!) {
     event {
       id
       title
+      location
       date
+      picture
     }
     user {
       id
@@ -46,6 +48,7 @@ query GetMyTickets {
       title
       date
       location
+      picture
     }
     buyerName
     buyerPhone
@@ -55,30 +58,13 @@ query GetMyTickets {
 
 mutation BuyTicket($input: BuyTicketInput!) {
   buyTicket(input: $input) {
-    id
-    code
-    used
-    createdAt
-    event {
+    isInternalPayment
+    ticket {
       id
-      title
     }
-  }
-}
-
-mutation CreateTicket($input: CreateTicketInput!) {
-  createTicket(input: $input) {
-    id
-    code
-    used
-    createdAt
-    event {
-      id
-      title
-    }
-    buyerName
-    buyerPhone
-    buyerEmail
+    isExternalPayment
+    paymentUri
+    stripeClientSecret
   }
 }
 

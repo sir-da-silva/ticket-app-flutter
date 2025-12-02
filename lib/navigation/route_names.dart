@@ -33,4 +33,5 @@ class RouteNames {
   static const String notifications = '/notifications';
   static const String deposit = '/wallet/deposit';
   static const String withdraw = '/wallet/withdraw';
+  static const String webView = '/webview';
 }

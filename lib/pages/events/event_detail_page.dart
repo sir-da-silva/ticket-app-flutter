@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/components/actuality_card.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/actuality.graphql.dart';
@@ -66,21 +67,22 @@ class EventDetailPage extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Partager')));
         }
 
-        Widget infoRow(IconData icon, String info) {
+        Widget infoRow(String icon, String info) {
           return Row(
             spacing: 8,
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                  // color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 4),
+                  // child: Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
+                  child: Text(icon, style: TextStyle(fontSize: 16)),
                 ),
               ),
-              Text(info, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
+              Text(info, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             ],
           );
         }
@@ -219,30 +221,41 @@ class EventDetailPage extends StatelessWidget {
                             ),
 
                             SizedBox(height: 20),
-                            infoRow(Icons.category_outlined, data.event!.category),
+                            infoRow(
+                              // Icons.category_outlined
+                              "🎨",
+                              data.event!.category,
+                            ),
 
                             SizedBox(height: 20),
                             Row(
                               spacing: 8,
                               children: [
                                 infoRow(
-                                  Icons.calendar_today_rounded,
+                                  // Icons.calendar_today_rounded,
+                                  "📆",
                                   "${date!.weekDayNameShort}. ${date.monthDayNumber} ${date.monthName}",
                                 ),
                                 Expanded(child: SizedBox()),
                                 infoRow(
-                                  Icons.access_time_rounded,
+                                  // Icons.access_time_rounded,
+                                  "🕐",
                                   "${date.hour12}:${date.minute} ${date.meridiem}",
                                 ),
                               ],
                             ),
 
                             SizedBox(height: 20),
-                            infoRow(Icons.location_on_outlined, data.event!.location),
+                            infoRow(
+                              // Icons.location_on_outlined
+                              "📍",
+                              data.event!.location,
+                            ),
 
                             SizedBox(height: 20),
                             infoRow(
-                              Icons.confirmation_number_outlined,
+                              // Icons.confirmation_number_outlined,
+                              "🎟️",
                               "${data.event!.price.toDouble()} ${data.event!.priceCurrency}",
                             ),
 
@@ -314,7 +327,7 @@ class EventDetailPage extends StatelessWidget {
                                                 //
                                               },
                                               child: Padding(
-                                                padding: EdgeInsets.all(8),
+                                                padding: EdgeInsets.all(12),
                                                 child: Row(
                                                   spacing: 8,
                                                   children: [
@@ -482,6 +495,10 @@ class EventDetailPage extends StatelessWidget {
                         //
                       }),
 
+                      buildSectionHeader(context, "Même date", Icons.calendar_month, () {
+                        //
+                      }),
+
                       SizedBox(height: 100),
                     ],
                   ),
@@ -494,7 +511,7 @@ class EventDetailPage extends StatelessWidget {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       //
-                      border: BoxBorder.all(color: Colors.white, width: 3),
+                      border: BoxBorder.all(color: Colors.white.withValues(alpha: 0.75), width: 2),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: ElevatedButton.icon(
@@ -506,7 +523,7 @@ class EventDetailPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         iconColor: Theme.of(context).colorScheme.surface,
                       ),
@@ -515,7 +532,7 @@ class EventDetailPage extends StatelessWidget {
                       label: Text(
                         'Acheter un ticket',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 16,
                           color: Theme.of(context).colorScheme.surface,
                         ),
                       ),

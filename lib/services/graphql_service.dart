@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'jwt_service.dart';
 
 class GraphQLService {
-  static const String serverUrl = 'http://10.209.103.252:4000/graphql';
+  static const String serverUrl = 'http://10.201.199.218:4000/graphql';
 
   static GraphQLClient? _client;
 
@@ -46,6 +46,7 @@ class GraphQLService {
       );
     }
     if (error?.linkException != null) {
+      print(error);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Erreur ! Verifiez votre connexion internet !"),
