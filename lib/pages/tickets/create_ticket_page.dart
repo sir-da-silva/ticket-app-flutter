@@ -27,6 +27,14 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
   final _emailController = TextEditingController();
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    _phoneController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthProvider>();
 
@@ -113,13 +121,19 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
 
                                 Expanded(child: SizedBox()),
 
-                                Icon(Icons.confirmation_number, size: 24, color: Colors.deepOrange),
-                                Text(
-                                  "${data.event!.price} ${data.event!.priceCurrency}",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.deepOrange,
+                                ElevatedButton.icon(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.confirmation_number),
+                                  label: Text("${data.event!.price} ${data.event!.priceCurrency}"),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Theme.of(
+                                      context,
+                                    ).colorScheme.primaryFixed.withValues(alpha: 0.5),
+                                    foregroundColor: Theme.of(context).colorScheme.primary,
+                                    shadowColor: Colors.transparent,
+                                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 14),
+                                    iconSize: 22,
+                                    textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ],
@@ -183,10 +197,11 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                             const SizedBox(height: 30),
 
                             // Bouton d’achat
-                            Center(
+                            SizedBox(
+                              width: double.infinity,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Theme.of(context).colorScheme.primary,
+                                  backgroundColor: Theme.of(context).colorScheme.onPrimaryFixed,
                                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),

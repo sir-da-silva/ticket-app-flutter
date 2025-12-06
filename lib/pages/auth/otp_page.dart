@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
+import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
 
 class OtpPage extends StatefulWidget {
   final String? email;
@@ -15,7 +16,7 @@ class OtpPage extends StatefulWidget {
 class _OtpPageState extends State<OtpPage> {
   final _formKey = GlobalKey<FormState>();
   final List<TextEditingController> otpControllers = List.generate(
-    4,
+    6,
     (_) => TextEditingController(),
   );
 
@@ -24,25 +25,29 @@ class _OtpPageState extends State<OtpPage> {
     return Scaffold(
       body: Stack(
         children: [
-          /// 🎨 Fond dégradé violet / bleu
+          /// 🎨 Fond dégradé
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                colors: [
+                  Theme.of(context).colorScheme.primaryFixed,
+                  Theme.of(context).colorScheme.primaryFixedDim,
+                  Theme.of(context).colorScheme.primary,
+                ],
               ),
             ),
           ),
 
           /// 🌀 Vague blanche décorative
-          Align(
-            alignment: Alignment.topCenter,
-            child: ClipPath(
-              clipper: WaveClipper(),
-              child: Container(height: 250, color: Colors.white),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topCenter,
+          //   child: ClipPath(
+          //     clipper: WaveClipper(),
+          //     child: Container(height: 250, color: Colors.white),
+          //   ),
+          // ),
 
           /// 🧊 Contenu principal
           Center(
@@ -87,9 +92,9 @@ class _OtpPageState extends State<OtpPage> {
                           /// 🔢 Champs OTP
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(4, (index) {
+                            children: List.generate(6, (index) {
                               return SizedBox(
-                                width: 60,
+                                width: 40,
                                 height: 60,
                                 child: TextFormField(
                                   controller: otpControllers[index],
@@ -99,27 +104,15 @@ class _OtpPageState extends State<OtpPage> {
                                     LengthLimitingTextInputFormatter(1),
                                     FilteringTextInputFormatter.digitsOnly,
                                   ],
+                                  autofocus: true,
                                   onChanged: (value) {
-                                    if (value.isNotEmpty && index < 3) {
+                                    if (value.isNotEmpty && index < 6) {
                                       FocusScope.of(context).nextFocus();
                                     } else if (value.isEmpty && index > 0) {
                                       FocusScope.of(context).previousFocus();
                                     }
                                   },
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.grey[100],
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                      borderSide: const BorderSide(
-                                        color: Color(0xFF667EEA),
-                                        width: 2,
-                                      ),
-                                    ),
-                                  ),
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.all(0)),
                                 ),
                               );
                             }),
@@ -132,30 +125,50 @@ class _OtpPageState extends State<OtpPage> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(vertical: 14),
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Theme.of(context).colorScheme.surface,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
                               ),
                               onPressed: () {
                                 final otpCode = otpControllers.map((c) => c.text).join();
 
-                                if (otpCode.length == 4) {
-                                  // TODO : logique de validation du code
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text("Veuillez entrer le code complet."),
-                                    ),
-                                  );
+                                if (widget.email != null) {
+                                  if (otpCode.length == 6) {
+                                    runMutation(
+                                      Variables$Mutation$CompleteSignUp(
+                                        input: Input$CompleteSignUpInput(
+                                          email: widget.email!,
+                                          code: otpCode,
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text("Veuillez entrer le code complet."),
+                                      ),
+                                    );
+                                  }
                                 }
                               },
-                              child: const Text("Vérifier le code"),
+                              child: (result?.isLoading ?? false)
+                                  ? SizedBox(
+                                      height: 18,
+                                      width: 18,
+                                      child: CircularProgressIndicator(
+                                        color: Theme.of(context).colorScheme.surface,
+                                      ),
+                                    )
+                                  : Text("Vérifier le code"),
                             ),
                           ),
                           const SizedBox(height: 20),
 
                           /// 🔁 Renvoi du code
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "Vous n'avez pas reçu de code ? ",
@@ -169,7 +182,7 @@ class _OtpPageState extends State<OtpPage> {
                                   "Renvoyer",
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w600,
-                                    color: const Color(0xFF667EEA),
+                                    color: Theme.of(context).colorScheme.onPrimaryFixed,
                                   ),
                                 ),
                               ),
@@ -177,17 +190,19 @@ class _OtpPageState extends State<OtpPage> {
                           ),
 
                           SizedBox(height: 20),
-                          IconButton(
-                            icon: Row(
-                              spacing: 10,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.arrow_back_rounded),
-                                Text("Revenir en arrière", style: TextStyle(fontSize: 14)),
-                              ],
+                          IntrinsicWidth(
+                            child: IconButton(
+                              icon: Row(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.arrow_back_rounded),
+                                  Text("Revenir en arrière", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              onPressed: () => Navigator.pop(context),
                             ),
-                            onPressed: () => Navigator.pop(context),
                           ),
                         ],
                       ),

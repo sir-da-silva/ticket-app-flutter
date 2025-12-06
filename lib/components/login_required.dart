@@ -55,7 +55,7 @@ class LoginRequired extends StatelessWidget {
                       Text("|"),
                       InkWell(
                         onTap: () {
-                          AppRouter.pushNamed(context, RouteNames.login);
+                          AppRouter.pushNamed(context, RouteNames.register);
                         },
                         child: Text(
                           "Créer un compte",

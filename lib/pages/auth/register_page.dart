@@ -5,6 +5,7 @@ import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.d
 import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
+import 'package:my_first_flutter_app/services/string_validators.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -27,25 +28,29 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Stack(
         children: [
-          /// 🎨 Fond dégradé violet / bleu
+          /// 🎨 Fond dégradé
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                colors: [
+                  Theme.of(context).colorScheme.primaryFixed,
+                  Theme.of(context).colorScheme.primaryFixedDim,
+                  Theme.of(context).colorScheme.primary,
+                ],
               ),
             ),
           ),
 
           /// 🌀 Vague blanche décorative
-          Align(
-            alignment: Alignment.topCenter,
-            child: ClipPath(
-              clipper: WaveClipper(),
-              child: Container(height: 250, color: Colors.white),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topCenter,
+          //   child: ClipPath(
+          //     clipper: WaveClipper(),
+          //     child: Container(height: 250, color: Colors.white),
+          //   ),
+          // ),
 
           /// 🧊 Conteneur principal du formulaire
           Center(
@@ -90,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             style: GoogleFonts.poppins(
                               fontSize: 26,
                               fontWeight: FontWeight.w600,
-                              color: const Color(0xFF333333),
+                              color: Theme.of(context).colorScheme.onPrimaryFixed,
                             ),
                           ),
                           const SizedBox(height: 24),
@@ -100,12 +105,19 @@ class _RegisterPageState extends State<RegisterPage> {
                             keyboardType: TextInputType.name,
                             controller: nameController,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.person),
+                              prefixIcon: const Icon(Icons.person_outline),
                               hintText: "Nom complet",
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            validator: (value) =>
-                                value == null || value.isEmpty ? "Entrez votre nom complet" : null,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Entrez votre nom complet";
+                              }
+                              if (isName(value) == false) {
+                                return "Nom invalide";
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(height: 18),
 
@@ -114,12 +126,19 @@ class _RegisterPageState extends State<RegisterPage> {
                             keyboardType: TextInputType.emailAddress,
                             controller: emailController,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.email),
+                              prefixIcon: const Icon(Icons.email_outlined),
                               hintText: "Adresse email",
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            validator: (value) =>
-                                value == null || value.isEmpty ? "Entrez votre email" : null,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Entrez votre email";
+                              }
+                              if (isEmail(value) == false) {
+                                return "Email invalide";
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(height: 18),
 
@@ -129,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: passwordController,
                             obscureText: obscurePassword,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock),
+                              prefixIcon: const Icon(Icons.lock_outline),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -139,9 +158,15 @@ class _RegisterPageState extends State<RegisterPage> {
                               hintText: "Mot de passe",
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            validator: (value) => value == null || value.length < 6
-                                ? "Mot de passe ≥ 6 caractères"
-                                : null,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Entrez votre mot de passe";
+                              }
+                              if (isValidPassword(value) == false) {
+                                return "Mot de passe trop court";
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(height: 18),
 
@@ -179,33 +204,37 @@ class _RegisterPageState extends State<RegisterPage> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate() &&
-                                    (result?.isNotLoading ?? false)) {
-                                  runMutation(
-                                    Variables$Mutation$InitSignUp(
-                                      input: Input$InitSignUpInput(
-                                        name: nameController.text,
-                                        email: emailController.text,
-                                        password: passwordController.text,
+                                if (_formKey.currentState!.validate()) {
+                                  if (result?.isNotLoading ?? false) {
+                                    runMutation(
+                                      Variables$Mutation$InitSignUp(
+                                        input: Input$InitSignUpInput(
+                                          name: nameController.text,
+                                          email: emailController.text,
+                                          password: passwordController.text,
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  }
                                 }
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(vertical: 14),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
                                 backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Theme.of(context).colorScheme.surface,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
                               ),
                               child: (result?.isLoading ?? false)
-                                  ? const SizedBox(
+                                  ? SizedBox(
                                       height: 18,
                                       width: 18,
-                                      child: CircularProgressIndicator(color: Colors.white),
+                                      child: CircularProgressIndicator(
+                                        color: Theme.of(context).colorScheme.surface,
+                                      ),
                                     )
-                                  : const Text("S'inscrire", style: TextStyle(color: Colors.white)),
+                                  : Text("S'inscrire"),
                             ),
                           ),
                           const SizedBox(height: 24),
@@ -228,13 +257,13 @@ class _RegisterPageState extends State<RegisterPage> {
                               icon: const Icon(FontAwesomeIcons.google, size: 20),
                               label: const Text("Continuer avec Google"),
                               style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                padding: const EdgeInsets.symmetric(vertical: 14),
                                 side: BorderSide(
                                   width: 1,
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
                               ),
                               onPressed: () {
@@ -256,7 +285,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   "Se connecter",
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w600,
-                                    color: const Color(0xFF667EEA),
+                                    color: Theme.of(context).colorScheme.onPrimaryFixed,
                                   ),
                                 ),
                               ),
@@ -264,17 +293,19 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
 
                           SizedBox(height: 20),
-                          IconButton(
-                            icon: Row(
-                              spacing: 10,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.arrow_back_rounded),
-                                Text("Annuler", style: TextStyle(fontSize: 14)),
-                              ],
+                          IntrinsicWidth(
+                            child: IconButton(
+                              icon: Row(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.arrow_back_rounded),
+                                  Text("Annuler", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              onPressed: () => Navigator.pop(context),
                             ),
-                            onPressed: () => Navigator.pop(context),
                           ),
                         ],
                       ),

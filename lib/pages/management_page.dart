@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/components/event.dart';
 import 'package:my_first_flutter_app/components/login_required.dart';
@@ -155,43 +156,29 @@ class ManagementPage extends StatelessWidget {
                           children: [
                             Expanded(
                               child: ElevatedButton.icon(
+                                icon: Icon(Icons.arrow_downward_rounded),
+                                label: Text("Depot"),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white.withValues(alpha: 0.85),
+                                  foregroundColor: Theme.of(context).colorScheme.primary,
+                                ),
                                 onPressed: () {
                                   Navigator.pushNamed(context, "/debit");
                                 },
-                                icon: Icon(Icons.arrow_downward_rounded),
-                                label: Text(
-                                  "Depot",
-                                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
-                                ),
-                                style: ButtonStyle(
-                                  iconColor: WidgetStatePropertyAll(
-                                    Theme.of(context).colorScheme.primary,
-                                  ),
-                                  backgroundColor: WidgetStatePropertyAll(
-                                    Colors.white.withValues(alpha: 0.85),
-                                  ),
-                                ),
                               ),
                             ),
 
                             Expanded(
                               child: ElevatedButton.icon(
+                                icon: Icon(Icons.arrow_upward),
+                                label: Text("Retrait"),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white.withValues(alpha: 0.85),
+                                  foregroundColor: Theme.of(context).colorScheme.primary,
+                                ),
                                 onPressed: () {
                                   Navigator.pushNamed(context, "/withdrawal");
                                 },
-                                icon: Icon(Icons.arrow_upward_rounded),
-                                label: Text(
-                                  "Retrait",
-                                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
-                                ),
-                                style: ButtonStyle(
-                                  iconColor: WidgetStatePropertyAll(
-                                    Theme.of(context).colorScheme.primary,
-                                  ),
-                                  backgroundColor: WidgetStatePropertyAll(
-                                    Colors.white.withValues(alpha: 0.85),
-                                  ),
-                                ),
                               ),
                             ),
                           ],
@@ -223,50 +210,58 @@ class ManagementPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
+                    child: Column(
                       children: [
-                        _buildAction(
-                          context,
-                          Icons.add,
-                          "Creer un Evenement",
-                          Colors.blue,
-                          () => Navigator.pushNamed(context, RouteNames.createEvent),
-                        ),
-                        _buildAction(
-                          context,
-                          Icons.receipt_long,
-                          "Generer un Ticket",
-                          Colors.green,
-                          () => selectEvent(context, (eventId) {
-                            Navigator.pushNamed(
+                        GridView.count(
+                          crossAxisCount: 2,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          children: [
+                            _buildAction(
                               context,
-                              RouteNames.createTicket,
-                              arguments: eventId,
-                            );
-                          }),
-                        ),
-                        _buildAction(
-                          context,
-                          Icons.edit_calendar_outlined,
-                          "Modifier un Evenement",
-                          Colors.orange,
-                          () => selectEvent(context, (eventId) {
-                            Navigator.pushNamed(context, RouteNames.editEvent);
-                          }),
-                        ),
-                        _buildAction(
-                          context,
-                          Icons.confirmation_number,
-                          "Modifier un Ticket",
-                          Colors.purple,
-                          () => selectEvent(context, (eventId) {
-                            Navigator.pushNamed(context, RouteNames.editTicket);
-                          }),
+                              Icons.add,
+                              "Creer un Evenement",
+                              Colors.blue,
+                              () => Navigator.pushNamed(context, RouteNames.createEvent),
+                            ),
+                            _buildAction(
+                              context,
+                              Icons.receipt_long,
+                              "Generer un Ticket",
+                              Colors.green,
+                              () => selectEvent(context, (eventId) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  RouteNames.createTicket,
+                                  arguments: eventId,
+                                );
+                              }),
+                            ),
+                            _buildAction(
+                              context,
+                              Icons.edit_calendar_outlined,
+                              "Modifier un Evenement",
+                              Colors.orange,
+                              () => selectEvent(context, (eventId) {
+                                Navigator.pushReplacementNamed(
+                                  context,
+                                  RouteNames.editEvent,
+                                  arguments: eventId,
+                                );
+                              }),
+                            ),
+                            _buildAction(
+                              context,
+                              FontAwesomeIcons.user,
+                              "Co-gestionnaires",
+                              Colors.purple,
+                              () => selectEvent(context, (eventId) {
+                                Navigator.pushReplacementNamed(context, RouteNames.eventManagers);
+                              }),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -299,7 +294,7 @@ class ManagementPage extends StatelessWidget {
                                   },
                                 ),
 
-                                if (data?.myEvents == null)
+                                if (data == null)
                                   Padding(
                                     padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
                                     child: Center(
@@ -310,7 +305,7 @@ class ManagementPage extends StatelessWidget {
                                       ),
                                     ),
                                   )
-                                else if (data!.myEvents.isEmpty)
+                                else if (data.myEvents.isEmpty)
                                   Padding(
                                     padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
                                     child: Center(
@@ -326,7 +321,7 @@ class ManagementPage extends StatelessWidget {
                                     height: 250,
                                     child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
-                                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                                       itemCount: 10,
                                       itemBuilder: (context, index) {
                                         return Padding(

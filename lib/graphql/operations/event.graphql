@@ -48,7 +48,7 @@ mutation CreateEvent($input: CreateEventInput!) {
   createEvent(input: $input)
 }
 
-mutation UpdateEvent($input: CreateEventInput!) {
+mutation UpdateEvent($input: UpdateEventInput!) {
   updateEvent(input: $input)
 }
 

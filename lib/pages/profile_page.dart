@@ -14,23 +14,10 @@ import 'package:my_first_flutter_app/utils/get_user_badge_color.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
-
-  Widget _buildSocialButton(BuildContext context, IconData icon, String tooltip, Color color) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onInverseSurface,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: IconButton(
-        onPressed: () {},
-        icon: Icon(icon, size: 24, color: color),
-        tooltip: tooltip,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +35,36 @@ class ProfilePage extends StatelessWidget {
       ]);
     }
 
+    Widget buildSocialButton({
+      required String data,
+      required String tooltip,
+      required IconData icon,
+      required Color color,
+    }) {
+      return Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.onInverseSurface,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: IconButton(
+          onPressed: () async {
+            final uri = Uri.parse(data);
+
+            if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Impossible d'ouvrir le lien."),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            }
+          },
+          icon: Icon(icon, size: 28, color: color),
+          tooltip: tooltip,
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mon Profil'),
@@ -56,7 +73,7 @@ class ProfilePage extends StatelessWidget {
           if (auth.isAuthenticated)
             IconButton(
               onPressed: () => Navigator.pushNamed(context, RouteNames.profileEdit),
-              icon: const Icon(Icons.edit_outlined, size: 26),
+              icon: const Icon(FontAwesomeIcons.userPen, size: 20),
               tooltip: 'Modifier le profil',
             ),
 
@@ -101,146 +118,44 @@ class ProfilePage extends StatelessWidget {
                           data = Query$GetMe.fromJson(result.data!);
                         }
 
-                        return Padding(
-                          padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            children: result.isLoading || data == null || data.me == null
-                                ? [
-                                    ClipOval(
-                                      child: Shimmer(
-                                        enabled: result.isLoading,
-                                        duration: Duration(seconds: 1),
-                                        child: Container(
-                                          color: Colors.grey.withValues(alpha: 0.25),
-                                          width: 45 * 2 + 6,
-                                          height: 45 * 2 + 6,
-                                        ),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 10),
-
-                                    Shimmer(
-                                      enabled: result.isLoading,
-                                      duration: Duration(seconds: 1),
-                                      child: Container(
-                                        width: 150,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.withValues(alpha: 0.25),
-                                        ),
-                                        child: Text("", style: TextStyle(fontSize: 24)),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 5),
-
-                                    Shimmer(
-                                      enabled: result.isLoading,
-                                      duration: Duration(seconds: 1),
-                                      child: Container(
-                                        width: 200,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.withValues(alpha: 0.25),
-                                        ),
-                                        child: Text("", style: TextStyle(fontSize: 16)),
-                                      ),
-                                    ),
-
-                                    const SizedBox(height: 15),
-
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      spacing: 16,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-                                        ClipRRect(
-                                          borderRadius: BorderRadiusGeometry.all(
-                                            Radius.circular(12),
-                                          ),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color: Colors.grey.withValues(alpha: 0.25),
-                                              ),
-                                              child: IconButton(onPressed: null, icon: Icon(null)),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ]
-                                : [
+                        return result.isLoading
+                            ? Shimmer(
+                                duration: Duration(seconds: 1),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 180 + 24 * 2,
+                                  color: Theme.of(context).colorScheme.surfaceContainer,
+                                ),
+                              )
+                            : data?.me == null
+                            ? SizedBox(
+                                width: double.infinity,
+                                height: 180 + 24 * 2,
+                                child: Center(
+                                  child: Text(
+                                    "Erreur lors de la récuperation \n du profil. Glissez vers le bas \n pour réactualiser.",
+                                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              )
+                            : Padding(
+                                padding: const EdgeInsets.all(24.0),
+                                child: Column(
+                                  children: [
                                     // Profile Avatar with enhanced styling
                                     Container(
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         border: Border.all(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.primary.withValues(alpha: 0.5),
+                                          color: Theme.of(context).colorScheme.primaryFixed,
                                           width: 3,
                                         ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.primary.withValues(alpha: 0.3),
-                                            blurRadius: 10,
-                                            offset: const Offset(2, 2),
-                                          ),
-                                        ],
                                       ),
                                       child: CircleAvatar(
                                         radius: 45,
-                                        backgroundColor: Colors.white,
-                                        child: data.me!.picture == null
+                                        backgroundColor: Theme.of(context).colorScheme.primaryFixed,
+                                        child: data!.me!.picture == null
                                             ? Icon(Icons.person, size: 50, color: Colors.grey)
                                             : Image.network(
                                                 data.me!.picture!,
@@ -312,42 +227,42 @@ class ProfilePage extends StatelessWidget {
                                       spacing: 16,
                                       children: [
                                         if (data.me!.whatsapp != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.whatsapp,
-                                            'WhatsApp',
-                                            const Color(0xFF25D366),
+                                          buildSocialButton(
+                                            data: "https://wa.me/${data.me!.whatsapp}",
+                                            icon: FontAwesomeIcons.whatsapp,
+                                            tooltip: 'WhatsApp',
+                                            color: const Color(0xFF25D366),
                                           ),
                                         if (data.me!.facebook != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.facebook,
-                                            'Facebook',
-                                            const Color(0xFF1877F2),
+                                          buildSocialButton(
+                                            data: "https://www.facebook.com/${data.me!.facebook}",
+                                            icon: FontAwesomeIcons.facebook,
+                                            tooltip: 'Facebook',
+                                            color: const Color(0xFF1877F2),
                                           ),
                                         if (data.me!.instagram != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.instagram,
-                                            'Instagram',
-                                            const Color(0xFFE4405F),
+                                          buildSocialButton(
+                                            data: "https://www.instagram.com/${data.me!.instagram}",
+                                            icon: FontAwesomeIcons.instagram,
+                                            tooltip: 'Instagram',
+                                            color: const Color(0xFFE4405F),
                                           ),
                                         if (data.me!.tiktok != null)
-                                          _buildSocialButton(
-                                            context,
-                                            FontAwesomeIcons.tiktok,
-                                            'TikTok',
-                                            const Color(0xFF000000),
+                                          buildSocialButton(
+                                            data: "https://www.tiktok.com/@${data.me!.tiktok}",
+                                            icon: FontAwesomeIcons.tiktok,
+                                            tooltip: 'TikTok',
+                                            color: const Color(0xFF000000),
                                           ),
                                       ],
                                     ),
                                   ],
-                          ),
-                        );
+                                ),
+                              );
                       },
                     ),
 
-                    Padding(padding: EdgeInsets.symmetric(horizontal: 0), child: Divider()),
+                    Padding(padding: EdgeInsets.symmetric(horizontal: 0)),
 
                     // Activités Suivies Section
                     Query$GetFollowedEvents$Widget(
@@ -419,7 +334,7 @@ class ProfilePage extends StatelessWidget {
                                       height: 250,
                                       child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
-                                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                                         itemCount: data.followedEvents.length < 10
                                             ? data.followedEvents.length
                                             : 10,
@@ -440,7 +355,6 @@ class ProfilePage extends StatelessWidget {
                         );
                       },
                     ),
-                    SizedBox(height: 15),
 
                     Query$GetMyTickets$Widget(
                       builder: (result, {fetchMore, refetch}) {
@@ -494,7 +408,7 @@ class ProfilePage extends StatelessWidget {
                                     )
                                   else
                                     SizedBox(
-                                      height: 200,
+                                      height: 195,
                                       child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
                                         padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -8,6 +8,7 @@ import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:my_first_flutter_app/services/jwt_service.dart';
 import 'package:provider/provider.dart';
+import 'package:my_first_flutter_app/services/string_validators.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,25 +31,29 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          /// 🎨 Fond dégradé violet / bleu
+          /// 🎨 Fond dégradé
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                colors: [
+                  Theme.of(context).colorScheme.primaryFixed,
+                  Theme.of(context).colorScheme.primaryFixedDim,
+                  Theme.of(context).colorScheme.primary,
+                ],
               ),
             ),
           ),
 
           /// 🌀 Vague blanche en haut / milieu
-          Align(
-            alignment: Alignment.topCenter,
-            child: ClipPath(
-              clipper: WaveClipper(),
-              child: Container(height: 250, color: Colors.white),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topCenter,
+          //   child: ClipPath(
+          //     clipper: WaveClipper(),
+          //     child: Container(height: 250, color: Colors.white),
+          //   ),
+          // ),
 
           /// 🧊 Conteneur de formulaire
           Center(
@@ -96,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: GoogleFonts.poppins(
                               fontSize: 28,
                               fontWeight: FontWeight.w600,
-                              color: const Color(0xFF333333),
+                              color: Theme.of(context).colorScheme.onPrimaryFixed,
                             ),
                           ),
                           const SizedBox(height: 24),
@@ -104,17 +109,15 @@ class _LoginPageState extends State<LoginPage> {
                             keyboardType: TextInputType.emailAddress,
                             controller: emailController,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.email),
+                              prefixIcon: const Icon(Icons.email_outlined),
                               hintText: 'Votre email',
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
                             validator: (value) {
-                              final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-
                               if (value == null || value.isEmpty) {
                                 return 'Entrez votre email';
                               }
-                              if (!emailRegExp.hasMatch(value)) {
+                              if (isEmail(value) == false) {
                                 return 'Email incorrecte';
                               }
                               return null;
@@ -126,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                             controller: passwordController,
                             obscureText: obscurePassword,
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock),
+                              prefixIcon: const Icon(Icons.lock_outline),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -136,8 +139,12 @@ class _LoginPageState extends State<LoginPage> {
                               hintText: 'Mot de passe',
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                             ),
-                            validator: (value) =>
-                                value == null || value.isEmpty ? 'Entrez votre mot de passe' : null,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Entrez votre mot de passe';
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(height: 16),
                           Align(
@@ -153,35 +160,36 @@ class _LoginPageState extends State<LoginPage> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate() &&
-                                    (result?.isNotLoading ?? false)) {
-                                  runMutation(
-                                    Variables$Mutation$Login(
-                                      input: Input$LoginInput(
-                                        email: emailController.text,
-                                        password: passwordController.text,
+                                if (result?.isNotLoading ?? false) {
+                                  if (_formKey.currentState!.validate()) {
+                                    runMutation(
+                                      Variables$Mutation$Login(
+                                        input: Input$LoginInput(
+                                          email: emailController.text,
+                                          password: passwordController.text,
+                                        ),
                                       ),
-                                    ),
-                                  );
+                                    );
+                                  }
                                 }
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(vertical: 14),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
                                 backgroundColor: Theme.of(context).colorScheme.primary,
+                                foregroundColor: Theme.of(context).colorScheme.surface,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
                               ),
                               child: (result?.isLoading ?? false)
-                                  ? const SizedBox(
+                                  ? SizedBox(
                                       height: 18,
                                       width: 18,
-                                      child: CircularProgressIndicator(color: Colors.white),
+                                      child: CircularProgressIndicator(
+                                        color: Theme.of(context).colorScheme.surface,
+                                      ),
                                     )
-                                  : const Text(
-                                      'Se connecter',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
+                                  : Text('Se connecter'),
                             ),
                           ),
                           const SizedBox(height: 24),
@@ -202,13 +210,13 @@ class _LoginPageState extends State<LoginPage> {
                               icon: const Icon(FontAwesomeIcons.google, size: 20),
                               label: const Text('Continuer avec Google'),
                               style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                padding: const EdgeInsets.symmetric(vertical: 14),
                                 side: BorderSide(
                                   width: 1,
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(50),
                                 ),
                               ),
                               onPressed: () {
@@ -228,24 +236,27 @@ class _LoginPageState extends State<LoginPage> {
                                   "S'inscrire",
                                   style: GoogleFonts.poppins(
                                     fontWeight: FontWeight.w600,
-                                    color: const Color(0xFF667EEA),
+                                    color: Theme.of(context).colorScheme.onPrimaryFixed,
                                   ),
                                 ),
                               ),
                             ],
                           ),
+
                           SizedBox(height: 20),
-                          IconButton(
-                            icon: Row(
-                              spacing: 10,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.arrow_back_rounded),
-                                Text("Annuler", style: TextStyle(fontSize: 14)),
-                              ],
+                          IntrinsicWidth(
+                            child: IconButton(
+                              icon: Row(
+                                spacing: 10,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.arrow_back_rounded),
+                                  Text("Annuler", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              onPressed: () => Navigator.pop(context),
                             ),
-                            onPressed: () => Navigator.pop(context),
                           ),
                         ],
                       ),

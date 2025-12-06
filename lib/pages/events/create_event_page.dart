@@ -44,10 +44,13 @@ class _CreateEventPageState extends State<CreateEventPage> {
     _titleController.dispose();
     _descriptionController.dispose();
     _locationController.dispose();
+    _categoryController.dispose();
+    _priceController.dispose();
+    _priceCurrencyController.dispose();
     super.dispose();
   }
 
-  Future<void> _selctImage() async {
+  Future<void> _selectImage() async {
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       setState(() {
@@ -117,7 +120,7 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: InkWell(
-                        onTap: _selctImage,
+                        onTap: _selectImage,
                         child: _image == null
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -366,49 +369,52 @@ class _CreateEventPageState extends State<CreateEventPage> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate() && (result?.isNotLoading ?? false)) {
-                          DateTime dateWithTime = DateTime.utc(
-                            _selectedDate!.year,
-                            _selectedDate!.month,
-                            _selectedDate!.day,
-                            _selectedTime!.hour,
-                            _selectedTime!.minute,
-                          );
+                        if (result?.isNotLoading ?? false) {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            DateTime dateWithTime = DateTime.utc(
+                              _selectedDate!.year,
+                              _selectedDate!.month,
+                              _selectedDate!.day,
+                              _selectedTime!.hour,
+                              _selectedTime!.minute,
+                            );
 
-                          runMutation(
-                            Variables$Mutation$CreateEvent(
-                              input: Input$CreateEventInput(
-                                picture: "image-00000.png",
-                                title: _titleController.text,
-                                category: _categoryController.text,
-                                description: _descriptionController.text,
-                                date: dateWithTime,
-                                location: _locationController.text,
-                                price: double.parse(_priceController.text),
-                                priceCurrency: _priceCurrencyController.text,
+                            runMutation(
+                              Variables$Mutation$CreateEvent(
+                                input: Input$CreateEventInput(
+                                  picture: "image-00000.png",
+                                  title: _titleController.text,
+                                  category: _categoryController.text,
+                                  description: _descriptionController.text,
+                                  date: dateWithTime,
+                                  location: _locationController.text,
+                                  price: double.parse(_priceController.text),
+                                  priceCurrency: _priceCurrencyController.text,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         backgroundColor: (result?.isLoading ?? false)
-                            ? Colors.grey
+                            ? Theme.of(context).colorScheme.surfaceContainerHighest
                             : Theme.of(context).colorScheme.primary,
                       ),
                       child: (result?.isLoading ?? false)
-                          ? const SizedBox(
-                              height: 24,
-                              width: 24,
-                              child: CircularProgressIndicator(color: Colors.white),
-                            )
-                          : const Text(
-                              'Créer l\'événement',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                          ? SizedBox(height: 24, width: 24, child: CircularProgressIndicator())
+                          : Text(
+                              "Créer l'événement",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Theme.of(context).colorScheme.surface,
+                              ),
                             ),
                     ),
                   ),
+
+                  SizedBox(height: 16),
                 ],
               ),
             ),

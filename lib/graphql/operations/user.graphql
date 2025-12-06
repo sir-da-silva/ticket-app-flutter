@@ -69,9 +69,7 @@ mutation CompleteSignUp($input: CompleteSignUpInput!) {
 }
 
 mutation UpdateUser($input: UpdateUserInput!) {
-  updateUser(input: $input) {
-    token
-  }
+  updateUser(input: $input)
 }
 
 mutation ChangePassword($input: ChangePasswordInput!) {

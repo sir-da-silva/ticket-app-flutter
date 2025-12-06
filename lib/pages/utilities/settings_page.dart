@@ -13,38 +13,43 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Paramètres")),
-      body: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 8),
-        child: !auth.isAuthenticated
-            ? Column(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 8),
+          child: Column(
+            spacing: 16,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Unauthenticated Setting"),
-                  Text("Unauthenticated Setting"),
-                  Text("Unauthenticated Setting"),
-                  Text("Unauthenticated Setting"),
-                  Text("Unauthenticated Setting"),
-                  Text("Unauthenticated Setting"),
+                  Text("Parametre 1", style: TextStyle(fontSize: 18)),
+                  Switch(
+                    value: true,
+                    onChanged: (value) {
+                      //
+                    },
+                  ),
                 ],
-              )
-            : Column(
-                children: [
-                  SelectableText(
-                    "Dexonnexion",
-                    textAlign: TextAlign.center,
-                    onTap: () {
+              ),
+              if (auth.isAuthenticated)
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    label: Text("Dexonnexion"),
+                    onPressed: () {
                       JWTService.removeToken();
                       GraphQLService.refreshClient();
                       auth.refreshSession();
                     },
+                    icon: Icon(Icons.logout),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.error,
+                    ),
                   ),
-                  Text("Authenticated Setting"),
-                  Text("Authenticated Setting"),
-                  Text("Authenticated Setting"),
-                  Text("Authenticated Setting"),
-                  Text("Authenticated Setting"),
-                  Text("Authenticated Setting"),
-                ],
-              ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

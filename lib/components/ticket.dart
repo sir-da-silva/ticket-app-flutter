@@ -40,6 +40,7 @@ class Ticket extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 4),
+      // color: Theme.of(context).colorScheme.primaryFixed,
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.antiAlias,
@@ -61,20 +62,22 @@ class Ticket extends StatelessWidget {
                       Container(
                         width: 42,
                         height: 42,
-                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: Colors.blue.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: Image.network(
-                          eventPicture,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Icon(
-                              Icons.image,
-                              size: 18,
-                              color: Colors.grey.withValues(alpha: 0.5),
-                            );
-                          },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            eventPicture,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Icon(
+                                Icons.image,
+                                size: 18,
+                                color: Colors.grey.withValues(alpha: 0.5),
+                              );
+                            },
+                          ),
                         ),
                       ),
                       const Spacer(),
@@ -97,7 +100,7 @@ class Ticket extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 10),
 
                   Text(
                     eventTitle,
@@ -105,34 +108,70 @@ class Ticket extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-
                   Row(
                     spacing: 8,
-                    children: [Icon(Icons.location_city, size: 18), Text(eventLocation)],
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondaryFixed,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+                          child: Icon(
+                            Icons.location_on_rounded,
+                            size: 14,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          // child: Text(icon, style: TextStyle(fontSize: 12)),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          eventLocation,
+                          style: TextStyle(fontSize: 16, overflow: TextOverflow.ellipsis),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 4),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondaryFixed,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+                          child: Icon(
+                            Icons.badge,
+                            size: 14,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          // child: Text(icon, style: TextStyle(fontSize: 12)),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          buyerName,
+                          style: TextStyle(fontSize: 16, overflow: TextOverflow.ellipsis),
+                        ),
+                      ),
+                    ],
                   ),
 
-                  const SizedBox(height: 12),
-
-                  RichText(
-                    maxLines: 2,
-                    text: TextSpan(
-                      style: TextStyle(color: Colors.black),
-                      children: [
-                        TextSpan(text: "Beneficiaire : \n"),
-                        TextSpan(
-                          text: buyerName,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
+                  SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      "Plus de detail",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primaryFixedDim,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-
-                  Row(children: [
-                    Text("Plus de detail")
-                  ],)
                 ],
               ),
             ),

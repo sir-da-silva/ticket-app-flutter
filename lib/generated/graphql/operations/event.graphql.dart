@@ -3108,7 +3108,7 @@ class Mutation$CreateEvent$Widget
 
 class Variables$Mutation$UpdateEvent {
   factory Variables$Mutation$UpdateEvent(
-          {required Input$CreateEventInput input}) =>
+          {required Input$UpdateEventInput input}) =>
       Variables$Mutation$UpdateEvent._({
         r'input': input,
       });
@@ -3119,14 +3119,14 @@ class Variables$Mutation$UpdateEvent {
     final result$data = <String, dynamic>{};
     final l$input = data['input'];
     result$data['input'] =
-        Input$CreateEventInput.fromJson((l$input as Map<String, dynamic>));
+        Input$UpdateEventInput.fromJson((l$input as Map<String, dynamic>));
     return Variables$Mutation$UpdateEvent._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  Input$CreateEventInput get input =>
-      (_$data['input'] as Input$CreateEventInput);
+  Input$UpdateEventInput get input =>
+      (_$data['input'] as Input$UpdateEventInput);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
@@ -3174,7 +3174,7 @@ abstract class CopyWith$Variables$Mutation$UpdateEvent<TRes> {
   factory CopyWith$Variables$Mutation$UpdateEvent.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$UpdateEvent;
 
-  TRes call({Input$CreateEventInput? input});
+  TRes call({Input$UpdateEventInput? input});
 }
 
 class _CopyWithImpl$Variables$Mutation$UpdateEvent<TRes>
@@ -3194,7 +3194,7 @@ class _CopyWithImpl$Variables$Mutation$UpdateEvent<TRes>
       _then(Variables$Mutation$UpdateEvent._({
         ..._instance._$data,
         if (input != _undefined && input != null)
-          'input': (input as Input$CreateEventInput),
+          'input': (input as Input$UpdateEventInput),
       }));
 }
 
@@ -3204,7 +3204,7 @@ class _CopyWithStubImpl$Variables$Mutation$UpdateEvent<TRes>
 
   TRes _res;
 
-  call({Input$CreateEventInput? input}) => _res;
+  call({Input$UpdateEventInput? input}) => _res;
 }
 
 class Mutation$UpdateEvent {
@@ -3338,7 +3338,7 @@ const documentNodeMutationUpdateEvent = DocumentNode(definitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'input')),
         type: NamedTypeNode(
-          name: NameNode(value: 'CreateEventInput'),
+          name: NameNode(value: 'UpdateEventInput'),
           isNonNull: true,
         ),
         defaultValue: DefaultValueNode(value: null),

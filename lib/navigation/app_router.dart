@@ -3,13 +3,16 @@ import 'package:my_first_flutter_app/pages/auth/forgot_password.dart';
 import 'package:my_first_flutter_app/pages/auth/login_page.dart';
 import 'package:my_first_flutter_app/pages/auth/otp_page.dart';
 import 'package:my_first_flutter_app/pages/auth/register_page.dart';
+import 'package:my_first_flutter_app/pages/events/edit_event_page.dart';
 import 'package:my_first_flutter_app/pages/main_navigation_page.dart';
 import 'package:my_first_flutter_app/pages/events/event_detail_page.dart';
 import 'package:my_first_flutter_app/pages/events/create_event_page.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/pages/tickets/create_ticket_page.dart';
-import 'package:my_first_flutter_app/pages/tickets/scan_ticket_page.dart';
+import 'package:my_first_flutter_app/pages/tickets/check_ticket_page.dart';
+import 'package:my_first_flutter_app/pages/tickets/scanned_ticket.dart';
 import 'package:my_first_flutter_app/pages/tickets/ticket_detail_page.dart';
+import 'package:my_first_flutter_app/pages/utilities/edit_profile_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/notification_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/search_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/settings_page.dart';
@@ -20,87 +23,50 @@ class AppRouter {
     switch (settings.name) {
       // Pages de demmarage
       case RouteNames.main:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const MainNavigationPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const MainNavigationPage(), settings: settings);
 
       // Authentification pages
       case RouteNames.login:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const LoginPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const LoginPage(), settings: settings);
       case RouteNames.forgotPassword:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const ForgotPasswordPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordPage(), settings: settings);
       case RouteNames.register:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const RegisterPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const RegisterPage(), settings: settings);
       case RouteNames.otpPage:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const OtpPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const OtpPage(), settings: settings);
 
       // Search pages
       case RouteNames.search:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const SearchPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const SearchPage(), settings: settings);
 
       // Utility pages
+      case RouteNames.profileEdit:
+        return MaterialPageRoute(builder: (_) => const EditProfilePage(), settings: settings);
       case RouteNames.notifications:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const NotificationPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const NotificationPage(), settings: settings);
       case RouteNames.settings:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const SettingsPage(),
-          settings: settings,
-        );
+        return MaterialPageRoute(builder: (_) => const SettingsPage(), settings: settings);
       case RouteNames.webView:
         return MaterialPageRoute(
-          //
           builder: (_) => WebView(url: settings.arguments.toString()),
           settings: settings,
         );
 
       // Event pages
+      case RouteNames.createEvent:
+        return MaterialPageRoute(builder: (_) => const CreateEventPage(), settings: settings);
       case RouteNames.eventDetail:
         return MaterialPageRoute(
-          //
           builder: (_) => EventDetailPage(eventId: settings.arguments.toString()),
           settings: settings,
         );
-      case RouteNames.createEvent:
+      case RouteNames.editEvent:
         return MaterialPageRoute(
-          //
-          builder: (_) => const CreateEventPage(),
+          builder: (_) => EditEventPage(eventId: settings.arguments.toString()),
           settings: settings,
         );
 
       // Ticket pages
-      case RouteNames.scanTicket:
-        return MaterialPageRoute(
-          //
-          builder: (_) => const ScanTicketPage(),
-          settings: settings,
-        );
       case RouteNames.createTicket:
         return MaterialPageRoute(
           builder: (_) => CreateTicketPage(eventId: settings.arguments.toString()),
@@ -108,7 +74,17 @@ class AppRouter {
         );
       case RouteNames.ticketDetail:
         return MaterialPageRoute(
-          builder: (_) => TicketDetailPage(eventId: settings.arguments.toString()),
+          builder: (_) => TicketDetailPage(ticketId: settings.arguments.toString()),
+          settings: settings,
+        );
+      case RouteNames.checkTicket:
+        return MaterialPageRoute(
+          builder: (_) => CheckTicketPage(eventId: settings.arguments.toString()),
+          settings: settings,
+        );
+      case RouteNames.scannedTicket:
+        return MaterialPageRoute(
+          builder: (_) => ScannedTicketPage(ticketId: settings.arguments.toString()),
           settings: settings,
         );
 

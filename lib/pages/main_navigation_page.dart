@@ -38,7 +38,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         child: FloatingActionButton(
           onPressed: () => auth.isAuthenticated
               ? selectEvent(context, (eventId) {
-                  Navigator.pushNamed(context, RouteNames.scanTicket);
+                  Navigator.pushNamed(context, RouteNames.checkTicket, arguments: eventId);
                 })
               : setState(() {
                   _currentIndex = 2;

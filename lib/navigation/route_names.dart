@@ -7,13 +7,14 @@ class RouteNames {
   static const String createEvent = '/event/create';
   static const String editEvent = '/event/edit';
   static const String eventsList = '/events/list';
+  static const String eventManagers = '/events/managers';
 
   // Pages de tickets
-  static const String ticketDetail = '/ticket/detail';
   static const String createTicket = '/ticket/create';
   static const String ticketsList = '/tickets/list';
-  static const String scanTicket = '/tickets/scan';
-  static const String editTicket = '/ticket/edit';
+  static const String ticketDetail = '/ticket/detail';
+  static const String checkTicket = '/tickets/check';
+  static const String scannedTicket = '/ticket/scanned';
 
   // Pages d'authentification
   static const String login = '/auth/login';

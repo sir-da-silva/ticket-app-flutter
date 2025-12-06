@@ -4495,20 +4495,19 @@ class Mutation$UpdateUser {
     final l$updateUser = json['updateUser'];
     final l$$__typename = json['__typename'];
     return Mutation$UpdateUser(
-      updateUser: Mutation$UpdateUser$updateUser.fromJson(
-          (l$updateUser as Map<String, dynamic>)),
+      updateUser: (l$updateUser as bool),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$UpdateUser$updateUser updateUser;
+  final bool updateUser;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$updateUser = updateUser;
-    _resultData['updateUser'] = l$updateUser.toJson();
+    _resultData['updateUser'] = l$updateUser;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4564,10 +4563,9 @@ abstract class CopyWith$Mutation$UpdateUser<TRes> {
       _CopyWithStubImpl$Mutation$UpdateUser;
 
   TRes call({
-    Mutation$UpdateUser$updateUser? updateUser,
+    bool? updateUser,
     String? $__typename,
   });
-  CopyWith$Mutation$UpdateUser$updateUser<TRes> get updateUser;
 }
 
 class _CopyWithImpl$Mutation$UpdateUser<TRes>
@@ -4590,17 +4588,11 @@ class _CopyWithImpl$Mutation$UpdateUser<TRes>
       _then(Mutation$UpdateUser(
         updateUser: updateUser == _undefined || updateUser == null
             ? _instance.updateUser
-            : (updateUser as Mutation$UpdateUser$updateUser),
+            : (updateUser as bool),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
-
-  CopyWith$Mutation$UpdateUser$updateUser<TRes> get updateUser {
-    final local$updateUser = _instance.updateUser;
-    return CopyWith$Mutation$UpdateUser$updateUser(
-        local$updateUser, (e) => call(updateUser: e));
-  }
 }
 
 class _CopyWithStubImpl$Mutation$UpdateUser<TRes>
@@ -4610,13 +4602,10 @@ class _CopyWithStubImpl$Mutation$UpdateUser<TRes>
   TRes _res;
 
   call({
-    Mutation$UpdateUser$updateUser? updateUser,
+    bool? updateUser,
     String? $__typename,
   }) =>
       _res;
-
-  CopyWith$Mutation$UpdateUser$updateUser<TRes> get updateUser =>
-      CopyWith$Mutation$UpdateUser$updateUser.stub(_res);
 }
 
 const documentNodeMutationUpdateUser = DocumentNode(definitions: [
@@ -4646,22 +4635,7 @@ const documentNodeMutationUpdateUser = DocumentNode(definitions: [
           )
         ],
         directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-            name: NameNode(value: 'token'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: '__typename'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-        ]),
+        selectionSet: null,
       ),
       FieldNode(
         name: NameNode(value: '__typename'),
@@ -4879,131 +4853,6 @@ class Mutation$UpdateUser$Widget
             result,
           ),
         );
-}
-
-class Mutation$UpdateUser$updateUser {
-  Mutation$UpdateUser$updateUser({
-    required this.token,
-    this.$__typename = 'AuthPayload',
-  });
-
-  factory Mutation$UpdateUser$updateUser.fromJson(Map<String, dynamic> json) {
-    final l$token = json['token'];
-    final l$$__typename = json['__typename'];
-    return Mutation$UpdateUser$updateUser(
-      token: (l$token as String),
-      $__typename: (l$$__typename as String),
-    );
-  }
-
-  final String token;
-
-  final String $__typename;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$token = token;
-    _resultData['token'] = l$token;
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$token = token;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$token,
-      l$$__typename,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Mutation$UpdateUser$updateUser ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$token = token;
-    final lOther$token = other.token;
-    if (l$token != lOther$token) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Mutation$UpdateUser$updateUser
-    on Mutation$UpdateUser$updateUser {
-  CopyWith$Mutation$UpdateUser$updateUser<Mutation$UpdateUser$updateUser>
-      get copyWith => CopyWith$Mutation$UpdateUser$updateUser(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Mutation$UpdateUser$updateUser<TRes> {
-  factory CopyWith$Mutation$UpdateUser$updateUser(
-    Mutation$UpdateUser$updateUser instance,
-    TRes Function(Mutation$UpdateUser$updateUser) then,
-  ) = _CopyWithImpl$Mutation$UpdateUser$updateUser;
-
-  factory CopyWith$Mutation$UpdateUser$updateUser.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$UpdateUser$updateUser;
-
-  TRes call({
-    String? token,
-    String? $__typename,
-  });
-}
-
-class _CopyWithImpl$Mutation$UpdateUser$updateUser<TRes>
-    implements CopyWith$Mutation$UpdateUser$updateUser<TRes> {
-  _CopyWithImpl$Mutation$UpdateUser$updateUser(
-    this._instance,
-    this._then,
-  );
-
-  final Mutation$UpdateUser$updateUser _instance;
-
-  final TRes Function(Mutation$UpdateUser$updateUser) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? token = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Mutation$UpdateUser$updateUser(
-        token: token == _undefined || token == null
-            ? _instance.token
-            : (token as String),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
-}
-
-class _CopyWithStubImpl$Mutation$UpdateUser$updateUser<TRes>
-    implements CopyWith$Mutation$UpdateUser$updateUser<TRes> {
-  _CopyWithStubImpl$Mutation$UpdateUser$updateUser(this._res);
-
-  TRes _res;
-
-  call({
-    String? token,
-    String? $__typename,
-  }) =>
-      _res;
 }
 
 class Variables$Mutation$ChangePassword {

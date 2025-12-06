@@ -113,7 +113,7 @@ type Mutation {
   login(input: LoginInput!): AuthPayload!
   initSignUp(input: InitSignUpInput!): String!
   completeSignUp(input: CompleteSignUpInput!): AuthPayload!
-  updateUser(input: UpdateUserInput!): AuthPayload!
+  updateUser(input: UpdateUserInput!): Boolean!
   changePassword(input: ChangePasswordInput!): Boolean!
   deleteUser(id: ID!): Boolean!
 }
@@ -159,14 +159,12 @@ type Ticket {
 }
 
 input UpdateEventInput {
+  id: ID!
   picture: String
-  title: String
   description: String
   location: String
-  category: String
   date: DateTime
   price: Float
-  priceCurrency: String
 }
 
 input UpdateUserInput {

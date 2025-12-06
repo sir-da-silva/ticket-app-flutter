@@ -17,25 +17,29 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       body: Stack(
         children: [
-          /// 🎨 Fond dégradé violet / bleu
+          /// 🎨 Fond dégradé
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                colors: [
+                  Theme.of(context).colorScheme.primaryFixed,
+                  Theme.of(context).colorScheme.primaryFixedDim,
+                  Theme.of(context).colorScheme.primary,
+                ],
               ),
             ),
           ),
 
           /// 🌀 Vague blanche décorative
-          Align(
-            alignment: Alignment.topCenter,
-            child: ClipPath(
-              clipper: WaveClipper(),
-              child: Container(height: 250, color: Colors.white),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topCenter,
+          //   child: ClipPath(
+          //     clipper: WaveClipper(),
+          //     child: Container(height: 250, color: Colors.white),
+          //   ),
+          // ),
 
           /// 🧊 Contenu principal
           Center(
@@ -79,7 +83,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       TextFormField(
                         controller: emailController,
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.email),
+                          prefixIcon: const Icon(Icons.email_outlined),
                           hintText: "Adresse e-mail",
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
@@ -94,14 +98,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            foregroundColor: Theme.of(context).colorScheme.surface,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               // TODO : envoyer le lien de réinitialisation
                             }
                           },
-                          child: const Text("Envoyer le lien"),
+                          child: (false)
+                              ? SizedBox(
+                                  height: 18,
+                                  width: 18,
+                                  child: CircularProgressIndicator(
+                                    color: Theme.of(context).colorScheme.surface,
+                                  ),
+                                )
+                              : Text('Se connecter'),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -117,7 +131,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               "la connexion",
                               style: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w600,
-                                color: const Color(0xFF667EEA),
+                                color: Theme.of(context).colorScheme.onPrimaryFixed,
                               ),
                             ),
                           ),

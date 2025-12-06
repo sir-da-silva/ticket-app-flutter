@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:my_first_flutter_app/components/actuality_card.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/actuality.graphql.dart';
@@ -45,11 +44,17 @@ class EventDetailPage extends StatelessWidget {
         void followEvent() {
           if (!auth.isAuthenticated) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(
-                  "Vous devez être connecté pour suivre des évenements. Appuyez longuement sur le même icone pour vous connecter.",
+              SnackBar(
+                content: Text("Vous devez être connecté pour suivre des évenements."),
+                behavior: SnackBarBehavior.floating,
+                dismissDirection: DismissDirection.horizontal,
+                action: SnackBarAction(
+                  label: 'Connexion',
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, RouteNames.login);
+                  },
                 ),
-                showCloseIcon: true,
               ),
             );
           } else {
@@ -58,31 +63,27 @@ class EventDetailPage extends StatelessWidget {
           }
         }
 
-        void loginPrompt() {
-          Navigator.pushNamed(context, RouteNames.login);
-        }
-
         void shareEvent() {
           // TODO: Share event
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Partager')));
         }
 
-        Widget infoRow(String icon, String info) {
+        Widget infoRow(IconData icon, String info) {
           return Row(
             spacing: 8,
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(
-                  // color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                  color: Theme.of(context).colorScheme.secondaryFixed,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 4),
-                  // child: Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
-                  child: Text(icon, style: TextStyle(fontSize: 16)),
+                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+                  child: Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
+                  // child: Text(icon, style: TextStyle(fontSize: 12)),
                 ),
               ),
-              Text(info, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              Text(info, style: TextStyle(fontSize: 16)),
             ],
           );
         }
@@ -93,22 +94,10 @@ class EventDetailPage extends StatelessWidget {
               ? Center(child: CircularProgressIndicator())
               : data?.event == null
               ? Center(
-                  child: Column(
-                    spacing: 10,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Erreur lors de la recuperation \n des données.",
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                        textAlign: TextAlign.center,
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: refetch,
-                        label: Text("Reessayer"),
-                        icon: Icon(Icons.refresh),
-                      ),
-                    ],
+                  child: Text(
+                    "Erreur lors de la récuperation \n des données. Glissez vers les bas \n pour réactualiser.",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    textAlign: TextAlign.center,
                   ),
                 )
               : SingleChildScrollView(
@@ -174,7 +163,6 @@ class EventDetailPage extends StatelessWidget {
                                     // color: Colors.white,
                                     icon: const Icon(Icons.notifications_on_outlined),
                                     onPressed: followEvent,
-                                    onLongPress: !auth.isAuthenticated ? loginPrompt : null,
                                   ),
                                   IconButton(
                                     // color: Colors.white,
@@ -207,7 +195,7 @@ class EventDetailPage extends StatelessWidget {
                       ),
 
                       Padding(
-                        padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 8),
+                        padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -215,54 +203,54 @@ class EventDetailPage extends StatelessWidget {
                               data.event!.description,
                               style: TextStyle(
                                 //
-                                fontSize: 16,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
 
-                            SizedBox(height: 20),
+                            SizedBox(height: 10),
                             infoRow(
-                              // Icons.category_outlined
-                              "🎨",
+                              Icons.color_lens,
+                              // "🎨",
                               data.event!.category,
                             ),
 
-                            SizedBox(height: 20),
+                            SizedBox(height: 10),
                             Row(
                               spacing: 8,
                               children: [
                                 infoRow(
-                                  // Icons.calendar_today_rounded,
-                                  "📆",
+                                  Icons.calendar_month,
+                                  // "📆",
                                   "${date!.weekDayNameShort}. ${date.monthDayNumber} ${date.monthName}",
                                 ),
                                 Expanded(child: SizedBox()),
                                 infoRow(
-                                  // Icons.access_time_rounded,
-                                  "🕐",
+                                  Icons.access_time_filled,
+                                  // "🕐",
                                   "${date.hour12}:${date.minute} ${date.meridiem}",
                                 ),
                               ],
                             ),
 
-                            SizedBox(height: 20),
+                            SizedBox(height: 10),
                             infoRow(
-                              // Icons.location_on_outlined
-                              "📍",
+                              Icons.location_on,
+                              // "📍",
                               data.event!.location,
                             ),
 
-                            SizedBox(height: 20),
+                            SizedBox(height: 10),
                             infoRow(
-                              // Icons.confirmation_number_outlined,
-                              "🎟️",
+                              Icons.confirmation_number,
+                              // "🎟️",
                               "${data.event!.price.toDouble()} ${data.event!.priceCurrency}",
                             ),
 
                             SizedBox(height: 20),
                             Text("Crée par :", style: TextStyle(fontWeight: FontWeight.bold)),
 
-                            SizedBox(height: 8),
+                            SizedBox(height: 4),
                             if (data.event?.createdBy != null)
                               Query$GetUser$Widget(
                                 options: Options$Query$GetUser(
@@ -286,26 +274,16 @@ class EventDetailPage extends StatelessWidget {
                                               width: 100,
                                               child: DecoratedBox(
                                                 decoration: BoxDecoration(
-                                                  color: Theme.of(
-                                                    context,
-                                                  ).colorScheme.primary.withValues(alpha: 0.1),
+                                                  color: Theme.of(context).colorScheme.primaryFixed,
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(8),
+                                                  padding: EdgeInsets.all(12),
                                                   child: Row(
                                                     spacing: 8,
                                                     children: [
                                                       CircleAvatar(
                                                         radius: 12,
                                                         backgroundColor: Colors.white,
-                                                        child: Icon(
-                                                          Icons.person,
-                                                          size: 20,
-                                                          color: Theme.of(context)
-                                                              .colorScheme
-                                                              .primary
-                                                              .withValues(alpha: 0.1),
-                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -318,9 +296,7 @@ class EventDetailPage extends StatelessWidget {
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(12),
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.primary.withValues(alpha: 0.1),
+                                              color: Theme.of(context).colorScheme.primaryFixed,
                                             ),
                                             child: GestureDetector(
                                               onTap: () {
@@ -333,24 +309,14 @@ class EventDetailPage extends StatelessWidget {
                                                   children: [
                                                     CircleAvatar(
                                                       radius: 12,
+                                                      backgroundColor: Colors.white,
                                                       child: data?.user?.picture == null
-                                                          ? Icon(
-                                                              Icons.person,
-                                                              size: 20,
-                                                              color: Theme.of(
-                                                                context,
-                                                              ).colorScheme.primary,
-                                                            )
+                                                          ? null
                                                           : Image.network(
                                                               data!.user!.picture!,
                                                               errorBuilder:
                                                                   (context, error, stackTrace) {
-                                                                    return Icon(
-                                                                      Icons.person,
-                                                                      color: Theme.of(
-                                                                        context,
-                                                                      ).colorScheme.surface,
-                                                                    );
+                                                                    return SizedBox();
                                                                   },
                                                             ),
                                                     ),
@@ -524,7 +490,7 @@ class EventDetailPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 14),
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundColor: Theme.of(context).colorScheme.onPrimaryFixed,
                         iconColor: Theme.of(context).colorScheme.surface,
                       ),
                       icon: Icon(Icons.confirmation_number),
