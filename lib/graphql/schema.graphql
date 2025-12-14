@@ -42,6 +42,25 @@ input ChangePasswordInput {
   newPassword: String!
 }
 
+type CheckedTicket {
+  id: ID!
+  used: Boolean!
+  event: Event!
+  user: User
+  buyerName: String
+  buyerPhone: String
+  buyerEmail: String
+  createdAt: DateTime!
+  scannedBy: User
+  scannedById: ID
+  scannedAt: DateTime
+}
+
+type CheckedTicketOutput {
+  ticket: CheckedTicket
+  messageCode: ScanOutputMessageCode!
+}
+
 input CompleteSignUpInput {
   email: String!
   code: String!
@@ -110,7 +129,7 @@ type Mutation {
   deleteEvent(id: ID!): Boolean!
   followEvent(id: ID!): Boolean!
   buyTicket(input: BuyTicketInput!): BuyTicketOutput!
-  scanTicket(code: String!, eventId: ID!): ScanTicketOutput!
+  checkTicket(code: String!, eventId: ID!): CheckedTicketOutput!
   login(input: LoginInput!): AuthPayload!
   initSignUp(input: InitSignUpInput!): String!
   completeSignUp(input: CompleteSignUpInput!): AuthPayload!
@@ -147,15 +166,12 @@ enum Role {
   ADMIN
 }
 
-enum ScanOutputMessageType {
-  ERROR
+enum ScanOutputMessageCode {
+  TICKET_NOT_FOUND
+  USER_NO_ACCESS
+  TICKET_USED
   SUCCESS
-}
-
-type ScanTicketOutput {
-  ticket: Ticket
-  message: String!
-  messageType: ScanOutputMessageType!
+  UNKNOWN
 }
 
 type Ticket {

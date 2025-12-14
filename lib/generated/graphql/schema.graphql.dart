@@ -1516,36 +1516,51 @@ Enum$Role fromJson$Enum$Role(String value) {
   }
 }
 
-enum Enum$ScanOutputMessageType {
-  ERROR,
+enum Enum$ScanOutputMessageCode {
+  TICKET_NOT_FOUND,
+  USER_NO_ACCESS,
+  TICKET_USED,
   SUCCESS,
+  UNKNOWN,
   $unknown;
 
-  factory Enum$ScanOutputMessageType.fromJson(String value) =>
-      fromJson$Enum$ScanOutputMessageType(value);
+  factory Enum$ScanOutputMessageCode.fromJson(String value) =>
+      fromJson$Enum$ScanOutputMessageCode(value);
 
-  String toJson() => toJson$Enum$ScanOutputMessageType(this);
+  String toJson() => toJson$Enum$ScanOutputMessageCode(this);
 }
 
-String toJson$Enum$ScanOutputMessageType(Enum$ScanOutputMessageType e) {
+String toJson$Enum$ScanOutputMessageCode(Enum$ScanOutputMessageCode e) {
   switch (e) {
-    case Enum$ScanOutputMessageType.ERROR:
-      return r'ERROR';
-    case Enum$ScanOutputMessageType.SUCCESS:
+    case Enum$ScanOutputMessageCode.TICKET_NOT_FOUND:
+      return r'TICKET_NOT_FOUND';
+    case Enum$ScanOutputMessageCode.USER_NO_ACCESS:
+      return r'USER_NO_ACCESS';
+    case Enum$ScanOutputMessageCode.TICKET_USED:
+      return r'TICKET_USED';
+    case Enum$ScanOutputMessageCode.SUCCESS:
       return r'SUCCESS';
-    case Enum$ScanOutputMessageType.$unknown:
+    case Enum$ScanOutputMessageCode.UNKNOWN:
+      return r'UNKNOWN';
+    case Enum$ScanOutputMessageCode.$unknown:
       return r'$unknown';
   }
 }
 
-Enum$ScanOutputMessageType fromJson$Enum$ScanOutputMessageType(String value) {
+Enum$ScanOutputMessageCode fromJson$Enum$ScanOutputMessageCode(String value) {
   switch (value) {
-    case r'ERROR':
-      return Enum$ScanOutputMessageType.ERROR;
+    case r'TICKET_NOT_FOUND':
+      return Enum$ScanOutputMessageCode.TICKET_NOT_FOUND;
+    case r'USER_NO_ACCESS':
+      return Enum$ScanOutputMessageCode.USER_NO_ACCESS;
+    case r'TICKET_USED':
+      return Enum$ScanOutputMessageCode.TICKET_USED;
     case r'SUCCESS':
-      return Enum$ScanOutputMessageType.SUCCESS;
+      return Enum$ScanOutputMessageCode.SUCCESS;
+    case r'UNKNOWN':
+      return Enum$ScanOutputMessageCode.UNKNOWN;
     default:
-      return Enum$ScanOutputMessageType.$unknown;
+      return Enum$ScanOutputMessageCode.$unknown;
   }
 }
 

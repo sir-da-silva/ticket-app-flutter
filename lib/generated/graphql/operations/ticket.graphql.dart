@@ -3963,25 +3963,25 @@ class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$ticket<TRes>
       _res;
 }
 
-class Variables$Mutation$ScanTicket {
-  factory Variables$Mutation$ScanTicket({
+class Variables$Mutation$CheckTicket {
+  factory Variables$Mutation$CheckTicket({
     required String code,
     required String eventId,
   }) =>
-      Variables$Mutation$ScanTicket._({
+      Variables$Mutation$CheckTicket._({
         r'code': code,
         r'eventId': eventId,
       });
 
-  Variables$Mutation$ScanTicket._(this._$data);
+  Variables$Mutation$CheckTicket._(this._$data);
 
-  factory Variables$Mutation$ScanTicket.fromJson(Map<String, dynamic> data) {
+  factory Variables$Mutation$CheckTicket.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
     final l$code = data['code'];
     result$data['code'] = (l$code as String);
     final l$eventId = data['eventId'];
     result$data['eventId'] = (l$eventId as String);
-    return Variables$Mutation$ScanTicket._(result$data);
+    return Variables$Mutation$CheckTicket._(result$data);
   }
 
   Map<String, dynamic> _$data;
@@ -3999,8 +3999,8 @@ class Variables$Mutation$ScanTicket {
     return result$data;
   }
 
-  CopyWith$Variables$Mutation$ScanTicket<Variables$Mutation$ScanTicket>
-      get copyWith => CopyWith$Variables$Mutation$ScanTicket(
+  CopyWith$Variables$Mutation$CheckTicket<Variables$Mutation$CheckTicket>
+      get copyWith => CopyWith$Variables$Mutation$CheckTicket(
             this,
             (i) => i,
           );
@@ -4010,7 +4010,7 @@ class Variables$Mutation$ScanTicket {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Variables$Mutation$ScanTicket ||
+    if (other is! Variables$Mutation$CheckTicket ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4038,14 +4038,14 @@ class Variables$Mutation$ScanTicket {
   }
 }
 
-abstract class CopyWith$Variables$Mutation$ScanTicket<TRes> {
-  factory CopyWith$Variables$Mutation$ScanTicket(
-    Variables$Mutation$ScanTicket instance,
-    TRes Function(Variables$Mutation$ScanTicket) then,
-  ) = _CopyWithImpl$Variables$Mutation$ScanTicket;
+abstract class CopyWith$Variables$Mutation$CheckTicket<TRes> {
+  factory CopyWith$Variables$Mutation$CheckTicket(
+    Variables$Mutation$CheckTicket instance,
+    TRes Function(Variables$Mutation$CheckTicket) then,
+  ) = _CopyWithImpl$Variables$Mutation$CheckTicket;
 
-  factory CopyWith$Variables$Mutation$ScanTicket.stub(TRes res) =
-      _CopyWithStubImpl$Variables$Mutation$ScanTicket;
+  factory CopyWith$Variables$Mutation$CheckTicket.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$CheckTicket;
 
   TRes call({
     String? code,
@@ -4053,16 +4053,16 @@ abstract class CopyWith$Variables$Mutation$ScanTicket<TRes> {
   });
 }
 
-class _CopyWithImpl$Variables$Mutation$ScanTicket<TRes>
-    implements CopyWith$Variables$Mutation$ScanTicket<TRes> {
-  _CopyWithImpl$Variables$Mutation$ScanTicket(
+class _CopyWithImpl$Variables$Mutation$CheckTicket<TRes>
+    implements CopyWith$Variables$Mutation$CheckTicket<TRes> {
+  _CopyWithImpl$Variables$Mutation$CheckTicket(
     this._instance,
     this._then,
   );
 
-  final Variables$Mutation$ScanTicket _instance;
+  final Variables$Mutation$CheckTicket _instance;
 
-  final TRes Function(Variables$Mutation$ScanTicket) _then;
+  final TRes Function(Variables$Mutation$CheckTicket) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -4070,7 +4070,7 @@ class _CopyWithImpl$Variables$Mutation$ScanTicket<TRes>
     Object? code = _undefined,
     Object? eventId = _undefined,
   }) =>
-      _then(Variables$Mutation$ScanTicket._({
+      _then(Variables$Mutation$CheckTicket._({
         ..._instance._$data,
         if (code != _undefined && code != null) 'code': (code as String),
         if (eventId != _undefined && eventId != null)
@@ -4078,9 +4078,9 @@ class _CopyWithImpl$Variables$Mutation$ScanTicket<TRes>
       }));
 }
 
-class _CopyWithStubImpl$Variables$Mutation$ScanTicket<TRes>
-    implements CopyWith$Variables$Mutation$ScanTicket<TRes> {
-  _CopyWithStubImpl$Variables$Mutation$ScanTicket(this._res);
+class _CopyWithStubImpl$Variables$Mutation$CheckTicket<TRes>
+    implements CopyWith$Variables$Mutation$CheckTicket<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$CheckTicket(this._res);
 
   TRes _res;
 
@@ -4091,30 +4091,30 @@ class _CopyWithStubImpl$Variables$Mutation$ScanTicket<TRes>
       _res;
 }
 
-class Mutation$ScanTicket {
-  Mutation$ScanTicket({
-    required this.scanTicket,
+class Mutation$CheckTicket {
+  Mutation$CheckTicket({
+    required this.checkTicket,
     this.$__typename = 'Mutation',
   });
 
-  factory Mutation$ScanTicket.fromJson(Map<String, dynamic> json) {
-    final l$scanTicket = json['scanTicket'];
+  factory Mutation$CheckTicket.fromJson(Map<String, dynamic> json) {
+    final l$checkTicket = json['checkTicket'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket(
-      scanTicket: Mutation$ScanTicket$scanTicket.fromJson(
-          (l$scanTicket as Map<String, dynamic>)),
+    return Mutation$CheckTicket(
+      checkTicket: Mutation$CheckTicket$checkTicket.fromJson(
+          (l$checkTicket as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$ScanTicket$scanTicket scanTicket;
+  final Mutation$CheckTicket$checkTicket checkTicket;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$scanTicket = scanTicket;
-    _resultData['scanTicket'] = l$scanTicket.toJson();
+    final l$checkTicket = checkTicket;
+    _resultData['checkTicket'] = l$checkTicket.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4122,10 +4122,10 @@ class Mutation$ScanTicket {
 
   @override
   int get hashCode {
-    final l$scanTicket = scanTicket;
+    final l$checkTicket = checkTicket;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$scanTicket,
+      l$checkTicket,
       l$$__typename,
     ]);
   }
@@ -4135,12 +4135,12 @@ class Mutation$ScanTicket {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket || runtimeType != other.runtimeType) {
+    if (other is! Mutation$CheckTicket || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$scanTicket = scanTicket;
-    final lOther$scanTicket = other.scanTicket;
-    if (l$scanTicket != lOther$scanTicket) {
+    final l$checkTicket = checkTicket;
+    final lOther$checkTicket = other.checkTicket;
+    if (l$checkTicket != lOther$checkTicket) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4152,83 +4152,83 @@ class Mutation$ScanTicket {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket on Mutation$ScanTicket {
-  CopyWith$Mutation$ScanTicket<Mutation$ScanTicket> get copyWith =>
-      CopyWith$Mutation$ScanTicket(
+extension UtilityExtension$Mutation$CheckTicket on Mutation$CheckTicket {
+  CopyWith$Mutation$CheckTicket<Mutation$CheckTicket> get copyWith =>
+      CopyWith$Mutation$CheckTicket(
         this,
         (i) => i,
       );
 }
 
-abstract class CopyWith$Mutation$ScanTicket<TRes> {
-  factory CopyWith$Mutation$ScanTicket(
-    Mutation$ScanTicket instance,
-    TRes Function(Mutation$ScanTicket) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket;
+abstract class CopyWith$Mutation$CheckTicket<TRes> {
+  factory CopyWith$Mutation$CheckTicket(
+    Mutation$CheckTicket instance,
+    TRes Function(Mutation$CheckTicket) then,
+  ) = _CopyWithImpl$Mutation$CheckTicket;
 
-  factory CopyWith$Mutation$ScanTicket.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket;
+  factory CopyWith$Mutation$CheckTicket.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CheckTicket;
 
   TRes call({
-    Mutation$ScanTicket$scanTicket? scanTicket,
+    Mutation$CheckTicket$checkTicket? checkTicket,
     String? $__typename,
   });
-  CopyWith$Mutation$ScanTicket$scanTicket<TRes> get scanTicket;
+  CopyWith$Mutation$CheckTicket$checkTicket<TRes> get checkTicket;
 }
 
-class _CopyWithImpl$Mutation$ScanTicket<TRes>
-    implements CopyWith$Mutation$ScanTicket<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket(
+class _CopyWithImpl$Mutation$CheckTicket<TRes>
+    implements CopyWith$Mutation$CheckTicket<TRes> {
+  _CopyWithImpl$Mutation$CheckTicket(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket _instance;
+  final Mutation$CheckTicket _instance;
 
-  final TRes Function(Mutation$ScanTicket) _then;
+  final TRes Function(Mutation$CheckTicket) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? scanTicket = _undefined,
+    Object? checkTicket = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket(
-        scanTicket: scanTicket == _undefined || scanTicket == null
-            ? _instance.scanTicket
-            : (scanTicket as Mutation$ScanTicket$scanTicket),
+      _then(Mutation$CheckTicket(
+        checkTicket: checkTicket == _undefined || checkTicket == null
+            ? _instance.checkTicket
+            : (checkTicket as Mutation$CheckTicket$checkTicket),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$ScanTicket$scanTicket<TRes> get scanTicket {
-    final local$scanTicket = _instance.scanTicket;
-    return CopyWith$Mutation$ScanTicket$scanTicket(
-        local$scanTicket, (e) => call(scanTicket: e));
+  CopyWith$Mutation$CheckTicket$checkTicket<TRes> get checkTicket {
+    final local$checkTicket = _instance.checkTicket;
+    return CopyWith$Mutation$CheckTicket$checkTicket(
+        local$checkTicket, (e) => call(checkTicket: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket<TRes>
-    implements CopyWith$Mutation$ScanTicket<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket(this._res);
+class _CopyWithStubImpl$Mutation$CheckTicket<TRes>
+    implements CopyWith$Mutation$CheckTicket<TRes> {
+  _CopyWithStubImpl$Mutation$CheckTicket(this._res);
 
   TRes _res;
 
   call({
-    Mutation$ScanTicket$scanTicket? scanTicket,
+    Mutation$CheckTicket$checkTicket? checkTicket,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$ScanTicket$scanTicket<TRes> get scanTicket =>
-      CopyWith$Mutation$ScanTicket$scanTicket.stub(_res);
+  CopyWith$Mutation$CheckTicket$checkTicket<TRes> get checkTicket =>
+      CopyWith$Mutation$CheckTicket$checkTicket.stub(_res);
 }
 
-const documentNodeMutationScanTicket = DocumentNode(definitions: [
+const documentNodeMutationCheckTicket = DocumentNode(definitions: [
   OperationDefinitionNode(
     type: OperationType.mutation,
-    name: NameNode(value: 'ScanTicket'),
+    name: NameNode(value: 'CheckTicket'),
     variableDefinitions: [
       VariableDefinitionNode(
         variable: VariableNode(name: NameNode(value: 'code')),
@@ -4252,7 +4252,7 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'scanTicket'),
+        name: NameNode(value: 'checkTicket'),
         alias: null,
         arguments: [
           ArgumentNode(
@@ -4315,6 +4315,49 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
+                name: NameNode(value: 'scannedAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'scannedBy'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'phone'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
                 name: NameNode(value: 'event'),
                 alias: null,
                 arguments: [],
@@ -4364,6 +4407,13 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
                     selectionSet: null,
                   ),
                   FieldNode(
+                    name: NameNode(value: 'phone'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
                     name: NameNode(value: '__typename'),
                     alias: null,
                     arguments: [],
@@ -4382,14 +4432,7 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'message'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'messageType'),
+            name: NameNode(value: 'messageCode'),
             alias: null,
             arguments: [],
             directives: [],
@@ -4414,26 +4457,27 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
     ]),
   ),
 ]);
-Mutation$ScanTicket _parserFn$Mutation$ScanTicket(Map<String, dynamic> data) =>
-    Mutation$ScanTicket.fromJson(data);
-typedef OnMutationCompleted$Mutation$ScanTicket = FutureOr<void> Function(
+Mutation$CheckTicket _parserFn$Mutation$CheckTicket(
+        Map<String, dynamic> data) =>
+    Mutation$CheckTicket.fromJson(data);
+typedef OnMutationCompleted$Mutation$CheckTicket = FutureOr<void> Function(
   Map<String, dynamic>?,
-  Mutation$ScanTicket?,
+  Mutation$CheckTicket?,
 );
 
-class Options$Mutation$ScanTicket
-    extends graphql.MutationOptions<Mutation$ScanTicket> {
-  Options$Mutation$ScanTicket({
+class Options$Mutation$CheckTicket
+    extends graphql.MutationOptions<Mutation$CheckTicket> {
+  Options$Mutation$CheckTicket({
     String? operationName,
-    required Variables$Mutation$ScanTicket variables,
+    required Variables$Mutation$CheckTicket variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$ScanTicket? typedOptimisticResult,
+    Mutation$CheckTicket? typedOptimisticResult,
     graphql.Context? context,
-    OnMutationCompleted$Mutation$ScanTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ScanTicket>? update,
+    OnMutationCompleted$Mutation$CheckTicket? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CheckTicket>? update,
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
@@ -4448,15 +4492,15 @@ class Options$Mutation$ScanTicket
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$ScanTicket(data),
+                    data == null ? null : _parserFn$Mutation$CheckTicket(data),
                   ),
           update: update,
           onError: onError,
-          document: documentNodeMutationScanTicket,
-          parserFn: _parserFn$Mutation$ScanTicket,
+          document: documentNodeMutationCheckTicket,
+          parserFn: _parserFn$Mutation$CheckTicket,
         );
 
-  final OnMutationCompleted$Mutation$ScanTicket? onCompletedWithParsed;
+  final OnMutationCompleted$Mutation$CheckTicket? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -4467,16 +4511,16 @@ class Options$Mutation$ScanTicket
       ];
 }
 
-class WatchOptions$Mutation$ScanTicket
-    extends graphql.WatchQueryOptions<Mutation$ScanTicket> {
-  WatchOptions$Mutation$ScanTicket({
+class WatchOptions$Mutation$CheckTicket
+    extends graphql.WatchQueryOptions<Mutation$CheckTicket> {
+  WatchOptions$Mutation$CheckTicket({
     String? operationName,
-    required Variables$Mutation$ScanTicket variables,
+    required Variables$Mutation$CheckTicket variables,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$ScanTicket? typedOptimisticResult,
+    Mutation$CheckTicket? typedOptimisticResult,
     graphql.Context? context,
     Duration? pollInterval,
     bool? eagerlyFetchResults,
@@ -4490,41 +4534,41 @@ class WatchOptions$Mutation$ScanTicket
           cacheRereadPolicy: cacheRereadPolicy,
           optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
           context: context,
-          document: documentNodeMutationScanTicket,
+          document: documentNodeMutationCheckTicket,
           pollInterval: pollInterval,
           eagerlyFetchResults: eagerlyFetchResults,
           carryForwardDataOnException: carryForwardDataOnException,
           fetchResults: fetchResults,
-          parserFn: _parserFn$Mutation$ScanTicket,
+          parserFn: _parserFn$Mutation$CheckTicket,
         );
 }
 
-extension ClientExtension$Mutation$ScanTicket on graphql.GraphQLClient {
-  Future<graphql.QueryResult<Mutation$ScanTicket>> mutate$ScanTicket(
-          Options$Mutation$ScanTicket options) async =>
+extension ClientExtension$Mutation$CheckTicket on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$CheckTicket>> mutate$CheckTicket(
+          Options$Mutation$CheckTicket options) async =>
       await this.mutate(options);
 
-  graphql.ObservableQuery<Mutation$ScanTicket> watchMutation$ScanTicket(
-          WatchOptions$Mutation$ScanTicket options) =>
+  graphql.ObservableQuery<Mutation$CheckTicket> watchMutation$CheckTicket(
+          WatchOptions$Mutation$CheckTicket options) =>
       this.watchMutation(options);
 }
 
-class Mutation$ScanTicket$HookResult {
-  Mutation$ScanTicket$HookResult(
+class Mutation$CheckTicket$HookResult {
+  Mutation$CheckTicket$HookResult(
     this.runMutation,
     this.result,
   );
 
-  final RunMutation$Mutation$ScanTicket runMutation;
+  final RunMutation$Mutation$CheckTicket runMutation;
 
-  final graphql.QueryResult<Mutation$ScanTicket> result;
+  final graphql.QueryResult<Mutation$CheckTicket> result;
 }
 
-Mutation$ScanTicket$HookResult useMutation$ScanTicket(
-    [WidgetOptions$Mutation$ScanTicket? options]) {
+Mutation$CheckTicket$HookResult useMutation$CheckTicket(
+    [WidgetOptions$Mutation$CheckTicket? options]) {
   final result = graphql_flutter
-      .useMutation(options ?? WidgetOptions$Mutation$ScanTicket());
-  return Mutation$ScanTicket$HookResult(
+      .useMutation(options ?? WidgetOptions$Mutation$CheckTicket());
+  return Mutation$CheckTicket$HookResult(
     (variables, {optimisticResult, typedOptimisticResult}) =>
         result.runMutation(
       variables.toJson(),
@@ -4534,22 +4578,22 @@ Mutation$ScanTicket$HookResult useMutation$ScanTicket(
   );
 }
 
-graphql.ObservableQuery<Mutation$ScanTicket> useWatchMutation$ScanTicket(
-        WatchOptions$Mutation$ScanTicket options) =>
+graphql.ObservableQuery<Mutation$CheckTicket> useWatchMutation$CheckTicket(
+        WatchOptions$Mutation$CheckTicket options) =>
     graphql_flutter.useWatchMutation(options);
 
-class WidgetOptions$Mutation$ScanTicket
-    extends graphql.MutationOptions<Mutation$ScanTicket> {
-  WidgetOptions$Mutation$ScanTicket({
+class WidgetOptions$Mutation$CheckTicket
+    extends graphql.MutationOptions<Mutation$CheckTicket> {
+  WidgetOptions$Mutation$CheckTicket({
     String? operationName,
     graphql.FetchPolicy? fetchPolicy,
     graphql.ErrorPolicy? errorPolicy,
     graphql.CacheRereadPolicy? cacheRereadPolicy,
     Object? optimisticResult,
-    Mutation$ScanTicket? typedOptimisticResult,
+    Mutation$CheckTicket? typedOptimisticResult,
     graphql.Context? context,
-    OnMutationCompleted$Mutation$ScanTicket? onCompleted,
-    graphql.OnMutationUpdate<Mutation$ScanTicket>? update,
+    OnMutationCompleted$Mutation$CheckTicket? onCompleted,
+    graphql.OnMutationUpdate<Mutation$CheckTicket>? update,
     graphql.OnError? onError,
   })  : onCompletedWithParsed = onCompleted,
         super(
@@ -4563,15 +4607,15 @@ class WidgetOptions$Mutation$ScanTicket
               ? null
               : (data) => onCompleted(
                     data,
-                    data == null ? null : _parserFn$Mutation$ScanTicket(data),
+                    data == null ? null : _parserFn$Mutation$CheckTicket(data),
                   ),
           update: update,
           onError: onError,
-          document: documentNodeMutationScanTicket,
-          parserFn: _parserFn$Mutation$ScanTicket,
+          document: documentNodeMutationCheckTicket,
+          parserFn: _parserFn$Mutation$CheckTicket,
         );
 
-  final OnMutationCompleted$Mutation$ScanTicket? onCompletedWithParsed;
+  final OnMutationCompleted$Mutation$CheckTicket? onCompletedWithParsed;
 
   @override
   List<Object?> get properties => [
@@ -4582,26 +4626,26 @@ class WidgetOptions$Mutation$ScanTicket
       ];
 }
 
-typedef RunMutation$Mutation$ScanTicket
-    = graphql.MultiSourceResult<Mutation$ScanTicket> Function(
-  Variables$Mutation$ScanTicket, {
+typedef RunMutation$Mutation$CheckTicket
+    = graphql.MultiSourceResult<Mutation$CheckTicket> Function(
+  Variables$Mutation$CheckTicket, {
   Object? optimisticResult,
-  Mutation$ScanTicket? typedOptimisticResult,
+  Mutation$CheckTicket? typedOptimisticResult,
 });
-typedef Builder$Mutation$ScanTicket = widgets.Widget Function(
-  RunMutation$Mutation$ScanTicket,
-  graphql.QueryResult<Mutation$ScanTicket>?,
+typedef Builder$Mutation$CheckTicket = widgets.Widget Function(
+  RunMutation$Mutation$CheckTicket,
+  graphql.QueryResult<Mutation$CheckTicket>?,
 );
 
-class Mutation$ScanTicket$Widget
-    extends graphql_flutter.Mutation<Mutation$ScanTicket> {
-  Mutation$ScanTicket$Widget({
+class Mutation$CheckTicket$Widget
+    extends graphql_flutter.Mutation<Mutation$CheckTicket> {
+  Mutation$CheckTicket$Widget({
     widgets.Key? key,
-    WidgetOptions$Mutation$ScanTicket? options,
-    required Builder$Mutation$ScanTicket builder,
+    WidgetOptions$Mutation$CheckTicket? options,
+    required Builder$Mutation$CheckTicket builder,
   }) : super(
           key: key,
-          options: options ?? WidgetOptions$Mutation$ScanTicket(),
+          options: options ?? WidgetOptions$Mutation$CheckTicket(),
           builder: (
             run,
             result,
@@ -4622,36 +4666,31 @@ class Mutation$ScanTicket$Widget
         );
 }
 
-class Mutation$ScanTicket$scanTicket {
-  Mutation$ScanTicket$scanTicket({
+class Mutation$CheckTicket$checkTicket {
+  Mutation$CheckTicket$checkTicket({
     this.ticket,
-    required this.message,
-    required this.messageType,
-    this.$__typename = 'ScanTicketOutput',
+    required this.messageCode,
+    this.$__typename = 'CheckedTicketOutput',
   });
 
-  factory Mutation$ScanTicket$scanTicket.fromJson(Map<String, dynamic> json) {
+  factory Mutation$CheckTicket$checkTicket.fromJson(Map<String, dynamic> json) {
     final l$ticket = json['ticket'];
-    final l$message = json['message'];
-    final l$messageType = json['messageType'];
+    final l$messageCode = json['messageCode'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket$scanTicket(
+    return Mutation$CheckTicket$checkTicket(
       ticket: l$ticket == null
           ? null
-          : Mutation$ScanTicket$scanTicket$ticket.fromJson(
+          : Mutation$CheckTicket$checkTicket$ticket.fromJson(
               (l$ticket as Map<String, dynamic>)),
-      message: (l$message as String),
-      messageType:
-          fromJson$Enum$ScanOutputMessageType((l$messageType as String)),
+      messageCode:
+          fromJson$Enum$ScanOutputMessageCode((l$messageCode as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final Mutation$ScanTicket$scanTicket$ticket? ticket;
+  final Mutation$CheckTicket$checkTicket$ticket? ticket;
 
-  final String message;
-
-  final Enum$ScanOutputMessageType messageType;
+  final Enum$ScanOutputMessageCode messageCode;
 
   final String $__typename;
 
@@ -4659,11 +4698,9 @@ class Mutation$ScanTicket$scanTicket {
     final _resultData = <String, dynamic>{};
     final l$ticket = ticket;
     _resultData['ticket'] = l$ticket?.toJson();
-    final l$message = message;
-    _resultData['message'] = l$message;
-    final l$messageType = messageType;
-    _resultData['messageType'] =
-        toJson$Enum$ScanOutputMessageType(l$messageType);
+    final l$messageCode = messageCode;
+    _resultData['messageCode'] =
+        toJson$Enum$ScanOutputMessageCode(l$messageCode);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4672,13 +4709,11 @@ class Mutation$ScanTicket$scanTicket {
   @override
   int get hashCode {
     final l$ticket = ticket;
-    final l$message = message;
-    final l$messageType = messageType;
+    final l$messageCode = messageCode;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$ticket,
-      l$message,
-      l$messageType,
+      l$messageCode,
       l$$__typename,
     ]);
   }
@@ -4688,7 +4723,7 @@ class Mutation$ScanTicket$scanTicket {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket$scanTicket ||
+    if (other is! Mutation$CheckTicket$checkTicket ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4697,14 +4732,9 @@ class Mutation$ScanTicket$scanTicket {
     if (l$ticket != lOther$ticket) {
       return false;
     }
-    final l$message = message;
-    final lOther$message = other.message;
-    if (l$message != lOther$message) {
-      return false;
-    }
-    final l$messageType = messageType;
-    final lOther$messageType = other.messageType;
-    if (l$messageType != lOther$messageType) {
+    final l$messageCode = messageCode;
+    final lOther$messageCode = other.messageCode;
+    if (l$messageCode != lOther$messageCode) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4716,108 +4746,105 @@ class Mutation$ScanTicket$scanTicket {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket$scanTicket
-    on Mutation$ScanTicket$scanTicket {
-  CopyWith$Mutation$ScanTicket$scanTicket<Mutation$ScanTicket$scanTicket>
-      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket(
+extension UtilityExtension$Mutation$CheckTicket$checkTicket
+    on Mutation$CheckTicket$checkTicket {
+  CopyWith$Mutation$CheckTicket$checkTicket<Mutation$CheckTicket$checkTicket>
+      get copyWith => CopyWith$Mutation$CheckTicket$checkTicket(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$ScanTicket$scanTicket<TRes> {
-  factory CopyWith$Mutation$ScanTicket$scanTicket(
-    Mutation$ScanTicket$scanTicket instance,
-    TRes Function(Mutation$ScanTicket$scanTicket) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket;
+abstract class CopyWith$Mutation$CheckTicket$checkTicket<TRes> {
+  factory CopyWith$Mutation$CheckTicket$checkTicket(
+    Mutation$CheckTicket$checkTicket instance,
+    TRes Function(Mutation$CheckTicket$checkTicket) then,
+  ) = _CopyWithImpl$Mutation$CheckTicket$checkTicket;
 
-  factory CopyWith$Mutation$ScanTicket$scanTicket.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket;
+  factory CopyWith$Mutation$CheckTicket$checkTicket.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CheckTicket$checkTicket;
 
   TRes call({
-    Mutation$ScanTicket$scanTicket$ticket? ticket,
-    String? message,
-    Enum$ScanOutputMessageType? messageType,
+    Mutation$CheckTicket$checkTicket$ticket? ticket,
+    Enum$ScanOutputMessageCode? messageCode,
     String? $__typename,
   });
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> get ticket;
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket<TRes> get ticket;
 }
 
-class _CopyWithImpl$Mutation$ScanTicket$scanTicket<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket$scanTicket(
+class _CopyWithImpl$Mutation$CheckTicket$checkTicket<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket<TRes> {
+  _CopyWithImpl$Mutation$CheckTicket$checkTicket(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket$scanTicket _instance;
+  final Mutation$CheckTicket$checkTicket _instance;
 
-  final TRes Function(Mutation$ScanTicket$scanTicket) _then;
+  final TRes Function(Mutation$CheckTicket$checkTicket) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? ticket = _undefined,
-    Object? message = _undefined,
-    Object? messageType = _undefined,
+    Object? messageCode = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket$scanTicket(
+      _then(Mutation$CheckTicket$checkTicket(
         ticket: ticket == _undefined
             ? _instance.ticket
-            : (ticket as Mutation$ScanTicket$scanTicket$ticket?),
-        message: message == _undefined || message == null
-            ? _instance.message
-            : (message as String),
-        messageType: messageType == _undefined || messageType == null
-            ? _instance.messageType
-            : (messageType as Enum$ScanOutputMessageType),
+            : (ticket as Mutation$CheckTicket$checkTicket$ticket?),
+        messageCode: messageCode == _undefined || messageCode == null
+            ? _instance.messageCode
+            : (messageCode as Enum$ScanOutputMessageCode),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> get ticket {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket<TRes> get ticket {
     final local$ticket = _instance.ticket;
     return local$ticket == null
-        ? CopyWith$Mutation$ScanTicket$scanTicket$ticket.stub(_then(_instance))
-        : CopyWith$Mutation$ScanTicket$scanTicket$ticket(
+        ? CopyWith$Mutation$CheckTicket$checkTicket$ticket.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CheckTicket$checkTicket$ticket(
             local$ticket, (e) => call(ticket: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket(this._res);
+class _CopyWithStubImpl$Mutation$CheckTicket$checkTicket<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket<TRes> {
+  _CopyWithStubImpl$Mutation$CheckTicket$checkTicket(this._res);
 
   TRes _res;
 
   call({
-    Mutation$ScanTicket$scanTicket$ticket? ticket,
-    String? message,
-    Enum$ScanOutputMessageType? messageType,
+    Mutation$CheckTicket$checkTicket$ticket? ticket,
+    Enum$ScanOutputMessageCode? messageCode,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> get ticket =>
-      CopyWith$Mutation$ScanTicket$scanTicket$ticket.stub(_res);
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket<TRes> get ticket =>
+      CopyWith$Mutation$CheckTicket$checkTicket$ticket.stub(_res);
 }
 
-class Mutation$ScanTicket$scanTicket$ticket {
-  Mutation$ScanTicket$scanTicket$ticket({
+class Mutation$CheckTicket$checkTicket$ticket {
+  Mutation$CheckTicket$checkTicket$ticket({
     required this.id,
     required this.used,
     this.buyerName,
     this.buyerPhone,
     this.buyerEmail,
     required this.createdAt,
+    this.scannedAt,
+    this.scannedBy,
     required this.event,
     this.user,
-    this.$__typename = 'Ticket',
+    this.$__typename = 'CheckedTicket',
   });
 
-  factory Mutation$ScanTicket$scanTicket$ticket.fromJson(
+  factory Mutation$CheckTicket$checkTicket$ticket.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$used = json['used'];
@@ -4825,21 +4852,29 @@ class Mutation$ScanTicket$scanTicket$ticket {
     final l$buyerPhone = json['buyerPhone'];
     final l$buyerEmail = json['buyerEmail'];
     final l$createdAt = json['createdAt'];
+    final l$scannedAt = json['scannedAt'];
+    final l$scannedBy = json['scannedBy'];
     final l$event = json['event'];
     final l$user = json['user'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket$scanTicket$ticket(
+    return Mutation$CheckTicket$checkTicket$ticket(
       id: (l$id as String),
       used: (l$used as bool),
       buyerName: (l$buyerName as String?),
       buyerPhone: (l$buyerPhone as String?),
       buyerEmail: (l$buyerEmail as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
-      event: Mutation$ScanTicket$scanTicket$ticket$event.fromJson(
+      scannedAt:
+          l$scannedAt == null ? null : DateTime.parse((l$scannedAt as String)),
+      scannedBy: l$scannedBy == null
+          ? null
+          : Mutation$CheckTicket$checkTicket$ticket$scannedBy.fromJson(
+              (l$scannedBy as Map<String, dynamic>)),
+      event: Mutation$CheckTicket$checkTicket$ticket$event.fromJson(
           (l$event as Map<String, dynamic>)),
       user: l$user == null
           ? null
-          : Mutation$ScanTicket$scanTicket$ticket$user.fromJson(
+          : Mutation$CheckTicket$checkTicket$ticket$user.fromJson(
               (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
@@ -4857,9 +4892,13 @@ class Mutation$ScanTicket$scanTicket$ticket {
 
   final DateTime createdAt;
 
-  final Mutation$ScanTicket$scanTicket$ticket$event event;
+  final DateTime? scannedAt;
 
-  final Mutation$ScanTicket$scanTicket$ticket$user? user;
+  final Mutation$CheckTicket$checkTicket$ticket$scannedBy? scannedBy;
+
+  final Mutation$CheckTicket$checkTicket$ticket$event event;
+
+  final Mutation$CheckTicket$checkTicket$ticket$user? user;
 
   final String $__typename;
 
@@ -4877,6 +4916,10 @@ class Mutation$ScanTicket$scanTicket$ticket {
     _resultData['buyerEmail'] = l$buyerEmail;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$scannedAt = scannedAt;
+    _resultData['scannedAt'] = l$scannedAt?.toIso8601String();
+    final l$scannedBy = scannedBy;
+    _resultData['scannedBy'] = l$scannedBy?.toJson();
     final l$event = event;
     _resultData['event'] = l$event.toJson();
     final l$user = user;
@@ -4894,6 +4937,8 @@ class Mutation$ScanTicket$scanTicket$ticket {
     final l$buyerPhone = buyerPhone;
     final l$buyerEmail = buyerEmail;
     final l$createdAt = createdAt;
+    final l$scannedAt = scannedAt;
+    final l$scannedBy = scannedBy;
     final l$event = event;
     final l$user = user;
     final l$$__typename = $__typename;
@@ -4904,6 +4949,8 @@ class Mutation$ScanTicket$scanTicket$ticket {
       l$buyerPhone,
       l$buyerEmail,
       l$createdAt,
+      l$scannedAt,
+      l$scannedBy,
       l$event,
       l$user,
       l$$__typename,
@@ -4915,7 +4962,7 @@ class Mutation$ScanTicket$scanTicket$ticket {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket$scanTicket$ticket ||
+    if (other is! Mutation$CheckTicket$checkTicket$ticket ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4949,6 +4996,16 @@ class Mutation$ScanTicket$scanTicket$ticket {
     if (l$createdAt != lOther$createdAt) {
       return false;
     }
+    final l$scannedAt = scannedAt;
+    final lOther$scannedAt = other.scannedAt;
+    if (l$scannedAt != lOther$scannedAt) {
+      return false;
+    }
+    final l$scannedBy = scannedBy;
+    final lOther$scannedBy = other.scannedBy;
+    if (l$scannedBy != lOther$scannedBy) {
+      return false;
+    }
     final l$event = event;
     final lOther$event = other.event;
     if (l$event != lOther$event) {
@@ -4968,24 +5025,24 @@ class Mutation$ScanTicket$scanTicket$ticket {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket$scanTicket$ticket
-    on Mutation$ScanTicket$scanTicket$ticket {
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket<
-          Mutation$ScanTicket$scanTicket$ticket>
-      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$ticket(
+extension UtilityExtension$Mutation$CheckTicket$checkTicket$ticket
+    on Mutation$CheckTicket$checkTicket$ticket {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket<
+          Mutation$CheckTicket$checkTicket$ticket>
+      get copyWith => CopyWith$Mutation$CheckTicket$checkTicket$ticket(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
-  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket(
-    Mutation$ScanTicket$scanTicket$ticket instance,
-    TRes Function(Mutation$ScanTicket$scanTicket$ticket) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket;
+abstract class CopyWith$Mutation$CheckTicket$checkTicket$ticket<TRes> {
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket(
+    Mutation$CheckTicket$checkTicket$ticket instance,
+    TRes Function(Mutation$CheckTicket$checkTicket$ticket) then,
+  ) = _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket;
 
-  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket;
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket;
 
   TRes call({
     String? id,
@@ -4994,24 +5051,28 @@ abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
     String? buyerPhone,
     String? buyerEmail,
     DateTime? createdAt,
-    Mutation$ScanTicket$scanTicket$ticket$event? event,
-    Mutation$ScanTicket$scanTicket$ticket$user? user,
+    DateTime? scannedAt,
+    Mutation$CheckTicket$checkTicket$ticket$scannedBy? scannedBy,
+    Mutation$CheckTicket$checkTicket$ticket$event? event,
+    Mutation$CheckTicket$checkTicket$ticket$user? user,
     String? $__typename,
   });
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> get event;
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> get user;
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes>
+      get scannedBy;
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<TRes> get event;
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<TRes> get user;
 }
 
-class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket(
+class _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket$ticket<TRes> {
+  _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket$scanTicket$ticket _instance;
+  final Mutation$CheckTicket$checkTicket$ticket _instance;
 
-  final TRes Function(Mutation$ScanTicket$scanTicket$ticket) _then;
+  final TRes Function(Mutation$CheckTicket$checkTicket$ticket) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -5022,11 +5083,13 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
     Object? buyerPhone = _undefined,
     Object? buyerEmail = _undefined,
     Object? createdAt = _undefined,
+    Object? scannedAt = _undefined,
+    Object? scannedBy = _undefined,
     Object? event = _undefined,
     Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket$scanTicket$ticket(
+      _then(Mutation$CheckTicket$checkTicket$ticket(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         used: used == _undefined || used == null
             ? _instance.used
@@ -5043,36 +5106,52 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
+        scannedAt: scannedAt == _undefined
+            ? _instance.scannedAt
+            : (scannedAt as DateTime?),
+        scannedBy: scannedBy == _undefined
+            ? _instance.scannedBy
+            : (scannedBy as Mutation$CheckTicket$checkTicket$ticket$scannedBy?),
         event: event == _undefined || event == null
             ? _instance.event
-            : (event as Mutation$ScanTicket$scanTicket$ticket$event),
+            : (event as Mutation$CheckTicket$checkTicket$ticket$event),
         user: user == _undefined
             ? _instance.user
-            : (user as Mutation$ScanTicket$scanTicket$ticket$user?),
+            : (user as Mutation$CheckTicket$checkTicket$ticket$user?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> get event {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes>
+      get scannedBy {
+    final local$scannedBy = _instance.scannedBy;
+    return local$scannedBy == null
+        ? CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy.stub(
+            _then(_instance))
+        : CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+            local$scannedBy, (e) => call(scannedBy: e));
+  }
+
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<TRes> get event {
     final local$event = _instance.event;
-    return CopyWith$Mutation$ScanTicket$scanTicket$ticket$event(
+    return CopyWith$Mutation$CheckTicket$checkTicket$ticket$event(
         local$event, (e) => call(event: e));
   }
 
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> get user {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
-        ? CopyWith$Mutation$ScanTicket$scanTicket$ticket$user.stub(
+        ? CopyWith$Mutation$CheckTicket$checkTicket$ticket$user.stub(
             _then(_instance))
-        : CopyWith$Mutation$ScanTicket$scanTicket$ticket$user(
+        : CopyWith$Mutation$CheckTicket$checkTicket$ticket$user(
             local$user, (e) => call(user: e));
   }
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket(this._res);
+class _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket$ticket<TRes> {
+  _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket(this._res);
 
   TRes _res;
 
@@ -5083,32 +5162,207 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
     String? buyerPhone,
     String? buyerEmail,
     DateTime? createdAt,
-    Mutation$ScanTicket$scanTicket$ticket$event? event,
-    Mutation$ScanTicket$scanTicket$ticket$user? user,
+    DateTime? scannedAt,
+    Mutation$CheckTicket$checkTicket$ticket$scannedBy? scannedBy,
+    Mutation$CheckTicket$checkTicket$ticket$event? event,
+    Mutation$CheckTicket$checkTicket$ticket$user? user,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> get event =>
-      CopyWith$Mutation$ScanTicket$scanTicket$ticket$event.stub(_res);
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes>
+      get scannedBy =>
+          CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy.stub(_res);
 
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> get user =>
-      CopyWith$Mutation$ScanTicket$scanTicket$ticket$user.stub(_res);
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<TRes> get event =>
+      CopyWith$Mutation$CheckTicket$checkTicket$ticket$event.stub(_res);
+
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<TRes> get user =>
+      CopyWith$Mutation$CheckTicket$checkTicket$ticket$user.stub(_res);
 }
 
-class Mutation$ScanTicket$scanTicket$ticket$event {
-  Mutation$ScanTicket$scanTicket$ticket$event({
+class Mutation$CheckTicket$checkTicket$ticket$scannedBy {
+  Mutation$CheckTicket$checkTicket$ticket$scannedBy({
+    required this.id,
+    required this.name,
+    this.phone,
+    this.$__typename = 'User',
+  });
+
+  factory Mutation$CheckTicket$checkTicket$ticket$scannedBy.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$name = json['name'];
+    final l$phone = json['phone'];
+    final l$$__typename = json['__typename'];
+    return Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+      id: (l$id as String),
+      name: (l$name as String),
+      phone: (l$phone as String?),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String name;
+
+  final String? phone;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$name = name;
+    _resultData['name'] = l$name;
+    final l$phone = phone;
+    _resultData['phone'] = l$phone;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$name = name;
+    final l$phone = phone;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$name,
+      l$phone,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$CheckTicket$checkTicket$ticket$scannedBy ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$name = name;
+    final lOther$name = other.name;
+    if (l$name != lOther$name) {
+      return false;
+    }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$CheckTicket$checkTicket$ticket$scannedBy
+    on Mutation$CheckTicket$checkTicket$ticket$scannedBy {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<
+          Mutation$CheckTicket$checkTicket$ticket$scannedBy>
+      get copyWith =>
+          CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<
+    TRes> {
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+    Mutation$CheckTicket$checkTicket$ticket$scannedBy instance,
+    TRes Function(Mutation$CheckTicket$checkTicket$ticket$scannedBy) then,
+  ) = _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$scannedBy;
+
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$scannedBy;
+
+  TRes call({
+    String? id,
+    String? name,
+    String? phone,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes>
+    implements
+        CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes> {
+  _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$CheckTicket$checkTicket$ticket$scannedBy _instance;
+
+  final TRes Function(Mutation$CheckTicket$checkTicket$ticket$scannedBy) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? name = _undefined,
+    Object? phone = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        name: name == _undefined || name == null
+            ? _instance.name
+            : (name as String),
+        phone: phone == _undefined ? _instance.phone : (phone as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes>
+    implements
+        CopyWith$Mutation$CheckTicket$checkTicket$ticket$scannedBy<TRes> {
+  _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$scannedBy(
+      this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    String? name,
+    String? phone,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Mutation$CheckTicket$checkTicket$ticket$event {
+  Mutation$CheckTicket$checkTicket$ticket$event({
     required this.id,
     required this.title,
     this.$__typename = 'Event',
   });
 
-  factory Mutation$ScanTicket$scanTicket$ticket$event.fromJson(
+  factory Mutation$CheckTicket$checkTicket$ticket$event.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket$scanTicket$ticket$event(
+    return Mutation$CheckTicket$checkTicket$ticket$event(
       id: (l$id as String),
       title: (l$title as String),
       $__typename: (l$$__typename as String),
@@ -5149,7 +5403,7 @@ class Mutation$ScanTicket$scanTicket$ticket$event {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket$scanTicket$ticket$event ||
+    if (other is! Mutation$CheckTicket$checkTicket$ticket$event ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -5172,24 +5426,25 @@ class Mutation$ScanTicket$scanTicket$ticket$event {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket$scanTicket$ticket$event
-    on Mutation$ScanTicket$scanTicket$ticket$event {
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<
-          Mutation$ScanTicket$scanTicket$ticket$event>
-      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$ticket$event(
+extension UtilityExtension$Mutation$CheckTicket$checkTicket$ticket$event
+    on Mutation$CheckTicket$checkTicket$ticket$event {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<
+          Mutation$CheckTicket$checkTicket$ticket$event>
+      get copyWith => CopyWith$Mutation$CheckTicket$checkTicket$ticket$event(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
-  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$event(
-    Mutation$ScanTicket$scanTicket$ticket$event instance,
-    TRes Function(Mutation$ScanTicket$scanTicket$ticket$event) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event;
+abstract class CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<TRes> {
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket$event(
+    Mutation$CheckTicket$checkTicket$ticket$event instance,
+    TRes Function(Mutation$CheckTicket$checkTicket$ticket$event) then,
+  ) = _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$event;
 
-  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$event.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event;
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket$event.stub(
+          TRes res) =
+      _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$event;
 
   TRes call({
     String? id,
@@ -5198,16 +5453,16 @@ abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event(
+class _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$event<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<TRes> {
+  _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$event(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket$scanTicket$ticket$event _instance;
+  final Mutation$CheckTicket$checkTicket$ticket$event _instance;
 
-  final TRes Function(Mutation$ScanTicket$scanTicket$ticket$event) _then;
+  final TRes Function(Mutation$CheckTicket$checkTicket$ticket$event) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -5216,7 +5471,7 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
     Object? title = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket$scanTicket$ticket$event(
+      _then(Mutation$CheckTicket$checkTicket$ticket$event(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
@@ -5227,9 +5482,9 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event(this._res);
+class _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$event<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket$ticket$event<TRes> {
+  _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$event(this._res);
 
   TRes _res;
 
@@ -5241,21 +5496,24 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
       _res;
 }
 
-class Mutation$ScanTicket$scanTicket$ticket$user {
-  Mutation$ScanTicket$scanTicket$ticket$user({
+class Mutation$CheckTicket$checkTicket$ticket$user {
+  Mutation$CheckTicket$checkTicket$ticket$user({
     required this.id,
     required this.name,
+    this.phone,
     this.$__typename = 'User',
   });
 
-  factory Mutation$ScanTicket$scanTicket$ticket$user.fromJson(
+  factory Mutation$CheckTicket$checkTicket$ticket$user.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
+    final l$phone = json['phone'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket$scanTicket$ticket$user(
+    return Mutation$CheckTicket$checkTicket$ticket$user(
       id: (l$id as String),
       name: (l$name as String),
+      phone: (l$phone as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -5263,6 +5521,8 @@ class Mutation$ScanTicket$scanTicket$ticket$user {
   final String id;
 
   final String name;
+
+  final String? phone;
 
   final String $__typename;
 
@@ -5272,6 +5532,8 @@ class Mutation$ScanTicket$scanTicket$ticket$user {
     _resultData['id'] = l$id;
     final l$name = name;
     _resultData['name'] = l$name;
+    final l$phone = phone;
+    _resultData['phone'] = l$phone;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -5281,10 +5543,12 @@ class Mutation$ScanTicket$scanTicket$ticket$user {
   int get hashCode {
     final l$id = id;
     final l$name = name;
+    final l$phone = phone;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$name,
+      l$phone,
       l$$__typename,
     ]);
   }
@@ -5294,7 +5558,7 @@ class Mutation$ScanTicket$scanTicket$ticket$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket$scanTicket$ticket$user ||
+    if (other is! Mutation$CheckTicket$checkTicket$ticket$user ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -5308,6 +5572,11 @@ class Mutation$ScanTicket$scanTicket$ticket$user {
     if (l$name != lOther$name) {
       return false;
     }
+    final l$phone = phone;
+    final lOther$phone = other.phone;
+    if (l$phone != lOther$phone) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -5317,70 +5586,74 @@ class Mutation$ScanTicket$scanTicket$ticket$user {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket$scanTicket$ticket$user
-    on Mutation$ScanTicket$scanTicket$ticket$user {
-  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<
-          Mutation$ScanTicket$scanTicket$ticket$user>
-      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$ticket$user(
+extension UtilityExtension$Mutation$CheckTicket$checkTicket$ticket$user
+    on Mutation$CheckTicket$checkTicket$ticket$user {
+  CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<
+          Mutation$CheckTicket$checkTicket$ticket$user>
+      get copyWith => CopyWith$Mutation$CheckTicket$checkTicket$ticket$user(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> {
-  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$user(
-    Mutation$ScanTicket$scanTicket$ticket$user instance,
-    TRes Function(Mutation$ScanTicket$scanTicket$ticket$user) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$user;
+abstract class CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<TRes> {
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket$user(
+    Mutation$CheckTicket$checkTicket$ticket$user instance,
+    TRes Function(Mutation$CheckTicket$checkTicket$ticket$user) then,
+  ) = _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$user;
 
-  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$user;
+  factory CopyWith$Mutation$CheckTicket$checkTicket$ticket$user.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$user;
 
   TRes call({
     String? id,
     String? name,
+    String? phone,
     String? $__typename,
   });
 }
 
-class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$user<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$user(
+class _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$user<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<TRes> {
+  _CopyWithImpl$Mutation$CheckTicket$checkTicket$ticket$user(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket$scanTicket$ticket$user _instance;
+  final Mutation$CheckTicket$checkTicket$ticket$user _instance;
 
-  final TRes Function(Mutation$ScanTicket$scanTicket$ticket$user) _then;
+  final TRes Function(Mutation$CheckTicket$checkTicket$ticket$user) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
     Object? id = _undefined,
     Object? name = _undefined,
+    Object? phone = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket$scanTicket$ticket$user(
+      _then(Mutation$CheckTicket$checkTicket$ticket$user(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         name: name == _undefined || name == null
             ? _instance.name
             : (name as String),
+        phone: phone == _undefined ? _instance.phone : (phone as String?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$user<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$user(this._res);
+class _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$user<TRes>
+    implements CopyWith$Mutation$CheckTicket$checkTicket$ticket$user<TRes> {
+  _CopyWithStubImpl$Mutation$CheckTicket$checkTicket$ticket$user(this._res);
 
   TRes _res;
 
   call({
     String? id,
     String? name,
+    String? phone,
     String? $__typename,
   }) =>
       _res;

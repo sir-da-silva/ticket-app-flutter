@@ -124,15 +124,53 @@ class EventDetailPage extends HookWidget {
         }
 
         return Scaffold(
-          appBar: AppBar(title: const Text('Détails de l\'événement')),
+          appBar: AppBar(
+            title: Text("Evénement"),
+            // actionsPadding: EdgeInsets.only(right: 16),
+            // actions: [
+            //   if (data?.event != null)
+            //     customFollowEventWidget(
+            //       context,
+            //       eventId: data!.event!.id,
+            //       previewState: data.event?.followers?.isNotEmpty,
+            //       builder: (follow, isFollowed) => IconButton(
+            //         icon: isFollowed ?? false
+            //             ? const Icon(Icons.notifications_on)
+            //             : const Icon(Icons.notifications_outlined),
+            //         onPressed: follow,
+            //       ),
+            //     ),
+            //   if (data?.event != null)
+            //     IconButton(
+            //       icon: const Icon(Icons.share),
+            //       onPressed: () {
+            //         // TODO: Share
+            //       },
+            //     ),
+            // ],
+          ),
           body: result.isLoading
               ? Center(child: CircularProgressIndicator())
               : data?.event == null
               ? Center(
-                  child: Text(
-                    "Erreur lors de la récuperation \n des données. Glissez vers les bas \n pour réactualiser.",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 50,
+                        color: Colors.grey.withValues(alpha: 0.5),
+                        weight: 1,
+                      ),
+                      Text(
+                        "Erreur lors de la récuperation \n des données",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                      TextButton(onPressed: refetch, child: Text("Réessayer")),
+                    ],
                   ),
                 )
               : SingleChildScrollView(

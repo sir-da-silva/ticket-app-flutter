@@ -86,7 +86,7 @@ class AppRouter {
       case RouteNames.scannedTicket:
         return MaterialPageRoute(
           builder: (_) =>
-              ScannedTicketPage(variables: settings.arguments as Variables$Mutation$ScanTicket),
+              ScannedTicketPage(variables: settings.arguments as Variables$Mutation$CheckTicket),
           settings: settings,
         );
 

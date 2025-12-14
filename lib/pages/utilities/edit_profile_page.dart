@@ -69,27 +69,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
           return result.isLoading
               ? Center(child: CircularProgressIndicator())
               : data?.me == null
-              ? GestureDetector(
-                  onTap: refetch,
-                  child: Center(
-                    child: Column(
-                      spacing: 8,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.error_outline,
-                          size: 50,
-                          color: Colors.grey.withValues(alpha: 0.5),
-                          weight: 1,
-                        ),
-                        Text(
-                          "Erreur ! Appuyez pour \n réactualiser.",
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+              ? Center(
+                  child: Column(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 50,
+                        color: Colors.grey.withValues(alpha: 0.5),
+                        weight: 1,
+                      ),
+                      Text(
+                        "Erreur lors de la récuperation \n des données",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                      TextButton(onPressed: refetch, child: Text("Réessayer")),
+                    ],
                   ),
                 )
               : SingleChildScrollView(

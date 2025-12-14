@@ -13,7 +13,7 @@ class TicketDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Ticket"), elevation: 0),
+      appBar: AppBar(elevation: 0, title: Text("Ticket")),
       body: Query$GetTicket$Widget(
         options: Options$Query$GetTicket(
           variables: Variables$Query$GetTicket(id: ticketId),
@@ -39,10 +39,24 @@ class TicketDetailPage extends StatelessWidget {
               ? Center(child: CircularProgressIndicator())
               : data?.ticket == null
               ? Center(
-                  child: Text(
-                    "Erreur lors de la récuperation \n des données. Glissez vers les bas \n pour réactualiser.",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 50,
+                        color: Colors.grey.withValues(alpha: 0.5),
+                        weight: 1,
+                      ),
+                      Text(
+                        "Erreur lors de la récuperation \n des données",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                      TextButton(onPressed: refetch, child: Text("Réessayer")),
+                    ],
                   ),
                 )
               : SingleChildScrollView(

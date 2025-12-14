@@ -68,8 +68,8 @@ mutation BuyTicket($input: BuyTicketInput!) {
   }
 }
 
-mutation ScanTicket($code: String!, $eventId: ID!) {
-  scanTicket(code: $code, eventId: $eventId) {
+mutation CheckTicket($code: String!, $eventId: ID!) {
+  checkTicket(code: $code, eventId: $eventId) {
     ticket {
       id
       used
@@ -77,6 +77,12 @@ mutation ScanTicket($code: String!, $eventId: ID!) {
       buyerPhone
       buyerEmail
       createdAt
+      scannedAt
+      scannedBy {
+        id
+        name
+        phone
+      }
       event {
         id
         title
@@ -84,9 +90,9 @@ mutation ScanTicket($code: String!, $eventId: ID!) {
       user {
         id
         name
+        phone
       }
     }
-    message
-    messageType
+    messageCode
   }
 }
