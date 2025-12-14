@@ -13,7 +13,7 @@ class LoginRequired extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsetsGeometry.fromLTRB(20, 0, 20, 0),
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

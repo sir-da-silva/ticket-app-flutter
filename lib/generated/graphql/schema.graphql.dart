@@ -981,19 +981,17 @@ class _CopyWithStubImpl$Input$LoginInput<TRes>
 class Input$UpdateEventInput {
   factory Input$UpdateEventInput({
     required String id,
-    String? picture,
-    String? description,
-    String? location,
-    DateTime? date,
-    double? price,
+    required String description,
+    required String location,
+    required DateTime date,
+    required double price,
   }) =>
       Input$UpdateEventInput._({
         r'id': id,
-        if (picture != null) r'picture': picture,
-        if (description != null) r'description': description,
-        if (location != null) r'location': location,
-        if (date != null) r'date': date,
-        if (price != null) r'price': price,
+        r'description': description,
+        r'location': location,
+        r'date': date,
+        r'price': price,
       });
 
   Input$UpdateEventInput._(this._$data);
@@ -1002,27 +1000,14 @@ class Input$UpdateEventInput {
     final result$data = <String, dynamic>{};
     final l$id = data['id'];
     result$data['id'] = (l$id as String);
-    if (data.containsKey('picture')) {
-      final l$picture = data['picture'];
-      result$data['picture'] = (l$picture as String?);
-    }
-    if (data.containsKey('description')) {
-      final l$description = data['description'];
-      result$data['description'] = (l$description as String?);
-    }
-    if (data.containsKey('location')) {
-      final l$location = data['location'];
-      result$data['location'] = (l$location as String?);
-    }
-    if (data.containsKey('date')) {
-      final l$date = data['date'];
-      result$data['date'] =
-          l$date == null ? null : DateTime.parse((l$date as String));
-    }
-    if (data.containsKey('price')) {
-      final l$price = data['price'];
-      result$data['price'] = (l$price as num?)?.toDouble();
-    }
+    final l$description = data['description'];
+    result$data['description'] = (l$description as String);
+    final l$location = data['location'];
+    result$data['location'] = (l$location as String);
+    final l$date = data['date'];
+    result$data['date'] = DateTime.parse((l$date as String));
+    final l$price = data['price'];
+    result$data['price'] = (l$price as num).toDouble();
     return Input$UpdateEventInput._(result$data);
   }
 
@@ -1030,40 +1015,26 @@ class Input$UpdateEventInput {
 
   String get id => (_$data['id'] as String);
 
-  String? get picture => (_$data['picture'] as String?);
+  String get description => (_$data['description'] as String);
 
-  String? get description => (_$data['description'] as String?);
+  String get location => (_$data['location'] as String);
 
-  String? get location => (_$data['location'] as String?);
+  DateTime get date => (_$data['date'] as DateTime);
 
-  DateTime? get date => (_$data['date'] as DateTime?);
-
-  double? get price => (_$data['price'] as double?);
+  double get price => (_$data['price'] as double);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$id = id;
     result$data['id'] = l$id;
-    if (_$data.containsKey('picture')) {
-      final l$picture = picture;
-      result$data['picture'] = l$picture;
-    }
-    if (_$data.containsKey('description')) {
-      final l$description = description;
-      result$data['description'] = l$description;
-    }
-    if (_$data.containsKey('location')) {
-      final l$location = location;
-      result$data['location'] = l$location;
-    }
-    if (_$data.containsKey('date')) {
-      final l$date = date;
-      result$data['date'] = l$date?.toIso8601String();
-    }
-    if (_$data.containsKey('price')) {
-      final l$price = price;
-      result$data['price'] = l$price;
-    }
+    final l$description = description;
+    result$data['description'] = l$description;
+    final l$location = location;
+    result$data['location'] = l$location;
+    final l$date = date;
+    result$data['date'] = l$date.toIso8601String();
+    final l$price = price;
+    result$data['price'] = l$price;
     return result$data;
   }
 
@@ -1086,45 +1057,23 @@ class Input$UpdateEventInput {
     if (l$id != lOther$id) {
       return false;
     }
-    final l$picture = picture;
-    final lOther$picture = other.picture;
-    if (_$data.containsKey('picture') != other._$data.containsKey('picture')) {
-      return false;
-    }
-    if (l$picture != lOther$picture) {
-      return false;
-    }
     final l$description = description;
     final lOther$description = other.description;
-    if (_$data.containsKey('description') !=
-        other._$data.containsKey('description')) {
-      return false;
-    }
     if (l$description != lOther$description) {
       return false;
     }
     final l$location = location;
     final lOther$location = other.location;
-    if (_$data.containsKey('location') !=
-        other._$data.containsKey('location')) {
-      return false;
-    }
     if (l$location != lOther$location) {
       return false;
     }
     final l$date = date;
     final lOther$date = other.date;
-    if (_$data.containsKey('date') != other._$data.containsKey('date')) {
-      return false;
-    }
     if (l$date != lOther$date) {
       return false;
     }
     final l$price = price;
     final lOther$price = other.price;
-    if (_$data.containsKey('price') != other._$data.containsKey('price')) {
-      return false;
-    }
     if (l$price != lOther$price) {
       return false;
     }
@@ -1134,18 +1083,16 @@ class Input$UpdateEventInput {
   @override
   int get hashCode {
     final l$id = id;
-    final l$picture = picture;
     final l$description = description;
     final l$location = location;
     final l$date = date;
     final l$price = price;
     return Object.hashAll([
       l$id,
-      _$data.containsKey('picture') ? l$picture : const {},
-      _$data.containsKey('description') ? l$description : const {},
-      _$data.containsKey('location') ? l$location : const {},
-      _$data.containsKey('date') ? l$date : const {},
-      _$data.containsKey('price') ? l$price : const {},
+      l$description,
+      l$location,
+      l$date,
+      l$price,
     ]);
   }
 }
@@ -1161,7 +1108,6 @@ abstract class CopyWith$Input$UpdateEventInput<TRes> {
 
   TRes call({
     String? id,
-    String? picture,
     String? description,
     String? location,
     DateTime? date,
@@ -1184,7 +1130,6 @@ class _CopyWithImpl$Input$UpdateEventInput<TRes>
 
   TRes call({
     Object? id = _undefined,
-    Object? picture = _undefined,
     Object? description = _undefined,
     Object? location = _undefined,
     Object? date = _undefined,
@@ -1193,11 +1138,12 @@ class _CopyWithImpl$Input$UpdateEventInput<TRes>
       _then(Input$UpdateEventInput._({
         ..._instance._$data,
         if (id != _undefined && id != null) 'id': (id as String),
-        if (picture != _undefined) 'picture': (picture as String?),
-        if (description != _undefined) 'description': (description as String?),
-        if (location != _undefined) 'location': (location as String?),
-        if (date != _undefined) 'date': (date as DateTime?),
-        if (price != _undefined) 'price': (price as double?),
+        if (description != _undefined && description != null)
+          'description': (description as String),
+        if (location != _undefined && location != null)
+          'location': (location as String),
+        if (date != _undefined && date != null) 'date': (date as DateTime),
+        if (price != _undefined && price != null) 'price': (price as double),
       }));
 }
 
@@ -1209,7 +1155,6 @@ class _CopyWithStubImpl$Input$UpdateEventInput<TRes>
 
   call({
     String? id,
-    String? picture,
     String? description,
     String? location,
     DateTime? date,
@@ -1568,6 +1513,39 @@ Enum$Role fromJson$Enum$Role(String value) {
       return Enum$Role.ADMIN;
     default:
       return Enum$Role.$unknown;
+  }
+}
+
+enum Enum$ScanOutputMessageType {
+  ERROR,
+  SUCCESS,
+  $unknown;
+
+  factory Enum$ScanOutputMessageType.fromJson(String value) =>
+      fromJson$Enum$ScanOutputMessageType(value);
+
+  String toJson() => toJson$Enum$ScanOutputMessageType(this);
+}
+
+String toJson$Enum$ScanOutputMessageType(Enum$ScanOutputMessageType e) {
+  switch (e) {
+    case Enum$ScanOutputMessageType.ERROR:
+      return r'ERROR';
+    case Enum$ScanOutputMessageType.SUCCESS:
+      return r'SUCCESS';
+    case Enum$ScanOutputMessageType.$unknown:
+      return r'$unknown';
+  }
+}
+
+Enum$ScanOutputMessageType fromJson$Enum$ScanOutputMessageType(String value) {
+  switch (value) {
+    case r'ERROR':
+      return Enum$ScanOutputMessageType.ERROR;
+    case r'SUCCESS':
+      return Enum$ScanOutputMessageType.SUCCESS;
+    default:
+      return Enum$ScanOutputMessageType.$unknown;
   }
 }
 

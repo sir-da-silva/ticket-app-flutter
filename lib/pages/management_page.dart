@@ -280,7 +280,7 @@ class ManagementPage extends StatelessWidget {
                         children: result.isLoading
                             ? [
                                 Padding(
-                                  padding: EdgeInsetsGeometry.fromLTRB(16, 100, 16, 100),
+                                  padding: EdgeInsets.fromLTRB(16, 100, 16, 100),
                                   child: Center(child: CircularProgressIndicator()),
                                 ),
                               ]
@@ -295,24 +295,53 @@ class ManagementPage extends StatelessWidget {
                                 ),
 
                                 if (data == null)
-                                  Padding(
-                                    padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
-                                    child: Center(
-                                      child: Text(
-                                        "Erreur lors de la récuperation \n des évenements. Glissez vers le bas \n pour réactualiser.",
-                                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                                        textAlign: TextAlign.center,
+                                  GestureDetector(
+                                    onTap: refetch,
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                      child: Center(
+                                        child: Column(
+                                          spacing: 8,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.error_outline,
+                                              size: 50,
+                                              color: Colors.grey.withValues(alpha: 0.5),
+                                              weight: 1,
+                                            ),
+                                            Text(
+                                              "Erreur ! Appuyez pour \n réactualiser.",
+                                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   )
                                 else if (data.myEvents.isEmpty)
                                   Padding(
-                                    padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
+                                    padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
                                     child: Center(
-                                      child: Text(
-                                        "Vous n'organisez aucun évenement \n pour les dates a venir. \n\n Cliquer sur le boutton + en haut \n pour creer un évenement.",
-                                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                                        textAlign: TextAlign.center,
+                                      child: Column(
+                                        spacing: 8,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.inbox_outlined,
+                                            size: 50,
+                                            color: Colors.grey.withValues(alpha: 0.5),
+                                            weight: 1,
+                                          ),
+                                          Text(
+                                            "Aucun évenement",
+                                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   )
@@ -342,12 +371,12 @@ class ManagementPage extends StatelessWidget {
                   Divider(),
 
                   Padding(
-                    padding: EdgeInsetsGeometry.fromLTRB(16, 25, 16, 25),
+                    padding: EdgeInsets.fromLTRB(16, 25, 16, 25),
                     child: Center(
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          style: TextStyle(color: Colors.grey, fontSize: 16),
+                          style: TextStyle(color: Colors.black, fontSize: 16),
                           children: [
                             TextSpan(text: "Cliquez sur le boutton "),
                             WidgetSpan(child: Icon(Icons.crop_free_rounded, size: 18)),

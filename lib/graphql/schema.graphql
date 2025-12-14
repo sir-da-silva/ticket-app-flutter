@@ -19,7 +19,6 @@ type Actuality {
 
 type AuthPayload {
   token: String!
-  user: Me!
 }
 
 input BuyTicketInput {
@@ -30,7 +29,7 @@ input BuyTicketInput {
   buyerEmail: String
 }
 
-type BuyTicketResponse {
+type BuyTicketOutput {
   isInternalPayment: Boolean!
   ticket: Ticket
   isExternalPayment: Boolean!
@@ -73,6 +72,7 @@ type Event {
   priceCurrency: String!
   createdBy: User
   createdAt: DateTime!
+  followers: [User!]
 }
 
 input InitSignUpInput {
@@ -108,8 +108,9 @@ type Mutation {
   createEvent(input: CreateEventInput!): ID!
   updateEvent(input: UpdateEventInput!): Boolean!
   deleteEvent(id: ID!): Boolean!
-  buyTicket(input: BuyTicketInput!): BuyTicketResponse!
-  scanTicket(code: String!): Ticket!
+  followEvent(id: ID!): Boolean!
+  buyTicket(input: BuyTicketInput!): BuyTicketOutput!
+  scanTicket(code: String!, eventId: ID!): ScanTicketOutput!
   login(input: LoginInput!): AuthPayload!
   initSignUp(input: InitSignUpInput!): String!
   completeSignUp(input: CompleteSignUpInput!): AuthPayload!
@@ -134,7 +135,7 @@ type Query {
   myEvents(fetchAll: Boolean, page: Int): [Event!]!
   followedEvents: [Event!]!
   ticket(id: ID!): Ticket
-  tickets(eventId: ID!): [Ticket!]!
+  eventTickets(eventId: ID!): [Ticket!]!
   myTickets: [Ticket!]!
   me: Me
   user(id: ID!): User
@@ -144,6 +145,17 @@ type Query {
 enum Role {
   USER
   ADMIN
+}
+
+enum ScanOutputMessageType {
+  ERROR
+  SUCCESS
+}
+
+type ScanTicketOutput {
+  ticket: Ticket
+  message: String!
+  messageType: ScanOutputMessageType!
 }
 
 type Ticket {
@@ -160,11 +172,10 @@ type Ticket {
 
 input UpdateEventInput {
   id: ID!
-  picture: String
-  description: String
-  location: String
-  date: DateTime
-  price: Float
+  description: String!
+  location: String!
+  date: DateTime!
+  price: Float!
 }
 
 input UpdateUserInput {

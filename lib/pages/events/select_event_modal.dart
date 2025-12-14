@@ -44,7 +44,7 @@ class _SelectEventModalState extends State<_SelectEventModal> {
       body: Container(
         color: Theme.of(context).colorScheme.surface,
         child: Padding(
-          padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 0),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
           child: Query$GetMyEvents$Widget(
             options: Options$Query$GetMyEvents(
               variables: Variables$Query$GetMyEvents(fetchAll: true),
@@ -145,7 +145,7 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                               margin: EdgeInsets.symmetric(vertical: 4, horizontal: 1),
                               color: Theme.of(context).colorScheme.surfaceContainer,
                               child: Padding(
-                                padding: EdgeInsetsGeometry.all(8),
+                                padding: EdgeInsets.all(8),
                                 child: Row(
                                   spacing: 8,
                                   children: [

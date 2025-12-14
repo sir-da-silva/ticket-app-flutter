@@ -1,26 +1,107 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:my_first_flutter_app/components/actuality_card.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
+import 'package:my_first_flutter_app/components/follow_event_widget.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/actuality.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
+import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
-import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:my_first_flutter_app/utils/date_parser.dart';
-import 'package:my_first_flutter_app/utils/get_user_badge_color.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
-import 'package:provider/provider.dart';
+import 'package:my_first_flutter_app/components/info_row.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-class EventDetailPage extends StatelessWidget {
+class EventDetailPage extends HookWidget {
   final String eventId;
 
   const EventDetailPage({super.key, required this.eventId});
 
+  Widget _userCard(BuildContext context, String userId) {
+    return Query$GetUser$Widget(
+      options: Options$Query$GetUser(variables: Variables$Query$GetUser(id: userId)),
+      builder: (result, {refetch, fetchMore}) {
+        Query$GetUser? data;
+
+        if (result.data != null) {
+          data = Query$GetUser.fromJson(result.data!);
+        }
+
+        return result.isLoading || data?.user == null
+            ? SizedBox(
+                width: 125,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Shimmer(
+                    enabled: result.isLoading,
+                    duration: Duration(seconds: 1),
+                    interval: Duration(seconds: 1),
+                    child: Container(
+                      padding: EdgeInsets.all(12),
+                      decoration: BoxDecoration(color: Theme.of(context).colorScheme.primaryFixed),
+                      child: Row(
+                        spacing: 8,
+                        children: [CircleAvatar(radius: 12, backgroundColor: Colors.white)],
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            : IntrinsicWidth(
+                child: GestureDetector(
+                  onTap: () {
+                    //
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Theme.of(context).colorScheme.primaryFixed,
+                    ),
+                    child: Row(
+                      spacing: 8,
+                      children: [
+                        CircleAvatar(
+                          radius: 12,
+                          backgroundColor: Colors.white,
+                          child: data?.user?.picture != null
+                              ? Image.network(
+                                  data!.user!.picture!,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return SizedBox();
+                                  },
+                                )
+                              : null,
+                        ),
+
+                        Text(data!.user!.name, style: TextStyle(fontWeight: FontWeight.bold)),
+
+                        switch (data.user!.badge) {
+                          Enum$UserBadge.GOLD => Icon(
+                            Icons.verified_rounded,
+                            size: 14,
+                            color: Colors.blue,
+                          ),
+                          Enum$UserBadge.SILVER => Icon(
+                            Icons.verified_rounded,
+                            size: 14,
+                            color: Colors.blue,
+                          ),
+                          Enum$UserBadge.BRONZE => SizedBox(),
+                          Enum$UserBadge.$unknown => SizedBox(),
+                        },
+                      ],
+                    ),
+                  ),
+                ),
+              );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
-
     return Query$GetEvent$Widget(
       options: Options$Query$GetEvent(
         onError: (error) {
@@ -30,62 +111,16 @@ class EventDetailPage extends StatelessWidget {
       ),
       builder: (result, {refetch, fetchMore}) {
         Query$GetEvent? data;
-
         CustomDateParser? date;
+        bool canBuyTicket = false;
 
         if (result.data != null) {
           data = Query$GetEvent.fromJson(result.data!);
 
           if (data.event?.date != null) {
             date = CustomDateParser(date: data.event!.date);
+            canBuyTicket = !(data.event!.date.difference(DateTime.now()).inHours < -12);
           }
-        }
-
-        void followEvent() {
-          if (!auth.isAuthenticated) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text("Vous devez être connecté pour suivre des évenements."),
-                behavior: SnackBarBehavior.floating,
-                dismissDirection: DismissDirection.horizontal,
-                action: SnackBarAction(
-                  label: 'Connexion',
-                  textColor: Colors.white,
-                  onPressed: () {
-                    Navigator.pushNamed(context, RouteNames.login);
-                  },
-                ),
-              ),
-            );
-          } else {
-            // TODO: Follow event
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Suivre')));
-          }
-        }
-
-        void shareEvent() {
-          // TODO: Share event
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Partager')));
-        }
-
-        Widget infoRow(IconData icon, String info) {
-          return Row(
-            spacing: 8,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryFixed,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-                  child: Icon(icon, size: 18, color: Theme.of(context).colorScheme.primary),
-                  // child: Text(icon, style: TextStyle(fontSize: 12)),
-                ),
-              ),
-              Text(info, style: TextStyle(fontSize: 16)),
-            ],
-          );
         }
 
         return Scaffold(
@@ -115,7 +150,6 @@ class EventDetailPage extends StatelessWidget {
                                 bottomRight: Radius.circular(20),
                               ),
                             ),
-                            // child: const Icon(Icons.event, size: 100, color: Colors.grey),
                             child: Image.network(
                               data!.event!.picture,
                               fit: BoxFit.cover,
@@ -146,7 +180,6 @@ class EventDetailPage extends StatelessWidget {
                             right: 12,
                             child: Container(
                               decoration: BoxDecoration(
-                                // color: Colors.black.withValues(alpha: 0.6),
                                 color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
                                 borderRadius: BorderRadius.circular(50),
                                 boxShadow: [
@@ -159,15 +192,22 @@ class EventDetailPage extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  IconButton(
-                                    // color: Colors.white,
-                                    icon: const Icon(Icons.notifications_on_outlined),
-                                    onPressed: followEvent,
+                                  customFollowEventWidget(
+                                    context,
+                                    eventId: data.event!.id,
+                                    previewState: data.event?.followers?.isNotEmpty,
+                                    builder: (follow, isFollowed) => IconButton(
+                                      icon: isFollowed ?? false
+                                          ? const Icon(Icons.notifications_on)
+                                          : const Icon(Icons.notifications_outlined),
+                                      onPressed: follow,
+                                    ),
                                   ),
                                   IconButton(
-                                    // color: Colors.white,
                                     icon: const Icon(Icons.share),
-                                    onPressed: shareEvent,
+                                    onPressed: () {
+                                      // TODO: Share
+                                    },
                                   ),
                                 ],
                               ),
@@ -179,7 +219,7 @@ class EventDetailPage extends StatelessWidget {
                             bottom: 0,
                             right: 0,
                             child: Padding(
-                              padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+                              padding: EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 data.event!.title,
                                 maxLines: 2,
@@ -195,149 +235,52 @@ class EventDetailPage extends StatelessWidget {
                       ),
 
                       Padding(
-                        padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 8),
+                        padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               data.event!.description,
-                              style: TextStyle(
-                                //
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                             ),
 
-                            SizedBox(height: 10),
-                            infoRow(
-                              Icons.color_lens,
-                              // "🎨",
-                              data.event!.category,
-                            ),
+                            const SizedBox(height: 10),
+                            infoRow(context, Icons.color_lens, data.event!.category),
 
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               spacing: 8,
                               children: [
                                 infoRow(
+                                  context,
                                   Icons.calendar_month,
-                                  // "📆",
                                   "${date!.weekDayNameShort}. ${date.monthDayNumber} ${date.monthName}",
                                 ),
                                 Expanded(child: SizedBox()),
                                 infoRow(
+                                  context,
                                   Icons.access_time_filled,
-                                  // "🕐",
                                   "${date.hour12}:${date.minute} ${date.meridiem}",
                                 ),
                               ],
                             ),
 
-                            SizedBox(height: 10),
-                            infoRow(
-                              Icons.location_on,
-                              // "📍",
-                              data.event!.location,
-                            ),
+                            const SizedBox(height: 10),
+                            infoRow(context, Icons.location_on, data.event!.location),
 
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             infoRow(
+                              context,
                               Icons.confirmation_number,
-                              // "🎟️",
                               "${data.event!.price.toDouble()} ${data.event!.priceCurrency}",
                             ),
 
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Text("Crée par :", style: TextStyle(fontWeight: FontWeight.bold)),
 
-                            SizedBox(height: 4),
+                            const SizedBox(height: 4),
                             if (data.event?.createdBy != null)
-                              Query$GetUser$Widget(
-                                options: Options$Query$GetUser(
-                                  variables: Variables$Query$GetUser(id: data.event!.createdBy!.id),
-                                ),
-                                builder: (result, {refetch, fetchMore}) {
-                                  Query$GetUser? data;
-
-                                  if (result.data != null) {
-                                    data = Query$GetUser.fromJson(result.data!);
-                                  }
-
-                                  return result.isLoading || data?.user == null
-                                      ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(12),
-                                          child: Shimmer(
-                                            enabled: result.isLoading,
-                                            duration: Duration(seconds: 1),
-                                            interval: Duration(seconds: 1),
-                                            child: SizedBox(
-                                              width: 100,
-                                              child: DecoratedBox(
-                                                decoration: BoxDecoration(
-                                                  color: Theme.of(context).colorScheme.primaryFixed,
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(12),
-                                                  child: Row(
-                                                    spacing: 8,
-                                                    children: [
-                                                      CircleAvatar(
-                                                        radius: 12,
-                                                        backgroundColor: Colors.white,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      : IntrinsicWidth(
-                                          child: DecoratedBox(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(12),
-                                              color: Theme.of(context).colorScheme.primaryFixed,
-                                            ),
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                //
-                                              },
-                                              child: Padding(
-                                                padding: EdgeInsets.all(12),
-                                                child: Row(
-                                                  spacing: 8,
-                                                  children: [
-                                                    CircleAvatar(
-                                                      radius: 12,
-                                                      backgroundColor: Colors.white,
-                                                      child: data?.user?.picture == null
-                                                          ? null
-                                                          : Image.network(
-                                                              data!.user!.picture!,
-                                                              errorBuilder:
-                                                                  (context, error, stackTrace) {
-                                                                    return SizedBox();
-                                                                  },
-                                                            ),
-                                                    ),
-                                                    Text(
-                                                      data!.user!.name,
-                                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                                    ),
-                                                    if (data.user?.badge != null)
-                                                      Icon(
-                                                        Icons.verified_rounded,
-                                                        size: 14,
-                                                        color: getUserBadgeColor(data.user!.badge),
-                                                      ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                },
-                              ),
+                              _userCard(context, data.event!.createdBy!.id),
 
                             const SizedBox(height: 24),
                             Text("Mentions", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -389,7 +332,7 @@ class EventDetailPage extends StatelessWidget {
                                   )
                                 : data?.lastActualities == null
                                 ? Padding(
-                                    padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+                                    padding: EdgeInsets.symmetric(horizontal: 16),
                                     child: Center(
                                       child: Column(
                                         spacing: 10,
@@ -412,7 +355,7 @@ class EventDetailPage extends StatelessWidget {
                                   )
                                 : data!.lastActualities.isEmpty
                                 ? Padding(
-                                    padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+                                    padding: EdgeInsets.symmetric(horizontal: 16),
                                     child: Center(
                                       child: Column(
                                         spacing: 10,
@@ -470,7 +413,7 @@ class EventDetailPage extends StatelessWidget {
                   ),
                 ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: data?.event != null
+          floatingActionButton: data?.event != null && canBuyTicket
               ? Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Container(

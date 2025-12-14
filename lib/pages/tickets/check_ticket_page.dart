@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 
-class CheckTicketPage extends StatefulWidget {
+class CheckTicketPage extends StatefulHookWidget {
   final String eventId;
 
   const CheckTicketPage({super.key, required this.eventId});
@@ -42,13 +44,15 @@ class _CheckTicketPageState extends State<CheckTicketPage> with SingleTickerProv
               final codes = capture.barcodes;
 
               if (codes.isNotEmpty && codes.first.rawValue != null) {
-                print(" ------------------- Scanned Data ${codes.first.rawValue!}");
                 controller.stop();
 
                 await Navigator.pushNamed(
                   context,
                   RouteNames.scannedTicket,
-                  arguments: codes.first.rawValue!,
+                  arguments: Variables$Mutation$ScanTicket(
+                    code: codes.first.rawValue!,
+                    eventId: widget.eventId,
+                  ),
                 );
 
                 controller.start();
@@ -88,7 +92,7 @@ class _CheckTicketPageState extends State<CheckTicketPage> with SingleTickerProv
                       child: Center(
                         child: IntrinsicWidth(
                           child: Container(
-                            padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 5),
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                             decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
                               borderRadius: BorderRadius.circular(50),

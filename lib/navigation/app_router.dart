@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
 import 'package:my_first_flutter_app/pages/auth/forgot_password.dart';
 import 'package:my_first_flutter_app/pages/auth/login_page.dart';
 import 'package:my_first_flutter_app/pages/auth/otp_page.dart';
@@ -84,7 +85,8 @@ class AppRouter {
         );
       case RouteNames.scannedTicket:
         return MaterialPageRoute(
-          builder: (_) => ScannedTicketPage(ticketId: settings.arguments.toString()),
+          builder: (_) =>
+              ScannedTicketPage(variables: settings.arguments as Variables$Mutation$ScanTicket),
           settings: settings,
         );
 

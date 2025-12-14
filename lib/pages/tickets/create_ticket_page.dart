@@ -5,9 +5,10 @@ import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.
 import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
-import 'package:my_first_flutter_app/pages/utilities/select_payment_method.dart';
+import 'package:my_first_flutter_app/pages/payment/select_payment_method.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
+import 'package:my_first_flutter_app/services/string_validators.dart';
 import 'package:provider/provider.dart';
 
 class CreateTicketPage extends StatefulWidget {
@@ -49,9 +50,14 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
         ),
         builder: (result, {refetch, fetchMore}) {
           Query$GetEvent? data;
+          bool canBuyTicket = false;
 
           if (result.data != null) {
             data = Query$GetEvent.fromJson(result.data!);
+
+            if (data.event?.date != null) {
+              canBuyTicket = !(data.event!.date.difference(DateTime.now()).inHours < -12);
+            }
           }
 
           return result.isLoading
@@ -64,32 +70,40 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                     textAlign: TextAlign.center,
                   ),
                 )
+              : !canBuyTicket
+              ? Center(
+                  child: Text(
+                    "Vous ne pouvez plus acheter \n de billet pour cet évènement.",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    textAlign: TextAlign.center,
+                  ),
+                )
               : Mutation$BuyTicket$Widget(
                   options: WidgetOptions$Mutation$BuyTicket(
                     onCompleted: (result, data) async {
                       if (data != null) {
-                        Mutation$BuyTicket$buyTicket _data = data.buyTicket;
+                        Mutation$BuyTicket$buyTicket data0 = data.buyTicket;
 
-                        if (_data.isInternalPayment && _data.ticket != null) {
+                        if (data0.isInternalPayment && data0.ticket != null) {
                           Navigator.pushReplacementNamed(
                             context,
                             RouteNames.ticketDetail,
-                            arguments: _data.ticket!.id,
+                            arguments: data0.ticket!.id,
                           );
-                        } else if (_data.isExternalPayment && _data.stripeClientSecret != null) {
+                        } else if (data0.isExternalPayment && data0.stripeClientSecret != null) {
                           await Stripe.instance.initPaymentSheet(
                             paymentSheetParameters: SetupPaymentSheetParameters(
-                              paymentIntentClientSecret: _data.stripeClientSecret,
+                              paymentIntentClientSecret: data0.stripeClientSecret,
                               merchantDisplayName: "Mon App",
                             ),
                           );
 
                           await Stripe.instance.presentPaymentSheet();
-                        } else if (_data.isExternalPayment && _data.paymentUri != null) {
+                        } else if (data0.isExternalPayment && data0.paymentUri != null) {
                           Navigator.pushNamed(
                             context,
                             RouteNames.webView,
-                            arguments: _data.paymentUri!.replaceFirst("http://", "https://"),
+                            arguments: data0.paymentUri!.replaceFirst("http://", "https://"),
                           );
                         }
                       }
@@ -156,10 +170,13 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                               "Nom du béneficiaire",
                               Icons.person,
                               (value) {
-                                if (!auth.isAuthenticated && value!.isEmpty) {
-                                  return "Vous devez remplir ce champ !";
+                                if (value!.isEmpty) {
+                                  return !auth.isAuthenticated
+                                      ? "Vous devez remplir ce champ !"
+                                      : null;
+                                } else if (!isName(value)) {
+                                  return "Nom incorecte !";
                                 }
-                                // TODO: add more validators
                                 return null;
                               },
                             ),
@@ -171,10 +188,13 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                               "Telephone de contact",
                               Icons.phone,
                               (value) {
-                                if (!auth.isAuthenticated && value!.isEmpty) {
-                                  return "Vous devez remplir ce champ !";
+                                if (value!.isEmpty) {
+                                  return !auth.isAuthenticated
+                                      ? "Vous devez remplir ce champ !"
+                                      : null;
+                                } else if (!isPhoneNumber(value)) {
+                                  return "Numéro de téléphone incorecte !";
                                 }
-                                // TODO: add more validators
                                 return null;
                               },
                             ),
@@ -186,10 +206,9 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                               "Email de contact",
                               Icons.email,
                               (value) {
-                                if (value!.isNotEmpty) {
+                                if (value!.isNotEmpty && !isEmail(value)) {
                                   return "Email incorecte !";
                                 }
-                                // TODO: add more validators
                                 return null;
                               },
                             ),
@@ -238,6 +257,8 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                                       ),
                               ),
                             ),
+
+                            const SizedBox(height: 16),
                           ],
                         ),
                       ),

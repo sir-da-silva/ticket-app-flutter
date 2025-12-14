@@ -69,11 +69,27 @@ class _EditProfilePageState extends State<EditProfilePage> {
           return result.isLoading
               ? Center(child: CircularProgressIndicator())
               : data?.me == null
-              ? Center(
-                  child: Text(
-                    "Erreur lors de la récuperation \n des données.",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+              ? GestureDetector(
+                  onTap: refetch,
+                  child: Center(
+                    child: Column(
+                      spacing: 8,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          size: 50,
+                          color: Colors.grey.withValues(alpha: 0.5),
+                          weight: 1,
+                        ),
+                        Text(
+                          "Erreur ! Appuyez pour \n réactualiser.",
+                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                 )
               : SingleChildScrollView(
@@ -84,8 +100,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text("Mise a jour du profile effectuée avec succès."),
+                            dismissDirection: DismissDirection.horizontal,
                             behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.green,
                           ),
                         );
 
@@ -161,10 +177,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Center(
                               child: IntrinsicWidth(
                                 child: Container(
-                                  padding: EdgeInsetsGeometry.symmetric(
-                                    horizontal: 10,
-                                    vertical: 5,
-                                  ),
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                                   decoration: BoxDecoration(
                                     color: Theme.of(
                                       context,

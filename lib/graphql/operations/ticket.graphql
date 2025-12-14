@@ -3,6 +3,9 @@ query GetTicket($id: ID!) {
     id
     code
     used
+    buyerName
+    buyerPhone
+    buyerEmail
     createdAt
     event {
       id
@@ -15,21 +18,18 @@ query GetTicket($id: ID!) {
       id
       name
     }
-    buyerName
-    buyerPhone
-    buyerEmail
   }
 }
 
 query GetTickets($eventId: ID!) {
-  tickets(eventId: $eventId) {
+  eventTickets(eventId: $eventId) {
     id
     code
     used
-    createdAt
     buyerName
     buyerPhone
     buyerEmail
+    createdAt
     user {
       id
       name
@@ -42,6 +42,9 @@ query GetMyTickets {
     id
     code
     used
+    buyerName
+    buyerPhone
+    buyerEmail
     createdAt
     event {
       id
@@ -50,9 +53,6 @@ query GetMyTickets {
       location
       picture
     }
-    buyerName
-    buyerPhone
-    buyerEmail
   }
 }
 
@@ -68,19 +68,25 @@ mutation BuyTicket($input: BuyTicketInput!) {
   }
 }
 
-mutation ScanTicket($code: String!) {
-  scanTicket(code: $code) {
-    id
-    code
-    used
-    createdAt
-    event {
+mutation ScanTicket($code: String!, $eventId: ID!) {
+  scanTicket(code: $code, eventId: $eventId) {
+    ticket {
       id
-      title
+      used
+      buyerName
+      buyerPhone
+      buyerEmail
+      createdAt
+      event {
+        id
+        title
+      }
+      user {
+        id
+        name
+      }
     }
-    user {
-      id
-      name
-    }
+    message
+    messageType
   }
 }

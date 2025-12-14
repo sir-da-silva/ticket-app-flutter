@@ -15,7 +15,7 @@ class SettingsPage extends StatelessWidget {
       appBar: AppBar(title: Text("Paramètres")),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             spacing: 16,
             children: [

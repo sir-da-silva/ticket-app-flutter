@@ -11,6 +11,9 @@ query GetFollowedEvents {
       id
       name
     }
+    followers {
+      id
+    }
   }
 }
 
@@ -23,6 +26,9 @@ query GetMyEvents($fetchAll: Boolean, $page: Int) {
     location
     category
     date
+    followers {
+      id
+    }
   }
 }
 
@@ -41,6 +47,9 @@ query GetEvent($id: ID!) {
       id
       name
     }
+    followers {
+      id
+    }
   }
 }
 
@@ -54,4 +63,8 @@ mutation UpdateEvent($input: UpdateEventInput!) {
 
 mutation DeleteEvent($id: ID!) {
   deleteEvent(id: $id)
+}
+
+mutation FollowEvent($id: ID!) {
+  followEvent(id: $id)
 }

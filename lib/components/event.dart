@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:my_first_flutter_app/components/follow_event_widget.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
-import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:my_first_flutter_app/utils/date_parser.dart';
-import 'package:provider/provider.dart';
+import 'package:custom_clippers/custom_clippers.dart';
 
-class Event extends StatelessWidget {
+class Event extends HookWidget {
   final String id;
   final String title;
   final String description;
   final String location;
   final String picture;
   final CustomDateParser date;
+  final List<Object>? followers;
 
   final bool disabled;
 
@@ -21,7 +23,8 @@ class Event extends StatelessWidget {
       description = data.description,
       location = data.location,
       picture = data.picture,
-      date = CustomDateParser(date: data.date);
+      date = CustomDateParser(date: data.date),
+      followers = data.followers;
 
   Event.fromMyEvent(Query$GetMyEvents$myEvents data, {super.key, this.disabled = false})
     : id = data.id,
@@ -29,7 +32,8 @@ class Event extends StatelessWidget {
       description = data.description,
       location = data.location,
       picture = data.picture,
-      date = CustomDateParser(date: data.date);
+      date = CustomDateParser(date: data.date),
+      followers = data.followers;
 
   Event.fromFollowedEvents(
     Query$GetFollowedEvents$followedEvents data, {
@@ -40,43 +44,11 @@ class Event extends StatelessWidget {
        description = data.description,
        location = data.location,
        picture = data.picture,
-       date = CustomDateParser(date: data.date);
+       date = CustomDateParser(date: data.date),
+       followers = data.followers;
 
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
-
-    void followEvent() {
-      if (!auth.isAuthenticated) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Vous devez être connecté pour suivre des évenements."),
-            behavior: SnackBarBehavior.floating,
-            dismissDirection: DismissDirection.horizontal,
-            action: SnackBarAction(
-              label: 'Connexion',
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.pushNamed(context, RouteNames.login);
-              },
-            ),
-          ),
-        );
-      } else {
-        // TODO: Follow event
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Suivre'), behavior: SnackBarBehavior.floating),
-        );
-      }
-    }
-
-    void shareEvent() {
-      // TODO: Share event
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Partager'), behavior: SnackBarBehavior.floating),
-      );
-    }
-
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       clipBehavior: Clip.antiAlias,
@@ -84,6 +56,7 @@ class Event extends StatelessWidget {
         onTap: () {
           if (!disabled) Navigator.pushNamed(context, RouteNames.eventDetail, arguments: id);
         },
+        overlayColor: WidgetStatePropertyAll(Colors.transparent),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -126,7 +99,7 @@ class Event extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsGeometry.fromLTRB(10, 8, 10, 8),
+                        padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
                         child: Column(
                           children: [
                             Icon(
@@ -177,7 +150,7 @@ class Event extends StatelessWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsGeometry.fromLTRB(10, 8, 10, 8),
+                        padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
                         child: Column(
                           children: [
                             Icon(
@@ -198,60 +171,96 @@ class Event extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ClipPath(
+                      clipper: DirectionalWaveClipper(
+                        verticalPosition: VerticalPosition.top,
+                        horizontalPosition: HorizontalPosition.left,
+                      ),
+                      child: Container(
+                        height: 32,
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerLow.withValues(alpha: 0.75),
+                      ),
+                    ),
+                  ),
+
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ClipPath(
+                      clipper: SinCosineWaveClipper(
+                        verticalPosition: VerticalPosition.top,
+                        horizontalPosition: HorizontalPosition.right,
+                      ),
+                      child: Container(
+                        height: 50,
+                        color: Theme.of(context).colorScheme.surfaceContainerLow,
+                      ),
+                    ),
+                  ),
+
                   // Action buttons overlay
                   Positioned(
                     bottom: 8,
                     right: 16,
-
                     child: Row(
                       spacing: 8,
                       children: [
-                        // Follow button
-                        SizedBox(
-                          width: 40,
-                          height: 40,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              // color: Colors.black.withValues(alpha: 0.6),
-                              color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
-                              borderRadius: BorderRadius.circular(50),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withValues(alpha: 0.25),
-                                  blurRadius: 4,
-                                  offset: Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: IconButton(
-                              icon: const Icon(Icons.notifications_on_outlined),
-                              iconSize: 20,
-                              onPressed: followEvent,
-                            ),
-                          ),
-                        ),
-
                         // Share button
                         SizedBox(
                           width: 40,
                           height: 40,
                           child: Container(
                             decoration: BoxDecoration(
-                              // color: Colors.black.withValues(alpha: 0.6),
-                              color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+                              color: Theme.of(context).colorScheme.surfaceContainer,
                               borderRadius: BorderRadius.circular(50),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withValues(alpha: 0.25),
+                                  color: Colors.black.withValues(alpha: 0.25),
                                   blurRadius: 4,
-                                  offset: Offset(0, 2),
+                                  offset: Offset(0, 1),
+                                ),
+                              ],
+                            ),
+                            child: customFollowEventWidget(
+                              context,
+                              eventId: id,
+                              builder: (follow, isFollowed) => IconButton(
+                                icon: isFollowed ?? followers?.isNotEmpty ?? false
+                                    ? const Icon(Icons.notifications_on)
+                                    : const Icon(Icons.notifications_outlined),
+                                color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
+                                iconSize: 20,
+                                onPressed: follow,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surfaceContainer,
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.25),
+                                  blurRadius: 4,
+                                  offset: Offset(0, 1),
                                 ),
                               ],
                             ),
                             child: IconButton(
                               icon: const Icon(Icons.share),
+                              color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
                               iconSize: 20,
-                              onPressed: shareEvent,
+                              onPressed: () {
+                                //
+                              },
                             ),
                           ),
                         ),

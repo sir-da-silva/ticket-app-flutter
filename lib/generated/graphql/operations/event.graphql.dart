@@ -254,6 +254,28 @@ const documentNodeQueryGetFollowedEvents = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'followers'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -431,6 +453,7 @@ class Query$GetFollowedEvents$followedEvents {
     required this.category,
     required this.date,
     this.createdBy,
+    this.followers,
     this.$__typename = 'Event',
   });
 
@@ -444,6 +467,7 @@ class Query$GetFollowedEvents$followedEvents {
     final l$category = json['category'];
     final l$date = json['date'];
     final l$createdBy = json['createdBy'];
+    final l$followers = json['followers'];
     final l$$__typename = json['__typename'];
     return Query$GetFollowedEvents$followedEvents(
       id: (l$id as String),
@@ -457,6 +481,11 @@ class Query$GetFollowedEvents$followedEvents {
           ? null
           : Query$GetFollowedEvents$followedEvents$createdBy.fromJson(
               (l$createdBy as Map<String, dynamic>)),
+      followers: (l$followers as List<dynamic>?)
+          ?.map((e) =>
+              Query$GetFollowedEvents$followedEvents$followers.fromJson(
+                  (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
@@ -476,6 +505,8 @@ class Query$GetFollowedEvents$followedEvents {
   final DateTime date;
 
   final Query$GetFollowedEvents$followedEvents$createdBy? createdBy;
+
+  final List<Query$GetFollowedEvents$followedEvents$followers>? followers;
 
   final String $__typename;
 
@@ -497,6 +528,8 @@ class Query$GetFollowedEvents$followedEvents {
     _resultData['date'] = l$date.toIso8601String();
     final l$createdBy = createdBy;
     _resultData['createdBy'] = l$createdBy?.toJson();
+    final l$followers = followers;
+    _resultData['followers'] = l$followers?.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -512,6 +545,7 @@ class Query$GetFollowedEvents$followedEvents {
     final l$category = category;
     final l$date = date;
     final l$createdBy = createdBy;
+    final l$followers = followers;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -522,6 +556,7 @@ class Query$GetFollowedEvents$followedEvents {
       l$category,
       l$date,
       l$createdBy,
+      l$followers == null ? null : Object.hashAll(l$followers.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -575,6 +610,22 @@ class Query$GetFollowedEvents$followedEvents {
     if (l$createdBy != lOther$createdBy) {
       return false;
     }
+    final l$followers = followers;
+    final lOther$followers = other.followers;
+    if (l$followers != null && lOther$followers != null) {
+      if (l$followers.length != lOther$followers.length) {
+        return false;
+      }
+      for (int i = 0; i < l$followers.length; i++) {
+        final l$followers$entry = l$followers[i];
+        final lOther$followers$entry = lOther$followers[i];
+        if (l$followers$entry != lOther$followers$entry) {
+          return false;
+        }
+      }
+    } else if (l$followers != lOther$followers) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -612,9 +663,16 @@ abstract class CopyWith$Query$GetFollowedEvents$followedEvents<TRes> {
     String? category,
     DateTime? date,
     Query$GetFollowedEvents$followedEvents$createdBy? createdBy,
+    List<Query$GetFollowedEvents$followedEvents$followers>? followers,
     String? $__typename,
   });
   CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes> get createdBy;
+  TRes followers(
+      Iterable<Query$GetFollowedEvents$followedEvents$followers>? Function(
+              Iterable<
+                  CopyWith$Query$GetFollowedEvents$followedEvents$followers<
+                      Query$GetFollowedEvents$followedEvents$followers>>?)
+          _fn);
 }
 
 class _CopyWithImpl$Query$GetFollowedEvents$followedEvents<TRes>
@@ -639,6 +697,7 @@ class _CopyWithImpl$Query$GetFollowedEvents$followedEvents<TRes>
     Object? category = _undefined,
     Object? date = _undefined,
     Object? createdBy = _undefined,
+    Object? followers = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetFollowedEvents$followedEvents(
@@ -664,6 +723,10 @@ class _CopyWithImpl$Query$GetFollowedEvents$followedEvents<TRes>
         createdBy: createdBy == _undefined
             ? _instance.createdBy
             : (createdBy as Query$GetFollowedEvents$followedEvents$createdBy?),
+        followers: followers == _undefined
+            ? _instance.followers
+            : (followers
+                as List<Query$GetFollowedEvents$followedEvents$followers>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -678,6 +741,19 @@ class _CopyWithImpl$Query$GetFollowedEvents$followedEvents<TRes>
         : CopyWith$Query$GetFollowedEvents$followedEvents$createdBy(
             local$createdBy, (e) => call(createdBy: e));
   }
+
+  TRes followers(
+          Iterable<Query$GetFollowedEvents$followedEvents$followers>? Function(
+                  Iterable<
+                      CopyWith$Query$GetFollowedEvents$followedEvents$followers<
+                          Query$GetFollowedEvents$followedEvents$followers>>?)
+              _fn) =>
+      call(
+          followers: _fn(_instance.followers?.map(
+              (e) => CopyWith$Query$GetFollowedEvents$followedEvents$followers(
+                    e,
+                    (i) => i,
+                  )))?.toList());
 }
 
 class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents<TRes>
@@ -695,6 +771,7 @@ class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents<TRes>
     String? category,
     DateTime? date,
     Query$GetFollowedEvents$followedEvents$createdBy? createdBy,
+    List<Query$GetFollowedEvents$followedEvents$followers>? followers,
     String? $__typename,
   }) =>
       _res;
@@ -702,6 +779,8 @@ class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents<TRes>
   CopyWith$Query$GetFollowedEvents$followedEvents$createdBy<TRes>
       get createdBy =>
           CopyWith$Query$GetFollowedEvents$followedEvents$createdBy.stub(_res);
+
+  followers(_fn) => _res;
 }
 
 class Query$GetFollowedEvents$followedEvents$createdBy {
@@ -845,6 +924,132 @@ class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$createdBy<TRes>
   call({
     String? id,
     String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetFollowedEvents$followedEvents$followers {
+  Query$GetFollowedEvents$followedEvents$followers({
+    required this.id,
+    this.$__typename = 'User',
+  });
+
+  factory Query$GetFollowedEvents$followedEvents$followers.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetFollowedEvents$followedEvents$followers(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetFollowedEvents$followedEvents$followers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetFollowedEvents$followedEvents$followers
+    on Query$GetFollowedEvents$followedEvents$followers {
+  CopyWith$Query$GetFollowedEvents$followedEvents$followers<
+          Query$GetFollowedEvents$followedEvents$followers>
+      get copyWith => CopyWith$Query$GetFollowedEvents$followedEvents$followers(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetFollowedEvents$followedEvents$followers<TRes> {
+  factory CopyWith$Query$GetFollowedEvents$followedEvents$followers(
+    Query$GetFollowedEvents$followedEvents$followers instance,
+    TRes Function(Query$GetFollowedEvents$followedEvents$followers) then,
+  ) = _CopyWithImpl$Query$GetFollowedEvents$followedEvents$followers;
+
+  factory CopyWith$Query$GetFollowedEvents$followedEvents$followers.stub(
+          TRes res) =
+      _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$followers;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetFollowedEvents$followedEvents$followers<TRes>
+    implements CopyWith$Query$GetFollowedEvents$followedEvents$followers<TRes> {
+  _CopyWithImpl$Query$GetFollowedEvents$followedEvents$followers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetFollowedEvents$followedEvents$followers _instance;
+
+  final TRes Function(Query$GetFollowedEvents$followedEvents$followers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetFollowedEvents$followedEvents$followers(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$followers<TRes>
+    implements CopyWith$Query$GetFollowedEvents$followedEvents$followers<TRes> {
+  _CopyWithStubImpl$Query$GetFollowedEvents$followedEvents$followers(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -1237,6 +1442,28 @@ const documentNodeQueryGetMyEvents = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'followers'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -1418,6 +1645,7 @@ class Query$GetMyEvents$myEvents {
     required this.location,
     required this.category,
     required this.date,
+    this.followers,
     this.$__typename = 'Event',
   });
 
@@ -1429,6 +1657,7 @@ class Query$GetMyEvents$myEvents {
     final l$location = json['location'];
     final l$category = json['category'];
     final l$date = json['date'];
+    final l$followers = json['followers'];
     final l$$__typename = json['__typename'];
     return Query$GetMyEvents$myEvents(
       id: (l$id as String),
@@ -1438,6 +1667,10 @@ class Query$GetMyEvents$myEvents {
       location: (l$location as String),
       category: (l$category as String),
       date: DateTime.parse((l$date as String)),
+      followers: (l$followers as List<dynamic>?)
+          ?.map((e) => Query$GetMyEvents$myEvents$followers.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
@@ -1455,6 +1688,8 @@ class Query$GetMyEvents$myEvents {
   final String category;
 
   final DateTime date;
+
+  final List<Query$GetMyEvents$myEvents$followers>? followers;
 
   final String $__typename;
 
@@ -1474,6 +1709,8 @@ class Query$GetMyEvents$myEvents {
     _resultData['category'] = l$category;
     final l$date = date;
     _resultData['date'] = l$date.toIso8601String();
+    final l$followers = followers;
+    _resultData['followers'] = l$followers?.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1488,6 +1725,7 @@ class Query$GetMyEvents$myEvents {
     final l$location = location;
     final l$category = category;
     final l$date = date;
+    final l$followers = followers;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -1497,6 +1735,7 @@ class Query$GetMyEvents$myEvents {
       l$location,
       l$category,
       l$date,
+      l$followers == null ? null : Object.hashAll(l$followers.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -1545,6 +1784,22 @@ class Query$GetMyEvents$myEvents {
     if (l$date != lOther$date) {
       return false;
     }
+    final l$followers = followers;
+    final lOther$followers = other.followers;
+    if (l$followers != null && lOther$followers != null) {
+      if (l$followers.length != lOther$followers.length) {
+        return false;
+      }
+      for (int i = 0; i < l$followers.length; i++) {
+        final l$followers$entry = l$followers[i];
+        final lOther$followers$entry = lOther$followers[i];
+        if (l$followers$entry != lOther$followers$entry) {
+          return false;
+        }
+      }
+    } else if (l$followers != lOther$followers) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -1580,8 +1835,15 @@ abstract class CopyWith$Query$GetMyEvents$myEvents<TRes> {
     String? location,
     String? category,
     DateTime? date,
+    List<Query$GetMyEvents$myEvents$followers>? followers,
     String? $__typename,
   });
+  TRes followers(
+      Iterable<Query$GetMyEvents$myEvents$followers>? Function(
+              Iterable<
+                  CopyWith$Query$GetMyEvents$myEvents$followers<
+                      Query$GetMyEvents$myEvents$followers>>?)
+          _fn);
 }
 
 class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
@@ -1605,6 +1867,7 @@ class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
     Object? location = _undefined,
     Object? category = _undefined,
     Object? date = _undefined,
+    Object? followers = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetMyEvents$myEvents(
@@ -1627,10 +1890,26 @@ class _CopyWithImpl$Query$GetMyEvents$myEvents<TRes>
         date: date == _undefined || date == null
             ? _instance.date
             : (date as DateTime),
+        followers: followers == _undefined
+            ? _instance.followers
+            : (followers as List<Query$GetMyEvents$myEvents$followers>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
+
+  TRes followers(
+          Iterable<Query$GetMyEvents$myEvents$followers>? Function(
+                  Iterable<
+                      CopyWith$Query$GetMyEvents$myEvents$followers<
+                          Query$GetMyEvents$myEvents$followers>>?)
+              _fn) =>
+      call(
+          followers: _fn(_instance.followers
+              ?.map((e) => CopyWith$Query$GetMyEvents$myEvents$followers(
+                    e,
+                    (i) => i,
+                  )))?.toList());
 }
 
 class _CopyWithStubImpl$Query$GetMyEvents$myEvents<TRes>
@@ -1647,6 +1926,134 @@ class _CopyWithStubImpl$Query$GetMyEvents$myEvents<TRes>
     String? location,
     String? category,
     DateTime? date,
+    List<Query$GetMyEvents$myEvents$followers>? followers,
+    String? $__typename,
+  }) =>
+      _res;
+
+  followers(_fn) => _res;
+}
+
+class Query$GetMyEvents$myEvents$followers {
+  Query$GetMyEvents$myEvents$followers({
+    required this.id,
+    this.$__typename = 'User',
+  });
+
+  factory Query$GetMyEvents$myEvents$followers.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetMyEvents$myEvents$followers(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetMyEvents$myEvents$followers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetMyEvents$myEvents$followers
+    on Query$GetMyEvents$myEvents$followers {
+  CopyWith$Query$GetMyEvents$myEvents$followers<
+          Query$GetMyEvents$myEvents$followers>
+      get copyWith => CopyWith$Query$GetMyEvents$myEvents$followers(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetMyEvents$myEvents$followers<TRes> {
+  factory CopyWith$Query$GetMyEvents$myEvents$followers(
+    Query$GetMyEvents$myEvents$followers instance,
+    TRes Function(Query$GetMyEvents$myEvents$followers) then,
+  ) = _CopyWithImpl$Query$GetMyEvents$myEvents$followers;
+
+  factory CopyWith$Query$GetMyEvents$myEvents$followers.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetMyEvents$myEvents$followers;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetMyEvents$myEvents$followers<TRes>
+    implements CopyWith$Query$GetMyEvents$myEvents$followers<TRes> {
+  _CopyWithImpl$Query$GetMyEvents$myEvents$followers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetMyEvents$myEvents$followers _instance;
+
+  final TRes Function(Query$GetMyEvents$myEvents$followers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetMyEvents$myEvents$followers(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetMyEvents$myEvents$followers<TRes>
+    implements CopyWith$Query$GetMyEvents$myEvents$followers<TRes> {
+  _CopyWithStubImpl$Query$GetMyEvents$myEvents$followers(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -2005,6 +2412,28 @@ const documentNodeQueryGetEvent = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
+            name: NameNode(value: 'followers'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                name: NameNode(value: 'id'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+            ]),
+          ),
+          FieldNode(
             name: NameNode(value: '__typename'),
             alias: null,
             arguments: [],
@@ -2187,6 +2616,7 @@ class Query$GetEvent$event {
     required this.price,
     required this.priceCurrency,
     this.createdBy,
+    this.followers,
     this.$__typename = 'Event',
   });
 
@@ -2201,6 +2631,7 @@ class Query$GetEvent$event {
     final l$price = json['price'];
     final l$priceCurrency = json['priceCurrency'];
     final l$createdBy = json['createdBy'];
+    final l$followers = json['followers'];
     final l$$__typename = json['__typename'];
     return Query$GetEvent$event(
       id: (l$id as String),
@@ -2216,6 +2647,10 @@ class Query$GetEvent$event {
           ? null
           : Query$GetEvent$event$createdBy.fromJson(
               (l$createdBy as Map<String, dynamic>)),
+      followers: (l$followers as List<dynamic>?)
+          ?.map((e) => Query$GetEvent$event$followers.fromJson(
+              (e as Map<String, dynamic>)))
+          .toList(),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2239,6 +2674,8 @@ class Query$GetEvent$event {
   final String priceCurrency;
 
   final Query$GetEvent$event$createdBy? createdBy;
+
+  final List<Query$GetEvent$event$followers>? followers;
 
   final String $__typename;
 
@@ -2264,6 +2701,8 @@ class Query$GetEvent$event {
     _resultData['priceCurrency'] = l$priceCurrency;
     final l$createdBy = createdBy;
     _resultData['createdBy'] = l$createdBy?.toJson();
+    final l$followers = followers;
+    _resultData['followers'] = l$followers?.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2281,6 +2720,7 @@ class Query$GetEvent$event {
     final l$price = price;
     final l$priceCurrency = priceCurrency;
     final l$createdBy = createdBy;
+    final l$followers = followers;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
@@ -2293,6 +2733,7 @@ class Query$GetEvent$event {
       l$price,
       l$priceCurrency,
       l$createdBy,
+      l$followers == null ? null : Object.hashAll(l$followers.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -2355,6 +2796,22 @@ class Query$GetEvent$event {
     if (l$createdBy != lOther$createdBy) {
       return false;
     }
+    final l$followers = followers;
+    final lOther$followers = other.followers;
+    if (l$followers != null && lOther$followers != null) {
+      if (l$followers.length != lOther$followers.length) {
+        return false;
+      }
+      for (int i = 0; i < l$followers.length; i++) {
+        final l$followers$entry = l$followers[i];
+        final lOther$followers$entry = lOther$followers[i];
+        if (l$followers$entry != lOther$followers$entry) {
+          return false;
+        }
+      }
+    } else if (l$followers != lOther$followers) {
+      return false;
+    }
     final l$$__typename = $__typename;
     final lOther$$__typename = other.$__typename;
     if (l$$__typename != lOther$$__typename) {
@@ -2392,9 +2849,16 @@ abstract class CopyWith$Query$GetEvent$event<TRes> {
     double? price,
     String? priceCurrency,
     Query$GetEvent$event$createdBy? createdBy,
+    List<Query$GetEvent$event$followers>? followers,
     String? $__typename,
   });
   CopyWith$Query$GetEvent$event$createdBy<TRes> get createdBy;
+  TRes followers(
+      Iterable<Query$GetEvent$event$followers>? Function(
+              Iterable<
+                  CopyWith$Query$GetEvent$event$followers<
+                      Query$GetEvent$event$followers>>?)
+          _fn);
 }
 
 class _CopyWithImpl$Query$GetEvent$event<TRes>
@@ -2421,6 +2885,7 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
     Object? price = _undefined,
     Object? priceCurrency = _undefined,
     Object? createdBy = _undefined,
+    Object? followers = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetEvent$event(
@@ -2452,6 +2917,9 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
         createdBy: createdBy == _undefined
             ? _instance.createdBy
             : (createdBy as Query$GetEvent$event$createdBy?),
+        followers: followers == _undefined
+            ? _instance.followers
+            : (followers as List<Query$GetEvent$event$followers>?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2464,6 +2932,19 @@ class _CopyWithImpl$Query$GetEvent$event<TRes>
         : CopyWith$Query$GetEvent$event$createdBy(
             local$createdBy, (e) => call(createdBy: e));
   }
+
+  TRes followers(
+          Iterable<Query$GetEvent$event$followers>? Function(
+                  Iterable<
+                      CopyWith$Query$GetEvent$event$followers<
+                          Query$GetEvent$event$followers>>?)
+              _fn) =>
+      call(
+          followers: _fn(_instance.followers
+              ?.map((e) => CopyWith$Query$GetEvent$event$followers(
+                    e,
+                    (i) => i,
+                  )))?.toList());
 }
 
 class _CopyWithStubImpl$Query$GetEvent$event<TRes>
@@ -2483,12 +2964,15 @@ class _CopyWithStubImpl$Query$GetEvent$event<TRes>
     double? price,
     String? priceCurrency,
     Query$GetEvent$event$createdBy? createdBy,
+    List<Query$GetEvent$event$followers>? followers,
     String? $__typename,
   }) =>
       _res;
 
   CopyWith$Query$GetEvent$event$createdBy<TRes> get createdBy =>
       CopyWith$Query$GetEvent$event$createdBy.stub(_res);
+
+  followers(_fn) => _res;
 }
 
 class Query$GetEvent$event$createdBy {
@@ -2629,6 +3113,129 @@ class _CopyWithStubImpl$Query$GetEvent$event$createdBy<TRes>
   call({
     String? id,
     String? name,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+class Query$GetEvent$event$followers {
+  Query$GetEvent$event$followers({
+    required this.id,
+    this.$__typename = 'User',
+  });
+
+  factory Query$GetEvent$event$followers.fromJson(Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$$__typename = json['__typename'];
+    return Query$GetEvent$event$followers(
+      id: (l$id as String),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Query$GetEvent$event$followers ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Query$GetEvent$event$followers
+    on Query$GetEvent$event$followers {
+  CopyWith$Query$GetEvent$event$followers<Query$GetEvent$event$followers>
+      get copyWith => CopyWith$Query$GetEvent$event$followers(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Query$GetEvent$event$followers<TRes> {
+  factory CopyWith$Query$GetEvent$event$followers(
+    Query$GetEvent$event$followers instance,
+    TRes Function(Query$GetEvent$event$followers) then,
+  ) = _CopyWithImpl$Query$GetEvent$event$followers;
+
+  factory CopyWith$Query$GetEvent$event$followers.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetEvent$event$followers;
+
+  TRes call({
+    String? id,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Query$GetEvent$event$followers<TRes>
+    implements CopyWith$Query$GetEvent$event$followers<TRes> {
+  _CopyWithImpl$Query$GetEvent$event$followers(
+    this._instance,
+    this._then,
+  );
+
+  final Query$GetEvent$event$followers _instance;
+
+  final TRes Function(Query$GetEvent$event$followers) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetEvent$event$followers(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Query$GetEvent$event$followers<TRes>
+    implements CopyWith$Query$GetEvent$event$followers<TRes> {
+  _CopyWithStubImpl$Query$GetEvent$event$followers(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
     String? $__typename,
   }) =>
       _res;
@@ -4026,6 +4633,474 @@ class Mutation$DeleteEvent$Widget
   }) : super(
           key: key,
           options: options ?? WidgetOptions$Mutation$DeleteEvent(),
+          builder: (
+            run,
+            result,
+          ) =>
+              builder(
+            (
+              variables, {
+              optimisticResult,
+              typedOptimisticResult,
+            }) =>
+                run(
+              variables.toJson(),
+              optimisticResult:
+                  optimisticResult ?? typedOptimisticResult?.toJson(),
+            ),
+            result,
+          ),
+        );
+}
+
+class Variables$Mutation$FollowEvent {
+  factory Variables$Mutation$FollowEvent({required String id}) =>
+      Variables$Mutation$FollowEvent._({
+        r'id': id,
+      });
+
+  Variables$Mutation$FollowEvent._(this._$data);
+
+  factory Variables$Mutation$FollowEvent.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$id = data['id'];
+    result$data['id'] = (l$id as String);
+    return Variables$Mutation$FollowEvent._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get id => (_$data['id'] as String);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$id = id;
+    result$data['id'] = l$id;
+    return result$data;
+  }
+
+  CopyWith$Variables$Mutation$FollowEvent<Variables$Mutation$FollowEvent>
+      get copyWith => CopyWith$Variables$Mutation$FollowEvent(
+            this,
+            (i) => i,
+          );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Variables$Mutation$FollowEvent ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    return Object.hashAll([l$id]);
+  }
+}
+
+abstract class CopyWith$Variables$Mutation$FollowEvent<TRes> {
+  factory CopyWith$Variables$Mutation$FollowEvent(
+    Variables$Mutation$FollowEvent instance,
+    TRes Function(Variables$Mutation$FollowEvent) then,
+  ) = _CopyWithImpl$Variables$Mutation$FollowEvent;
+
+  factory CopyWith$Variables$Mutation$FollowEvent.stub(TRes res) =
+      _CopyWithStubImpl$Variables$Mutation$FollowEvent;
+
+  TRes call({String? id});
+}
+
+class _CopyWithImpl$Variables$Mutation$FollowEvent<TRes>
+    implements CopyWith$Variables$Mutation$FollowEvent<TRes> {
+  _CopyWithImpl$Variables$Mutation$FollowEvent(
+    this._instance,
+    this._then,
+  );
+
+  final Variables$Mutation$FollowEvent _instance;
+
+  final TRes Function(Variables$Mutation$FollowEvent) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({Object? id = _undefined}) =>
+      _then(Variables$Mutation$FollowEvent._({
+        ..._instance._$data,
+        if (id != _undefined && id != null) 'id': (id as String),
+      }));
+}
+
+class _CopyWithStubImpl$Variables$Mutation$FollowEvent<TRes>
+    implements CopyWith$Variables$Mutation$FollowEvent<TRes> {
+  _CopyWithStubImpl$Variables$Mutation$FollowEvent(this._res);
+
+  TRes _res;
+
+  call({String? id}) => _res;
+}
+
+class Mutation$FollowEvent {
+  Mutation$FollowEvent({
+    required this.followEvent,
+    this.$__typename = 'Mutation',
+  });
+
+  factory Mutation$FollowEvent.fromJson(Map<String, dynamic> json) {
+    final l$followEvent = json['followEvent'];
+    final l$$__typename = json['__typename'];
+    return Mutation$FollowEvent(
+      followEvent: (l$followEvent as bool),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final bool followEvent;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$followEvent = followEvent;
+    _resultData['followEvent'] = l$followEvent;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$followEvent = followEvent;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$followEvent,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$FollowEvent || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$followEvent = followEvent;
+    final lOther$followEvent = other.followEvent;
+    if (l$followEvent != lOther$followEvent) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$FollowEvent on Mutation$FollowEvent {
+  CopyWith$Mutation$FollowEvent<Mutation$FollowEvent> get copyWith =>
+      CopyWith$Mutation$FollowEvent(
+        this,
+        (i) => i,
+      );
+}
+
+abstract class CopyWith$Mutation$FollowEvent<TRes> {
+  factory CopyWith$Mutation$FollowEvent(
+    Mutation$FollowEvent instance,
+    TRes Function(Mutation$FollowEvent) then,
+  ) = _CopyWithImpl$Mutation$FollowEvent;
+
+  factory CopyWith$Mutation$FollowEvent.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$FollowEvent;
+
+  TRes call({
+    bool? followEvent,
+    String? $__typename,
+  });
+}
+
+class _CopyWithImpl$Mutation$FollowEvent<TRes>
+    implements CopyWith$Mutation$FollowEvent<TRes> {
+  _CopyWithImpl$Mutation$FollowEvent(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$FollowEvent _instance;
+
+  final TRes Function(Mutation$FollowEvent) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? followEvent = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$FollowEvent(
+        followEvent: followEvent == _undefined || followEvent == null
+            ? _instance.followEvent
+            : (followEvent as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+}
+
+class _CopyWithStubImpl$Mutation$FollowEvent<TRes>
+    implements CopyWith$Mutation$FollowEvent<TRes> {
+  _CopyWithStubImpl$Mutation$FollowEvent(this._res);
+
+  TRes _res;
+
+  call({
+    bool? followEvent,
+    String? $__typename,
+  }) =>
+      _res;
+}
+
+const documentNodeMutationFollowEvent = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'FollowEvent'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      )
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'followEvent'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'id'),
+            value: VariableNode(name: NameNode(value: 'id')),
+          )
+        ],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+Mutation$FollowEvent _parserFn$Mutation$FollowEvent(
+        Map<String, dynamic> data) =>
+    Mutation$FollowEvent.fromJson(data);
+typedef OnMutationCompleted$Mutation$FollowEvent = FutureOr<void> Function(
+  Map<String, dynamic>?,
+  Mutation$FollowEvent?,
+);
+
+class Options$Mutation$FollowEvent
+    extends graphql.MutationOptions<Mutation$FollowEvent> {
+  Options$Mutation$FollowEvent({
+    String? operationName,
+    required Variables$Mutation$FollowEvent variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$FollowEvent? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$FollowEvent? onCompleted,
+    graphql.OnMutationUpdate<Mutation$FollowEvent>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$FollowEvent(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationFollowEvent,
+          parserFn: _parserFn$Mutation$FollowEvent,
+        );
+
+  final OnMutationCompleted$Mutation$FollowEvent? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+class WatchOptions$Mutation$FollowEvent
+    extends graphql.WatchQueryOptions<Mutation$FollowEvent> {
+  WatchOptions$Mutation$FollowEvent({
+    String? operationName,
+    required Variables$Mutation$FollowEvent variables,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$FollowEvent? typedOptimisticResult,
+    graphql.Context? context,
+    Duration? pollInterval,
+    bool? eagerlyFetchResults,
+    bool carryForwardDataOnException = true,
+    bool fetchResults = false,
+  }) : super(
+          variables: variables.toJson(),
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          document: documentNodeMutationFollowEvent,
+          pollInterval: pollInterval,
+          eagerlyFetchResults: eagerlyFetchResults,
+          carryForwardDataOnException: carryForwardDataOnException,
+          fetchResults: fetchResults,
+          parserFn: _parserFn$Mutation$FollowEvent,
+        );
+}
+
+extension ClientExtension$Mutation$FollowEvent on graphql.GraphQLClient {
+  Future<graphql.QueryResult<Mutation$FollowEvent>> mutate$FollowEvent(
+          Options$Mutation$FollowEvent options) async =>
+      await this.mutate(options);
+
+  graphql.ObservableQuery<Mutation$FollowEvent> watchMutation$FollowEvent(
+          WatchOptions$Mutation$FollowEvent options) =>
+      this.watchMutation(options);
+}
+
+class Mutation$FollowEvent$HookResult {
+  Mutation$FollowEvent$HookResult(
+    this.runMutation,
+    this.result,
+  );
+
+  final RunMutation$Mutation$FollowEvent runMutation;
+
+  final graphql.QueryResult<Mutation$FollowEvent> result;
+}
+
+Mutation$FollowEvent$HookResult useMutation$FollowEvent(
+    [WidgetOptions$Mutation$FollowEvent? options]) {
+  final result = graphql_flutter
+      .useMutation(options ?? WidgetOptions$Mutation$FollowEvent());
+  return Mutation$FollowEvent$HookResult(
+    (variables, {optimisticResult, typedOptimisticResult}) =>
+        result.runMutation(
+      variables.toJson(),
+      optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+    ),
+    result.result,
+  );
+}
+
+graphql.ObservableQuery<Mutation$FollowEvent> useWatchMutation$FollowEvent(
+        WatchOptions$Mutation$FollowEvent options) =>
+    graphql_flutter.useWatchMutation(options);
+
+class WidgetOptions$Mutation$FollowEvent
+    extends graphql.MutationOptions<Mutation$FollowEvent> {
+  WidgetOptions$Mutation$FollowEvent({
+    String? operationName,
+    graphql.FetchPolicy? fetchPolicy,
+    graphql.ErrorPolicy? errorPolicy,
+    graphql.CacheRereadPolicy? cacheRereadPolicy,
+    Object? optimisticResult,
+    Mutation$FollowEvent? typedOptimisticResult,
+    graphql.Context? context,
+    OnMutationCompleted$Mutation$FollowEvent? onCompleted,
+    graphql.OnMutationUpdate<Mutation$FollowEvent>? update,
+    graphql.OnError? onError,
+  })  : onCompletedWithParsed = onCompleted,
+        super(
+          operationName: operationName,
+          fetchPolicy: fetchPolicy,
+          errorPolicy: errorPolicy,
+          cacheRereadPolicy: cacheRereadPolicy,
+          optimisticResult: optimisticResult ?? typedOptimisticResult?.toJson(),
+          context: context,
+          onCompleted: onCompleted == null
+              ? null
+              : (data) => onCompleted(
+                    data,
+                    data == null ? null : _parserFn$Mutation$FollowEvent(data),
+                  ),
+          update: update,
+          onError: onError,
+          document: documentNodeMutationFollowEvent,
+          parserFn: _parserFn$Mutation$FollowEvent,
+        );
+
+  final OnMutationCompleted$Mutation$FollowEvent? onCompletedWithParsed;
+
+  @override
+  List<Object?> get properties => [
+        ...super.onCompleted == null
+            ? super.properties
+            : super.properties.where((property) => property != onCompleted),
+        onCompletedWithParsed,
+      ];
+}
+
+typedef RunMutation$Mutation$FollowEvent
+    = graphql.MultiSourceResult<Mutation$FollowEvent> Function(
+  Variables$Mutation$FollowEvent, {
+  Object? optimisticResult,
+  Mutation$FollowEvent? typedOptimisticResult,
+});
+typedef Builder$Mutation$FollowEvent = widgets.Widget Function(
+  RunMutation$Mutation$FollowEvent,
+  graphql.QueryResult<Mutation$FollowEvent>?,
+);
+
+class Mutation$FollowEvent$Widget
+    extends graphql_flutter.Mutation<Mutation$FollowEvent> {
+  Mutation$FollowEvent$Widget({
+    widgets.Key? key,
+    WidgetOptions$Mutation$FollowEvent? options,
+    required Builder$Mutation$FollowEvent builder,
+  }) : super(
+          key: key,
+          options: options ?? WidgetOptions$Mutation$FollowEvent(),
           builder: (
             run,
             result,

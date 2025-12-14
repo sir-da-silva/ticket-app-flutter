@@ -148,6 +148,8 @@ class _OtpPageState extends State<OtpPage> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
                                         content: Text("Veuillez entrer le code complet."),
+                                        dismissDirection: DismissDirection.horizontal,
+                                        behavior: SnackBarBehavior.floating,
                                       ),
                                     );
                                   }

@@ -289,6 +289,27 @@ const documentNodeQueryGetTicket = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'buyerName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'buyerPhone'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'buyerEmail'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'createdAt'),
             alias: null,
             arguments: [],
@@ -373,27 +394,6 @@ const documentNodeQueryGetTicket = DocumentNode(definitions: [
                 selectionSet: null,
               ),
             ]),
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerName'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerPhone'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerEmail'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -571,12 +571,12 @@ class Query$GetTicket$ticket {
     required this.id,
     required this.code,
     required this.used,
-    required this.createdAt,
-    required this.event,
-    this.user,
     this.buyerName,
     this.buyerPhone,
     this.buyerEmail,
+    required this.createdAt,
+    required this.event,
+    this.user,
     this.$__typename = 'Ticket',
   });
 
@@ -584,17 +584,20 @@ class Query$GetTicket$ticket {
     final l$id = json['id'];
     final l$code = json['code'];
     final l$used = json['used'];
-    final l$createdAt = json['createdAt'];
-    final l$event = json['event'];
-    final l$user = json['user'];
     final l$buyerName = json['buyerName'];
     final l$buyerPhone = json['buyerPhone'];
     final l$buyerEmail = json['buyerEmail'];
+    final l$createdAt = json['createdAt'];
+    final l$event = json['event'];
+    final l$user = json['user'];
     final l$$__typename = json['__typename'];
     return Query$GetTicket$ticket(
       id: (l$id as String),
       code: (l$code as String),
       used: (l$used as bool),
+      buyerName: (l$buyerName as String?),
+      buyerPhone: (l$buyerPhone as String?),
+      buyerEmail: (l$buyerEmail as String?),
       createdAt: DateTime.parse((l$createdAt as String)),
       event: Query$GetTicket$ticket$event.fromJson(
           (l$event as Map<String, dynamic>)),
@@ -602,9 +605,6 @@ class Query$GetTicket$ticket {
           ? null
           : Query$GetTicket$ticket$user.fromJson(
               (l$user as Map<String, dynamic>)),
-      buyerName: (l$buyerName as String?),
-      buyerPhone: (l$buyerPhone as String?),
-      buyerEmail: (l$buyerEmail as String?),
       $__typename: (l$$__typename as String),
     );
   }
@@ -615,17 +615,17 @@ class Query$GetTicket$ticket {
 
   final bool used;
 
-  final DateTime createdAt;
-
-  final Query$GetTicket$ticket$event event;
-
-  final Query$GetTicket$ticket$user? user;
-
   final String? buyerName;
 
   final String? buyerPhone;
 
   final String? buyerEmail;
+
+  final DateTime createdAt;
+
+  final Query$GetTicket$ticket$event event;
+
+  final Query$GetTicket$ticket$user? user;
 
   final String $__typename;
 
@@ -637,18 +637,18 @@ class Query$GetTicket$ticket {
     _resultData['code'] = l$code;
     final l$used = used;
     _resultData['used'] = l$used;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$event = event;
-    _resultData['event'] = l$event.toJson();
-    final l$user = user;
-    _resultData['user'] = l$user?.toJson();
     final l$buyerName = buyerName;
     _resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
     _resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
     _resultData['buyerEmail'] = l$buyerEmail;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$event = event;
+    _resultData['event'] = l$event.toJson();
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -659,23 +659,23 @@ class Query$GetTicket$ticket {
     final l$id = id;
     final l$code = code;
     final l$used = used;
-    final l$createdAt = createdAt;
-    final l$event = event;
-    final l$user = user;
     final l$buyerName = buyerName;
     final l$buyerPhone = buyerPhone;
     final l$buyerEmail = buyerEmail;
+    final l$createdAt = createdAt;
+    final l$event = event;
+    final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$code,
       l$used,
-      l$createdAt,
-      l$event,
-      l$user,
       l$buyerName,
       l$buyerPhone,
       l$buyerEmail,
+      l$createdAt,
+      l$event,
+      l$user,
       l$$__typename,
     ]);
   }
@@ -703,21 +703,6 @@ class Query$GetTicket$ticket {
     if (l$used != lOther$used) {
       return false;
     }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$event = event;
-    final lOther$event = other.event;
-    if (l$event != lOther$event) {
-      return false;
-    }
-    final l$user = user;
-    final lOther$user = other.user;
-    if (l$user != lOther$user) {
-      return false;
-    }
     final l$buyerName = buyerName;
     final lOther$buyerName = other.buyerName;
     if (l$buyerName != lOther$buyerName) {
@@ -731,6 +716,21 @@ class Query$GetTicket$ticket {
     final l$buyerEmail = buyerEmail;
     final lOther$buyerEmail = other.buyerEmail;
     if (l$buyerEmail != lOther$buyerEmail) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$event = event;
+    final lOther$event = other.event;
+    if (l$event != lOther$event) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -763,12 +763,12 @@ abstract class CopyWith$Query$GetTicket$ticket<TRes> {
     String? id,
     String? code,
     bool? used,
-    DateTime? createdAt,
-    Query$GetTicket$ticket$event? event,
-    Query$GetTicket$ticket$user? user,
     String? buyerName,
     String? buyerPhone,
     String? buyerEmail,
+    DateTime? createdAt,
+    Query$GetTicket$ticket$event? event,
+    Query$GetTicket$ticket$user? user,
     String? $__typename,
   });
   CopyWith$Query$GetTicket$ticket$event<TRes> get event;
@@ -792,12 +792,12 @@ class _CopyWithImpl$Query$GetTicket$ticket<TRes>
     Object? id = _undefined,
     Object? code = _undefined,
     Object? used = _undefined,
-    Object? createdAt = _undefined,
-    Object? event = _undefined,
-    Object? user = _undefined,
     Object? buyerName = _undefined,
     Object? buyerPhone = _undefined,
     Object? buyerEmail = _undefined,
+    Object? createdAt = _undefined,
+    Object? event = _undefined,
+    Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetTicket$ticket(
@@ -808,15 +808,6 @@ class _CopyWithImpl$Query$GetTicket$ticket<TRes>
         used: used == _undefined || used == null
             ? _instance.used
             : (used as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        event: event == _undefined || event == null
-            ? _instance.event
-            : (event as Query$GetTicket$ticket$event),
-        user: user == _undefined
-            ? _instance.user
-            : (user as Query$GetTicket$ticket$user?),
         buyerName: buyerName == _undefined
             ? _instance.buyerName
             : (buyerName as String?),
@@ -826,6 +817,15 @@ class _CopyWithImpl$Query$GetTicket$ticket<TRes>
         buyerEmail: buyerEmail == _undefined
             ? _instance.buyerEmail
             : (buyerEmail as String?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        event: event == _undefined || event == null
+            ? _instance.event
+            : (event as Query$GetTicket$ticket$event),
+        user: user == _undefined
+            ? _instance.user
+            : (user as Query$GetTicket$ticket$user?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -856,12 +856,12 @@ class _CopyWithStubImpl$Query$GetTicket$ticket<TRes>
     String? id,
     String? code,
     bool? used,
-    DateTime? createdAt,
-    Query$GetTicket$ticket$event? event,
-    Query$GetTicket$ticket$user? user,
     String? buyerName,
     String? buyerPhone,
     String? buyerEmail,
+    DateTime? createdAt,
+    Query$GetTicket$ticket$event? event,
+    Query$GetTicket$ticket$user? user,
     String? $__typename,
   }) =>
       _res;
@@ -1319,30 +1319,31 @@ class _CopyWithStubImpl$Variables$Query$GetTickets<TRes>
 
 class Query$GetTickets {
   Query$GetTickets({
-    required this.tickets,
+    required this.eventTickets,
     this.$__typename = 'Query',
   });
 
   factory Query$GetTickets.fromJson(Map<String, dynamic> json) {
-    final l$tickets = json['tickets'];
+    final l$eventTickets = json['eventTickets'];
     final l$$__typename = json['__typename'];
     return Query$GetTickets(
-      tickets: (l$tickets as List<dynamic>)
-          .map((e) =>
-              Query$GetTickets$tickets.fromJson((e as Map<String, dynamic>)))
+      eventTickets: (l$eventTickets as List<dynamic>)
+          .map((e) => Query$GetTickets$eventTickets.fromJson(
+              (e as Map<String, dynamic>)))
           .toList(),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final List<Query$GetTickets$tickets> tickets;
+  final List<Query$GetTickets$eventTickets> eventTickets;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$tickets = tickets;
-    _resultData['tickets'] = l$tickets.map((e) => e.toJson()).toList();
+    final l$eventTickets = eventTickets;
+    _resultData['eventTickets'] =
+        l$eventTickets.map((e) => e.toJson()).toList();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -1350,10 +1351,10 @@ class Query$GetTickets {
 
   @override
   int get hashCode {
-    final l$tickets = tickets;
+    final l$eventTickets = eventTickets;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      Object.hashAll(l$tickets.map((v) => v)),
+      Object.hashAll(l$eventTickets.map((v) => v)),
       l$$__typename,
     ]);
   }
@@ -1366,15 +1367,15 @@ class Query$GetTickets {
     if (other is! Query$GetTickets || runtimeType != other.runtimeType) {
       return false;
     }
-    final l$tickets = tickets;
-    final lOther$tickets = other.tickets;
-    if (l$tickets.length != lOther$tickets.length) {
+    final l$eventTickets = eventTickets;
+    final lOther$eventTickets = other.eventTickets;
+    if (l$eventTickets.length != lOther$eventTickets.length) {
       return false;
     }
-    for (int i = 0; i < l$tickets.length; i++) {
-      final l$tickets$entry = l$tickets[i];
-      final lOther$tickets$entry = lOther$tickets[i];
-      if (l$tickets$entry != lOther$tickets$entry) {
+    for (int i = 0; i < l$eventTickets.length; i++) {
+      final l$eventTickets$entry = l$eventTickets[i];
+      final lOther$eventTickets$entry = lOther$eventTickets[i];
+      if (l$eventTickets$entry != lOther$eventTickets$entry) {
         return false;
       }
     }
@@ -1405,13 +1406,14 @@ abstract class CopyWith$Query$GetTickets<TRes> {
       _CopyWithStubImpl$Query$GetTickets;
 
   TRes call({
-    List<Query$GetTickets$tickets>? tickets,
+    List<Query$GetTickets$eventTickets>? eventTickets,
     String? $__typename,
   });
-  TRes tickets(
-      Iterable<Query$GetTickets$tickets> Function(
+  TRes eventTickets(
+      Iterable<Query$GetTickets$eventTickets> Function(
               Iterable<
-                  CopyWith$Query$GetTickets$tickets<Query$GetTickets$tickets>>)
+                  CopyWith$Query$GetTickets$eventTickets<
+                      Query$GetTickets$eventTickets>>)
           _fn);
 }
 
@@ -1429,27 +1431,27 @@ class _CopyWithImpl$Query$GetTickets<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? tickets = _undefined,
+    Object? eventTickets = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetTickets(
-        tickets: tickets == _undefined || tickets == null
-            ? _instance.tickets
-            : (tickets as List<Query$GetTickets$tickets>),
+        eventTickets: eventTickets == _undefined || eventTickets == null
+            ? _instance.eventTickets
+            : (eventTickets as List<Query$GetTickets$eventTickets>),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  TRes tickets(
-          Iterable<Query$GetTickets$tickets> Function(
+  TRes eventTickets(
+          Iterable<Query$GetTickets$eventTickets> Function(
                   Iterable<
-                      CopyWith$Query$GetTickets$tickets<
-                          Query$GetTickets$tickets>>)
+                      CopyWith$Query$GetTickets$eventTickets<
+                          Query$GetTickets$eventTickets>>)
               _fn) =>
       call(
-          tickets: _fn(
-              _instance.tickets.map((e) => CopyWith$Query$GetTickets$tickets(
+          eventTickets: _fn(_instance.eventTickets
+              .map((e) => CopyWith$Query$GetTickets$eventTickets(
                     e,
                     (i) => i,
                   ))).toList());
@@ -1462,12 +1464,12 @@ class _CopyWithStubImpl$Query$GetTickets<TRes>
   TRes _res;
 
   call({
-    List<Query$GetTickets$tickets>? tickets,
+    List<Query$GetTickets$eventTickets>? eventTickets,
     String? $__typename,
   }) =>
       _res;
 
-  tickets(_fn) => _res;
+  eventTickets(_fn) => _res;
 }
 
 const documentNodeQueryGetTickets = DocumentNode(definitions: [
@@ -1488,7 +1490,7 @@ const documentNodeQueryGetTickets = DocumentNode(definitions: [
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
-        name: NameNode(value: 'tickets'),
+        name: NameNode(value: 'eventTickets'),
         alias: null,
         arguments: [
           ArgumentNode(
@@ -1520,13 +1522,6 @@ const documentNodeQueryGetTickets = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'createdAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
             name: NameNode(value: 'buyerName'),
             alias: null,
             arguments: [],
@@ -1542,6 +1537,13 @@ const documentNodeQueryGetTickets = DocumentNode(definitions: [
           ),
           FieldNode(
             name: NameNode(value: 'buyerEmail'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'createdAt'),
             alias: null,
             arguments: [],
             directives: [],
@@ -1747,40 +1749,40 @@ class Query$GetTickets$Widget extends graphql_flutter.Query<Query$GetTickets> {
         );
 }
 
-class Query$GetTickets$tickets {
-  Query$GetTickets$tickets({
+class Query$GetTickets$eventTickets {
+  Query$GetTickets$eventTickets({
     required this.id,
     required this.code,
     required this.used,
-    required this.createdAt,
     this.buyerName,
     this.buyerPhone,
     this.buyerEmail,
+    required this.createdAt,
     this.user,
     this.$__typename = 'Ticket',
   });
 
-  factory Query$GetTickets$tickets.fromJson(Map<String, dynamic> json) {
+  factory Query$GetTickets$eventTickets.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$code = json['code'];
     final l$used = json['used'];
-    final l$createdAt = json['createdAt'];
     final l$buyerName = json['buyerName'];
     final l$buyerPhone = json['buyerPhone'];
     final l$buyerEmail = json['buyerEmail'];
+    final l$createdAt = json['createdAt'];
     final l$user = json['user'];
     final l$$__typename = json['__typename'];
-    return Query$GetTickets$tickets(
+    return Query$GetTickets$eventTickets(
       id: (l$id as String),
       code: (l$code as String),
       used: (l$used as bool),
-      createdAt: DateTime.parse((l$createdAt as String)),
       buyerName: (l$buyerName as String?),
       buyerPhone: (l$buyerPhone as String?),
       buyerEmail: (l$buyerEmail as String?),
+      createdAt: DateTime.parse((l$createdAt as String)),
       user: l$user == null
           ? null
-          : Query$GetTickets$tickets$user.fromJson(
+          : Query$GetTickets$eventTickets$user.fromJson(
               (l$user as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
@@ -1792,15 +1794,15 @@ class Query$GetTickets$tickets {
 
   final bool used;
 
-  final DateTime createdAt;
-
   final String? buyerName;
 
   final String? buyerPhone;
 
   final String? buyerEmail;
 
-  final Query$GetTickets$tickets$user? user;
+  final DateTime createdAt;
+
+  final Query$GetTickets$eventTickets$user? user;
 
   final String $__typename;
 
@@ -1812,14 +1814,14 @@ class Query$GetTickets$tickets {
     _resultData['code'] = l$code;
     final l$used = used;
     _resultData['used'] = l$used;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$buyerName = buyerName;
     _resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
     _resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
     _resultData['buyerEmail'] = l$buyerEmail;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$user = user;
     _resultData['user'] = l$user?.toJson();
     final l$$__typename = $__typename;
@@ -1832,20 +1834,20 @@ class Query$GetTickets$tickets {
     final l$id = id;
     final l$code = code;
     final l$used = used;
-    final l$createdAt = createdAt;
     final l$buyerName = buyerName;
     final l$buyerPhone = buyerPhone;
     final l$buyerEmail = buyerEmail;
+    final l$createdAt = createdAt;
     final l$user = user;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$code,
       l$used,
-      l$createdAt,
       l$buyerName,
       l$buyerPhone,
       l$buyerEmail,
+      l$createdAt,
       l$user,
       l$$__typename,
     ]);
@@ -1856,7 +1858,7 @@ class Query$GetTickets$tickets {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$GetTickets$tickets ||
+    if (other is! Query$GetTickets$eventTickets ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -1875,11 +1877,6 @@ class Query$GetTickets$tickets {
     if (l$used != lOther$used) {
       return false;
     }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
     final l$buyerName = buyerName;
     final lOther$buyerName = other.buyerName;
     if (l$buyerName != lOther$buyerName) {
@@ -1893,6 +1890,11 @@ class Query$GetTickets$tickets {
     final l$buyerEmail = buyerEmail;
     final lOther$buyerEmail = other.buyerEmail;
     if (l$buyerEmail != lOther$buyerEmail) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
       return false;
     }
     final l$user = user;
@@ -1909,48 +1911,48 @@ class Query$GetTickets$tickets {
   }
 }
 
-extension UtilityExtension$Query$GetTickets$tickets
-    on Query$GetTickets$tickets {
-  CopyWith$Query$GetTickets$tickets<Query$GetTickets$tickets> get copyWith =>
-      CopyWith$Query$GetTickets$tickets(
-        this,
-        (i) => i,
-      );
+extension UtilityExtension$Query$GetTickets$eventTickets
+    on Query$GetTickets$eventTickets {
+  CopyWith$Query$GetTickets$eventTickets<Query$GetTickets$eventTickets>
+      get copyWith => CopyWith$Query$GetTickets$eventTickets(
+            this,
+            (i) => i,
+          );
 }
 
-abstract class CopyWith$Query$GetTickets$tickets<TRes> {
-  factory CopyWith$Query$GetTickets$tickets(
-    Query$GetTickets$tickets instance,
-    TRes Function(Query$GetTickets$tickets) then,
-  ) = _CopyWithImpl$Query$GetTickets$tickets;
+abstract class CopyWith$Query$GetTickets$eventTickets<TRes> {
+  factory CopyWith$Query$GetTickets$eventTickets(
+    Query$GetTickets$eventTickets instance,
+    TRes Function(Query$GetTickets$eventTickets) then,
+  ) = _CopyWithImpl$Query$GetTickets$eventTickets;
 
-  factory CopyWith$Query$GetTickets$tickets.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetTickets$tickets;
+  factory CopyWith$Query$GetTickets$eventTickets.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetTickets$eventTickets;
 
   TRes call({
     String? id,
     String? code,
     bool? used,
-    DateTime? createdAt,
     String? buyerName,
     String? buyerPhone,
     String? buyerEmail,
-    Query$GetTickets$tickets$user? user,
+    DateTime? createdAt,
+    Query$GetTickets$eventTickets$user? user,
     String? $__typename,
   });
-  CopyWith$Query$GetTickets$tickets$user<TRes> get user;
+  CopyWith$Query$GetTickets$eventTickets$user<TRes> get user;
 }
 
-class _CopyWithImpl$Query$GetTickets$tickets<TRes>
-    implements CopyWith$Query$GetTickets$tickets<TRes> {
-  _CopyWithImpl$Query$GetTickets$tickets(
+class _CopyWithImpl$Query$GetTickets$eventTickets<TRes>
+    implements CopyWith$Query$GetTickets$eventTickets<TRes> {
+  _CopyWithImpl$Query$GetTickets$eventTickets(
     this._instance,
     this._then,
   );
 
-  final Query$GetTickets$tickets _instance;
+  final Query$GetTickets$eventTickets _instance;
 
-  final TRes Function(Query$GetTickets$tickets) _then;
+  final TRes Function(Query$GetTickets$eventTickets) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -1958,14 +1960,14 @@ class _CopyWithImpl$Query$GetTickets$tickets<TRes>
     Object? id = _undefined,
     Object? code = _undefined,
     Object? used = _undefined,
-    Object? createdAt = _undefined,
     Object? buyerName = _undefined,
     Object? buyerPhone = _undefined,
     Object? buyerEmail = _undefined,
+    Object? createdAt = _undefined,
     Object? user = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetTickets$tickets(
+      _then(Query$GetTickets$eventTickets(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         code: code == _undefined || code == null
             ? _instance.code
@@ -1973,9 +1975,6 @@ class _CopyWithImpl$Query$GetTickets$tickets<TRes>
         used: used == _undefined || used == null
             ? _instance.used
             : (used as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
         buyerName: buyerName == _undefined
             ? _instance.buyerName
             : (buyerName as String?),
@@ -1985,26 +1984,29 @@ class _CopyWithImpl$Query$GetTickets$tickets<TRes>
         buyerEmail: buyerEmail == _undefined
             ? _instance.buyerEmail
             : (buyerEmail as String?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
         user: user == _undefined
             ? _instance.user
-            : (user as Query$GetTickets$tickets$user?),
+            : (user as Query$GetTickets$eventTickets$user?),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Query$GetTickets$tickets$user<TRes> get user {
+  CopyWith$Query$GetTickets$eventTickets$user<TRes> get user {
     final local$user = _instance.user;
     return local$user == null
-        ? CopyWith$Query$GetTickets$tickets$user.stub(_then(_instance))
-        : CopyWith$Query$GetTickets$tickets$user(
+        ? CopyWith$Query$GetTickets$eventTickets$user.stub(_then(_instance))
+        : CopyWith$Query$GetTickets$eventTickets$user(
             local$user, (e) => call(user: e));
   }
 }
 
-class _CopyWithStubImpl$Query$GetTickets$tickets<TRes>
-    implements CopyWith$Query$GetTickets$tickets<TRes> {
-  _CopyWithStubImpl$Query$GetTickets$tickets(this._res);
+class _CopyWithStubImpl$Query$GetTickets$eventTickets<TRes>
+    implements CopyWith$Query$GetTickets$eventTickets<TRes> {
+  _CopyWithStubImpl$Query$GetTickets$eventTickets(this._res);
 
   TRes _res;
 
@@ -2012,31 +2014,32 @@ class _CopyWithStubImpl$Query$GetTickets$tickets<TRes>
     String? id,
     String? code,
     bool? used,
-    DateTime? createdAt,
     String? buyerName,
     String? buyerPhone,
     String? buyerEmail,
-    Query$GetTickets$tickets$user? user,
+    DateTime? createdAt,
+    Query$GetTickets$eventTickets$user? user,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Query$GetTickets$tickets$user<TRes> get user =>
-      CopyWith$Query$GetTickets$tickets$user.stub(_res);
+  CopyWith$Query$GetTickets$eventTickets$user<TRes> get user =>
+      CopyWith$Query$GetTickets$eventTickets$user.stub(_res);
 }
 
-class Query$GetTickets$tickets$user {
-  Query$GetTickets$tickets$user({
+class Query$GetTickets$eventTickets$user {
+  Query$GetTickets$eventTickets$user({
     required this.id,
     required this.name,
     this.$__typename = 'User',
   });
 
-  factory Query$GetTickets$tickets$user.fromJson(Map<String, dynamic> json) {
+  factory Query$GetTickets$eventTickets$user.fromJson(
+      Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$$__typename = json['__typename'];
-    return Query$GetTickets$tickets$user(
+    return Query$GetTickets$eventTickets$user(
       id: (l$id as String),
       name: (l$name as String),
       $__typename: (l$$__typename as String),
@@ -2077,7 +2080,7 @@ class Query$GetTickets$tickets$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Query$GetTickets$tickets$user ||
+    if (other is! Query$GetTickets$eventTickets$user ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -2100,23 +2103,24 @@ class Query$GetTickets$tickets$user {
   }
 }
 
-extension UtilityExtension$Query$GetTickets$tickets$user
-    on Query$GetTickets$tickets$user {
-  CopyWith$Query$GetTickets$tickets$user<Query$GetTickets$tickets$user>
-      get copyWith => CopyWith$Query$GetTickets$tickets$user(
+extension UtilityExtension$Query$GetTickets$eventTickets$user
+    on Query$GetTickets$eventTickets$user {
+  CopyWith$Query$GetTickets$eventTickets$user<
+          Query$GetTickets$eventTickets$user>
+      get copyWith => CopyWith$Query$GetTickets$eventTickets$user(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Query$GetTickets$tickets$user<TRes> {
-  factory CopyWith$Query$GetTickets$tickets$user(
-    Query$GetTickets$tickets$user instance,
-    TRes Function(Query$GetTickets$tickets$user) then,
-  ) = _CopyWithImpl$Query$GetTickets$tickets$user;
+abstract class CopyWith$Query$GetTickets$eventTickets$user<TRes> {
+  factory CopyWith$Query$GetTickets$eventTickets$user(
+    Query$GetTickets$eventTickets$user instance,
+    TRes Function(Query$GetTickets$eventTickets$user) then,
+  ) = _CopyWithImpl$Query$GetTickets$eventTickets$user;
 
-  factory CopyWith$Query$GetTickets$tickets$user.stub(TRes res) =
-      _CopyWithStubImpl$Query$GetTickets$tickets$user;
+  factory CopyWith$Query$GetTickets$eventTickets$user.stub(TRes res) =
+      _CopyWithStubImpl$Query$GetTickets$eventTickets$user;
 
   TRes call({
     String? id,
@@ -2125,16 +2129,16 @@ abstract class CopyWith$Query$GetTickets$tickets$user<TRes> {
   });
 }
 
-class _CopyWithImpl$Query$GetTickets$tickets$user<TRes>
-    implements CopyWith$Query$GetTickets$tickets$user<TRes> {
-  _CopyWithImpl$Query$GetTickets$tickets$user(
+class _CopyWithImpl$Query$GetTickets$eventTickets$user<TRes>
+    implements CopyWith$Query$GetTickets$eventTickets$user<TRes> {
+  _CopyWithImpl$Query$GetTickets$eventTickets$user(
     this._instance,
     this._then,
   );
 
-  final Query$GetTickets$tickets$user _instance;
+  final Query$GetTickets$eventTickets$user _instance;
 
-  final TRes Function(Query$GetTickets$tickets$user) _then;
+  final TRes Function(Query$GetTickets$eventTickets$user) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -2143,7 +2147,7 @@ class _CopyWithImpl$Query$GetTickets$tickets$user<TRes>
     Object? name = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Query$GetTickets$tickets$user(
+      _then(Query$GetTickets$eventTickets$user(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         name: name == _undefined || name == null
             ? _instance.name
@@ -2154,9 +2158,9 @@ class _CopyWithImpl$Query$GetTickets$tickets$user<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Query$GetTickets$tickets$user<TRes>
-    implements CopyWith$Query$GetTickets$tickets$user<TRes> {
-  _CopyWithStubImpl$Query$GetTickets$tickets$user(this._res);
+class _CopyWithStubImpl$Query$GetTickets$eventTickets$user<TRes>
+    implements CopyWith$Query$GetTickets$eventTickets$user<TRes> {
+  _CopyWithStubImpl$Query$GetTickets$eventTickets$user(this._res);
 
   TRes _res;
 
@@ -2357,6 +2361,27 @@ const documentNodeQueryGetMyTickets = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
+            name: NameNode(value: 'buyerName'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'buyerPhone'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'buyerEmail'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
+          FieldNode(
             name: NameNode(value: 'createdAt'),
             alias: null,
             arguments: [],
@@ -2412,27 +2437,6 @@ const documentNodeQueryGetMyTickets = DocumentNode(definitions: [
                 selectionSet: null,
               ),
             ]),
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerName'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerPhone'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'buyerEmail'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -2600,11 +2604,11 @@ class Query$GetMyTickets$myTickets {
     required this.id,
     required this.code,
     required this.used,
-    required this.createdAt,
-    required this.event,
     this.buyerName,
     this.buyerPhone,
     this.buyerEmail,
+    required this.createdAt,
+    required this.event,
     this.$__typename = 'Ticket',
   });
 
@@ -2612,22 +2616,22 @@ class Query$GetMyTickets$myTickets {
     final l$id = json['id'];
     final l$code = json['code'];
     final l$used = json['used'];
-    final l$createdAt = json['createdAt'];
-    final l$event = json['event'];
     final l$buyerName = json['buyerName'];
     final l$buyerPhone = json['buyerPhone'];
     final l$buyerEmail = json['buyerEmail'];
+    final l$createdAt = json['createdAt'];
+    final l$event = json['event'];
     final l$$__typename = json['__typename'];
     return Query$GetMyTickets$myTickets(
       id: (l$id as String),
       code: (l$code as String),
       used: (l$used as bool),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      event: Query$GetMyTickets$myTickets$event.fromJson(
-          (l$event as Map<String, dynamic>)),
       buyerName: (l$buyerName as String?),
       buyerPhone: (l$buyerPhone as String?),
       buyerEmail: (l$buyerEmail as String?),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      event: Query$GetMyTickets$myTickets$event.fromJson(
+          (l$event as Map<String, dynamic>)),
       $__typename: (l$$__typename as String),
     );
   }
@@ -2638,15 +2642,15 @@ class Query$GetMyTickets$myTickets {
 
   final bool used;
 
-  final DateTime createdAt;
-
-  final Query$GetMyTickets$myTickets$event event;
-
   final String? buyerName;
 
   final String? buyerPhone;
 
   final String? buyerEmail;
+
+  final DateTime createdAt;
+
+  final Query$GetMyTickets$myTickets$event event;
 
   final String $__typename;
 
@@ -2658,16 +2662,16 @@ class Query$GetMyTickets$myTickets {
     _resultData['code'] = l$code;
     final l$used = used;
     _resultData['used'] = l$used;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$event = event;
-    _resultData['event'] = l$event.toJson();
     final l$buyerName = buyerName;
     _resultData['buyerName'] = l$buyerName;
     final l$buyerPhone = buyerPhone;
     _resultData['buyerPhone'] = l$buyerPhone;
     final l$buyerEmail = buyerEmail;
     _resultData['buyerEmail'] = l$buyerEmail;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$event = event;
+    _resultData['event'] = l$event.toJson();
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -2678,21 +2682,21 @@ class Query$GetMyTickets$myTickets {
     final l$id = id;
     final l$code = code;
     final l$used = used;
-    final l$createdAt = createdAt;
-    final l$event = event;
     final l$buyerName = buyerName;
     final l$buyerPhone = buyerPhone;
     final l$buyerEmail = buyerEmail;
+    final l$createdAt = createdAt;
+    final l$event = event;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$code,
       l$used,
-      l$createdAt,
-      l$event,
       l$buyerName,
       l$buyerPhone,
       l$buyerEmail,
+      l$createdAt,
+      l$event,
       l$$__typename,
     ]);
   }
@@ -2721,16 +2725,6 @@ class Query$GetMyTickets$myTickets {
     if (l$used != lOther$used) {
       return false;
     }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$event = event;
-    final lOther$event = other.event;
-    if (l$event != lOther$event) {
-      return false;
-    }
     final l$buyerName = buyerName;
     final lOther$buyerName = other.buyerName;
     if (l$buyerName != lOther$buyerName) {
@@ -2744,6 +2738,16 @@ class Query$GetMyTickets$myTickets {
     final l$buyerEmail = buyerEmail;
     final lOther$buyerEmail = other.buyerEmail;
     if (l$buyerEmail != lOther$buyerEmail) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$event = event;
+    final lOther$event = other.event;
+    if (l$event != lOther$event) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -2777,11 +2781,11 @@ abstract class CopyWith$Query$GetMyTickets$myTickets<TRes> {
     String? id,
     String? code,
     bool? used,
-    DateTime? createdAt,
-    Query$GetMyTickets$myTickets$event? event,
     String? buyerName,
     String? buyerPhone,
     String? buyerEmail,
+    DateTime? createdAt,
+    Query$GetMyTickets$myTickets$event? event,
     String? $__typename,
   });
   CopyWith$Query$GetMyTickets$myTickets$event<TRes> get event;
@@ -2804,11 +2808,11 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets<TRes>
     Object? id = _undefined,
     Object? code = _undefined,
     Object? used = _undefined,
-    Object? createdAt = _undefined,
-    Object? event = _undefined,
     Object? buyerName = _undefined,
     Object? buyerPhone = _undefined,
     Object? buyerEmail = _undefined,
+    Object? createdAt = _undefined,
+    Object? event = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Query$GetMyTickets$myTickets(
@@ -2819,12 +2823,6 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets<TRes>
         used: used == _undefined || used == null
             ? _instance.used
             : (used as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        event: event == _undefined || event == null
-            ? _instance.event
-            : (event as Query$GetMyTickets$myTickets$event),
         buyerName: buyerName == _undefined
             ? _instance.buyerName
             : (buyerName as String?),
@@ -2834,6 +2832,12 @@ class _CopyWithImpl$Query$GetMyTickets$myTickets<TRes>
         buyerEmail: buyerEmail == _undefined
             ? _instance.buyerEmail
             : (buyerEmail as String?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        event: event == _undefined || event == null
+            ? _instance.event
+            : (event as Query$GetMyTickets$myTickets$event),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -2856,11 +2860,11 @@ class _CopyWithStubImpl$Query$GetMyTickets$myTickets<TRes>
     String? id,
     String? code,
     bool? used,
-    DateTime? createdAt,
-    Query$GetMyTickets$myTickets$event? event,
     String? buyerName,
     String? buyerPhone,
     String? buyerEmail,
+    DateTime? createdAt,
+    Query$GetMyTickets$myTickets$event? event,
     String? $__typename,
   }) =>
       _res;
@@ -3619,7 +3623,7 @@ class Mutation$BuyTicket$buyTicket {
     required this.isExternalPayment,
     this.paymentUri,
     this.stripeClientSecret,
-    this.$__typename = 'BuyTicketResponse',
+    this.$__typename = 'BuyTicketOutput',
   });
 
   factory Mutation$BuyTicket$buyTicket.fromJson(Map<String, dynamic> json) {
@@ -3960,9 +3964,13 @@ class _CopyWithStubImpl$Mutation$BuyTicket$buyTicket$ticket<TRes>
 }
 
 class Variables$Mutation$ScanTicket {
-  factory Variables$Mutation$ScanTicket({required String code}) =>
+  factory Variables$Mutation$ScanTicket({
+    required String code,
+    required String eventId,
+  }) =>
       Variables$Mutation$ScanTicket._({
         r'code': code,
+        r'eventId': eventId,
       });
 
   Variables$Mutation$ScanTicket._(this._$data);
@@ -3971,6 +3979,8 @@ class Variables$Mutation$ScanTicket {
     final result$data = <String, dynamic>{};
     final l$code = data['code'];
     result$data['code'] = (l$code as String);
+    final l$eventId = data['eventId'];
+    result$data['eventId'] = (l$eventId as String);
     return Variables$Mutation$ScanTicket._(result$data);
   }
 
@@ -3978,10 +3988,14 @@ class Variables$Mutation$ScanTicket {
 
   String get code => (_$data['code'] as String);
 
+  String get eventId => (_$data['eventId'] as String);
+
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
     final l$code = code;
     result$data['code'] = l$code;
+    final l$eventId = eventId;
+    result$data['eventId'] = l$eventId;
     return result$data;
   }
 
@@ -4005,13 +4019,22 @@ class Variables$Mutation$ScanTicket {
     if (l$code != lOther$code) {
       return false;
     }
+    final l$eventId = eventId;
+    final lOther$eventId = other.eventId;
+    if (l$eventId != lOther$eventId) {
+      return false;
+    }
     return true;
   }
 
   @override
   int get hashCode {
     final l$code = code;
-    return Object.hashAll([l$code]);
+    final l$eventId = eventId;
+    return Object.hashAll([
+      l$code,
+      l$eventId,
+    ]);
   }
 }
 
@@ -4024,7 +4047,10 @@ abstract class CopyWith$Variables$Mutation$ScanTicket<TRes> {
   factory CopyWith$Variables$Mutation$ScanTicket.stub(TRes res) =
       _CopyWithStubImpl$Variables$Mutation$ScanTicket;
 
-  TRes call({String? code});
+  TRes call({
+    String? code,
+    String? eventId,
+  });
 }
 
 class _CopyWithImpl$Variables$Mutation$ScanTicket<TRes>
@@ -4040,10 +4066,15 @@ class _CopyWithImpl$Variables$Mutation$ScanTicket<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? code = _undefined}) =>
+  TRes call({
+    Object? code = _undefined,
+    Object? eventId = _undefined,
+  }) =>
       _then(Variables$Mutation$ScanTicket._({
         ..._instance._$data,
         if (code != _undefined && code != null) 'code': (code as String),
+        if (eventId != _undefined && eventId != null)
+          'eventId': (eventId as String),
       }));
 }
 
@@ -4053,7 +4084,11 @@ class _CopyWithStubImpl$Variables$Mutation$ScanTicket<TRes>
 
   TRes _res;
 
-  call({String? code}) => _res;
+  call({
+    String? code,
+    String? eventId,
+  }) =>
+      _res;
 }
 
 class Mutation$ScanTicket {
@@ -4203,7 +4238,16 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'eventId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'ID'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -4214,40 +4258,16 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'code'),
             value: VariableNode(name: NameNode(value: 'code')),
-          )
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'eventId'),
+            value: VariableNode(name: NameNode(value: 'eventId')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
           FieldNode(
-            name: NameNode(value: 'id'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'code'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'used'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'createdAt'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: null,
-          ),
-          FieldNode(
-            name: NameNode(value: 'event'),
+            name: NameNode(value: 'ticket'),
             alias: null,
             arguments: [],
             directives: [],
@@ -4260,11 +4280,97 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
                 selectionSet: null,
               ),
               FieldNode(
-                name: NameNode(value: 'title'),
+                name: NameNode(value: 'used'),
                 alias: null,
                 arguments: [],
                 directives: [],
                 selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'buyerName'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'buyerPhone'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'buyerEmail'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'createdAt'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
+              FieldNode(
+                name: NameNode(value: 'event'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'title'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
+              ),
+              FieldNode(
+                name: NameNode(value: 'user'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: SelectionSetNode(selections: [
+                  FieldNode(
+                    name: NameNode(value: 'id'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: 'name'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                ]),
               ),
               FieldNode(
                 name: NameNode(value: '__typename'),
@@ -4276,33 +4382,18 @@ const documentNodeMutationScanTicket = DocumentNode(definitions: [
             ]),
           ),
           FieldNode(
-            name: NameNode(value: 'user'),
+            name: NameNode(value: 'message'),
             alias: null,
             arguments: [],
             directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                name: NameNode(value: 'id'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: 'name'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-              FieldNode(
-                name: NameNode(value: '__typename'),
-                alias: null,
-                arguments: [],
-                directives: [],
-                selectionSet: null,
-              ),
-            ]),
+            selectionSet: null,
+          ),
+          FieldNode(
+            name: NameNode(value: 'messageType'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
           ),
           FieldNode(
             name: NameNode(value: '__typename'),
@@ -4533,66 +4624,46 @@ class Mutation$ScanTicket$Widget
 
 class Mutation$ScanTicket$scanTicket {
   Mutation$ScanTicket$scanTicket({
-    required this.id,
-    required this.code,
-    required this.used,
-    required this.createdAt,
-    required this.event,
-    this.user,
-    this.$__typename = 'Ticket',
+    this.ticket,
+    required this.message,
+    required this.messageType,
+    this.$__typename = 'ScanTicketOutput',
   });
 
   factory Mutation$ScanTicket$scanTicket.fromJson(Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$code = json['code'];
-    final l$used = json['used'];
-    final l$createdAt = json['createdAt'];
-    final l$event = json['event'];
-    final l$user = json['user'];
+    final l$ticket = json['ticket'];
+    final l$message = json['message'];
+    final l$messageType = json['messageType'];
     final l$$__typename = json['__typename'];
     return Mutation$ScanTicket$scanTicket(
-      id: (l$id as String),
-      code: (l$code as String),
-      used: (l$used as bool),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      event: Mutation$ScanTicket$scanTicket$event.fromJson(
-          (l$event as Map<String, dynamic>)),
-      user: l$user == null
+      ticket: l$ticket == null
           ? null
-          : Mutation$ScanTicket$scanTicket$user.fromJson(
-              (l$user as Map<String, dynamic>)),
+          : Mutation$ScanTicket$scanTicket$ticket.fromJson(
+              (l$ticket as Map<String, dynamic>)),
+      message: (l$message as String),
+      messageType:
+          fromJson$Enum$ScanOutputMessageType((l$messageType as String)),
       $__typename: (l$$__typename as String),
     );
   }
 
-  final String id;
+  final Mutation$ScanTicket$scanTicket$ticket? ticket;
 
-  final String code;
+  final String message;
 
-  final bool used;
-
-  final DateTime createdAt;
-
-  final Mutation$ScanTicket$scanTicket$event event;
-
-  final Mutation$ScanTicket$scanTicket$user? user;
+  final Enum$ScanOutputMessageType messageType;
 
   final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$code = code;
-    _resultData['code'] = l$code;
-    final l$used = used;
-    _resultData['used'] = l$used;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$event = event;
-    _resultData['event'] = l$event.toJson();
-    final l$user = user;
-    _resultData['user'] = l$user?.toJson();
+    final l$ticket = ticket;
+    _resultData['ticket'] = l$ticket?.toJson();
+    final l$message = message;
+    _resultData['message'] = l$message;
+    final l$messageType = messageType;
+    _resultData['messageType'] =
+        toJson$Enum$ScanOutputMessageType(l$messageType);
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -4600,20 +4671,14 @@ class Mutation$ScanTicket$scanTicket {
 
   @override
   int get hashCode {
-    final l$id = id;
-    final l$code = code;
-    final l$used = used;
-    final l$createdAt = createdAt;
-    final l$event = event;
-    final l$user = user;
+    final l$ticket = ticket;
+    final l$message = message;
+    final l$messageType = messageType;
     final l$$__typename = $__typename;
     return Object.hashAll([
-      l$id,
-      l$code,
-      l$used,
-      l$createdAt,
-      l$event,
-      l$user,
+      l$ticket,
+      l$message,
+      l$messageType,
       l$$__typename,
     ]);
   }
@@ -4627,34 +4692,19 @@ class Mutation$ScanTicket$scanTicket {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
+    final l$ticket = ticket;
+    final lOther$ticket = other.ticket;
+    if (l$ticket != lOther$ticket) {
       return false;
     }
-    final l$code = code;
-    final lOther$code = other.code;
-    if (l$code != lOther$code) {
+    final l$message = message;
+    final lOther$message = other.message;
+    if (l$message != lOther$message) {
       return false;
     }
-    final l$used = used;
-    final lOther$used = other.used;
-    if (l$used != lOther$used) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$event = event;
-    final lOther$event = other.event;
-    if (l$event != lOther$event) {
-      return false;
-    }
-    final l$user = user;
-    final lOther$user = other.user;
-    if (l$user != lOther$user) {
+    final l$messageType = messageType;
+    final lOther$messageType = other.messageType;
+    if (l$messageType != lOther$messageType) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -4685,16 +4735,12 @@ abstract class CopyWith$Mutation$ScanTicket$scanTicket<TRes> {
       _CopyWithStubImpl$Mutation$ScanTicket$scanTicket;
 
   TRes call({
-    String? id,
-    String? code,
-    bool? used,
-    DateTime? createdAt,
-    Mutation$ScanTicket$scanTicket$event? event,
-    Mutation$ScanTicket$scanTicket$user? user,
+    Mutation$ScanTicket$scanTicket$ticket? ticket,
+    String? message,
+    Enum$ScanOutputMessageType? messageType,
     String? $__typename,
   });
-  CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> get event;
-  CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> get user;
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> get ticket;
 }
 
 class _CopyWithImpl$Mutation$ScanTicket$scanTicket<TRes>
@@ -4711,48 +4757,32 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? id = _undefined,
-    Object? code = _undefined,
-    Object? used = _undefined,
-    Object? createdAt = _undefined,
-    Object? event = _undefined,
-    Object? user = _undefined,
+    Object? ticket = _undefined,
+    Object? message = _undefined,
+    Object? messageType = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Mutation$ScanTicket$scanTicket(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        code: code == _undefined || code == null
-            ? _instance.code
-            : (code as String),
-        used: used == _undefined || used == null
-            ? _instance.used
-            : (used as bool),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        event: event == _undefined || event == null
-            ? _instance.event
-            : (event as Mutation$ScanTicket$scanTicket$event),
-        user: user == _undefined
-            ? _instance.user
-            : (user as Mutation$ScanTicket$scanTicket$user?),
+        ticket: ticket == _undefined
+            ? _instance.ticket
+            : (ticket as Mutation$ScanTicket$scanTicket$ticket?),
+        message: message == _undefined || message == null
+            ? _instance.message
+            : (message as String),
+        messageType: messageType == _undefined || messageType == null
+            ? _instance.messageType
+            : (messageType as Enum$ScanOutputMessageType),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
       ));
 
-  CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> get event {
-    final local$event = _instance.event;
-    return CopyWith$Mutation$ScanTicket$scanTicket$event(
-        local$event, (e) => call(event: e));
-  }
-
-  CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> get user {
-    final local$user = _instance.user;
-    return local$user == null
-        ? CopyWith$Mutation$ScanTicket$scanTicket$user.stub(_then(_instance))
-        : CopyWith$Mutation$ScanTicket$scanTicket$user(
-            local$user, (e) => call(user: e));
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> get ticket {
+    final local$ticket = _instance.ticket;
+    return local$ticket == null
+        ? CopyWith$Mutation$ScanTicket$scanTicket$ticket.stub(_then(_instance))
+        : CopyWith$Mutation$ScanTicket$scanTicket$ticket(
+            local$ticket, (e) => call(ticket: e));
   }
 }
 
@@ -4763,36 +4793,322 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket<TRes>
   TRes _res;
 
   call({
-    String? id,
-    String? code,
-    bool? used,
-    DateTime? createdAt,
-    Mutation$ScanTicket$scanTicket$event? event,
-    Mutation$ScanTicket$scanTicket$user? user,
+    Mutation$ScanTicket$scanTicket$ticket? ticket,
+    String? message,
+    Enum$ScanOutputMessageType? messageType,
     String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> get event =>
-      CopyWith$Mutation$ScanTicket$scanTicket$event.stub(_res);
-
-  CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> get user =>
-      CopyWith$Mutation$ScanTicket$scanTicket$user.stub(_res);
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> get ticket =>
+      CopyWith$Mutation$ScanTicket$scanTicket$ticket.stub(_res);
 }
 
-class Mutation$ScanTicket$scanTicket$event {
-  Mutation$ScanTicket$scanTicket$event({
+class Mutation$ScanTicket$scanTicket$ticket {
+  Mutation$ScanTicket$scanTicket$ticket({
+    required this.id,
+    required this.used,
+    this.buyerName,
+    this.buyerPhone,
+    this.buyerEmail,
+    required this.createdAt,
+    required this.event,
+    this.user,
+    this.$__typename = 'Ticket',
+  });
+
+  factory Mutation$ScanTicket$scanTicket$ticket.fromJson(
+      Map<String, dynamic> json) {
+    final l$id = json['id'];
+    final l$used = json['used'];
+    final l$buyerName = json['buyerName'];
+    final l$buyerPhone = json['buyerPhone'];
+    final l$buyerEmail = json['buyerEmail'];
+    final l$createdAt = json['createdAt'];
+    final l$event = json['event'];
+    final l$user = json['user'];
+    final l$$__typename = json['__typename'];
+    return Mutation$ScanTicket$scanTicket$ticket(
+      id: (l$id as String),
+      used: (l$used as bool),
+      buyerName: (l$buyerName as String?),
+      buyerPhone: (l$buyerPhone as String?),
+      buyerEmail: (l$buyerEmail as String?),
+      createdAt: DateTime.parse((l$createdAt as String)),
+      event: Mutation$ScanTicket$scanTicket$ticket$event.fromJson(
+          (l$event as Map<String, dynamic>)),
+      user: l$user == null
+          ? null
+          : Mutation$ScanTicket$scanTicket$ticket$user.fromJson(
+              (l$user as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
+  }
+
+  final String id;
+
+  final bool used;
+
+  final String? buyerName;
+
+  final String? buyerPhone;
+
+  final String? buyerEmail;
+
+  final DateTime createdAt;
+
+  final Mutation$ScanTicket$scanTicket$ticket$event event;
+
+  final Mutation$ScanTicket$scanTicket$ticket$user? user;
+
+  final String $__typename;
+
+  Map<String, dynamic> toJson() {
+    final _resultData = <String, dynamic>{};
+    final l$id = id;
+    _resultData['id'] = l$id;
+    final l$used = used;
+    _resultData['used'] = l$used;
+    final l$buyerName = buyerName;
+    _resultData['buyerName'] = l$buyerName;
+    final l$buyerPhone = buyerPhone;
+    _resultData['buyerPhone'] = l$buyerPhone;
+    final l$buyerEmail = buyerEmail;
+    _resultData['buyerEmail'] = l$buyerEmail;
+    final l$createdAt = createdAt;
+    _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$event = event;
+    _resultData['event'] = l$event.toJson();
+    final l$user = user;
+    _resultData['user'] = l$user?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
+    return _resultData;
+  }
+
+  @override
+  int get hashCode {
+    final l$id = id;
+    final l$used = used;
+    final l$buyerName = buyerName;
+    final l$buyerPhone = buyerPhone;
+    final l$buyerEmail = buyerEmail;
+    final l$createdAt = createdAt;
+    final l$event = event;
+    final l$user = user;
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$id,
+      l$used,
+      l$buyerName,
+      l$buyerPhone,
+      l$buyerEmail,
+      l$createdAt,
+      l$event,
+      l$user,
+      l$$__typename,
+    ]);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Mutation$ScanTicket$scanTicket$ticket ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$id = id;
+    final lOther$id = other.id;
+    if (l$id != lOther$id) {
+      return false;
+    }
+    final l$used = used;
+    final lOther$used = other.used;
+    if (l$used != lOther$used) {
+      return false;
+    }
+    final l$buyerName = buyerName;
+    final lOther$buyerName = other.buyerName;
+    if (l$buyerName != lOther$buyerName) {
+      return false;
+    }
+    final l$buyerPhone = buyerPhone;
+    final lOther$buyerPhone = other.buyerPhone;
+    if (l$buyerPhone != lOther$buyerPhone) {
+      return false;
+    }
+    final l$buyerEmail = buyerEmail;
+    final lOther$buyerEmail = other.buyerEmail;
+    if (l$buyerEmail != lOther$buyerEmail) {
+      return false;
+    }
+    final l$createdAt = createdAt;
+    final lOther$createdAt = other.createdAt;
+    if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$event = event;
+    final lOther$event = other.event;
+    if (l$event != lOther$event) {
+      return false;
+    }
+    final l$user = user;
+    final lOther$user = other.user;
+    if (l$user != lOther$user) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
+    return true;
+  }
+}
+
+extension UtilityExtension$Mutation$ScanTicket$scanTicket$ticket
+    on Mutation$ScanTicket$scanTicket$ticket {
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket<
+          Mutation$ScanTicket$scanTicket$ticket>
+      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$ticket(
+            this,
+            (i) => i,
+          );
+}
+
+abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
+  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket(
+    Mutation$ScanTicket$scanTicket$ticket instance,
+    TRes Function(Mutation$ScanTicket$scanTicket$ticket) then,
+  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket;
+
+  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket;
+
+  TRes call({
+    String? id,
+    bool? used,
+    String? buyerName,
+    String? buyerPhone,
+    String? buyerEmail,
+    DateTime? createdAt,
+    Mutation$ScanTicket$scanTicket$ticket$event? event,
+    Mutation$ScanTicket$scanTicket$ticket$user? user,
+    String? $__typename,
+  });
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> get event;
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> get user;
+}
+
+class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
+    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
+  _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket(
+    this._instance,
+    this._then,
+  );
+
+  final Mutation$ScanTicket$scanTicket$ticket _instance;
+
+  final TRes Function(Mutation$ScanTicket$scanTicket$ticket) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? id = _undefined,
+    Object? used = _undefined,
+    Object? buyerName = _undefined,
+    Object? buyerPhone = _undefined,
+    Object? buyerEmail = _undefined,
+    Object? createdAt = _undefined,
+    Object? event = _undefined,
+    Object? user = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$ScanTicket$scanTicket$ticket(
+        id: id == _undefined || id == null ? _instance.id : (id as String),
+        used: used == _undefined || used == null
+            ? _instance.used
+            : (used as bool),
+        buyerName: buyerName == _undefined
+            ? _instance.buyerName
+            : (buyerName as String?),
+        buyerPhone: buyerPhone == _undefined
+            ? _instance.buyerPhone
+            : (buyerPhone as String?),
+        buyerEmail: buyerEmail == _undefined
+            ? _instance.buyerEmail
+            : (buyerEmail as String?),
+        createdAt: createdAt == _undefined || createdAt == null
+            ? _instance.createdAt
+            : (createdAt as DateTime),
+        event: event == _undefined || event == null
+            ? _instance.event
+            : (event as Mutation$ScanTicket$scanTicket$ticket$event),
+        user: user == _undefined
+            ? _instance.user
+            : (user as Mutation$ScanTicket$scanTicket$ticket$user?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
+
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> get event {
+    final local$event = _instance.event;
+    return CopyWith$Mutation$ScanTicket$scanTicket$ticket$event(
+        local$event, (e) => call(event: e));
+  }
+
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> get user {
+    final local$user = _instance.user;
+    return local$user == null
+        ? CopyWith$Mutation$ScanTicket$scanTicket$ticket$user.stub(
+            _then(_instance))
+        : CopyWith$Mutation$ScanTicket$scanTicket$ticket$user(
+            local$user, (e) => call(user: e));
+  }
+}
+
+class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket<TRes>
+    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket<TRes> {
+  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket(this._res);
+
+  TRes _res;
+
+  call({
+    String? id,
+    bool? used,
+    String? buyerName,
+    String? buyerPhone,
+    String? buyerEmail,
+    DateTime? createdAt,
+    Mutation$ScanTicket$scanTicket$ticket$event? event,
+    Mutation$ScanTicket$scanTicket$ticket$user? user,
+    String? $__typename,
+  }) =>
+      _res;
+
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> get event =>
+      CopyWith$Mutation$ScanTicket$scanTicket$ticket$event.stub(_res);
+
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> get user =>
+      CopyWith$Mutation$ScanTicket$scanTicket$ticket$user.stub(_res);
+}
+
+class Mutation$ScanTicket$scanTicket$ticket$event {
+  Mutation$ScanTicket$scanTicket$ticket$event({
     required this.id,
     required this.title,
     this.$__typename = 'Event',
   });
 
-  factory Mutation$ScanTicket$scanTicket$event.fromJson(
+  factory Mutation$ScanTicket$scanTicket$ticket$event.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$title = json['title'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket$scanTicket$event(
+    return Mutation$ScanTicket$scanTicket$ticket$event(
       id: (l$id as String),
       title: (l$title as String),
       $__typename: (l$$__typename as String),
@@ -4833,7 +5149,7 @@ class Mutation$ScanTicket$scanTicket$event {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket$scanTicket$event ||
+    if (other is! Mutation$ScanTicket$scanTicket$ticket$event ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -4856,24 +5172,24 @@ class Mutation$ScanTicket$scanTicket$event {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket$scanTicket$event
-    on Mutation$ScanTicket$scanTicket$event {
-  CopyWith$Mutation$ScanTicket$scanTicket$event<
-          Mutation$ScanTicket$scanTicket$event>
-      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$event(
+extension UtilityExtension$Mutation$ScanTicket$scanTicket$ticket$event
+    on Mutation$ScanTicket$scanTicket$ticket$event {
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<
+          Mutation$ScanTicket$scanTicket$ticket$event>
+      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$ticket$event(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> {
-  factory CopyWith$Mutation$ScanTicket$scanTicket$event(
-    Mutation$ScanTicket$scanTicket$event instance,
-    TRes Function(Mutation$ScanTicket$scanTicket$event) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$event;
+abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
+  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$event(
+    Mutation$ScanTicket$scanTicket$ticket$event instance,
+    TRes Function(Mutation$ScanTicket$scanTicket$ticket$event) then,
+  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event;
 
-  factory CopyWith$Mutation$ScanTicket$scanTicket$event.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$event;
+  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$event.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event;
 
   TRes call({
     String? id,
@@ -4882,16 +5198,16 @@ abstract class CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ScanTicket$scanTicket$event<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket$scanTicket$event(
+class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
+    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
+  _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$event(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket$scanTicket$event _instance;
+  final Mutation$ScanTicket$scanTicket$ticket$event _instance;
 
-  final TRes Function(Mutation$ScanTicket$scanTicket$event) _then;
+  final TRes Function(Mutation$ScanTicket$scanTicket$ticket$event) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -4900,7 +5216,7 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$event<TRes>
     Object? title = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket$scanTicket$event(
+      _then(Mutation$ScanTicket$scanTicket$ticket$event(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         title: title == _undefined || title == null
             ? _instance.title
@@ -4911,9 +5227,9 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$event<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$event<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$event<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$event(this._res);
+class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event<TRes>
+    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$event<TRes> {
+  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$event(this._res);
 
   TRes _res;
 
@@ -4925,19 +5241,19 @@ class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$event<TRes>
       _res;
 }
 
-class Mutation$ScanTicket$scanTicket$user {
-  Mutation$ScanTicket$scanTicket$user({
+class Mutation$ScanTicket$scanTicket$ticket$user {
+  Mutation$ScanTicket$scanTicket$ticket$user({
     required this.id,
     required this.name,
     this.$__typename = 'User',
   });
 
-  factory Mutation$ScanTicket$scanTicket$user.fromJson(
+  factory Mutation$ScanTicket$scanTicket$ticket$user.fromJson(
       Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$name = json['name'];
     final l$$__typename = json['__typename'];
-    return Mutation$ScanTicket$scanTicket$user(
+    return Mutation$ScanTicket$scanTicket$ticket$user(
       id: (l$id as String),
       name: (l$name as String),
       $__typename: (l$$__typename as String),
@@ -4978,7 +5294,7 @@ class Mutation$ScanTicket$scanTicket$user {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! Mutation$ScanTicket$scanTicket$user ||
+    if (other is! Mutation$ScanTicket$scanTicket$ticket$user ||
         runtimeType != other.runtimeType) {
       return false;
     }
@@ -5001,24 +5317,24 @@ class Mutation$ScanTicket$scanTicket$user {
   }
 }
 
-extension UtilityExtension$Mutation$ScanTicket$scanTicket$user
-    on Mutation$ScanTicket$scanTicket$user {
-  CopyWith$Mutation$ScanTicket$scanTicket$user<
-          Mutation$ScanTicket$scanTicket$user>
-      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$user(
+extension UtilityExtension$Mutation$ScanTicket$scanTicket$ticket$user
+    on Mutation$ScanTicket$scanTicket$ticket$user {
+  CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<
+          Mutation$ScanTicket$scanTicket$ticket$user>
+      get copyWith => CopyWith$Mutation$ScanTicket$scanTicket$ticket$user(
             this,
             (i) => i,
           );
 }
 
-abstract class CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> {
-  factory CopyWith$Mutation$ScanTicket$scanTicket$user(
-    Mutation$ScanTicket$scanTicket$user instance,
-    TRes Function(Mutation$ScanTicket$scanTicket$user) then,
-  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$user;
+abstract class CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> {
+  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$user(
+    Mutation$ScanTicket$scanTicket$ticket$user instance,
+    TRes Function(Mutation$ScanTicket$scanTicket$ticket$user) then,
+  ) = _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$user;
 
-  factory CopyWith$Mutation$ScanTicket$scanTicket$user.stub(TRes res) =
-      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$user;
+  factory CopyWith$Mutation$ScanTicket$scanTicket$ticket$user.stub(TRes res) =
+      _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$user;
 
   TRes call({
     String? id,
@@ -5027,16 +5343,16 @@ abstract class CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> {
   });
 }
 
-class _CopyWithImpl$Mutation$ScanTicket$scanTicket$user<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> {
-  _CopyWithImpl$Mutation$ScanTicket$scanTicket$user(
+class _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$user<TRes>
+    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> {
+  _CopyWithImpl$Mutation$ScanTicket$scanTicket$ticket$user(
     this._instance,
     this._then,
   );
 
-  final Mutation$ScanTicket$scanTicket$user _instance;
+  final Mutation$ScanTicket$scanTicket$ticket$user _instance;
 
-  final TRes Function(Mutation$ScanTicket$scanTicket$user) _then;
+  final TRes Function(Mutation$ScanTicket$scanTicket$ticket$user) _then;
 
   static const _undefined = <dynamic, dynamic>{};
 
@@ -5045,7 +5361,7 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$user<TRes>
     Object? name = _undefined,
     Object? $__typename = _undefined,
   }) =>
-      _then(Mutation$ScanTicket$scanTicket$user(
+      _then(Mutation$ScanTicket$scanTicket$ticket$user(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         name: name == _undefined || name == null
             ? _instance.name
@@ -5056,9 +5372,9 @@ class _CopyWithImpl$Mutation$ScanTicket$scanTicket$user<TRes>
       ));
 }
 
-class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$user<TRes>
-    implements CopyWith$Mutation$ScanTicket$scanTicket$user<TRes> {
-  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$user(this._res);
+class _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$user<TRes>
+    implements CopyWith$Mutation$ScanTicket$scanTicket$ticket$user<TRes> {
+  _CopyWithStubImpl$Mutation$ScanTicket$scanTicket$ticket$user(this._res);
 
   TRes _res;
 

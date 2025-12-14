@@ -45,6 +45,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text("Vous devez d'abbord vous connecter à votre compte."),
+                      dismissDirection: DismissDirection.horizontal,
                       behavior: SnackBarBehavior.floating,
                       showCloseIcon: true,
                     ),

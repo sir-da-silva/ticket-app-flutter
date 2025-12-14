@@ -1,7 +1,14 @@
+import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
-import 'package:my_first_flutter_app/utils/date_parser.dart';
+
+class Status {
+  String description;
+  Color color;
+
+  Status(this.description, this.color);
+}
 
 class Ticket extends StatelessWidget {
   final String id;
@@ -10,7 +17,7 @@ class Ticket extends StatelessWidget {
   final String eventTitle;
   final String eventLocation;
   final String eventPicture;
-  final CustomDateParser date;
+  final DateTime date;
 
   Ticket.fromtMyTickets(Query$GetMyTickets$myTickets data, {super.key})
     : id = data.id,
@@ -19,163 +26,221 @@ class Ticket extends StatelessWidget {
       eventTitle = data.event.title,
       eventLocation = data.event.location,
       eventPicture = data.event.picture,
-      date = CustomDateParser(date: data.event.date);
+      date = data.event.date;
 
-  // Duration? get _timeDiff {
-  //   if (eventDateTime == null) return null;
-  //   return eventDateTime!.difference(DateTime.now());
-  // }
+  Status _getStatus() {
+    final diff = date.difference(DateTime.now());
 
-  String _formatCountdown(Duration d) {
-    final bool isPast = d.isNegative;
-    final Duration abs = d.abs();
-    final int days = abs.inDays;
-    final int hours = abs.inHours % 24;
-    final int minutes = abs.inMinutes % 60;
-    final String formatted = '${days}j ${hours}h ${minutes}m';
-    return isPast ? '+ $formatted' : '- $formatted';
+    String plural(int value) {
+      return value > 1 ? 's' : '';
+    }
+
+    if (!diff.isNegative) {
+      final days = diff.inDays;
+      final hours = diff.inHours;
+      final minutes = diff.inMinutes;
+
+      if (days > 0) {
+        return Status("Dans $days  jour${plural(days)}", Colors.blue);
+      } else if (hours > 0) {
+        return Status("Dans $hours heure${plural(hours)}", Colors.blue);
+      } else if (minutes > 29) {
+        return Status("Dans $minutes minute${plural(minutes)}", Colors.blue);
+      } else {
+        return Status("Preparez vous !", Colors.blueAccent);
+      }
+    } else {
+      final days = diff.inDays.abs();
+      final hours = diff.inHours.abs();
+      final minutes = diff.inMinutes.abs();
+
+      if (minutes < 15 && !checked) {
+        return Status("Commence déjà", Colors.blueAccent);
+      } else if (minutes < 15 && checked) {
+        return Status("Vous y êtes", Colors.green);
+      } else if (minutes < 30 && checked) {
+        return Status("Amusez vous bien !", Colors.green);
+      } else if (minutes < 60) {
+        return Status("Il y a $minutes minute${plural(minutes)}", Colors.orange);
+      } else if (hours < 24) {
+        return Status("Il y a $hours heure${plural(hours)}", Colors.orange);
+      } else if (days < 7) {
+        return Status("Il y a $days jour${plural(days)}", Colors.orange);
+      } else if (days < 30) {
+        final weeks = (days / 7).round();
+        return Status("Il y a $weeks semaine${plural(weeks)}", Colors.orange);
+      } else if (days < 365) {
+        final months = (days / 30).round();
+        return Status("Il y a $months moi${plural(months)}", Colors.orange);
+      } else {
+        final years = (days / 365).round();
+        return Status("Il y a $years année${plural(years)}", Colors.orange);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      // color: Theme.of(context).colorScheme.primaryFixed,
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () {
-          Navigator.pushNamed(context, RouteNames.ticketDetail, arguments: id);
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 42,
-                        height: 42,
-                        decoration: BoxDecoration(
-                          color: Colors.blue.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            eventPicture,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Icon(
-                                Icons.image,
-                                size: 18,
-                                color: Colors.grey.withValues(alpha: 0.5),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
+    final status = _getStatus();
 
-                      // Used badge
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(12),
+    return ClipPath(
+      clipper: MultipleRoundedPointsClipper(Sides.horizontal, heightOfPoint: 10),
+      child: ClipPath(
+        clipper: TicketPassClipper(position: 100, holeRadius: 32),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          margin: const EdgeInsets.symmetric(vertical: 4),
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, RouteNames.ticketDetail, arguments: id);
+            },
+            overlayColor: WidgetStatePropertyAll(Colors.transparent),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 42,
+                            height: 42,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.5),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                eventPicture,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Icon(
+                                    Icons.image,
+                                    size: 18,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.surface.withValues(alpha: 0.9),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              status.description,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: status.color,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+
+                      Text(
+                        eventTitle,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+
+                      Row(
+                        spacing: 8,
+                        children: [
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+                              child: Icon(
+                                Icons.location_on_rounded,
+                                size: 14,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              eventLocation,
+                              style: TextStyle(
+                                fontSize: 16,
+                                overflow: TextOverflow.ellipsis,
+                                color: Theme.of(context).colorScheme.surface,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 4),
+                      Row(
+                        spacing: 8,
+                        children: [
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.surface,
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 3, horizontal: 3),
+                              child: Icon(
+                                Icons.badge,
+                                size: 14,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              buyerName,
+                              style: TextStyle(
+                                fontSize: 16,
+                                overflow: TextOverflow.ellipsis,
+                                color: Theme.of(context).colorScheme.surface,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: 5),
+                      Center(
                         child: Text(
-                          "Dans 23 jours",
+                          "Plus de detail",
                           style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).colorScheme.primaryFixedDim,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-
-                  Text(
-                    eventTitle,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Row(
-                    spacing: 8,
-                    children: [
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondaryFixed,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 3, horizontal: 3),
-                          child: Icon(
-                            Icons.location_on_rounded,
-                            size: 14,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          // child: Text(icon, style: TextStyle(fontSize: 12)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          eventLocation,
-                          style: TextStyle(fontSize: 16, overflow: TextOverflow.ellipsis),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 4),
-                  Row(
-                    spacing: 8,
-                    children: [
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.secondaryFixed,
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 3, horizontal: 3),
-                          child: Icon(
-                            Icons.badge,
-                            size: 14,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                          // child: Text(icon, style: TextStyle(fontSize: 12)),
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          buyerName,
-                          style: TextStyle(fontSize: 16, overflow: TextOverflow.ellipsis),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: 10),
-                  Center(
-                    child: Text(
-                      "Plus de detail",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primaryFixedDim,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

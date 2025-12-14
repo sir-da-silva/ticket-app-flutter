@@ -5,8 +5,15 @@ import 'package:my_first_flutter_app/components/login_required.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
 import 'package:provider/provider.dart';
 
-class NotificationPage extends StatelessWidget {
+class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
+
+  @override
+  State<NotificationPage> createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> with TickerProviderStateMixin {
+  List<SlidableController> controllers = [];
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +22,7 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Notifications"),
+        actionsPadding: const EdgeInsets.only(right: 16),
         actions: [
           if (auth.isAuthenticated)
             IconButton(
@@ -44,44 +52,51 @@ class NotificationPage extends StatelessWidget {
             )
           : SlidableAutoCloseBehavior(
               child: Padding(
-                padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 16),
                 child: ListView.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) {
+                    if (controllers.length <= index) {
+                      controllers.add(SlidableController(this));
+                    }
+
                     return Container(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceContainerLow,
+                        color: Theme.of(context).colorScheme.surfaceContainer,
                         borderRadius: BorderRadius.circular(5),
                       ),
                       margin: EdgeInsets.only(bottom: 12),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: Slidable(
-                          startActionPane: ActionPane(
-                            motion: const DrawerMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (_) {},
-                                backgroundColor: Colors.green.withValues(alpha: 0.05),
-                                foregroundColor: Colors.green,
-                                icon: Icons.check,
-                                label: 'Vu',
-                              ),
-                            ],
-                          ),
+                          enabled: false,
+                          closeOnScroll: true,
+                          controller: controllers[index],
                           endActionPane: ActionPane(
                             motion: const StretchMotion(),
                             children: [
                               SlidableAction(
                                 onPressed: (_) {},
+                                backgroundColor: Colors.green.withValues(alpha: 0.05),
+                                foregroundColor: Colors.green,
+                                icon: FontAwesomeIcons.check,
+                                label: 'Vu',
+                                padding: EdgeInsets.all(0),
+                              ),
+                              SlidableAction(
+                                onPressed: (_) {},
                                 backgroundColor: Colors.red.withValues(alpha: 0.05),
                                 foregroundColor: Colors.red,
-                                icon: Icons.delete,
+                                icon: FontAwesomeIcons.trash,
                                 label: 'Supprimer',
+                                padding: EdgeInsets.all(0),
                               ),
                             ],
                           ),
                           child: ListTile(
+                            isThreeLine: true,
+                            visualDensity: VisualDensity.compact,
+                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                             leading: CircleAvatar(
                               radius: 20,
                               child: Icon(
@@ -96,14 +111,13 @@ class NotificationPage extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
                               ),
                             ),
-
                             title: Text("Notification 1"),
-                            isThreeLine: true,
-                            visualDensity: VisualDensity.compact,
-                            contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             subtitle: Text("This is the detail of notification 1."),
+                            onLongPress: () {
+                              controllers[index].openEndActionPane();
+                            },
                             onTap: () {
-                              //
+                              controllers[index].close();
                             },
                           ),
                         ),

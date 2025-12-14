@@ -8,9 +8,9 @@ import 'package:my_first_flutter_app/components/ticket.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
+import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
 import 'package:my_first_flutter_app/services/auth_provider.dart';
-import 'package:my_first_flutter_app/utils/get_user_badge_color.dart';
 import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
@@ -54,6 +54,7 @@ class ProfilePage extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Impossible d'ouvrir le lien."),
+                  dismissDirection: DismissDirection.horizontal,
                   behavior: SnackBarBehavior.floating,
                 ),
               );
@@ -132,10 +133,23 @@ class ProfilePage extends StatelessWidget {
                                 width: double.infinity,
                                 height: 180 + 24 * 2,
                                 child: Center(
-                                  child: Text(
-                                    "Erreur lors de la récuperation \n du profil. Glissez vers le bas \n pour réactualiser.",
-                                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                                    textAlign: TextAlign.center,
+                                  child: Column(
+                                    spacing: 8,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.error_outline,
+                                        size: 50,
+                                        color: Colors.grey.withValues(alpha: 0.5),
+                                        weight: 1,
+                                      ),
+                                      Text(
+                                        "Erreur ! Glissez vers le bas \n pour réactualiser.",
+                                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               )
@@ -188,11 +202,13 @@ class ProfilePage extends StatelessWidget {
                                             color: Theme.of(context).colorScheme.onSurface,
                                           ),
                                         ),
-                                        Icon(
-                                          Icons.verified_rounded,
-                                          size: 20,
-                                          color: getUserBadgeColor(data.me!.badge),
-                                        ),
+                                        if (data.me!.badge == Enum$UserBadge.GOLD ||
+                                            data.me!.badge == Enum$UserBadge.SILVER)
+                                          Icon(
+                                            Icons.verified_rounded,
+                                            size: 20,
+                                            color: Colors.blue,
+                                          ),
                                       ],
                                     ),
 
@@ -279,7 +295,7 @@ class ProfilePage extends StatelessWidget {
                           children: result.isLoading
                               ? [
                                   Padding(
-                                    padding: EdgeInsetsGeometry.fromLTRB(16, 100, 16, 100),
+                                    padding: EdgeInsets.fromLTRB(16, 100, 16, 100),
                                     child: Center(child: CircularProgressIndicator()),
                                   ),
                                 ]
@@ -295,18 +311,31 @@ class ProfilePage extends StatelessWidget {
 
                                   if (data?.followedEvents == null)
                                     Padding(
-                                      padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
+                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
                                       child: Center(
-                                        child: Text(
-                                          "Erreur lors de la récuperation \n des évenements. Glissez vers le bas \n pour réactualiser.",
-                                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                                          textAlign: TextAlign.center,
+                                        child: Column(
+                                          spacing: 8,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.error_outline,
+                                              size: 50,
+                                              color: Colors.grey.withValues(alpha: 0.5),
+                                              weight: 1,
+                                            ),
+                                            Text(
+                                              "Erreur ! Glissez vers le bas \n pour réactualiser.",
+                                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     )
                                   else if (data!.followedEvents.isEmpty)
                                     Padding(
-                                      padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
+                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
                                       child: Center(
                                         child: Column(
                                           spacing: 10,
@@ -318,7 +347,14 @@ class ProfilePage extends StatelessWidget {
                                               style: TextStyle(fontSize: 16, color: Colors.grey),
                                               textAlign: TextAlign.center,
                                             ),
-                                            ElevatedButton.icon(
+                                            TextButton.icon(
+                                              style: ButtonStyle(
+                                                backgroundColor: WidgetStatePropertyAll(
+                                                  Theme.of(
+                                                    context,
+                                                  ).primaryColor.withValues(alpha: 0.05),
+                                                ),
+                                              ),
                                               onPressed: () {
                                                 Navigator.pushNamed(context, RouteNames.search);
                                               },
@@ -388,22 +424,48 @@ class ProfilePage extends StatelessWidget {
 
                                   if (data?.myTickets == null)
                                     Padding(
-                                      padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
+                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
                                       child: Center(
-                                        child: Text(
-                                          "Erreur lors de la récuperation \n des tickets. Glissez vers le bas \n pour réactualiser.",
-                                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                                          textAlign: TextAlign.center,
+                                        child: Column(
+                                          spacing: 8,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.error_outline,
+                                              size: 50,
+                                              color: Colors.grey.withValues(alpha: 0.5),
+                                              weight: 1,
+                                            ),
+                                            Text(
+                                              "Erreur ! Glissez vers le bas \n pour réactualiser.",
+                                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     )
                                   else if (data!.myTickets.isEmpty)
                                     Padding(
-                                      padding: EdgeInsetsGeometry.fromLTRB(16, 60, 16, 60),
-                                      child: Text(
-                                        "Les tickets que vous achetez \n apparaitront ici.",
-                                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                                        textAlign: TextAlign.center,
+                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                      child: Column(
+                                        spacing: 8,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.confirmation_num_outlined,
+                                            size: 50,
+                                            color: Colors.grey.withValues(alpha: 0.5),
+                                            weight: 1,
+                                          ),
+                                          Text(
+                                            "Les tickets que vous achetez \n apparaitront ici.",
+                                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
                                     )
                                   else

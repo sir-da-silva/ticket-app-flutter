@@ -109,8 +109,8 @@ class _EditEventPageState extends State<EditEventPage> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text("Mise a jour de l'événement effectuée avec succès."),
+                            dismissDirection: DismissDirection.horizontal,
                             behavior: SnackBarBehavior.floating,
-                            backgroundColor: Colors.green,
                           ),
                         );
 
@@ -191,7 +191,7 @@ class _EditEventPageState extends State<EditEventPage> {
                             const SizedBox(height: 16),
                             IntrinsicWidth(
                               child: Container(
-                                padding: EdgeInsetsGeometry.symmetric(horizontal: 10, vertical: 5),
+                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                                 decoration: BoxDecoration(
                                   color: Theme.of(
                                     context,
@@ -368,7 +368,7 @@ class _EditEventPageState extends State<EditEventPage> {
                                       runMutation(
                                         Variables$Mutation$UpdateEvent(
                                           input: Input$UpdateEventInput(
-                                            id: widget.eventId,
+                                            id: "widget.eventId",
                                             description: _descriptionController.text,
                                             date: dateWithTime,
                                             location: _locationController.text,
