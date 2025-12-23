@@ -83,7 +83,7 @@ type Event {
   id: ID!
   title: String!
   description: String!
-  picture: Upload!
+  picture: String!
   location: String!
   category: String!
   date: DateTime!
@@ -158,7 +158,7 @@ type Query {
   myTickets: [Ticket!]!
   me: Me
   user(id: ID!): User
-  users: [User!]!
+  search(input: SearchInput!): SearchResults!
 }
 
 enum Role {
@@ -172,6 +172,23 @@ enum ScanOutputMessageCode {
   TICKET_USED
   SUCCESS
   UNKNOWN
+}
+
+input SearchInput {
+  search: String!
+  include: SearchInputIncludes!
+}
+
+input SearchInputIncludes {
+  events: Boolean!
+  users: Boolean!
+  actualities: Boolean!
+}
+
+type SearchResults {
+  users: [User!]!
+  events: [Event!]!
+  actualities: [Actuality!]!
 }
 
 type Ticket {
@@ -203,8 +220,6 @@ input UpdateUserInput {
   instagram: String
   tiktok: String
 }
-
-scalar Upload
 
 type User {
   id: ID!

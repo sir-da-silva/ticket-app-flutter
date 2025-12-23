@@ -274,22 +274,33 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 24),
 
                           /// 🔁 Lien vers la page de connexion
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Déjà un compte ? "),
-                              GestureDetector(
-                                onTap: () =>
-                                    Navigator.pushReplacementNamed(context, RouteNames.login),
-                                child: Text(
-                                  "Se connecter",
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).colorScheme.onPrimaryFixed,
+                          RichText(
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: "Vous avez déjà un compte ? ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                color: Theme.of(context).colorScheme.onPrimaryFixed,
+                              ),
+                              children: [
+                                WidgetSpan(
+                                  alignment: PlaceholderAlignment.middle,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushReplacementNamed(context, RouteNames.login);
+                                    },
+                                    child: Text(
+                                      "Se connecter",
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).colorScheme.onPrimaryFixed,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
 
                           SizedBox(height: 20),

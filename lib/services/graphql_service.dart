@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'jwt_service.dart';
 
 class GraphQLService {
-  static const String serverUrl = 'http://10.80.69.3:4000/graphql';
+  static const String serverUrl = 'http://10.80.69.186:4000/graphql';
 
   static GraphQLClient? _client;
 
@@ -47,7 +47,9 @@ class GraphQLService {
       );
     }
     if (error?.linkException != null) {
-      print(error);
+      print("----------------------------------------");
+      print(error?.linkException?.originalStackTrace);
+      print("----------------------------------------");
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

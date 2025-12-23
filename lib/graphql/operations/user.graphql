@@ -37,21 +37,6 @@ query GetUser($id: ID!) {
   }
 }
 
-query GetUsers {
-  users {
-    id
-    name
-    email
-    picture
-    badge
-    phone
-    whatsapp
-    facebook
-    instagram
-    tiktok
-  }
-}
-
 mutation Login($input: LoginInput!) {
   login(input: $input) {
     token

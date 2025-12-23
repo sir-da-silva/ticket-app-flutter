@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:my_first_flutter_app/components/event.dart';
+import 'package:my_first_flutter_app/components/event_minimal.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/ticket.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
@@ -11,16 +11,16 @@ import 'package:my_first_flutter_app/services/graphql_service.dart';
 import 'package:my_first_flutter_app/services/string_validators.dart';
 import 'package:provider/provider.dart';
 
-class CreateTicketPage extends StatefulWidget {
+class BuyTicketPage extends StatefulWidget {
   final String eventId;
 
-  const CreateTicketPage({super.key, required this.eventId});
+  const BuyTicketPage({super.key, required this.eventId});
 
   @override
-  State<CreateTicketPage> createState() => _TicketPurchasePageState();
+  State<BuyTicketPage> createState() => _TicketPurchasePageState();
 }
 
-class _TicketPurchasePageState extends State<CreateTicketPage> {
+class _TicketPurchasePageState extends State<BuyTicketPage> {
   final _formKey = GlobalKey<FormState>();
 
   final _nameController = TextEditingController();
@@ -64,18 +64,51 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
               ? Center(child: CircularProgressIndicator())
               : data?.event == null
               ? Center(
-                  child: Text(
-                    "Erreur lors de la récuperation \n des données. Glissez vers les bas \n pour réactualiser.",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: 50,
+                        color: Colors.grey.withValues(alpha: 0.5),
+                        weight: 1,
+                      ),
+                      Text(
+                        "Erreur lors de la récuperation \n des données",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                      TextButton(onPressed: refetch, child: Text("Réessayer")),
+                    ],
                   ),
                 )
               : !canBuyTicket
               ? Center(
-                  child: Text(
-                    "Vous ne pouvez plus acheter \n de billet pour cet évènement.",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    spacing: 8,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.confirmation_num_outlined,
+                        size: 50,
+                        color: Colors.grey.withValues(alpha: 0.5),
+                        weight: 1,
+                      ),
+                      Text(
+                        "Vous ne pouvez plus acheter \n de billet pour cet évènement.",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, RouteNames.eventsList);
+                        },
+                        child: Text("Voir d'autres évènements"),
+                      ),
+                    ],
                   ),
                 )
               : Mutation$BuyTicket$Widget(
@@ -120,20 +153,32 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 250, child: Event(data!.event!, disabled: true)),
+                            const Text(
+                              'Evénement',
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(height: 10),
+
+                            eventMinimal(
+                              context,
+                              picture: data!.event!.picture,
+                              title: data.event!.title,
+                              location: data.event!.location,
+                              date: data.event!.date,
+                            ),
+
                             const SizedBox(height: 25),
 
                             // Formulaire d’achat
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               spacing: 8,
                               children: [
                                 const Text(
                                   'Prix du billet',
                                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                                 ),
-
-                                Expanded(child: SizedBox()),
 
                                 ElevatedButton.icon(
                                   onPressed: () {},
@@ -146,34 +191,32 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                                     foregroundColor: Theme.of(context).colorScheme.primary,
                                     shadowColor: Colors.transparent,
                                     padding: EdgeInsets.symmetric(vertical: 0, horizontal: 14),
-                                    iconSize: 22,
-                                    textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                    iconSize: 20,
+                                    textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ],
                             ),
 
                             Divider(height: 30),
-
                             const SizedBox(height: 10),
 
                             Text(
-                              'Béneficiaire ${auth.isAuthenticated ? "" : "*"}',
+                              'Béneficiaire',
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                             const SizedBox(height: 10),
 
                             _buildInput(
-                              _nameController,
-                              TextInputType.name,
-                              'Nom complet ${auth.isAuthenticated ? "" : "*"}',
-                              "Nom du béneficiaire",
-                              Icons.person,
-                              (value) {
+                              controller: _nameController,
+                              keyboardType: TextInputType.name,
+                              label: 'Nom complet',
+                              hint: "Nom du béneficiaire",
+                              icon: Icons.person,
+                              suffixText: "Requis",
+                              validator: (value) {
                                 if (value!.isEmpty) {
-                                  return !auth.isAuthenticated
-                                      ? "Vous devez remplir ce champ !"
-                                      : null;
+                                  return "Vous devez remplir ce champ !";
                                 } else if (!isName(value)) {
                                   return "Nom incorecte !";
                                 }
@@ -181,13 +224,15 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                               },
                             ),
                             const SizedBox(height: 12),
+
                             _buildInput(
-                              _phoneController,
-                              TextInputType.phone,
-                              'Téléphone',
-                              "Telephone de contact",
-                              Icons.phone,
-                              (value) {
+                              controller: _phoneController,
+                              keyboardType: TextInputType.phone,
+                              label: 'Téléphone',
+                              hint: "Telephone de contact",
+                              icon: Icons.phone,
+                              suffixText: "Recommandé",
+                              validator: (value) {
                                 if (value!.isEmpty) {
                                   return !auth.isAuthenticated
                                       ? "Vous devez remplir ce champ !"
@@ -199,28 +244,32 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                               },
                             ),
                             const SizedBox(height: 12),
+
                             _buildInput(
-                              _emailController,
-                              TextInputType.emailAddress,
-                              'Email',
-                              "Email de contact",
-                              Icons.email,
-                              (value) {
+                              controller: _emailController,
+                              keyboardType: TextInputType.emailAddress,
+                              label: 'Email',
+                              hint: "Email de contact",
+                              icon: Icons.email,
+                              suffixText: "Recommandé",
+                              validator: (value) {
                                 if (value!.isNotEmpty && !isEmail(value)) {
                                   return "Email incorecte !";
                                 }
                                 return null;
                               },
                             ),
-
                             const SizedBox(height: 30),
 
                             // Bouton d’achat
                             SizedBox(
                               width: double.infinity,
-                              child: ElevatedButton(
+                              child: ElevatedButton.icon(
+                                icon: Icon(Icons.arrow_right),
+                                iconAlignment: IconAlignment.end,
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Theme.of(context).colorScheme.onPrimaryFixed,
+                                  foregroundColor: Theme.of(context).colorScheme.surface,
                                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 14),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -245,11 +294,8 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
                                         }
                                       }
                                     : null,
-                                child: result.isNotLoading
-                                    ? Text(
-                                        'Acheter maintenant',
-                                        style: TextStyle(fontSize: 16, color: Colors.white),
-                                      )
+                                label: result.isNotLoading
+                                    ? Text('Acheter maintenant', style: TextStyle(fontSize: 16))
                                     : SizedBox(
                                         height: 16,
                                         width: 16,
@@ -270,14 +316,15 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
     );
   }
 
-  Widget _buildInput(
-    TextEditingController controller,
-    TextInputType keyboardType,
-    String label,
-    String hint,
-    IconData icon,
-    FormFieldValidator<String> validator,
-  ) {
+  Widget _buildInput({
+    required controller,
+    required TextInputType keyboardType,
+    required String label,
+    required String hint,
+    required IconData icon,
+    required String suffixText,
+    required FormFieldValidator<String> validator,
+  }) {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
@@ -285,8 +332,10 @@ class _TicketPurchasePageState extends State<CreateTicketPage> {
         prefixIcon: Icon(icon, color: Theme.of(context).colorScheme.primary),
         labelText: label,
         hintText: hint,
-        // filled: true,
-        // fillColor: Colors.white,
+        suffix: Padding(
+          padding: EdgeInsets.only(left: 12),
+          child: Text(suffixText, style: TextStyle(fontSize: 12)),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),

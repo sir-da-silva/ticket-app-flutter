@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/components/event_minimal.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/event.graphql.dart';
-import 'package:my_first_flutter_app/utils/date_parser.dart';
 
 Future<void> selectEvent(BuildContext context, void Function(String eventId) callback) async {
   await showModalBottomSheet<String>(
@@ -27,6 +27,12 @@ class _SelectEventModal extends StatefulWidget {
 
 class _SelectEventModalState extends State<_SelectEventModal> {
   final searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    searchController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,37 +102,71 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                     Expanded(child: Center(child: CircularProgressIndicator()))
                   else if (filteredData == null)
                     Expanded(
-                      child: Column(
-                        spacing: 10,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Erreur lors de la récuperation des données. Cliquez sur réessayer ou tapez un mot a rechercher.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          ElevatedButton(onPressed: refetch, child: Text("Reessayer")),
-                        ],
+                      child: Center(
+                        child: Column(
+                          spacing: 8,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              size: 50,
+                              color: Colors.grey.withValues(alpha: 0.5),
+                              weight: 1,
+                            ),
+                            Text(
+                              "Erreur lors de la récuperation \n des données",
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              textAlign: TextAlign.center,
+                            ),
+                            TextButton(onPressed: refetch, child: Text("Réessayer")),
+                          ],
+                        ),
                       ),
                     )
                   else if (filteredData.isEmpty && searchController.text.isEmpty)
                     Expanded(
                       child: Center(
-                        child: Text(
-                          "Vous n'organisez aucun évenement pour les dates à venir.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
+                        child: Column(
+                          spacing: 8,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.inbox_outlined,
+                              size: 50,
+                              color: Colors.grey.withValues(alpha: 0.5),
+                              weight: 1,
+                            ),
+                            Text(
+                              "Aucun évenement",
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ),
                     )
                   else if (filteredData.isEmpty && searchController.text.isNotEmpty)
                     Expanded(
                       child: Center(
-                        child: Text(
-                          "Aucun resultats.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
+                        child: Column(
+                          spacing: 8,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.manage_search_rounded,
+                              size: 50,
+                              color: Colors.grey.withValues(alpha: 0.5),
+                              weight: 1,
+                            ),
+                            Text(
+                              "Aucun résultat",
+                              style: TextStyle(fontSize: 16, color: Colors.grey),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ),
                     )
@@ -136,116 +176,15 @@ class _SelectEventModalState extends State<_SelectEventModal> {
                         scrollDirection: Axis.vertical,
                         itemCount: filteredData.length,
                         itemBuilder: (context, index) {
-                          CustomDateParser date = CustomDateParser(date: filteredData![index].date);
-
-                          return InkWell(
-                            onTap: () => widget.callback(filteredData![index].id),
-                            overlayColor: WidgetStatePropertyAll(Colors.transparent),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(vertical: 4, horizontal: 1),
-                              color: Theme.of(context).colorScheme.surfaceContainer,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  spacing: 8,
-                                  children: [
-                                    SizedBox(
-                                      width: 70,
-                                      height: 70,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(6),
-                                        child: Image.network(
-                                          filteredData[index].picture,
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return Icon(
-                                              Icons.image,
-                                              color: Colors.grey.withValues(alpha: 0.5),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        spacing: 3,
-                                        children: [
-                                          Text(
-                                            filteredData[index].title,
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                          Row(
-                                            spacing: 5,
-                                            children: [
-                                              DecoratedBox(
-                                                decoration: BoxDecoration(
-                                                  color: Theme.of(
-                                                    context,
-                                                  ).colorScheme.primary.withValues(alpha: 0.1),
-                                                  borderRadius: BorderRadius.circular(4),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(2),
-                                                  child: Icon(
-                                                    Icons.location_on_rounded,
-                                                    size: 14,
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.onPrimaryFixed,
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  filteredData[index].location,
-                                                  style: TextStyle(overflow: TextOverflow.ellipsis),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-
-                                          Row(
-                                            spacing: 5,
-                                            children: [
-                                              DecoratedBox(
-                                                decoration: BoxDecoration(
-                                                  color: Theme.of(
-                                                    context,
-                                                  ).colorScheme.primary.withValues(alpha: 0.1),
-                                                  borderRadius: BorderRadius.circular(4),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(2),
-                                                  child: Icon(
-                                                    Icons.calendar_month_rounded,
-                                                    size: 14,
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.onPrimaryFixed,
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Text(
-                                                  "${date.monthDayNumber} ${date.monthNameShort}  •  ${date.hour12}:${date.minute} ${date.meridiem}",
-                                                  style: TextStyle(overflow: TextOverflow.ellipsis),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                          return eventMinimal(
+                            context,
+                            onTap: () {
+                              widget.callback(filteredData![index].id);
+                            },
+                            picture: filteredData![index].picture,
+                            title: filteredData[index].title,
+                            location: filteredData[index].location,
+                            date: filteredData[index].date,
                           );
                         },
                       ),

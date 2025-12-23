@@ -978,6 +978,293 @@ class _CopyWithStubImpl$Input$LoginInput<TRes>
       _res;
 }
 
+class Input$SearchInput {
+  factory Input$SearchInput({
+    required String search,
+    required Input$SearchInputIncludes include,
+  }) =>
+      Input$SearchInput._({
+        r'search': search,
+        r'include': include,
+      });
+
+  Input$SearchInput._(this._$data);
+
+  factory Input$SearchInput.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$search = data['search'];
+    result$data['search'] = (l$search as String);
+    final l$include = data['include'];
+    result$data['include'] =
+        Input$SearchInputIncludes.fromJson((l$include as Map<String, dynamic>));
+    return Input$SearchInput._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  String get search => (_$data['search'] as String);
+
+  Input$SearchInputIncludes get include =>
+      (_$data['include'] as Input$SearchInputIncludes);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$search = search;
+    result$data['search'] = l$search;
+    final l$include = include;
+    result$data['include'] = l$include.toJson();
+    return result$data;
+  }
+
+  CopyWith$Input$SearchInput<Input$SearchInput> get copyWith =>
+      CopyWith$Input$SearchInput(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$SearchInput || runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$search = search;
+    final lOther$search = other.search;
+    if (l$search != lOther$search) {
+      return false;
+    }
+    final l$include = include;
+    final lOther$include = other.include;
+    if (l$include != lOther$include) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$search = search;
+    final l$include = include;
+    return Object.hashAll([
+      l$search,
+      l$include,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$SearchInput<TRes> {
+  factory CopyWith$Input$SearchInput(
+    Input$SearchInput instance,
+    TRes Function(Input$SearchInput) then,
+  ) = _CopyWithImpl$Input$SearchInput;
+
+  factory CopyWith$Input$SearchInput.stub(TRes res) =
+      _CopyWithStubImpl$Input$SearchInput;
+
+  TRes call({
+    String? search,
+    Input$SearchInputIncludes? include,
+  });
+  CopyWith$Input$SearchInputIncludes<TRes> get include;
+}
+
+class _CopyWithImpl$Input$SearchInput<TRes>
+    implements CopyWith$Input$SearchInput<TRes> {
+  _CopyWithImpl$Input$SearchInput(
+    this._instance,
+    this._then,
+  );
+
+  final Input$SearchInput _instance;
+
+  final TRes Function(Input$SearchInput) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? search = _undefined,
+    Object? include = _undefined,
+  }) =>
+      _then(Input$SearchInput._({
+        ..._instance._$data,
+        if (search != _undefined && search != null)
+          'search': (search as String),
+        if (include != _undefined && include != null)
+          'include': (include as Input$SearchInputIncludes),
+      }));
+
+  CopyWith$Input$SearchInputIncludes<TRes> get include {
+    final local$include = _instance.include;
+    return CopyWith$Input$SearchInputIncludes(
+        local$include, (e) => call(include: e));
+  }
+}
+
+class _CopyWithStubImpl$Input$SearchInput<TRes>
+    implements CopyWith$Input$SearchInput<TRes> {
+  _CopyWithStubImpl$Input$SearchInput(this._res);
+
+  TRes _res;
+
+  call({
+    String? search,
+    Input$SearchInputIncludes? include,
+  }) =>
+      _res;
+
+  CopyWith$Input$SearchInputIncludes<TRes> get include =>
+      CopyWith$Input$SearchInputIncludes.stub(_res);
+}
+
+class Input$SearchInputIncludes {
+  factory Input$SearchInputIncludes({
+    required bool events,
+    required bool users,
+    required bool actualities,
+  }) =>
+      Input$SearchInputIncludes._({
+        r'events': events,
+        r'users': users,
+        r'actualities': actualities,
+      });
+
+  Input$SearchInputIncludes._(this._$data);
+
+  factory Input$SearchInputIncludes.fromJson(Map<String, dynamic> data) {
+    final result$data = <String, dynamic>{};
+    final l$events = data['events'];
+    result$data['events'] = (l$events as bool);
+    final l$users = data['users'];
+    result$data['users'] = (l$users as bool);
+    final l$actualities = data['actualities'];
+    result$data['actualities'] = (l$actualities as bool);
+    return Input$SearchInputIncludes._(result$data);
+  }
+
+  Map<String, dynamic> _$data;
+
+  bool get events => (_$data['events'] as bool);
+
+  bool get users => (_$data['users'] as bool);
+
+  bool get actualities => (_$data['actualities'] as bool);
+
+  Map<String, dynamic> toJson() {
+    final result$data = <String, dynamic>{};
+    final l$events = events;
+    result$data['events'] = l$events;
+    final l$users = users;
+    result$data['users'] = l$users;
+    final l$actualities = actualities;
+    result$data['actualities'] = l$actualities;
+    return result$data;
+  }
+
+  CopyWith$Input$SearchInputIncludes<Input$SearchInputIncludes> get copyWith =>
+      CopyWith$Input$SearchInputIncludes(
+        this,
+        (i) => i,
+      );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! Input$SearchInputIncludes ||
+        runtimeType != other.runtimeType) {
+      return false;
+    }
+    final l$events = events;
+    final lOther$events = other.events;
+    if (l$events != lOther$events) {
+      return false;
+    }
+    final l$users = users;
+    final lOther$users = other.users;
+    if (l$users != lOther$users) {
+      return false;
+    }
+    final l$actualities = actualities;
+    final lOther$actualities = other.actualities;
+    if (l$actualities != lOther$actualities) {
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  int get hashCode {
+    final l$events = events;
+    final l$users = users;
+    final l$actualities = actualities;
+    return Object.hashAll([
+      l$events,
+      l$users,
+      l$actualities,
+    ]);
+  }
+}
+
+abstract class CopyWith$Input$SearchInputIncludes<TRes> {
+  factory CopyWith$Input$SearchInputIncludes(
+    Input$SearchInputIncludes instance,
+    TRes Function(Input$SearchInputIncludes) then,
+  ) = _CopyWithImpl$Input$SearchInputIncludes;
+
+  factory CopyWith$Input$SearchInputIncludes.stub(TRes res) =
+      _CopyWithStubImpl$Input$SearchInputIncludes;
+
+  TRes call({
+    bool? events,
+    bool? users,
+    bool? actualities,
+  });
+}
+
+class _CopyWithImpl$Input$SearchInputIncludes<TRes>
+    implements CopyWith$Input$SearchInputIncludes<TRes> {
+  _CopyWithImpl$Input$SearchInputIncludes(
+    this._instance,
+    this._then,
+  );
+
+  final Input$SearchInputIncludes _instance;
+
+  final TRes Function(Input$SearchInputIncludes) _then;
+
+  static const _undefined = <dynamic, dynamic>{};
+
+  TRes call({
+    Object? events = _undefined,
+    Object? users = _undefined,
+    Object? actualities = _undefined,
+  }) =>
+      _then(Input$SearchInputIncludes._({
+        ..._instance._$data,
+        if (events != _undefined && events != null) 'events': (events as bool),
+        if (users != _undefined && users != null) 'users': (users as bool),
+        if (actualities != _undefined && actualities != null)
+          'actualities': (actualities as bool),
+      }));
+}
+
+class _CopyWithStubImpl$Input$SearchInputIncludes<TRes>
+    implements CopyWith$Input$SearchInputIncludes<TRes> {
+  _CopyWithStubImpl$Input$SearchInputIncludes(this._res);
+
+  TRes _res;
+
+  call({
+    bool? events,
+    bool? users,
+    bool? actualities,
+  }) =>
+      _res;
+}
+
 class Input$UpdateEventInput {
   factory Input$UpdateEventInput({
     required String id,

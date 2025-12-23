@@ -15,9 +15,7 @@ class Event extends HookWidget {
   final CustomDateParser date;
   final List<Object>? followers;
 
-  final bool disabled;
-
-  Event(Query$GetEvent$event data, {super.key, this.disabled = false})
+  Event(Query$GetEvent$event data, {super.key})
     : id = data.id,
       title = data.title,
       description = data.description,
@@ -26,7 +24,7 @@ class Event extends HookWidget {
       date = CustomDateParser(date: data.date),
       followers = data.followers;
 
-  Event.fromMyEvent(Query$GetMyEvents$myEvents data, {super.key, this.disabled = false})
+  Event.fromMyEvent(Query$GetMyEvents$myEvents data, {super.key})
     : id = data.id,
       title = data.title,
       description = data.description,
@@ -35,17 +33,14 @@ class Event extends HookWidget {
       date = CustomDateParser(date: data.date),
       followers = data.followers;
 
-  Event.fromFollowedEvents(
-    Query$GetFollowedEvents$followedEvents data, {
-    super.key,
-    this.disabled = false,
-  }) : id = data.id,
-       title = data.title,
-       description = data.description,
-       location = data.location,
-       picture = data.picture,
-       date = CustomDateParser(date: data.date),
-       followers = data.followers;
+  Event.fromFollowedEvents(Query$GetFollowedEvents$followedEvents data, {super.key})
+    : id = data.id,
+      title = data.title,
+      description = data.description,
+      location = data.location,
+      picture = data.picture,
+      date = CustomDateParser(date: data.date),
+      followers = data.followers;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +49,7 @@ class Event extends HookWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () {
-          if (!disabled) Navigator.pushNamed(context, RouteNames.eventDetail, arguments: id);
+          Navigator.pushNamed(context, RouteNames.eventDetail, arguments: id);
         },
         overlayColor: WidgetStatePropertyAll(Colors.transparent),
         child: Column(

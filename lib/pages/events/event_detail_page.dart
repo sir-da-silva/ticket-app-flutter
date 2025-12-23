@@ -472,17 +472,10 @@ class EventDetailPage extends HookWidget {
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         backgroundColor: Theme.of(context).colorScheme.onPrimaryFixed,
-                        iconColor: Theme.of(context).colorScheme.surface,
+                        foregroundColor: Theme.of(context).colorScheme.surface,
                       ),
                       icon: Icon(Icons.confirmation_number),
-
-                      label: Text(
-                        'Acheter un ticket',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Theme.of(context).colorScheme.surface,
-                        ),
-                      ),
+                      label: Text('Acheter un ticket', style: TextStyle(fontSize: 16)),
                     ),
                   ),
                 )

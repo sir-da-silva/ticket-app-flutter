@@ -34,6 +34,13 @@ class _CheckTicketPageState extends State<CheckTicketPage> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
+    final isActive = useState(true);
+
+    useEffect(() {
+      isActive.value ? controller.start() : controller.stop();
+      return null;
+    }, [isActive.value]);
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
@@ -44,18 +51,22 @@ class _CheckTicketPageState extends State<CheckTicketPage> with SingleTickerProv
               final codes = capture.barcodes;
 
               if (codes.isNotEmpty && codes.first.rawValue != null) {
+                if (!mounted) return;
+
                 controller.stop();
 
                 await Navigator.pushNamed(
                   context,
                   RouteNames.scannedTicket,
-                  arguments: Variables$Mutation$ScanTicket(
+                  arguments: Variables$Mutation$CheckTicket(
                     code: codes.first.rawValue!,
                     eventId: widget.eventId,
                   ),
                 );
 
-                controller.start();
+                if (mounted) {
+                  await controller.start();
+                }
               }
             },
           ),
@@ -143,12 +154,20 @@ class _CheckTicketPageState extends State<CheckTicketPage> with SingleTickerProv
                   icon: const Icon(Icons.flash_on),
                   onPressed: () => controller.toggleTorch(),
                 ),
+
+                // const SizedBox(width: 30),
+                // IconButton(
+                //   iconSize: 34,
+                //   color: Colors.white,
+                //   icon: const Icon(Icons.cameraswitch_rounded),
+                //   onPressed: () => controller.switchCamera(),
+                // ),
                 const SizedBox(width: 30),
-                IconButton(
-                  iconSize: 34,
-                  color: Colors.white,
-                  icon: const Icon(Icons.cameraswitch_rounded),
-                  onPressed: () => controller.switchCamera(),
+                Switch(
+                  value: isActive.value,
+                  onChanged: (value) {
+                    isActive.value = value;
+                  },
                 ),
               ],
             ),

@@ -5,15 +5,16 @@ import 'package:my_first_flutter_app/pages/auth/login_page.dart';
 import 'package:my_first_flutter_app/pages/auth/otp_page.dart';
 import 'package:my_first_flutter_app/pages/auth/register_page.dart';
 import 'package:my_first_flutter_app/pages/events/edit_event_page.dart';
+import 'package:my_first_flutter_app/pages/events/edit_managers.dart';
 import 'package:my_first_flutter_app/pages/main_navigation_page.dart';
 import 'package:my_first_flutter_app/pages/events/event_detail_page.dart';
 import 'package:my_first_flutter_app/pages/events/create_event_page.dart';
 import 'package:my_first_flutter_app/navigation/route_names.dart';
-import 'package:my_first_flutter_app/pages/tickets/create_ticket_page.dart';
+import 'package:my_first_flutter_app/pages/tickets/buy_ticket_page.dart';
 import 'package:my_first_flutter_app/pages/tickets/check_ticket_page.dart';
 import 'package:my_first_flutter_app/pages/tickets/scanned_ticket.dart';
 import 'package:my_first_flutter_app/pages/tickets/ticket_detail_page.dart';
-import 'package:my_first_flutter_app/pages/utilities/edit_profile_page.dart';
+import 'package:my_first_flutter_app/pages/users/edit_profile_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/notification_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/search_page.dart';
 import 'package:my_first_flutter_app/pages/utilities/settings_page.dart';
@@ -34,7 +35,10 @@ class AppRouter {
       case RouteNames.register:
         return MaterialPageRoute(builder: (_) => const RegisterPage(), settings: settings);
       case RouteNames.otpPage:
-        return MaterialPageRoute(builder: (_) => const OtpPage(), settings: settings);
+        return MaterialPageRoute(
+          builder: (_) => OtpPage(email: settings.arguments.toString()),
+          settings: settings,
+        );
 
       // Search pages
       case RouteNames.search:
@@ -66,11 +70,16 @@ class AppRouter {
           builder: (_) => EditEventPage(eventId: settings.arguments.toString()),
           settings: settings,
         );
+      case RouteNames.eventManagers:
+        return MaterialPageRoute(
+          builder: (_) => EditManagers(eventId: settings.arguments.toString()),
+          settings: settings,
+        );
 
       // Ticket pages
       case RouteNames.createTicket:
         return MaterialPageRoute(
-          builder: (_) => CreateTicketPage(eventId: settings.arguments.toString()),
+          builder: (_) => BuyTicketPage(eventId: settings.arguments.toString()),
           settings: settings,
         );
       case RouteNames.ticketDetail:
@@ -84,6 +93,11 @@ class AppRouter {
           settings: settings,
         );
       case RouteNames.scannedTicket:
+        // print("------------\n\n\n\n\n\n\n\n\n\n\n\n\n------------------------");
+        // print(settings.arguments?.runtimeType);
+        // print(Variables$Mutation$CheckTicket);
+        // print("------------------------------------");
+
         return MaterialPageRoute(
           builder: (_) =>
               ScannedTicketPage(variables: settings.arguments as Variables$Mutation$CheckTicket),

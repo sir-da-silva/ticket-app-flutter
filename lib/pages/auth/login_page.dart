@@ -225,22 +225,33 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           const SizedBox(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Pas encore de compte ? "),
-                              GestureDetector(
-                                onTap: () =>
-                                    Navigator.pushReplacementNamed(context, RouteNames.register),
-                                child: Text(
-                                  "S'inscrire",
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).colorScheme.onPrimaryFixed,
+                          RichText(
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: "Vous n'avez pas encore de compte ? ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                color: Theme.of(context).colorScheme.onPrimaryFixed,
+                              ),
+                              children: [
+                                WidgetSpan(
+                                  alignment: PlaceholderAlignment.middle,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushReplacementNamed(context, RouteNames.register);
+                                    },
+                                    child: Text(
+                                      "S'inscrire",
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).colorScheme.onPrimaryFixed,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
 
                           SizedBox(height: 20),

@@ -17,7 +17,7 @@ class LoginRequired extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 64, color: Colors.grey),
+            Icon(icon, size: 64, color: Colors.grey.withValues(alpha: 0.5)),
             SizedBox(height: 16),
             Text(
               title,
@@ -32,49 +32,49 @@ class LoginRequired extends StatelessWidget {
             ),
             SizedBox(height: 20),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: 10,
-              children: [
-                ElevatedButton(
-                  onPressed: null,
-                  child: Row(
-                    spacing: 12,
-                    children: [
-                      //
-                      InkWell(
-                        onTap: () {
-                          AppRouter.pushNamed(context, RouteNames.login);
-                        },
-                        child: Text(
-                          "Se connecter",
-                          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            Center(
+              child: IntrinsicWidth(
+                child: Row(
+                  spacing: 16,
+                  children: [
+                    //
+                    TextButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                          Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                         ),
                       ),
-                      Text("|"),
-                      InkWell(
-                        onTap: () {
-                          AppRouter.pushNamed(context, RouteNames.register);
-                        },
-                        child: Text(
-                          "Créer un compte",
-                          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                      onPressed: () {
+                        AppRouter.pushNamed(context, RouteNames.login);
+                      },
+                      child: Text(
+                        "Connexion",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    TextButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                          Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                        ),
+                      ),
+                      onPressed: () {
+                        AppRouter.pushNamed(context, RouteNames.register);
+                      },
+                      child: Text(
+                        "Inscription",
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-
-                // ElevatedButton(
-                //   onPressed: () => Navigator.pushNamed(context, RouteNames.login),
-                //   child: Text("Se Connecter | Creer un compte"),
-                // ),
-                // ElevatedButton(
-                //   onPressed: () => Navigator.pushNamed(context, RouteNames.register),
-                //   child: Text("Créer un compte"),
-                // ),
-              ],
+              ),
             ),
           ],
         ),

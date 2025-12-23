@@ -52,7 +52,7 @@ class ManagementPage extends StatelessWidget {
           ? LoginRequired(
               icon: Icons.assignment,
               title: "Gestion",
-              message: "Gérez vos activités et votre balance !",
+              message: "Gérez vos activités et votre balance ici.",
             )
           : RefreshIndicator(
               displacement: 16,
@@ -281,6 +281,7 @@ class ManagementPage extends StatelessWidget {
                                     Navigator.pushReplacementNamed(
                                       context,
                                       RouteNames.eventManagers,
+                                      arguments: eventId,
                                     );
                                   }),
                                 ),
@@ -302,90 +303,98 @@ class ManagementPage extends StatelessWidget {
                           }
 
                           return Column(
-                            children: result.isLoading
-                                ? [
-                                    Padding(
+                            children: [
+                              result.isLoading
+                                  ? Padding(
                                       padding: EdgeInsets.fromLTRB(16, 100, 16, 100),
                                       child: Center(child: CircularProgressIndicator()),
-                                    ),
-                                  ]
-                                : [
-                                    buildSectionHeader(
-                                      context,
-                                      'Mes Evenements',
-                                      Icons.calendar_month_outlined,
-                                      () {
-                                        Navigator.pushNamed(context, "/myEvents");
-                                      },
-                                    ),
+                                    )
+                                  : Column(
+                                      children: [
+                                        buildSectionHeader(
+                                          context,
+                                          'Mes Evenements',
+                                          Icons.calendar_month_outlined,
+                                          () => Navigator.pushNamed(context, "/myEvents"),
+                                        ),
 
-                                    if (data == null)
-                                      Padding(
-                                        padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
-                                        child: Center(
-                                          child: Column(
-                                            spacing: 8,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.error_outline,
-                                                size: 50,
-                                                color: Colors.grey.withValues(alpha: 0.5),
-                                                weight: 1,
+                                        if (data == null)
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                            child: Center(
+                                              child: Column(
+                                                spacing: 8,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.error_outline,
+                                                    size: 50,
+                                                    color: Colors.grey.withValues(alpha: 0.5),
+                                                    weight: 1,
+                                                  ),
+                                                  Text(
+                                                    "Erreur ! Glissez vers le bas \n pour réactualiser.",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
                                               ),
-                                              Text(
-                                                "Erreur ! Glissez vers le bas \n pour réactualiser.",
-                                                style: TextStyle(fontSize: 16, color: Colors.grey),
-                                                textAlign: TextAlign.center,
+                                            ),
+                                          )
+                                        else if (data.myEvents.isEmpty)
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                            child: Center(
+                                              child: Column(
+                                                spacing: 8,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.inbox_outlined,
+                                                    size: 50,
+                                                    color: Colors.grey.withValues(alpha: 0.5),
+                                                    weight: 1,
+                                                  ),
+                                                  Text(
+                                                    "Aucun évenement",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ],
                                               ),
-                                            ],
+                                            ),
+                                          )
+                                        else
+                                          SizedBox(
+                                            height: 250,
+                                            child: ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                              itemCount: data.myEvents.length < 10
+                                                  ? data.myEvents.length
+                                                  : 10,
+                                              itemBuilder: (context, index) {
+                                                return Padding(
+                                                  padding: const EdgeInsets.only(right: 12),
+                                                  child: SizedBox(
+                                                    width: 300,
+                                                    child: Event.fromMyEvent(data!.myEvents[index]),
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ),
-                                        ),
-                                      )
-                                    else if (data.myEvents.isEmpty)
-                                      Padding(
-                                        padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
-                                        child: Center(
-                                          child: Column(
-                                            spacing: 8,
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.inbox_outlined,
-                                                size: 50,
-                                                color: Colors.grey.withValues(alpha: 0.5),
-                                                weight: 1,
-                                              ),
-                                              Text(
-                                                "Aucun évenement",
-                                                style: TextStyle(fontSize: 16, color: Colors.grey),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    else
-                                      SizedBox(
-                                        height: 250,
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                                          itemCount: 10,
-                                          itemBuilder: (context, index) {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(right: 12),
-                                              child: SizedBox(
-                                                width: 300,
-                                                child: Event.fromMyEvent(data!.myEvents[index]),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                  ],
+                                      ],
+                                    ),
+                            ],
                           );
                         },
                       ),

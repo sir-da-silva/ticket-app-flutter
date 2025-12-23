@@ -1,0 +1,26 @@
+query Search($input: SearchInput!) {
+  search(input: $input) {
+    events {
+      id
+      picture
+      date
+      location
+    }
+    users {
+      id
+      name
+      picture
+      badge
+    }
+    actualities {
+      id
+      picture
+      description
+      user {
+        id
+        name
+        picture
+      }
+    }
+  }
+}

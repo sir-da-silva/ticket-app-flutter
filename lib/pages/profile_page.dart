@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:my_first_flutter_app/components/build_section_header.dart';
@@ -92,7 +91,7 @@ class ProfilePage extends StatelessWidget {
           ? LoginRequired(
               icon: Icons.person,
               title: "Mon profil",
-              message: "Gérer vos données personnels.",
+              message: "Gérer vos données personnels ici.",
             )
           : RefreshIndicator(
               displacement: 16,
@@ -120,35 +119,51 @@ class ProfilePage extends StatelessWidget {
                           data = Query$GetMe.fromJson(result.data!);
                         }
 
-                        return result.isLoading
-                            ? Shimmer(
-                                duration: Duration(seconds: 1),
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 180 + 24 * 2,
-                                  color: Theme.of(context).colorScheme.surfaceContainer,
-                                ),
-                              )
-                            : data?.me == null
-                            ? SizedBox(
-                                width: double.infinity,
-                                height: 180 + 24 * 2,
+                        return result.isLoading || data?.me == null
+                            ? Padding(
+                                padding: const EdgeInsets.all(24.0),
                                 child: Center(
                                   child: Column(
-                                    spacing: 8,
-                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Icon(
-                                        Icons.error_outline,
-                                        size: 50,
-                                        color: Colors.grey.withValues(alpha: 0.5),
-                                        weight: 1,
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(100),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: CircleAvatar(
+                                            radius: 48,
+                                            backgroundColor: Theme.of(
+                                              context,
+                                            ).colorScheme.surfaceContainer,
+                                          ),
+                                        ),
                                       ),
-                                      Text(
-                                        "Erreur ! Glissez vers le bas \n pour réactualiser.",
-                                        style: TextStyle(fontSize: 16, color: Colors.grey),
-                                        textAlign: TextAlign.center,
+                                      const SizedBox(height: 10),
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: Container(
+                                            width: 125,
+                                            color: Theme.of(context).colorScheme.surfaceContainer,
+                                            child: Text("", style: TextStyle(fontSize: 24)),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Shimmer(
+                                          enabled: result.isLoading,
+                                          duration: Duration(seconds: 1),
+                                          child: Container(
+                                            width: 175,
+                                            color: Theme.of(context).colorScheme.surfaceContainer,
+                                            child: Text("", style: TextStyle(fontSize: 16)),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -171,7 +186,13 @@ class ProfilePage extends StatelessWidget {
                                         radius: 45,
                                         backgroundColor: Theme.of(context).colorScheme.primaryFixed,
                                         child: data!.me!.picture == null
-                                            ? Icon(Icons.person, size: 50, color: Colors.grey)
+                                            ? Icon(
+                                                Icons.person,
+                                                size: 50,
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.onSurface.withValues(alpha: 0.15),
+                                              )
                                             : Image.network(
                                                 data.me!.picture!,
                                                 fit: BoxFit.cover,
@@ -293,102 +314,108 @@ class ProfilePage extends StatelessWidget {
                         }
 
                         return Column(
-                          children: result.isLoading
-                              ? [
-                                  Padding(
+                          children: [
+                            result.isLoading
+                                ? Padding(
                                     padding: EdgeInsets.fromLTRB(16, 100, 16, 100),
                                     child: Center(child: CircularProgressIndicator()),
-                                  ),
-                                ]
-                              : [
-                                  buildSectionHeader(
-                                    context,
-                                    'Evenements Suivies',
-                                    Icons.calendar_month_outlined,
-                                    () {
-                                      Navigator.pushNamed(context, "/followedEvents");
-                                    },
-                                  ),
+                                  )
+                                : Column(
+                                    children: [
+                                      buildSectionHeader(
+                                        context,
+                                        'Evenements Suivies',
+                                        Icons.calendar_month_outlined,
+                                        () => Navigator.pushNamed(context, "/followedEvents"),
+                                      ),
 
-                                  if (data?.followedEvents == null)
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
-                                      child: Center(
-                                        child: Column(
-                                          spacing: 8,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.error_outline,
-                                              size: 50,
-                                              color: Colors.grey.withValues(alpha: 0.5),
-                                              weight: 1,
-                                            ),
-                                            Text(
-                                              "Erreur ! Glissez vers le bas \n pour réactualiser.",
-                                              style: TextStyle(fontSize: 16, color: Colors.grey),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  else if (data!.followedEvents.isEmpty)
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
-                                      child: Center(
-                                        child: Column(
-                                          spacing: 10,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "Vous ne suivez actuellement \n aucun évenement",
-                                              style: TextStyle(fontSize: 16, color: Colors.grey),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            TextButton.icon(
-                                              style: ButtonStyle(
-                                                backgroundColor: WidgetStatePropertyAll(
-                                                  Theme.of(
-                                                    context,
-                                                  ).primaryColor.withValues(alpha: 0.05),
+                                      if (data?.followedEvents == null)
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                          child: Center(
+                                            child: Column(
+                                              spacing: 8,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.error_outline,
+                                                  size: 50,
+                                                  color: Colors.grey.withValues(alpha: 0.5),
+                                                  weight: 1,
                                                 ),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.pushNamed(context, RouteNames.search);
-                                              },
-                                              label: Text("Rechercher"),
-                                              icon: Icon(Icons.search),
+                                                Text(
+                                                  "Erreur ! Glissez vers le bas \n pour réactualiser.",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
+                                        )
+                                      else if (data!.followedEvents.isEmpty)
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                          child: Center(
+                                            child: Column(
+                                              spacing: 10,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "Vous ne suivez actuellement \n aucun évenement",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                TextButton.icon(
+                                                  style: ButtonStyle(
+                                                    backgroundColor: WidgetStatePropertyAll(
+                                                      Theme.of(
+                                                        context,
+                                                      ).primaryColor.withValues(alpha: 0.05),
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.pushNamed(context, RouteNames.search);
+                                                  },
+                                                  label: Text("Rechercher"),
+                                                  icon: Icon(Icons.search),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      else
+                                        SizedBox(
+                                          height: 250,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                                            itemCount: data.followedEvents.length < 10
+                                                ? data.followedEvents.length
+                                                : 10,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: const EdgeInsets.only(right: 12),
+                                                child: SizedBox(
+                                                  width: 300,
+                                                  child: Event.fromFollowedEvents(
+                                                    data!.followedEvents[index],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  else
-                                    SizedBox(
-                                      height: 250,
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                                        itemCount: data.followedEvents.length < 10
-                                            ? data.followedEvents.length
-                                            : 10,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(right: 12),
-                                            child: SizedBox(
-                                              width: 300,
-                                              child: Event.fromFollowedEvents(
-                                                data!.followedEvents[index],
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                ],
+                                    ],
+                                  ),
+                          ],
                         );
                       },
                     ),
@@ -404,92 +431,92 @@ class ProfilePage extends StatelessWidget {
                         }
 
                         return Column(
-                          children: result.isLoading
-                              ? [
-                                  // Center(
-                                  //   heightFactor: 5,
-                                  //   child: Column(
-                                  //     crossAxisAlignment: CrossAxisAlignment.center,
-                                  //     mainAxisAlignment: MainAxisAlignment.center,
-                                  //     children: [CircularProgressIndicator()],
-                                  //   ),
-                                  // ),
-                                ]
-                              : [
-                                  buildSectionHeader(
-                                    context,
-                                    'Tickets Achetés',
-                                    Icons.confirmation_number_outlined,
-                                    () {},
-                                  ),
+                          children: [
+                            result.isLoading
+                                ? SizedBox()
+                                : Column(
+                                    children: [
+                                      buildSectionHeader(
+                                        context,
+                                        'Tickets Achetés',
+                                        Icons.confirmation_number_outlined,
+                                        () {},
+                                      ),
 
-                                  if (data?.myTickets == null)
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
-                                      child: Center(
-                                        child: Column(
-                                          spacing: 8,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.error_outline,
-                                              size: 50,
-                                              color: Colors.grey.withValues(alpha: 0.5),
-                                              weight: 1,
+                                      if (data?.myTickets == null)
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                          child: Center(
+                                            child: Column(
+                                              spacing: 8,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.error_outline,
+                                                  size: 50,
+                                                  color: Colors.grey.withValues(alpha: 0.5),
+                                                  weight: 1,
+                                                ),
+                                                Text(
+                                                  "Erreur ! Glissez vers le bas \n pour réactualiser.",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ],
                                             ),
-                                            Text(
-                                              "Erreur ! Glissez vers le bas \n pour réactualiser.",
-                                              style: TextStyle(fontSize: 16, color: Colors.grey),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ],
+                                          ),
+                                        )
+                                      else if (data!.myTickets.isEmpty)
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
+                                          child: Column(
+                                            spacing: 8,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.confirmation_num_outlined,
+                                                size: 50,
+                                                color: Colors.grey.withValues(alpha: 0.5),
+                                                weight: 1,
+                                              ),
+                                              Text(
+                                                "Les tickets que vous achetez \n apparaîtront ici.",
+                                                style: TextStyle(fontSize: 16, color: Colors.grey),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      else
+                                        SizedBox(
+                                          height: 195,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                                            itemCount: data.myTickets.length < 10
+                                                ? data.myTickets.length
+                                                : 10,
+                                            itemBuilder: (context, index) {
+                                              return Padding(
+                                                padding: const EdgeInsets.only(right: 12),
+                                                child: SizedBox(
+                                                  width: 300,
+                                                  child: Ticket.fromtMyTickets(
+                                                    data!.myTickets[index],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  else if (data!.myTickets.isEmpty)
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(16, 60, 16, 60),
-                                      child: Column(
-                                        spacing: 8,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.confirmation_num_outlined,
-                                            size: 50,
-                                            color: Colors.grey.withValues(alpha: 0.5),
-                                            weight: 1,
-                                          ),
-                                          Text(
-                                            "Les tickets que vous achetez \n apparaitront ici.",
-                                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  else
-                                    SizedBox(
-                                      height: 195,
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                                        itemCount: data.myTickets.length < 10
-                                            ? data.myTickets.length
-                                            : 10,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(right: 12),
-                                            child: SizedBox(
-                                              width: 300,
-                                              child: Ticket.fromtMyTickets(data!.myTickets[index]),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                ],
+                                    ],
+                                  ),
+                          ],
                         );
                       },
                     ),

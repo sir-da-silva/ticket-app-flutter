@@ -3,11 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:my_first_flutter_app/generated/graphql/operations/user.graphql.dart';
 import 'package:my_first_flutter_app/generated/graphql/schema.graphql.dart';
+import 'package:my_first_flutter_app/services/auth_provider.dart';
+import 'package:my_first_flutter_app/services/graphql_service.dart';
+import 'package:my_first_flutter_app/services/jwt_service.dart';
+import 'package:provider/provider.dart';
 
 class OtpPage extends StatefulWidget {
-  final String? email;
+  final String email;
 
-  const OtpPage({super.key, this.email});
+  const OtpPage({super.key, required this.email});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -15,13 +19,12 @@ class OtpPage extends StatefulWidget {
 
 class _OtpPageState extends State<OtpPage> {
   final _formKey = GlobalKey<FormState>();
-  final List<TextEditingController> otpControllers = List.generate(
-    6,
-    (_) => TextEditingController(),
-  );
+  final otpControllers = List.generate(6, (_) => TextEditingController());
 
   @override
   Widget build(BuildContext context) {
+    final auth = context.watch<AuthProvider>();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -54,6 +57,24 @@ class _OtpPageState extends State<OtpPage> {
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
               child: Mutation$CompleteSignUp$Widget(
+                options: WidgetOptions$Mutation$CompleteSignUp(
+                  onCompleted: (_, data) {
+                    final token = data?.completeSignUp.token;
+
+                    if (token != null) {
+                      JWTService.storeToken(token).then((_) {
+                        GraphQLService.refreshClient();
+                        auth.refreshSession();
+                      });
+
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    }
+                  },
+                  onError: (error) {
+                    GraphQLService.operationExceptionHandler(context, error);
+                  },
+                ),
                 builder: (runMutation, result) {
                   return Container(
                     padding: const EdgeInsets.all(24),
@@ -97,14 +118,16 @@ class _OtpPageState extends State<OtpPage> {
                                 width: 40,
                                 height: 60,
                                 child: TextFormField(
+                                  autofocus: true,
                                   controller: otpControllers[index],
                                   keyboardType: TextInputType.number,
                                   textAlign: TextAlign.center,
+                                  decoration: InputDecoration(contentPadding: EdgeInsets.all(0)),
+                                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                                   inputFormatters: [
                                     LengthLimitingTextInputFormatter(1),
                                     FilteringTextInputFormatter.digitsOnly,
                                   ],
-                                  autofocus: true,
                                   onChanged: (value) {
                                     if (value.isNotEmpty && index < 6) {
                                       FocusScope.of(context).nextFocus();
@@ -112,7 +135,6 @@ class _OtpPageState extends State<OtpPage> {
                                       FocusScope.of(context).previousFocus();
                                     }
                                   },
-                                  decoration: InputDecoration(contentPadding: EdgeInsets.all(0)),
                                 ),
                               );
                             }),
@@ -134,25 +156,23 @@ class _OtpPageState extends State<OtpPage> {
                               onPressed: () {
                                 final otpCode = otpControllers.map((c) => c.text).join();
 
-                                if (widget.email != null) {
-                                  if (otpCode.length == 6) {
-                                    runMutation(
-                                      Variables$Mutation$CompleteSignUp(
-                                        input: Input$CompleteSignUpInput(
-                                          email: widget.email!,
-                                          code: otpCode,
-                                        ),
+                                if (otpCode.length == 6) {
+                                  runMutation(
+                                    Variables$Mutation$CompleteSignUp(
+                                      input: Input$CompleteSignUpInput(
+                                        email: widget.email,
+                                        code: otpCode,
                                       ),
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text("Veuillez entrer le code complet."),
-                                        dismissDirection: DismissDirection.horizontal,
-                                        behavior: SnackBarBehavior.floating,
-                                      ),
-                                    );
-                                  }
+                                    ),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text("Veuillez entrer le code complet."),
+                                      dismissDirection: DismissDirection.horizontal,
+                                      behavior: SnackBarBehavior.floating,
+                                    ),
+                                  );
                                 }
                               },
                               child: (result?.isLoading ?? false)
@@ -169,26 +189,33 @@ class _OtpPageState extends State<OtpPage> {
                           const SizedBox(height: 20),
 
                           /// 🔁 Renvoi du code
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Vous n'avez pas reçu de code ? ",
-                                style: GoogleFonts.poppins(fontSize: 13),
+                          RichText(
+                            maxLines: 2,
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: "Vous n'avez pas reçu de code ? ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 13,
+                                color: Theme.of(context).colorScheme.onPrimaryFixed,
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  // TODO : renvoyer le code OTP
-                                },
-                                child: Text(
-                                  "Renvoyer",
-                                  style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).colorScheme.onPrimaryFixed,
+                              children: [
+                                WidgetSpan(
+                                  alignment: PlaceholderAlignment.middle,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      // TODO : renvoyer le code OTP
+                                    },
+                                    child: Text(
+                                      "Renvoyer",
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).colorScheme.onPrimaryFixed,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
 
                           SizedBox(height: 20),

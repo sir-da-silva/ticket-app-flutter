@@ -47,8 +47,7 @@ class _NotificationPageState extends State<NotificationPage> with TickerProvider
           ? LoginRequired(
               icon: Icons.notifications,
               title: "Notifications",
-              message:
-                  "Recevez des notifications sur sur les activités de votre compte, des rapels sur vos évenements, ...",
+              message: "Les notifications que vous recevez apparaîtront ici.",
             )
           : SlidableAutoCloseBehavior(
               child: Padding(

@@ -121,21 +121,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       const SizedBox(height: 20),
 
                       /// 🔁 Retour à la connexion
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text("Retourner à "),
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: Text(
-                              "la connexion",
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).colorScheme.onPrimaryFixed,
-                              ),
-                            ),
+                      IntrinsicWidth(
+                        child: IconButton(
+                          icon: Row(
+                            spacing: 10,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.arrow_back_rounded),
+                              Text("Revenir en arrière", style: TextStyle(fontSize: 14)),
+                            ],
                           ),
-                        ],
+                          onPressed: () => Navigator.pop(context),
+                        ),
                       ),
                     ],
                   ),
